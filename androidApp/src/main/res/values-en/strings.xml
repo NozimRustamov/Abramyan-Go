@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Abramyan Go</string>
+    
+    <!-- Ranks -->
+    <string name="rank_novice">Novice</string>
+    <string name="rank_apprentice">Apprentice</string>
+    <string name="rank_journeyman">Journeyman</string>
+    <string name="rank_coder">Coder</string>
+    <string name="rank_engineer">Engineer</string>
+    <string name="rank_architect">Architect</string>
+    <string name="rank_code_master">Code Master</string>
+    <string name="rank_legend">Legend</string>
+    
+    <!-- Worlds -->
+    <string name="world_valley_name">Valley of Beginnings</string>
+    <string name="world_valley_desc">Awakening in the digital world. Learn to see data.</string>
+    <string name="world_fields_name">Fields of Truth</string>
+    <string name="world_fields_desc">A world where everything is true or false.</string>
+    <string name="world_crossroads_name">Crossroads of Fate</string>
+    <string name="world_crossroads_desc">Every choice leads to different consequences.</string>
+    <string name="world_timeloop_name">Time Loop</string>
+    <string name="world_timeloop_desc">Groundhog day — the world is stuck in repetition.</string>
+    <string name="world_river_name">Data River</string>
+    <string name="world_river_desc">Data streams flow like rivers.</string>
+    <string name="world_ocean_name">Ocean of Arrays</string>
+    <string name="world_ocean_desc">Underwater world of data storage.</string>
+    <string name="world_citadel_name">Matrix Citadel</string>
+    <string name="world_citadel_desc">Fortress with a labyrinth of two-dimensional arrays.</string>
+    <string name="world_forest_name">Text Forest</string>
+    <string name="world_forest_desc">Enchanted forest of living words.</string>
+    <string name="world_archives_name">Architect Archives</string>
+    <string name="world_archives_desc">Library of all knowledge.</string>
+    
+    <!-- Achievements -->
+    <string name="achievement_first_blood">First Blood</string>
+    <string name="achievement_first_blood_desc">Solved the first task</string>
+    <string name="achievement_flawless">Flawless</string>
+    <string name="achievement_flawless_desc">10 tasks on the first attempt</string>
+    <string name="achievement_marathoner">Marathoner</string>
+    <string name="achievement_marathoner_desc">30-day streak</string>
+    <string name="achievement_bug_hunter">Bug Hunter</string>
+    <string name="achievement_bug_hunter_desc">Solved 50 Bug Hunt tasks</string>
+    <string name="achievement_speedster">Speedster</string>
+    <string name="achievement_speedster_desc">10 tasks in blitz mode</string>
+    <string name="achievement_boss_killer">Boss Killer</string>
+    <string name="achievement_boss_killer_desc">Defeated all bosses</string>
+    <string name="achievement_polyglot">Polyglot</string>
+    <string name="achievement_polyglot_desc">Solved a task in all 4 languages</string>
+    <string name="achievement_code_architect">Code Architect</string>
+    <string name="achievement_code_architect_desc">20 refactoring tasks</string>
+    <string name="achievement_combo_master">Combo Master</string>
+    <string name="achievement_combo_master_desc">Reached ×5 multiplier</string>
+    <string name="achievement_legend">Legend</string>
+    <string name="achievement_legend_desc">Reached Legend rank</string>
+    
+    <!-- Abilities -->
+    <string name="ability_hint">Hint</string>
+    <string name="ability_hint_desc">Highlights one correct option</string>
+    <string name="ability_remove_wrong">Remove Wrong</string>
+    <string name="ability_remove_wrong_desc">Removes 50% of wrong options</string>
+    <string name="ability_second_chance">Second Chance</string>
+    <string name="ability_second_chance_desc">Resets task without losing combo</string>
+    <string name="ability_xray">X-Ray</string>
+    <string name="ability_xray_desc">Shows value of one variable</string>
+    
+    <!-- Streak -->
+    <string name="streak_unstoppable">Unstoppable</string>
+    
+    <!-- UI -->
+    <string name="btn_continue">Continue</string>
+    <string name="btn_retry">Try Again</string>
+    <string name="btn_check">Check</string>
+    <string name="btn_hint">Hint</string>
+    <string name="btn_back">Back</string>
+    
+    <string name="correct_answer">Correct!</string>
+    <string name="incorrect_answer">Try again</string>
+    <string name="no_energy_loss">Mistakes don\'t cost energy</string>
+    <string name="first_attempt_bonus">First try!</string>
+</resources>
