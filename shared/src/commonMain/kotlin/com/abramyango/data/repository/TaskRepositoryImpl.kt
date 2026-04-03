@@ -81,9 +81,8 @@ class TaskRepositoryImpl(
     
     override suspend fun getCompletedTaskIds(worldId: String): List<String> = withContext(Dispatchers.IO) {
         // Get all task IDs that start with world prefix
-        val prefix = worldId.replace("_", "_") // Keep as is for now
+        val prefix = worldId // The SQL query uses LIKE ? || '%'
         queries.getCompletedTasksForWorld(prefix)
             .executeAsList()
-            .map { it.task_id }
     }
 }

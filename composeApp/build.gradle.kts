@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
@@ -46,6 +47,7 @@ kotlin {
             
             implementation(libs.coil.compose)
             implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.kotlinx.serialization.json)
         }
         
         androidMain.dependencies {
@@ -57,7 +59,7 @@ kotlin {
 
 android {
     namespace = "com.abramyango.composeapp"
-    compileSdk = 34
+    compileSdk = 35
     
     defaultConfig {
         minSdk = 24

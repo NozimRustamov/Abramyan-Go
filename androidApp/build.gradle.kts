@@ -19,6 +19,11 @@ kotlin {
             implementation(projects.shared)
             implementation(projects.composeApp)
             
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.ui)
+            implementation(compose.material3)
+
             implementation(libs.androidx.activity.compose)
             implementation(libs.androidx.core.ktx)
             implementation(libs.koin.android)
@@ -28,12 +33,12 @@ kotlin {
 
 android {
     namespace = "com.abramyango"
-    compileSdk = 34
+    compileSdk = 35
     
     defaultConfig {
         applicationId = "com.abramyango"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0.0"
         
@@ -42,6 +47,10 @@ android {
         }
     }
     
+    sourceSets["main"].manifest.srcFile("src/main/AndroidManifest.xml")
+    sourceSets["main"].res.srcDirs("src/main/res")
+    sourceSets["main"].resources.srcDirs("src/main/resources")
+
     buildTypes {
         release {
             isMinifyEnabled = true

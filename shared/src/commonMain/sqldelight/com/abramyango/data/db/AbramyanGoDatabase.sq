@@ -121,9 +121,9 @@ UPDATE player_profile SET selected_language = ? WHERE id = 1;
 
 updateStreak:
 UPDATE player_profile SET 
-    current_streak = ?,
-    longest_streak = MAX(longest_streak, ?),
-    last_activity_date = ?
+    current_streak = :current_streak,
+    longest_streak = MAX(longest_streak, :longest_streak),
+    last_activity_date = :last_activity_date
 WHERE id = 1;
 
 incrementTasksSolved:

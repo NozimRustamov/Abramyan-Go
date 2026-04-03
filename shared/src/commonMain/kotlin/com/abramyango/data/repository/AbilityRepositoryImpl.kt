@@ -60,15 +60,15 @@ class AbilityRepositoryImpl(
         
         canUse
     }
-    
-    override suspend fun addAbility(ability: Ability, count: Int) = withContext(Dispatchers.IO) {
+
+    override suspend fun purchaseAbility(ability: Ability): Boolean = withContext(Dispatchers.IO) {
         val inventory = queries.getAbilityInventory().executeAsOne()
         
         val newInventory = when (ability) {
-            Ability.HINT -> inventory.copy(hints = inventory.hints + count)
-            Ability.REMOVE_WRONG -> inventory.copy(remove_wrong = inventory.remove_wrong + count)
-            Ability.SECOND_CHANCE -> inventory.copy(second_chance = inventory.second_chance + count)
-            Ability.XRAY -> inventory.copy(xray = inventory.xray + count)
+            Ability.HINT -> inventory.copy(hints = inventory.hints + 1)
+            Ability.REMOVE_WRONG -> inventory.copy(remove_wrong = inventory.remove_wrong + 1)
+            Ability.SECOND_CHANCE -> inventory.copy(second_chance = inventory.second_chance + 1)
+            Ability.XRAY -> inventory.copy(xray = inventory.xray + 1)
         }
         
         queries.updateAbilityInventory(
@@ -77,5 +77,6 @@ class AbilityRepositoryImpl(
             second_chance = newInventory.second_chance,
             xray = newInventory.xray
         )
+        true
     }
 }

@@ -42,6 +42,7 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.kotlinx.coroutines.android)
             implementation(libs.sqldelight.android.driver)
+            implementation(libs.koin.android)
         }
         
         iosMain.dependencies {
@@ -52,7 +53,7 @@ kotlin {
 
 android {
     namespace = "com.abramyango.shared"
-    compileSdk = 34
+    compileSdk = 35
     
     defaultConfig {
         minSdk = 24

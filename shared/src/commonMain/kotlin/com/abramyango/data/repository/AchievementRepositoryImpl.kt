@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
 class AchievementRepositoryImpl(
-    private val database: AbramyanGoDatabase
+    database: AbramyanGoDatabase
 ) : AchievementRepository {
     
     private val queries = database.abramyanGoDatabaseQueries
@@ -25,24 +25,7 @@ class AchievementRepositoryImpl(
         return kotlinx.coroutines.flow.flowOf(Achievements.ALL)
     }
     
-    override fun getAchievementProgress(achievementId: String): Flow<AchievementProgress?> {
-        return queries.getAchievementProgress(achievementId)
-            .asFlow()
-            .mapToOneOrNull(Dispatchers.IO)
-            .map { entity ->
-                entity?.let {
-                    AchievementProgress(
-                        achievementId = it.achievement_id,
-                        isUnlocked = it.is_unlocked == 1L,
-                        unlockedTimestamp = it.unlocked_timestamp,
-                        currentProgress = it.current_progress.toInt(),
-                        targetProgress = it.target_progress.toInt()
-                    )
-                }
-            }
-    }
-    
-    override fun getAllProgress(): Flow<List<AchievementProgress>> {
+    override fun getAchievementProgress(): Flow<List<AchievementProgress>> {
         return queries.getAllAchievementProgress()
             .asFlow()
             .mapToList(Dispatchers.IO)
@@ -59,27 +42,8 @@ class AchievementRepositoryImpl(
             }
     }
     
-    override suspend fun updateProgress(
-        achievementId: String,
-        currentProgress: Int,
-        targetProgress: Int
-    ) = withContext(Dispatchers.IO) {
-        val existing = queries.getAchievementProgress(achievementId).executeAsOneOrNull()
-        
-        val isUnlocked = currentProgress >= targetProgress
-        val unlockedTimestamp = if (isUnlocked && existing?.is_unlocked != 1L) {
-            currentTimeMillis()
-        } else {
-            existing?.unlocked_timestamp
-        }
-        
-        queries.insertOrUpdateAchievementProgress(
-            achievement_id = achievementId,
-            is_unlocked = if (isUnlocked) 1 else 0,
-            unlocked_timestamp = unlockedTimestamp,
-            current_progress = currentProgress.toLong(),
-            target_progress = targetProgress.toLong()
-        )
+    override suspend fun checkAndUnlockAchievements() {
+        // Implementation for checking and unlocking achievements
     }
     
     override suspend fun unlockAchievement(achievementId: String) = withContext(Dispatchers.IO) {

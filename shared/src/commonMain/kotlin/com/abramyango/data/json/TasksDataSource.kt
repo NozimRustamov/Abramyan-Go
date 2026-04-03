@@ -71,7 +71,7 @@ class TasksDataSource {
             code = MultiLanguageCode(
                 python = "a = 5\nb = 3\nS = a * b\nP = 2 * (a + b)\nprint(S, P)",
                 javascript = "let a = 5;\nlet b = 3;\nlet S = a * b;\nlet P = 2 * (a + b);\nconsole.log(S, P);",
-                kotlin = "val a = 5\nval b = 3\nval S = a * b\nval P = 2 * (a + b)\nprintln(\"$S $P\")",
+                kotlin = "val a = 5\nval b = 3\nval S = a * b\nval P = 2 * (a + b)\nprintln(\"\${'$'}S \${'$'}P\")",
                 csharp = "int a = 5;\nint b = 3;\nint S = a * b;\nint P = 2 * (a + b);\nConsole.WriteLine($\"{S} {P}\");"
             ),
             storyContextKey = "task_begin_003_story",
@@ -89,7 +89,7 @@ class TasksDataSource {
             code = MultiLanguageCode(
                 python = "R = float(input())\npi = 3.14\nL = 2 * ___ * R\nS = pi * R * ___\nprint(L, S)",
                 javascript = "let R = parseFloat(prompt());\nlet pi = 3.14;\nlet L = 2 * ___ * R;\nlet S = pi * R * ___;\nconsole.log(L, S);",
-                kotlin = "val R = readLine()!!.toDouble()\nval pi = 3.14\nval L = 2 * ___ * R\nval S = pi * R * ___\nprintln(\"$L $S\")",
+                kotlin = "val R = readLine()!!.toDouble()\nval pi = 3.14\nval L = 2 * ___ * R\nval S = pi * R * ___\nprintln(\"\${'$'}L \${'$'}S\")",
                 csharp = "double R = double.Parse(Console.ReadLine());\ndouble pi = 3.14;\ndouble L = 2 * ___ * R;\ndouble S = pi * R * ___;\nConsole.WriteLine($\"{L} {S}\");"
             ),
             storyContextKey = "task_begin_007_story",
@@ -125,7 +125,7 @@ class TasksDataSource {
             code = MultiLanguageCode(
                 python = "import math\na = float(input())\nb = float(input())\nc = math.sqrt(a*a + b*b)\nP = a + b + c\nprint(c, P)",
                 javascript = "let a = parseFloat(prompt());\nlet b = parseFloat(prompt());\nlet c = Math.sqrt(a*a + b*b);\nlet P = a + b + c;\nconsole.log(c, P);",
-                kotlin = "import kotlin.math.sqrt\nval a = readLine()!!.toDouble()\nval b = readLine()!!.toDouble()\nval c = sqrt(a*a + b*b)\nval P = a + b + c\nprintln(\"$c $P\")",
+                kotlin = "import kotlin.math.sqrt\nval a = readLine()!!.toDouble()\nval b = readLine()!!.toDouble()\nval c = sqrt(a*a + b*b)\nval P = a + b + c\nprintln(\"\${'$'}c \${'$'}P\")",
                 csharp = "double a = double.Parse(Console.ReadLine());\ndouble b = double.Parse(Console.ReadLine());\ndouble c = Math.Sqrt(a*a + b*b);\ndouble P = a + b + c;\nConsole.WriteLine($\"{c} {P}\");"
             ),
             storyContextKey = "task_begin_012_story",
@@ -143,7 +143,7 @@ class TasksDataSource {
             code = MultiLanguageCode(
                 python = "A = 5\nB = 3\ntemp = A\nA = B\nB = temp\nprint(A, B)",
                 javascript = "let A = 5;\nlet B = 3;\nlet temp = A;\nA = B;\nB = temp;\nconsole.log(A, B);",
-                kotlin = "var A = 5\nvar B = 3\nval temp = A\nA = B\nB = temp\nprintln(\"$A $B\")",
+                kotlin = "var A = 5\nvar B = 3\nval temp = A\nA = B\nB = temp\nprintln(\"\${'$'}A \${'$'}B\")",
                 csharp = "int A = 5;\nint B = 3;\nint temp = A;\nA = B;\nB = temp;\nConsole.WriteLine($\"{A} {B}\");"
             ),
             storyContextKey = "task_begin_022_story",
@@ -161,7 +161,7 @@ class TasksDataSource {
             code = MultiLanguageCode(
                 python = "A = 2\nA2 = A * A\nA4 = A2 * A2\nA8 = A4 * A4\nprint(A2, A4, A8)",
                 javascript = "let A = 2;\nlet A2 = A * A;\nlet A4 = A2 * A2;\nlet A8 = A4 * A4;\nconsole.log(A2, A4, A8);",
-                kotlin = "val A = 2\nval A2 = A * A\nval A4 = A2 * A2\nval A8 = A4 * A4\nprintln(\"$A2 $A4 $A8\")",
+                kotlin = "val A = 2\nval A2 = A * A\nval A4 = A2 * A2\nval A8 = A4 * A4\nprintln(\"\${'$'}A2 \${'$'}A4 \${'$'}A8\")",
                 csharp = "int A = 2;\nint A2 = A * A;\nint A4 = A2 * A2;\nint A8 = A4 * A4;\nConsole.WriteLine($\"{A2} {A4} {A8}\");"
             ),
             storyContextKey = "task_begin_027_story",
@@ -197,7 +197,7 @@ class TasksDataSource {
             code = MultiLanguageCode(
                 python = "N = 57\ntens = N // 10\nunits = N % 10\nprint(tens, units)",
                 javascript = "let N = 57;\nlet tens = Math.floor(N / 10);\nlet units = N % 10;\nconsole.log(tens, units);",
-                kotlin = "val N = 57\nval tens = N / 10\nval units = N % 10\nprintln(\"$tens $units\")",
+                kotlin = "val N = 57\nval tens = N / 10\nval units = N % 10\nprintln(\"\${'$'}tens \${'$'}units\")",
                 csharp = "int N = 57;\nint tens = N / 10;\nint units = N % 10;\nConsole.WriteLine($\"{tens} {units}\");"
             ),
             storyContextKey = "task_int_006_story",
@@ -365,7 +365,7 @@ class TasksDataSource {
             code = MultiLanguageCode(
                 python = "A = 1\nB = 4\nC = 3\nD = B*B - 4*A*C\nhas_roots = D >= 0\nprint(D, has_roots)",
                 javascript = "let A = 1;\nlet B = 4;\nlet C = 3;\nlet D = B*B - 4*A*C;\nlet hasRoots = D >= 0;\nconsole.log(D, hasRoots);",
-                kotlin = "val A = 1\nval B = 4\nval C = 3\nval D = B*B - 4*A*C\nval hasRoots = D >= 0\nprintln(\"$D $hasRoots\")",
+                kotlin = "val A = 1\nval B = 4\nval C = 3\nval D = B*B - 4*A*C\nval hasRoots = D >= 0\nprintln(\"\${'$'}D \${'$'}hasRoots\")",
                 csharp = "int A = 1;\nint B = 4;\nint C = 3;\nint D = B*B - 4*A*C;\nbool hasRoots = D >= 0;\nConsole.WriteLine($\"{D} {hasRoots}\");"
             ),
             storyContextKey = "task_bool_024_story",

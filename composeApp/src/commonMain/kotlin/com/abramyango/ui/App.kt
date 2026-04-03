@@ -1,19 +1,27 @@
 package com.abramyango.ui
 
-import androidx.compose.runtime.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.abramyango.ui.navigation.Route
-import com.abramyango.ui.screens.task.TaskScreen
-import com.abramyango.ui.screens.task.TaskViewModel
 import com.abramyango.ui.screens.task.TaskIntent
-import com.abramyango.ui.screens.worldmap.WorldMapScreen
-import com.abramyango.ui.screens.worldmap.WorldMapViewModel
-import com.abramyango.ui.screens.worldmap.WorldMapIntent
-import com.abramyango.ui.screens.worldmap.WorldMapSideEffect
+import com.abramyango.ui.screens.task.TaskScreen
 import com.abramyango.ui.screens.task.TaskSideEffect
+import com.abramyango.ui.screens.task.TaskViewModel
+import com.abramyango.ui.screens.worldmap.WorldMapScreen
+import com.abramyango.ui.screens.worldmap.WorldMapSideEffect
+import com.abramyango.ui.screens.worldmap.WorldMapViewModel
 import com.abramyango.ui.theme.AbramyanGoTheme
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.compose.viewmodel.koinViewModel
@@ -143,20 +151,20 @@ private fun WorldDetailPlaceholder(
     onBack: () -> Unit
 ) {
     // TODO: реализовать WorldDetailScreen
-    androidx.compose.foundation.layout.Column(
+    Column(
         modifier = androidx.compose.ui.Modifier.fillMaxSize(),
         horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally,
         verticalArrangement = androidx.compose.foundation.layout.Arrangement.Center
     ) {
-        androidx.compose.material3.Text("World: $worldId")
-        androidx.compose.foundation.layout.Spacer(
+        Text("World: $worldId")
+       Spacer(
             modifier = androidx.compose.ui.Modifier.height(16.dp)
         )
         com.abramyango.ui.components.PrimaryButton(
             text = "Первая задача",
             onClick = { onTaskClick("valley_begin_001") }
         )
-        androidx.compose.foundation.layout.Spacer(
+        Spacer(
             modifier = androidx.compose.ui.Modifier.height(16.dp)
         )
         com.abramyango.ui.components.SecondaryButton(
@@ -168,13 +176,13 @@ private fun WorldDetailPlaceholder(
 
 @Composable
 private fun ProfilePlaceholder(onBack: () -> Unit) {
-    androidx.compose.foundation.layout.Column(
+    Column(
         modifier = androidx.compose.ui.Modifier.fillMaxSize(),
         horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally,
         verticalArrangement = androidx.compose.foundation.layout.Arrangement.Center
     ) {
-        androidx.compose.material3.Text("Профиль")
-        androidx.compose.foundation.layout.Spacer(
+        Text("Профиль")
+        Spacer(
             modifier = androidx.compose.ui.Modifier.height(16.dp)
         )
         com.abramyango.ui.components.SecondaryButton(
@@ -186,13 +194,13 @@ private fun ProfilePlaceholder(onBack: () -> Unit) {
 
 @Composable
 private fun SettingsPlaceholder(onBack: () -> Unit) {
-    androidx.compose.foundation.layout.Column(
+    Column(
         modifier = androidx.compose.ui.Modifier.fillMaxSize(),
         horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally,
         verticalArrangement = androidx.compose.foundation.layout.Arrangement.Center
     ) {
-        androidx.compose.material3.Text("Настройки")
-        androidx.compose.foundation.layout.Spacer(
+        Text("Настройки")
+        Spacer(
             modifier = androidx.compose.ui.Modifier.height(16.dp)
         )
         com.abramyango.ui.components.SecondaryButton(
@@ -201,9 +209,3 @@ private fun SettingsPlaceholder(onBack: () -> Unit) {
         )
     }
 }
-
-private val androidx.compose.ui.Modifier.Companion.fillMaxSize: androidx.compose.ui.Modifier
-    get() = this.then(androidx.compose.foundation.layout.fillMaxSize())
-
-private val Int.dp: androidx.compose.ui.unit.Dp
-    get() = androidx.compose.ui.unit.dp.times(this.toFloat())
