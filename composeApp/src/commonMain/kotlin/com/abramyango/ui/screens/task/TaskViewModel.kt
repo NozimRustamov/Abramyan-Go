@@ -12,6 +12,7 @@ import com.abramyango.ui.base.MviSideEffect
 import com.abramyango.ui.base.MviState
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.first
 
 /**
  * State для экрана задачи
@@ -189,9 +190,11 @@ class TaskViewModel(
                 true
             }
             TaskMechanic.FILL_BLANKS -> {
-                // Для fill blanks проверяем ответы
-                // TODO: реализовать проверку
-                true
+                val fillAnswer = answer as? UserAnswer.FillBlanksAnswer ?: return false
+                val blanksData = task.fillBlanksData ?: return true
+                blanksData.blanks.all { blank ->
+                    fillAnswer.answers[blank.blankIndex] == blank.correctAnswer
+                }
             }
             TaskMechanic.BUG_HUNT -> {
                 // Для bug hunt проверяем выбранную строку
@@ -226,8 +229,17 @@ class TaskViewModel(
     
     private fun nextTask() {
         viewModelScope.launch {
-            // TODO: получить следующую задачу
-            _sideEffect.emit(TaskSideEffect.NavigateBack)
+            val currentTask = _state.value.task ?: run {
+                _sideEffect.emit(TaskSideEffect.NavigateBack)
+                return@launch
+            }
+            val tasks = taskRepository.getTasksForWorld(currentTask.worldId).first()
+            val nextTask = tasks.sortedBy { it.order }.firstOrNull { it.order > currentTask.order }
+            if (nextTask != null) {
+                _sideEffect.emit(TaskSideEffect.NavigateToNextTask(nextTask.id))
+            } else {
+                _sideEffect.emit(TaskSideEffect.NavigateBack)
+            }
         }
     }
     

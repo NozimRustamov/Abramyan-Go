@@ -78,7 +78,8 @@ data class Task(
     val storyContextKey: String,    // Ключ локализации для сюжетного контекста
     val xpReward: Int,
     val order: Int,                 // Порядок в мире
-    val abramyanId: String? = null  // Оригинальный ID из задачника (Begin1, Integer5...)
+    val abramyanId: String? = null, // Оригинальный ID из задачника (Begin1, Integer5...)
+    val fillBlanksData: FillBlanksData? = null
 )
 
 /**

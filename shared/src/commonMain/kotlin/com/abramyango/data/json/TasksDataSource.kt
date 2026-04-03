@@ -41,7 +41,13 @@ class TasksDataSource {
             storyContextKey = "task_begin_001_story",
             xpReward = 10,
             order = 1,
-            abramyanId = "Begin1"
+            abramyanId = "Begin1",
+            fillBlanksData = FillBlanksData(
+                template = "a = float(input())\nP = {0} * a\nprint(P)",
+                blanks = listOf(
+                    BlankOption(blankIndex = 0, correctAnswer = "4", options = listOf("4", "2", "3", "pi"))
+                )
+            )
         ),
         
         // Begin2 - Площадь квадрата
@@ -95,7 +101,14 @@ class TasksDataSource {
             storyContextKey = "task_begin_007_story",
             xpReward = 20,
             order = 4,
-            abramyanId = "Begin7"
+            abramyanId = "Begin7",
+            fillBlanksData = FillBlanksData(
+                template = "R = float(input())\npi = 3.14\nL = 2 * {0} * R\nS = pi * R * {1}\nprint(L, S)",
+                blanks = listOf(
+                    BlankOption(blankIndex = 0, correctAnswer = "pi", options = listOf("pi", "2", "3", "R")),
+                    BlankOption(blankIndex = 1, correctAnswer = "R", options = listOf("R", "pi", "2", "a"))
+                )
+            )
         ),
         
         // Begin8 - Среднее арифметическое
@@ -185,7 +198,13 @@ class TasksDataSource {
             storyContextKey = "task_int_003_story",
             xpReward = 15,
             order = 9,
-            abramyanId = "Integer3"
+            abramyanId = "Integer3",
+            fillBlanksData = FillBlanksData(
+                template = "bytes = int(input())\nkb = bytes {0} 1024\nprint(kb)",
+                blanks = listOf(
+                    BlankOption(blankIndex = 0, correctAnswer = "//", options = listOf("//", "*", "+", "-"))
+                )
+            )
         ),
         
         // Integer6 - Разбор двузначного числа
@@ -257,7 +276,13 @@ class TasksDataSource {
             storyContextKey = "task_int_020_story",
             xpReward = 20,
             order = 13,
-            abramyanId = "Integer20"
+            abramyanId = "Integer20",
+            fillBlanksData = FillBlanksData(
+                template = "N = int(input())  # секунды с начала суток\nhours = N // {0}\nprint(hours)",
+                blanks = listOf(
+                    BlankOption(blankIndex = 0, correctAnswer = "3600", options = listOf("3600", "60", "24", "1000"))
+                )
+            )
         )
     )
     
@@ -299,7 +324,13 @@ class TasksDataSource {
             storyContextKey = "task_bool_002_story",
             xpReward = 15,
             order = 2,
-            abramyanId = "Boolean2"
+            abramyanId = "Boolean2",
+            fillBlanksData = FillBlanksData(
+                template = "A = int(input())\nis_odd = A % 2 {0} 0\nprint(is_odd)",
+                blanks = listOf(
+                    BlankOption(blankIndex = 0, correctAnswer = "!=", options = listOf("!=", "==", "<", ">"))
+                )
+            )
         ),
         
         // Boolean6 - Двойное неравенство A < B < C
@@ -389,7 +420,16 @@ class TasksDataSource {
             storyContextKey = "task_bool_029_story",
             xpReward = 35,
             order = 7,
-            abramyanId = "Boolean29"
+            abramyanId = "Boolean29",
+            fillBlanksData = FillBlanksData(
+                template = "x, y = 3, 4\nx1, y1 = 1, 5\nx2, y2 = 6, 2\ninside = x1 {0} x {1} x2 and y2 {2} y {3} y1\nprint(inside)",
+                blanks = listOf(
+                    BlankOption(blankIndex = 0, correctAnswer = "<=", options = listOf("<=", "<", ">=", ">")),
+                    BlankOption(blankIndex = 1, correctAnswer = "<=", options = listOf("<=", "<", ">=", ">")),
+                    BlankOption(blankIndex = 2, correctAnswer = "<=", options = listOf("<=", "<", ">=", ">")),
+                    BlankOption(blankIndex = 3, correctAnswer = "<=", options = listOf("<=", "<", ">=", ">"))
+                )
+            )
         ),
         
         // Boolean33 - Существует ли треугольник?
@@ -425,7 +465,14 @@ class TasksDataSource {
             storyContextKey = "task_bool_036_story",
             xpReward = 25,
             order = 9,
-            abramyanId = "Boolean36"
+            abramyanId = "Boolean36",
+            fillBlanksData = FillBlanksData(
+                template = "x1, y1 = 1, 1\nx2, y2 = 1, 5\ncan_move = x1 {0} x2 or y1 {1} y2\nprint(can_move)",
+                blanks = listOf(
+                    BlankOption(blankIndex = 0, correctAnswer = "==", options = listOf("==", "!=", "<", ">")),
+                    BlankOption(blankIndex = 1, correctAnswer = "==", options = listOf("==", "!=", "<", ">"))
+                )
+            )
         ),
         
         // Boolean40 - Ход коня

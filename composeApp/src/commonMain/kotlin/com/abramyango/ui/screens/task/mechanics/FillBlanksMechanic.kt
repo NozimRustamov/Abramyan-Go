@@ -5,7 +5,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -48,7 +50,9 @@ fun FillBlanksMechanic(
     var activeBlankIndex by remember { mutableStateOf(0) }
     
     Column(
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier
+            .fillMaxWidth()
+            .verticalScroll(rememberScrollState())
     ) {
         Text(
             text = "Заполни пропуски:",
@@ -88,8 +92,9 @@ fun FillBlanksMechanic(
             
             Spacer(modifier = Modifier.height(Spacing.small))
             
-            // Варианты (сгенерированные или из данных задачи)
-            val options = getOptionsForBlank(blanks[activeBlankIndex], language)
+            // Варианты из данных задачи или дефолтные
+            val options = task.fillBlanksData?.blanks?.getOrNull(activeBlankIndex)?.options
+                ?: getDefaultOptions(language)
             
             Column(
                 verticalArrangement = Arrangement.spacedBy(Spacing.small)
@@ -304,14 +309,30 @@ private fun parseBlanks(code: String): List<BlankInfo> {
 }
 
 private fun buildCodeLines(parts: List<CodePart>): List<List<CodePart>> {
-    // Упрощённая версия - возвращаем все части в одной "строке"
-    // В реальной версии нужно разбивать по \n
-    return listOf(parts)
+    val lines = mutableListOf<MutableList<CodePart>>()
+    var currentLine = mutableListOf<CodePart>()
+    lines.add(currentLine)
+    for (part in parts) {
+        when (part) {
+            is CodePart.Text -> {
+                val segments = part.text.split("\n")
+                segments.forEachIndexed { i, segment ->
+                    if (i > 0) {
+                        currentLine = mutableListOf()
+                        lines.add(currentLine)
+                    }
+                    if (segment.isNotEmpty()) {
+                        currentLine.add(CodePart.Text(segment))
+                    }
+                }
+            }
+            is CodePart.Blank -> currentLine.add(part)
+        }
+    }
+    return lines
 }
 
-private fun getOptionsForBlank(blank: BlankInfo, language: ProgrammingLanguage): List<String> {
-    // Генерируем варианты в зависимости от контекста
-    // В реальной версии это должно браться из данных задачи
+private fun getDefaultOptions(language: ProgrammingLanguage): List<String> {
     return when (language) {
         ProgrammingLanguage.PYTHON -> listOf("4", "2", "3", "pi", "+", "*", "/")
         ProgrammingLanguage.JAVASCRIPT -> listOf("4", "2", "3", "Math.PI", "+", "*", "/")

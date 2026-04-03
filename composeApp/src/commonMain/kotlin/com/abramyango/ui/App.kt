@@ -19,6 +19,10 @@ import com.abramyango.ui.screens.task.TaskIntent
 import com.abramyango.ui.screens.task.TaskScreen
 import com.abramyango.ui.screens.task.TaskSideEffect
 import com.abramyango.ui.screens.task.TaskViewModel
+import com.abramyango.ui.screens.worlddetail.WorldDetailIntent
+import com.abramyango.ui.screens.worlddetail.WorldDetailScreen
+import com.abramyango.ui.screens.worlddetail.WorldDetailSideEffect
+import com.abramyango.ui.screens.worlddetail.WorldDetailViewModel
 import com.abramyango.ui.screens.worldmap.WorldMapScreen
 import com.abramyango.ui.screens.worldmap.WorldMapSideEffect
 import com.abramyango.ui.screens.worldmap.WorldMapViewModel
@@ -71,13 +75,29 @@ fun App() {
             // Детали мира
             composable<Route.WorldDetail> { backStackEntry ->
                 val route = backStackEntry.toRoute<Route.WorldDetail>()
-                // TODO: WorldDetailScreen
-                WorldDetailPlaceholder(
-                    worldId = route.worldId,
-                    onTaskClick = { taskId ->
-                        navController.navigate(Route.Task(route.worldId, taskId))
-                    },
-                    onBack = { navController.popBackStack() }
+                val viewModel: WorldDetailViewModel = koinViewModel()
+                val state by viewModel.state.collectAsState()
+
+                LaunchedEffect(route.worldId) {
+                    viewModel.processIntent(WorldDetailIntent.LoadTasks(route.worldId))
+                }
+
+                LaunchedEffect(Unit) {
+                    viewModel.sideEffect.collectLatest { effect ->
+                        when (effect) {
+                            is WorldDetailSideEffect.NavigateToTask -> {
+                                navController.navigate(Route.Task(effect.worldId, effect.taskId))
+                            }
+                            is WorldDetailSideEffect.NavigateBack -> {
+                                navController.popBackStack()
+                            }
+                        }
+                    }
+                }
+
+                WorldDetailScreen(
+                    state = state,
+                    onIntent = viewModel::processIntent
                 )
             }
             
@@ -144,36 +164,6 @@ fun App() {
 }
 
 // Временные заглушки для экранов
-@Composable
-private fun WorldDetailPlaceholder(
-    worldId: String,
-    onTaskClick: (String) -> Unit,
-    onBack: () -> Unit
-) {
-    // TODO: реализовать WorldDetailScreen
-    Column(
-        modifier = androidx.compose.ui.Modifier.fillMaxSize(),
-        horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally,
-        verticalArrangement = androidx.compose.foundation.layout.Arrangement.Center
-    ) {
-        Text("World: $worldId")
-       Spacer(
-            modifier = androidx.compose.ui.Modifier.height(16.dp)
-        )
-        com.abramyango.ui.components.PrimaryButton(
-            text = "Первая задача",
-            onClick = { onTaskClick("valley_begin_001") }
-        )
-        Spacer(
-            modifier = androidx.compose.ui.Modifier.height(16.dp)
-        )
-        com.abramyango.ui.components.SecondaryButton(
-            text = "Назад",
-            onClick = onBack
-        )
-    }
-}
-
 @Composable
 private fun ProfilePlaceholder(onBack: () -> Unit) {
     Column(
