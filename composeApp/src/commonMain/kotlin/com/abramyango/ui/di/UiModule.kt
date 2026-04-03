@@ -1,6 +1,7 @@
 package com.abramyango.ui.di
 
 import com.abramyango.ui.screens.task.TaskViewModel
+import com.abramyango.ui.screens.worlddetail.WorldDetailViewModel
 import com.abramyango.ui.screens.worldmap.WorldMapViewModel
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
@@ -11,4 +12,5 @@ import org.koin.dsl.module
 val uiModule = module {
     viewModel { WorldMapViewModel(get(), get()) }
     viewModel { TaskViewModel(get(), get(), get()) }
+    viewModel { WorldDetailViewModel(get()) }
 }

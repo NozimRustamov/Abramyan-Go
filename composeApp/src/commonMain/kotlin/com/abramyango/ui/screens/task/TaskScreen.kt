@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -209,7 +211,9 @@ private fun TaskContent(
     val typography = AppTheme.typography
     
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxWidth()
+            .verticalScroll(rememberScrollState())
     ) {
         // Story context
         GlassCard(
@@ -293,13 +297,15 @@ private fun TaskContent(
             }
         }
         
-        Spacer(modifier = Modifier.weight(1f))
-        
+        Spacer(modifier = Modifier.height(Spacing.extraLarge))
+
         // Hint button
         SecondaryButton(
             text = "💡 Подсказка",
             onClick = onHint
         )
+
+        Spacer(modifier = Modifier.height(Spacing.default))
     }
 }
 
