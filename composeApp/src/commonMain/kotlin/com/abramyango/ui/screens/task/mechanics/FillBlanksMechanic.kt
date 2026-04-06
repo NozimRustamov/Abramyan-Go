@@ -48,11 +48,9 @@ fun FillBlanksMechanic(
     
     // Текущий активный пропуск
     var activeBlankIndex by remember { mutableStateOf(0) }
-    
+
     Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .verticalScroll(rememberScrollState())
+        modifier = modifier.fillMaxWidth()
     ) {
         Text(
             text = "Заполни пропуски:",

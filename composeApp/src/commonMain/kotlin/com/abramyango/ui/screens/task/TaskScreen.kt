@@ -13,8 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -52,8 +51,8 @@ fun TaskScreen(
     modifier: Modifier = Modifier
 ) {
     val colors = AppTheme.colors
-    val typography = AppTheme.typography
-    
+    AppTheme.typography
+
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -81,7 +80,7 @@ fun TaskScreen(
                     comboState = state.comboState,
                     onBack = { onIntent(TaskIntent.ExitTask) }
                 )
-                
+
                 // Main content
                 Box(
                     modifier = Modifier
@@ -93,23 +92,26 @@ fun TaskScreen(
                             TaskContent(
                                 task = state.task,
                                 language = state.selectedLanguage,
-                                onSubmit = { answer -> 
+                                onSubmit = { answer ->
                                     onIntent(TaskIntent.SubmitAnswer(answer))
                                 },
                                 onHint = { onIntent(TaskIntent.UseHint) }
                             )
                         }
+
                         TaskPhase.CORRECT -> {
                             CorrectAnswerOverlay(
                                 reward = state.lastReward,
                                 onNext = { onIntent(TaskIntent.NextTask) }
                             )
                         }
+
                         TaskPhase.INCORRECT -> {
                             IncorrectAnswerOverlay(
                                 onRetry = { onIntent(TaskIntent.RetryTask) }
                             )
                         }
+
                         TaskPhase.COMPLETED -> {
                             // Задача завершена
                         }
@@ -131,7 +133,7 @@ private fun TaskTopBar(
 ) {
     val colors = AppTheme.colors
     val typography = AppTheme.typography
-    
+
     GlassCard(
         modifier = Modifier
             .fillMaxWidth()
@@ -152,9 +154,9 @@ private fun TaskTopBar(
                     color = colors.textPrimary
                 )
             }
-            
+
             Spacer(modifier = Modifier.width(Spacing.medium))
-            
+
             // Task info
             Column(
                 modifier = Modifier.weight(1f)
@@ -164,14 +166,14 @@ private fun TaskTopBar(
                     style = typography.labelMedium,
                     color = colors.textSecondary
                 )
-                
+
                 Text(
                     text = task.abramyanId ?: task.id,
                     style = typography.titleMedium,
                     color = colors.textPrimary
                 )
             }
-            
+
             // Combo indicator
             if (comboState.count > 0) {
                 ComboIndicator(
@@ -179,9 +181,9 @@ private fun TaskTopBar(
                     multiplier = comboState.multiplier
                 )
             }
-            
+
             Spacer(modifier = Modifier.width(Spacing.small))
-            
+
             // XP reward
             GlassSurface(
                 cornerRadius = 8.dp,
@@ -209,103 +211,113 @@ private fun TaskContent(
 ) {
     val colors = AppTheme.colors
     val typography = AppTheme.typography
-    
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .verticalScroll(rememberScrollState())
+
+    LazyColumn(
+        modifier = Modifier.fillMaxWidth()
     ) {
-        // Story context
-        GlassCard(
-            modifier = Modifier.fillMaxWidth(),
-            glassAlpha = 0.1f,
-            cornerRadius = 16.dp,
-            contentPadding = Spacing.medium
-        ) {
-            Text(
-                text = getTaskStoryContext(task.storyContextKey),
-                style = typography.bodyLarge,
-                color = colors.textPrimary
+
+        item {
+            // Story context
+            GlassCard(
+                modifier = Modifier.fillMaxWidth(),
+                glassAlpha = 0.1f,
+                cornerRadius = 16.dp,
+                contentPadding = Spacing.medium
+            ) {
+                Text(
+                    text = getTaskStoryContext(task.storyContextKey),
+                    style = typography.bodyLarge,
+                    color = colors.textPrimary
+                )
+            }
+            Spacer(modifier = Modifier.height(Spacing.default))
+        }
+
+        item {
+            // Code block
+            CodeBlock(
+                code = task.code.getCode(language),
+                language = language,
+                modifier = Modifier.fillMaxWidth()
             )
+            Spacer(modifier = Modifier.height(Spacing.default))
         }
-        
-        Spacer(modifier = Modifier.height(Spacing.default))
-        
-        // Code block
-        CodeBlock(
-            code = task.code.getCode(language),
-            language = language,
-            modifier = Modifier.fillMaxWidth()
-        )
-        
-        Spacer(modifier = Modifier.height(Spacing.default))
-        
-        // Mechanic-specific UI
-        when (task.mechanic) {
-            TaskMechanic.DRAG_DROP -> {
-                DragDropMechanic(
-                    task = task,
-                    language = language,
-                    onSubmit = { blocks ->
-                        onSubmit(UserAnswer.DragDropAnswer(blocks))
-                    }
-                )
+
+        item {
+            // Mechanic-specific UI
+            when (task.mechanic) {
+                TaskMechanic.DRAG_DROP -> {
+                    DragDropMechanic(
+                        task = task,
+                        language = language,
+                        onSubmit = { blocks ->
+                            onSubmit(UserAnswer.DragDropAnswer(blocks))
+                        }
+                    )
+                }
+
+                TaskMechanic.FILL_BLANKS -> {
+                    FillBlanksMechanic(
+                        task = task,
+                        language = language,
+                        onSubmit = { answers ->
+                            onSubmit(UserAnswer.FillBlanksAnswer(answers))
+                        }
+                    )
+                }
+
+                TaskMechanic.BUG_HUNT -> {
+                    BugHuntMechanic(
+                        task = task,
+                        language = language,
+                        onSubmit = { line ->
+                            onSubmit(UserAnswer.BugHuntAnswer(line))
+                        }
+                    )
+                }
+
+                TaskMechanic.OUTPUT_PREDICTION -> {
+                    OutputPredictionMechanic(
+                        task = task,
+                        onSubmit = { output ->
+                            onSubmit(UserAnswer.OutputPredictionAnswer(output))
+                        }
+                    )
+                }
+
+                TaskMechanic.CODE_TRACE -> {
+                    CodeTraceMechanic(
+                        task = task,
+                        language = language,
+                        onSubmit = { answers ->
+                            onSubmit(UserAnswer.CodeTraceAnswer(answers))
+                        }
+                    )
+                }
+
+                TaskMechanic.REFACTORING -> {
+                    RefactoringMechanic(
+                        task = task,
+                        language = language,
+                        onSubmit = { option ->
+                            onSubmit(UserAnswer.RefactoringAnswer(option))
+                        }
+                    )
+                }
             }
-            TaskMechanic.FILL_BLANKS -> {
-                FillBlanksMechanic(
-                    task = task,
-                    language = language,
-                    onSubmit = { answers ->
-                        onSubmit(UserAnswer.FillBlanksAnswer(answers))
-                    }
-                )
-            }
-            TaskMechanic.BUG_HUNT -> {
-                BugHuntMechanic(
-                    task = task,
-                    language = language,
-                    onSubmit = { line ->
-                        onSubmit(UserAnswer.BugHuntAnswer(line))
-                    }
-                )
-            }
-            TaskMechanic.OUTPUT_PREDICTION -> {
-                OutputPredictionMechanic(
-                    task = task,
-                    onSubmit = { output ->
-                        onSubmit(UserAnswer.OutputPredictionAnswer(output))
-                    }
-                )
-            }
-            TaskMechanic.CODE_TRACE -> {
-                CodeTraceMechanic(
-                    task = task,
-                    language = language,
-                    onSubmit = { answers ->
-                        onSubmit(UserAnswer.CodeTraceAnswer(answers))
-                    }
-                )
-            }
-            TaskMechanic.REFACTORING -> {
-                RefactoringMechanic(
-                    task = task,
-                    language = language,
-                    onSubmit = { option ->
-                        onSubmit(UserAnswer.RefactoringAnswer(option))
-                    }
-                )
-            }
+
+            Spacer(modifier = Modifier.height(Spacing.extraLarge))
         }
-        
-        Spacer(modifier = Modifier.height(Spacing.extraLarge))
 
         // Hint button
-        SecondaryButton(
-            text = "💡 Подсказка",
-            onClick = onHint
-        )
-
-        Spacer(modifier = Modifier.height(Spacing.default))
+        item {
+            Spacer(modifier = Modifier.height(Spacing.extraLarge))
+            SecondaryButton(
+                text = "💡 Подсказка",
+                onClick = onHint
+            )
+            Spacer(modifier = Modifier.height(Spacing.default))
+        }
     }
 }
 
@@ -319,12 +331,12 @@ private fun CorrectAnswerOverlay(
 ) {
     val colors = AppTheme.colors
     val typography = AppTheme.typography
-    
+
     val scale by animateFloatAsState(
         targetValue = 1f,
         animationSpec = spring(dampingRatio = 0.5f, stiffness = 300f)
     )
-    
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -336,18 +348,18 @@ private fun CorrectAnswerOverlay(
             text = "✅",
             style = typography.displayLarge
         )
-        
+
         Spacer(modifier = Modifier.height(Spacing.default))
-        
+
         Text(
             text = "Правильно!",
             style = typography.headlineLarge,
             color = colors.accentSuccess
         )
-        
+
         if (reward != null) {
             Spacer(modifier = Modifier.height(Spacing.large))
-            
+
             GlassCard(
                 glassAlpha = 0.15f,
                 cornerRadius = 16.dp,
@@ -361,7 +373,7 @@ private fun CorrectAnswerOverlay(
                         style = typography.headlineMedium,
                         color = colors.xpBar
                     )
-                    
+
                     if (reward.coinsEarned > 0) {
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
@@ -370,7 +382,7 @@ private fun CorrectAnswerOverlay(
                             color = colors.textSecondary
                         )
                     }
-                    
+
                     if (reward.isFirstAttempt) {
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
@@ -382,9 +394,9 @@ private fun CorrectAnswerOverlay(
                 }
             }
         }
-        
+
         Spacer(modifier = Modifier.height(Spacing.extraLarge))
-        
+
         PrimaryButton(
             text = "Продолжить",
             onClick = onNext,
@@ -402,7 +414,7 @@ private fun IncorrectAnswerOverlay(
 ) {
     val colors = AppTheme.colors
     val typography = AppTheme.typography
-    
+
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -412,23 +424,23 @@ private fun IncorrectAnswerOverlay(
             text = "❌",
             style = typography.displayLarge
         )
-        
+
         Spacer(modifier = Modifier.height(Spacing.default))
-        
+
         Text(
             text = "Попробуй ещё раз",
             style = typography.headlineLarge,
             color = colors.accentError
         )
-        
+
         Text(
             text = "Ошибки не тратят энергию",
             style = typography.bodyMedium,
             color = colors.textSecondary
         )
-        
+
         Spacer(modifier = Modifier.height(Spacing.extraLarge))
-        
+
         PrimaryButton(
             text = "Ещё раз",
             onClick = onRetry,
