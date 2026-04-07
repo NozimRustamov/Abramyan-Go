@@ -245,10 +245,11 @@ private fun TaskContent(
         }
 
         // Описание задачи (если есть)
-        if (task.taskData.description != null) {
+        val description = task.taskData.description
+        if (description != null) {
             item {
                 Text(
-                    text = task.taskData.description,
+                    text = description,
                     style = typography.bodyMedium,
                     color = colors.textSecondary
                 )

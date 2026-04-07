@@ -1,5 +1,6 @@
 package com.abramyango.ui.di
 
+import abramyango.composeapp.generated.resources.Res
 import com.abramyango.data.repository.TaskRepositoryImpl
 import com.abramyango.domain.repository.TaskRepository
 import com.abramyango.ui.screens.task.TaskViewModel
@@ -18,7 +19,7 @@ val uiModule = module {
     single<TaskRepository> {
         TaskRepositoryImpl(get(), get(), jsonLoader = {
             listOf(
-                org.jetbrains.compose.resources.Res.readBytes("files/begin 1-40.json").decodeToString()
+                Res.readBytes("files/begin 1-40.json").decodeToString()
             )
             // Сюда можно добавить новые JSON файлы:
             // Res.readBytes("files/integer 1-40.json").decodeToString(),
