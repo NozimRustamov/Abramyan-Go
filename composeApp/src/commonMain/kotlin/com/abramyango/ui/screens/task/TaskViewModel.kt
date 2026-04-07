@@ -20,7 +20,6 @@ import kotlinx.coroutines.flow.first
 data class TaskState(
     val isLoading: Boolean = true,
     val task: Task? = null,
-    val selectedLanguage: ProgrammingLanguage = ProgrammingLanguage.PYTHON,
     val currentAttempt: Int = 1,
     val comboState: ComboState = ComboState(),
     val taskPhase: TaskPhase = TaskPhase.SOLVING,
@@ -30,20 +29,20 @@ data class TaskState(
 ) : MviState
 
 enum class TaskPhase {
-    SOLVING,        // Решение задачи
-    CHECKING,       // Проверка ответа
-    CORRECT,        // Правильный ответ
-    INCORRECT,      // Неправильный ответ
-    COMPLETED       // Задача завершена
+    SOLVING,
+    CHECKING,
+    CORRECT,
+    INCORRECT,
+    COMPLETED
 }
 
 sealed class UserAnswer {
-    data class DragDropAnswer(val orderedBlocks: List<String>) : UserAnswer()
-    data class FillBlanksAnswer(val answers: Map<Int, String>) : UserAnswer()
-    data class BugHuntAnswer(val selectedLine: Int) : UserAnswer()
-    data class CodeTraceAnswer(val answers: List<String>) : UserAnswer()
-    data class OutputPredictionAnswer(val selectedOutput: String) : UserAnswer()
-    data class RefactoringAnswer(val selectedOption: String) : UserAnswer()
+    /** DragDrop: список ID блоков в порядке, выбранном пользователем */
+    data class DragDropAnswer(val orderedBlockIds: List<Int>) : UserAnswer()
+    /** BugHunt: выбранный вариант исправления */
+    data class BugHuntAnswer(val selectedOption: String) : UserAnswer()
+    /** FillBlank: выбранный вариант заполнения */
+    data class FillBlankAnswer(val selectedOption: String) : UserAnswer()
 }
 
 /**
@@ -82,15 +81,15 @@ class TaskViewModel(
     private val playerRepository: PlayerRepository,
     private val solveTaskUseCase: SolveTaskUseCase
 ) : ViewModel() {
-    
+
     private val _state = MutableStateFlow(TaskState())
     val state: StateFlow<TaskState> = _state.asStateFlow()
-    
+
     private val _sideEffect = MutableSharedFlow<TaskSideEffect>()
     val sideEffect: SharedFlow<TaskSideEffect> = _sideEffect.asSharedFlow()
-    
+
     private var startTime: Long = 0
-    
+
     fun processIntent(intent: TaskIntent) {
         when (intent) {
             is TaskIntent.LoadTask -> loadTask(intent.taskId)
@@ -101,50 +100,43 @@ class TaskViewModel(
             is TaskIntent.ExitTask -> exitTask()
         }
     }
-    
+
     private fun loadTask(taskId: String) {
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true) }
-            
+
             try {
-                combine(
-                    taskRepository.getTask(taskId),
-                    playerRepository.getProfile()
-                ) { task, profile ->
-                    Pair(task, profile)
-                }.collect { (task, profile) ->
-                    if (task != null) {
-                        startTime = System.currentTimeMillis()
-                        _state.update {
-                            it.copy(
-                                isLoading = false,
-                                task = task,
-                                selectedLanguage = profile.selectedLanguage,
-                                taskPhase = TaskPhase.SOLVING,
-                                currentAttempt = 1,
-                                userAnswer = null,
-                                error = null
-                            )
-                        }
-                    } else {
-                        _state.update { it.copy(isLoading = false, error = "Task not found") }
+                val task = taskRepository.getTask(taskId).first()
+                if (task != null) {
+                    startTime = System.currentTimeMillis()
+                    _state.update {
+                        it.copy(
+                            isLoading = false,
+                            task = task,
+                            taskPhase = TaskPhase.SOLVING,
+                            currentAttempt = 1,
+                            userAnswer = null,
+                            error = null
+                        )
                     }
+                } else {
+                    _state.update { it.copy(isLoading = false, error = "Task not found") }
                 }
             } catch (e: Exception) {
                 _state.update { it.copy(isLoading = false, error = e.message) }
             }
         }
     }
-    
+
     private fun submitAnswer(answer: UserAnswer) {
         viewModelScope.launch {
             val task = _state.value.task ?: return@launch
-            
+
             _state.update { it.copy(taskPhase = TaskPhase.CHECKING, userAnswer = answer) }
-            
+
             val isCorrect = checkAnswer(task, answer)
             val timeSpent = ((System.currentTimeMillis() - startTime) / 1000).toInt()
-            
+
             if (isCorrect) {
                 val reward = solveTaskUseCase.execute(
                     taskId = task.id,
@@ -153,7 +145,7 @@ class TaskViewModel(
                     timeSpentSeconds = timeSpent,
                     comboState = _state.value.comboState
                 )
-                
+
                 _state.update {
                     it.copy(
                         taskPhase = TaskPhase.CORRECT,
@@ -161,10 +153,10 @@ class TaskViewModel(
                         lastReward = reward
                     )
                 }
-                
+
                 _sideEffect.emit(TaskSideEffect.PlaySound(SoundType.CORRECT))
                 _sideEffect.emit(TaskSideEffect.TriggerHaptic)
-                
+
                 if (reward.newComboState.multiplier >= 3) {
                     _sideEffect.emit(TaskSideEffect.PlaySound(SoundType.COMBO))
                 }
@@ -176,57 +168,36 @@ class TaskViewModel(
                         comboState = it.comboState.reset()
                     )
                 }
-                
+
                 _sideEffect.emit(TaskSideEffect.PlaySound(SoundType.INCORRECT))
             }
         }
     }
-    
+
     private fun checkAnswer(task: Task, answer: UserAnswer): Boolean {
+        val data = task.taskData
         return when (task.mechanic) {
             TaskMechanic.DRAG_DROP -> {
-                // Для drag & drop проверяем порядок блоков
-                // TODO: реализовать проверку
-                true
-            }
-            TaskMechanic.FILL_BLANKS -> {
-                val fillAnswer = answer as? UserAnswer.FillBlanksAnswer ?: return false
-                val blanksData = task.fillBlanksData ?: return true
-                blanksData.blanks.all { blank ->
-                    fillAnswer.answers[blank.blankIndex] == blank.correctAnswer
-                }
+                val userOrder = (answer as? UserAnswer.DragDropAnswer)?.orderedBlockIds ?: return false
+                userOrder == data.correctOrder
             }
             TaskMechanic.BUG_HUNT -> {
-                // Для bug hunt проверяем выбранную строку
-                val bugAnswer = answer as? UserAnswer.BugHuntAnswer ?: return false
-                // TODO: добавить данные о правильной строке
-                true
+                val selected = (answer as? UserAnswer.BugHuntAnswer)?.selectedOption ?: return false
+                selected == data.correctOption
             }
-            TaskMechanic.CODE_TRACE -> {
-                // Для трассировки проверяем значения переменных
-                // TODO: реализовать проверку
-                true
-            }
-            TaskMechanic.OUTPUT_PREDICTION -> {
-                // Для output prediction проверяем выбранный вывод
-                // TODO: реализовать проверку
-                true
-            }
-            TaskMechanic.REFACTORING -> {
-                // Для рефакторинга проверяем выбранный вариант
-                // TODO: реализовать проверку
-                true
+            TaskMechanic.FILL_BLANK -> {
+                val selected = (answer as? UserAnswer.FillBlankAnswer)?.selectedOption ?: return false
+                selected == data.correctOption
             }
         }
     }
-    
+
     private fun useHint() {
         viewModelScope.launch {
-            // TODO: использовать способность подсказки
             _sideEffect.emit(TaskSideEffect.ShowError("Подсказки пока не реализованы"))
         }
     }
-    
+
     private fun nextTask() {
         viewModelScope.launch {
             val currentTask = _state.value.task ?: run {
@@ -242,7 +213,7 @@ class TaskViewModel(
             }
         }
     }
-    
+
     private fun retryTask() {
         viewModelScope.launch {
             startTime = System.currentTimeMillis()
@@ -254,7 +225,7 @@ class TaskViewModel(
             }
         }
     }
-    
+
     private fun exitTask() {
         viewModelScope.launch {
             _sideEffect.emit(TaskSideEffect.NavigateBack)

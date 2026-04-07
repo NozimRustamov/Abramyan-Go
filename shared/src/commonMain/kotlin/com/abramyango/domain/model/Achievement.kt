@@ -156,7 +156,7 @@ object Achievements {
         descriptionKey = "achievement_code_architect_desc",
         iconName = "ic_achievement_architect",
         category = AchievementCategory.MASTERY,
-        requirement = AchievementRequirement.MechanicMastery(TaskMechanic.REFACTORING, 20)
+        requirement = AchievementRequirement.MechanicMastery(TaskMechanic.DRAG_DROP, 20)
     )
     
     val COMBO_MASTER = Achievement(
