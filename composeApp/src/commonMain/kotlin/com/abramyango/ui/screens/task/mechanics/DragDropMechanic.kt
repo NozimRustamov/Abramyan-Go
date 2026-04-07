@@ -2,7 +2,7 @@ package com.abramyango.ui.screens.task.mechanics
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,9 +24,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
-import com.abramyango.domain.model.ProgrammingLanguage
+import com.abramyango.domain.model.DragDropBlock
 import com.abramyango.domain.model.Task
 import com.abramyango.ui.components.GlassCard
 import com.abramyango.ui.components.PrimaryButton
@@ -34,30 +33,28 @@ import com.abramyango.ui.theme.AppTheme
 import com.abramyango.ui.theme.Spacing
 
 /**
- * Drag & Drop механика - собери код из блоков
+ * Drag & Drop механика - собери код из блоков в правильном порядке.
+ * Данные берутся из task.taskData.blocks и task.taskData.correctOrder.
  */
 @Composable
 fun DragDropMechanic(
     task: Task,
-    language: ProgrammingLanguage,
-    onSubmit: (List<String>) -> Unit,
+    onSubmit: (List<Int>) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val colors = AppTheme.colors
     val typography = AppTheme.typography
-    
-    // Получаем блоки кода (строки)
-    val code = task.code.getCode(language)
-    val correctLines = code.lines().filter { it.isNotBlank() }
-    
-    // Перемешиваем для задания + добавляем обманки
-    var shuffledBlocks by remember {
-        mutableStateOf(correctLines.shuffled())
+
+    val blocks = task.taskData.blocks ?: emptyList()
+
+    // Блоки в перемешанном порядке для показа
+    val shuffledBlocks by remember(task.id) {
+        mutableStateOf(blocks.shuffled())
     }
-    
-    // Текущий порядок, выбранный пользователем
-    var userOrder by remember { mutableStateOf<List<String>>(emptyList()) }
-    
+
+    // Текущий порядок, выбранный пользователем (список блоков)
+    var userOrder by remember(task.id) { mutableStateOf<List<DragDropBlock>>(emptyList()) }
+
     Column(
         modifier = modifier.fillMaxWidth()
     ) {
@@ -66,25 +63,25 @@ fun DragDropMechanic(
             style = typography.titleMedium,
             color = colors.textPrimary
         )
-        
+
         Spacer(modifier = Modifier.height(Spacing.default))
-        
+
         // Доступные блоки
         Text(
             text = "Доступные блоки:",
             style = typography.labelMedium,
             color = colors.textSecondary
         )
-        
+
         Spacer(modifier = Modifier.height(Spacing.small))
-        
-        // Блоки для выбора
+
         Column(
             verticalArrangement = Arrangement.spacedBy(Spacing.small)
         ) {
-            shuffledBlocks.filter { it !in userOrder }.forEach { block ->
+            val selectedIds = userOrder.map { it.id }.toSet()
+            shuffledBlocks.filter { it.id !in selectedIds }.forEach { block ->
                 CodeBlockItem(
-                    code = block,
+                    code = block.code,
                     isSelected = false,
                     onClick = {
                         userOrder = userOrder + block
@@ -92,18 +89,18 @@ fun DragDropMechanic(
                 )
             }
         }
-        
+
         Spacer(modifier = Modifier.height(Spacing.large))
-        
+
         // Выбранный порядок
         Text(
             text = "Твой код:",
             style = typography.labelMedium,
             color = colors.textSecondary
         )
-        
+
         Spacer(modifier = Modifier.height(Spacing.small))
-        
+
         if (userOrder.isEmpty()) {
             GlassCard(
                 modifier = Modifier
@@ -130,31 +127,30 @@ fun DragDropMechanic(
             ) {
                 userOrder.forEachIndexed { index, block ->
                     CodeBlockItem(
-                        code = block,
+                        code = block.code,
                         isSelected = true,
                         lineNumber = index + 1,
                         onClick = {
-                            // Удалить блок при нажатии
-                            userOrder = userOrder - block
+                            userOrder = userOrder.filter { it.id != block.id }
                         }
                     )
                 }
             }
         }
-        
+
         Spacer(modifier = Modifier.height(Spacing.extraLarge))
-        
+
         // Кнопка проверки
         PrimaryButton(
             text = "Проверить",
-            onClick = { onSubmit(userOrder) },
-            enabled = userOrder.size == correctLines.size
+            onClick = { onSubmit(userOrder.map { it.id }) },
+            enabled = userOrder.size == blocks.size
         )
-        
+
         // Кнопка сброса
         if (userOrder.isNotEmpty()) {
             Spacer(modifier = Modifier.height(Spacing.small))
-            
+
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
@@ -164,10 +160,9 @@ fun DragDropMechanic(
                     style = typography.labelMedium,
                     color = colors.textTertiary,
                     modifier = Modifier
+                        .clip(RoundedCornerShape(8.dp))
+                        .clickable { userOrder = emptyList() }
                         .padding(Spacing.small)
-                        .let { mod ->
-                            mod
-                        }
                 )
             }
         }
@@ -186,39 +181,29 @@ private fun CodeBlockItem(
 ) {
     val colors = AppTheme.colors
     val typography = AppTheme.typography
-    
+
     val backgroundColor = if (isSelected) {
         colors.accentPrimary.copy(alpha = 0.15f)
     } else {
         colors.codeBackground
     }
-    
+
     val borderColor = if (isSelected) {
         colors.accentPrimary.copy(alpha = 0.4f)
     } else {
         Color.White.copy(alpha = 0.1f)
     }
-    
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(8.dp))
             .background(backgroundColor)
             .border(1.dp, borderColor, RoundedCornerShape(8.dp))
-            .let { mod ->
-                mod.pointerInput(Unit) {
-                    detectDragGesturesAfterLongPress(
-                        onDragStart = { },
-                        onDrag = { _, _ -> },
-                        onDragEnd = { },
-                        onDragCancel = { }
-                    )
-                }
-            }
+            .clickable { onClick() }
             .padding(Spacing.medium),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        // Номер строки для выбранных
         if (lineNumber != null) {
             Text(
                 text = "$lineNumber",
@@ -227,18 +212,16 @@ private fun CodeBlockItem(
                 modifier = Modifier.width(24.dp)
             )
         }
-        
-        // Код
+
         Text(
             text = code.trim(),
             style = typography.codeBlock,
             color = colors.textPrimary,
             modifier = Modifier.weight(1f)
         )
-        
-        // Иконка действия
+
         Text(
-            text = if (isSelected) "✕" else "+",
+            text = if (isSelected) "\u2715" else "+",
             style = typography.labelMedium,
             color = if (isSelected) colors.accentError else colors.accentSuccess
         )

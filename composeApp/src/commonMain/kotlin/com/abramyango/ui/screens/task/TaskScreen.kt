@@ -25,7 +25,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.unit.dp
 import com.abramyango.domain.model.Task
 import com.abramyango.domain.model.TaskMechanic
-import com.abramyango.ui.components.CodeBlock
 import com.abramyango.ui.components.ComboIndicator
 import com.abramyango.ui.components.GlassCard
 import com.abramyango.ui.components.GlassIconButton
@@ -33,11 +32,8 @@ import com.abramyango.ui.components.GlassSurface
 import com.abramyango.ui.components.PrimaryButton
 import com.abramyango.ui.components.SecondaryButton
 import com.abramyango.ui.screens.task.mechanics.BugHuntMechanic
-import com.abramyango.ui.screens.task.mechanics.CodeTraceMechanic
 import com.abramyango.ui.screens.task.mechanics.DragDropMechanic
-import com.abramyango.ui.screens.task.mechanics.FillBlanksMechanic
-import com.abramyango.ui.screens.task.mechanics.OutputPredictionMechanic
-import com.abramyango.ui.screens.task.mechanics.RefactoringMechanic
+import com.abramyango.ui.screens.task.mechanics.FillBlankMechanic
 import com.abramyango.ui.theme.AppTheme
 import com.abramyango.ui.theme.Spacing
 
@@ -51,7 +47,6 @@ fun TaskScreen(
     modifier: Modifier = Modifier
 ) {
     val colors = AppTheme.colors
-    AppTheme.typography
 
     Box(
         modifier = modifier
@@ -91,7 +86,6 @@ fun TaskScreen(
                         TaskPhase.SOLVING, TaskPhase.CHECKING -> {
                             TaskContent(
                                 task = state.task,
-                                language = state.selectedLanguage,
                                 onSubmit = { answer ->
                                     onIntent(TaskIntent.SubmitAnswer(answer))
                                 },
@@ -123,7 +117,7 @@ fun TaskScreen(
 }
 
 /**
- * Top bar задачи
+ * Top bar задачи: ID + механика + комбо
  */
 @Composable
 private fun TaskTopBar(
@@ -146,10 +140,9 @@ private fun TaskTopBar(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Back button
             GlassIconButton(onClick = onBack) {
                 Text(
-                    text = "←",
+                    text = "\u2190",
                     style = typography.titleLarge,
                     color = colors.textPrimary
                 )
@@ -157,7 +150,6 @@ private fun TaskTopBar(
 
             Spacer(modifier = Modifier.width(Spacing.medium))
 
-            // Task info
             Column(
                 modifier = Modifier.weight(1f)
             ) {
@@ -166,15 +158,13 @@ private fun TaskTopBar(
                     style = typography.labelMedium,
                     color = colors.textSecondary
                 )
-
                 Text(
-                    text = task.abramyanId ?: task.id,
+                    text = task.id,
                     style = typography.titleMedium,
                     color = colors.textPrimary
                 )
             }
 
-            // Combo indicator
             if (comboState.count > 0) {
                 ComboIndicator(
                     comboCount = comboState.count,
@@ -184,7 +174,6 @@ private fun TaskTopBar(
 
             Spacer(modifier = Modifier.width(Spacing.small))
 
-            // XP reward
             GlassSurface(
                 cornerRadius = 8.dp,
                 contentPadding = 8.dp
@@ -200,12 +189,11 @@ private fun TaskTopBar(
 }
 
 /**
- * Основной контент задачи
+ * Основной контент задачи: заголовок, rpg-контекст, механика
  */
 @Composable
 private fun TaskContent(
     task: Task,
-    language: com.abramyango.domain.model.ProgrammingLanguage,
     onSubmit: (UserAnswer) -> Unit,
     onHint: () -> Unit
 ) {
@@ -215,53 +203,67 @@ private fun TaskContent(
     LazyColumn(
         modifier = Modifier.fillMaxWidth()
     ) {
-
+        // Заголовок: abramyan_text
         item {
-            // Story context
             GlassCard(
                 modifier = Modifier.fillMaxWidth(),
-                glassAlpha = 0.1f,
+                glassAlpha = 0.15f,
                 cornerRadius = 16.dp,
                 contentPadding = Spacing.medium
             ) {
                 Text(
-                    text = getTaskStoryContext(task.storyContextKey),
-                    style = typography.bodyLarge,
+                    text = task.abramyanText,
+                    style = typography.titleMedium,
                     color = colors.textPrimary
                 )
             }
             Spacer(modifier = Modifier.height(Spacing.default))
         }
 
+        // RPG-контекст
         item {
-            // Code block
-            CodeBlock(
-                code = task.code.getCode(language),
-                language = language,
-                modifier = Modifier.fillMaxWidth()
-            )
-            Spacer(modifier = Modifier.height(Spacing.default))
+            GlassCard(
+                modifier = Modifier.fillMaxWidth(),
+                glassAlpha = 0.1f,
+                cornerRadius = 16.dp,
+                contentPadding = Spacing.medium
+            ) {
+                Row {
+                    Text(
+                        text = "\uD83D\uDCAC",
+                        style = typography.titleLarge
+                    )
+                    Spacer(modifier = Modifier.width(Spacing.small))
+                    Text(
+                        text = task.rpgContext,
+                        style = typography.bodyLarge,
+                        color = colors.textPrimary
+                    )
+                }
+            }
+            Spacer(modifier = Modifier.height(Spacing.large))
         }
 
+        // Описание задачи (если есть)
+        if (task.taskData.description != null) {
+            item {
+                Text(
+                    text = task.taskData.description,
+                    style = typography.bodyMedium,
+                    color = colors.textSecondary
+                )
+                Spacer(modifier = Modifier.height(Spacing.default))
+            }
+        }
+
+        // Рабочая зона: механика
         item {
-            // Mechanic-specific UI
             when (task.mechanic) {
                 TaskMechanic.DRAG_DROP -> {
                     DragDropMechanic(
                         task = task,
-                        language = language,
-                        onSubmit = { blocks ->
-                            onSubmit(UserAnswer.DragDropAnswer(blocks))
-                        }
-                    )
-                }
-
-                TaskMechanic.FILL_BLANKS -> {
-                    FillBlanksMechanic(
-                        task = task,
-                        language = language,
-                        onSubmit = { answers ->
-                            onSubmit(UserAnswer.FillBlanksAnswer(answers))
+                        onSubmit = { blockIds ->
+                            onSubmit(UserAnswer.DragDropAnswer(blockIds))
                         }
                     )
                 }
@@ -269,38 +271,17 @@ private fun TaskContent(
                 TaskMechanic.BUG_HUNT -> {
                     BugHuntMechanic(
                         task = task,
-                        language = language,
-                        onSubmit = { line ->
-                            onSubmit(UserAnswer.BugHuntAnswer(line))
-                        }
-                    )
-                }
-
-                TaskMechanic.OUTPUT_PREDICTION -> {
-                    OutputPredictionMechanic(
-                        task = task,
-                        onSubmit = { output ->
-                            onSubmit(UserAnswer.OutputPredictionAnswer(output))
-                        }
-                    )
-                }
-
-                TaskMechanic.CODE_TRACE -> {
-                    CodeTraceMechanic(
-                        task = task,
-                        language = language,
-                        onSubmit = { answers ->
-                            onSubmit(UserAnswer.CodeTraceAnswer(answers))
-                        }
-                    )
-                }
-
-                TaskMechanic.REFACTORING -> {
-                    RefactoringMechanic(
-                        task = task,
-                        language = language,
                         onSubmit = { option ->
-                            onSubmit(UserAnswer.RefactoringAnswer(option))
+                            onSubmit(UserAnswer.BugHuntAnswer(option))
+                        }
+                    )
+                }
+
+                TaskMechanic.FILL_BLANK -> {
+                    FillBlankMechanic(
+                        task = task,
+                        onSubmit = { option ->
+                            onSubmit(UserAnswer.FillBlankAnswer(option))
                         }
                     )
                 }
@@ -313,7 +294,7 @@ private fun TaskContent(
         item {
             Spacer(modifier = Modifier.height(Spacing.extraLarge))
             SecondaryButton(
-                text = "💡 Подсказка",
+                text = "\uD83D\uDCA1 Подсказка",
                 onClick = onHint
             )
             Spacer(modifier = Modifier.height(Spacing.default))
@@ -344,10 +325,7 @@ private fun CorrectAnswerOverlay(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text(
-            text = "✅",
-            style = typography.displayLarge
-        )
+        Text(text = "\u2705", style = typography.displayLarge)
 
         Spacer(modifier = Modifier.height(Spacing.default))
 
@@ -365,9 +343,7 @@ private fun CorrectAnswerOverlay(
                 cornerRadius = 16.dp,
                 contentPadding = Spacing.default
             ) {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(
                         text = "+${reward.xpEarned} XP",
                         style = typography.headlineMedium,
@@ -377,7 +353,7 @@ private fun CorrectAnswerOverlay(
                     if (reward.coinsEarned > 0) {
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
-                            text = "+${reward.coinsEarned} 🪙",
+                            text = "+${reward.coinsEarned} \uD83E\uDE99",
                             style = typography.titleMedium,
                             color = colors.textSecondary
                         )
@@ -386,7 +362,7 @@ private fun CorrectAnswerOverlay(
                     if (reward.isFirstAttempt) {
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
-                            text = "С первой попытки! 🎯",
+                            text = "С первой попытки! \uD83C\uDFAF",
                             style = typography.labelMedium,
                             color = colors.accentSuccess
                         )
@@ -420,10 +396,7 @@ private fun IncorrectAnswerOverlay(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text(
-            text = "❌",
-            style = typography.displayLarge
-        )
+        Text(text = "\u274C", style = typography.displayLarge)
 
         Spacer(modifier = Modifier.height(Spacing.default))
 
@@ -449,25 +422,10 @@ private fun IncorrectAnswerOverlay(
     }
 }
 
-// Импорты механик - используются из пакета mechanics
-
 private fun getMechanicName(mechanic: TaskMechanic): String {
     return when (mechanic) {
         TaskMechanic.DRAG_DROP -> "Собери код"
-        TaskMechanic.FILL_BLANKS -> "Заполни пропуски"
         TaskMechanic.BUG_HUNT -> "Найди ошибку"
-        TaskMechanic.CODE_TRACE -> "Трассировка"
-        TaskMechanic.OUTPUT_PREDICTION -> "Что выведет код?"
-        TaskMechanic.REFACTORING -> "Рефакторинг"
-    }
-}
-
-private fun getTaskStoryContext(key: String): String {
-    // TODO: загружать из ресурсов
-    return when {
-        key.contains("begin_001") -> "Стражник у ворот говорит: «Рассчитай периметр площади, чтобы я знал сколько нужно камня для стены»"
-        key.contains("begin_002") -> "Архитектор просит: «Вычисли площадь этого участка для фундамента»"
-        key.contains("bool") -> "Врата Истины требуют логического ответа..."
-        else -> "Реши задачу, чтобы продвинуться дальше"
+        TaskMechanic.FILL_BLANK -> "Заполни пропуск"
     }
 }

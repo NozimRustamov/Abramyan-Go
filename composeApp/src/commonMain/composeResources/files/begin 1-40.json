@@ -1,0 +1,863 @@
+{
+  "tasks": [
+    {
+      "abramyan_text": "Begin 1. Дана сторона квадрата а. Найти его периметр P = 4 * a.",
+      "id": "Begin1",
+      "mechanic": "DragDrop",
+      "rpg_context": "Лесной Плотник: «Привет, путник! Я строю забор вокруг своего огорода. Огород идеально квадратный, и длина одной его стороны — a. Помоги мне посчитать общую длину забора!»",
+      "task_data": {
+        "blocks": [
+          {
+            "code": "val P = 4 * a",
+            "id": 0
+          },
+          {
+            "code": "val a = 5.0",
+            "id": 1
+          },
+          {
+            "code": "println(P)",
+            "id": 2
+          }
+        ],
+        "correct_order": [
+          1,
+          0,
+          2
+        ],
+        "description": "Собери алгоритм вычисления периметра.",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin2. Дана сторона квадрата а. Найти его площадь S = a^2.",
+      "id": "Begin2",
+      "mechanic": "BugHunt",
+      "rpg_context": "Мастер-Строитель: «Странник, мне нужно залить фундамент для башни. Участок квадратный, сторона равна a. Помоги вычислить площадь!»",
+      "task_data": {
+        "bug_line_index": 1,
+        "bug_options": [
+          "val S = a + a",
+          "val S = a * a",
+          "val S = 4 * a"
+        ],
+        "code_with_bug": "val a = 5\nval S = a * 4\nprintln(S)",
+        "correct_option": "val S = a * a",
+        "description": "Исправь ошибку в формуле площади (S = a * a).",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin3. Даны стороны прямоугольника а и b. Найти площадь S = a*b и периметр P = 2*(a+b).",
+      "id": "Begin3",
+      "mechanic": "FillBlank",
+      "rpg_context": "Земледелец: «Я купил прямоугольное поле. Нужно узнать площадь для посева и периметр для забора. Помоги с формулой!»",
+      "task_data": {
+        "blank_options": [
+          "*",
+          "-",
+          "+",
+          "/"
+        ],
+        "code_template": "val a = 10\nval b = 5\nval P = 2 * (a ___ b)",
+        "correct_option": "+",
+        "description": "Вставь '+' в формулу периметра P = 2 * (a + b).",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin4. Дан диаметр окружности d. Найти ее длину L = pi * d (pi = 3.14).",
+      "id": "Begin4",
+      "mechanic": "DragDrop",
+      "rpg_context": "Кузнец: «Нужно выковать обод для колеса диаметром d. Какая длина железной полосы L мне понадобится?»",
+      "task_data": {
+        "blocks": [
+          {
+            "code": "val pi = 3.14",
+            "id": 0
+          },
+          {
+            "code": "val d = 10.0",
+            "id": 1
+          },
+          {
+            "code": "val L = pi * d",
+            "id": 2
+          }
+        ],
+        "correct_order": [
+          1,
+          0,
+          2
+        ],
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin5. Дана длина ребра куба а. Найти объем V = a^3 и площадь поверхности S = 6*a^2.",
+      "id": "Begin5",
+      "mechanic": "BugHunt",
+      "rpg_context": "Алхимик: «Я создаю магический куб. Помоги вычислить его объем V (a*a*a), мой ученик снова всё перепутал!»",
+      "task_data": {
+        "bug_line_index": 1,
+        "bug_options": [
+          "val V = a * a",
+          "val V = a * a * a",
+          "val V = a + 3"
+        ],
+        "code_with_bug": "val a = 3\nval V = a * 3\nprintln(V)",
+        "correct_option": "val V = a * a * a",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin6. Даны ребра а, b, с параллелепипеда. Найти объем V = a*b*c.",
+      "id": "Begin6",
+      "mechanic": "FillBlank",
+      "rpg_context": "Торговец: «Нужно узнать объем сундука со сторонами a, b и c. Помоги дополнить формулу!»",
+      "task_data": {
+        "blank_options": [
+          "a",
+          "b",
+          "c",
+          "2"
+        ],
+        "code_template": "val a = 2; val b = 3; val c = 4\nval V = a * b * ___",
+        "correct_option": "c",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin7. Найти длину L и площадь S круга радиуса R (L=2*pi*R, S=pi*R^2).",
+      "id": "Begin7",
+      "mechanic": "DragDrop",
+      "rpg_context": "Маг: «Я создаю защитный круг радиусом R. Собери заклинание для расчета площади S!»",
+      "task_data": {
+        "blocks": [
+          {
+            "code": "val R = 10.0",
+            "id": 0
+          },
+          {
+            "code": "val pi = 3.14",
+            "id": 1
+          },
+          {
+            "code": "val S = pi * R * R",
+            "id": 2
+          }
+        ],
+        "correct_order": [
+          0,
+          1,
+          2
+        ],
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin8. Найти среднее арифметическое двух чисел (a + b) / 2.",
+      "id": "Begin8",
+      "mechanic": "BugHunt",
+      "rpg_context": "Трактирщик: «Нужно найти среднюю цену за две комнаты. Я забыл про скобки, исправь меня!»",
+      "task_data": {
+        "bug_line_index": 2,
+        "bug_options": [
+          "val avg = (a + b) / 2.0",
+          "val avg = a + (b / 2.0)",
+          "val avg = a * b / 2.0"
+        ],
+        "code_with_bug": "val a = 10.0\nval b = 20.0\nval avg = a + b / 2.0",
+        "correct_option": "val avg = (a + b) / 2.0",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin9. Найти среднее геометрическое: sqrt(a * b).",
+      "id": "Begin9",
+      "mechanic": "FillBlank",
+      "rpg_context": "Картограф: «Для масштаба карты нужно извлечь корень из произведения a и b. Дополни код!»",
+      "task_data": {
+        "blank_options": [
+          "+",
+          "-",
+          "*",
+          "/"
+        ],
+        "code_template": "import kotlin.math.sqrt\nval res = sqrt(a ___ b)",
+        "correct_option": "*",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin10. Найти сумму квадратов двух чисел: a^2 + b^2.",
+      "id": "Begin10",
+      "mechanic": "DragDrop",
+      "rpg_context": "Оружейник: «Для ковки щита нужна сумма квадратов весов металлов. Помоги собрать формулу!»",
+      "task_data": {
+        "blocks": [
+          {
+            "code": "val a = 3.0",
+            "id": 0
+          },
+          {
+            "code": "val b = 4.0",
+            "id": 1
+          },
+          {
+            "code": "val res = a*a + b*b",
+            "id": 2
+          }
+        ],
+        "correct_order": [
+          0,
+          1,
+          2
+        ],
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin11. Найти сумму и разность модулей чисел: |a| + |b|, |a| - |b|.",
+      "id": "Begin11",
+      "mechanic": "FillBlank",
+      "rpg_context": "Инквизитор: «Мне нужна сумма модулей сил. В Kotlin модуль — это abs(). Допиши функцию!»",
+      "task_data": {
+        "blank_options": [
+          "mod",
+          "abs",
+          "sqrt",
+          "val"
+        ],
+        "code_template": "import kotlin.math.abs\nval res = abs(a) + ___(b)",
+        "correct_option": "abs",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin12. Найти гипотенузу c = sqrt(a^2 + b^2) по двум катетам.",
+      "id": "Begin12",
+      "mechanic": "BugHunt",
+      "rpg_context": "Следопыт: «Нужно срезать путь через лес по диагонали (гипотенузе). Исправь расчет!»",
+      "task_data": {
+        "bug_line_index": 0,
+        "bug_options": [
+          "val c = sqrt(a*a + b*b)",
+          "val c = a + b",
+          "val c = sqrt(a*b)"
+        ],
+        "code_with_bug": "val c = sqrt(a + b)",
+        "correct_option": "val c = sqrt(a*a + b*b)",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin13. Найти площадь кольца S3 = S1 - S2.",
+      "id": "Begin13",
+      "mechanic": "FillBlank",
+      "rpg_context": "Ювелир: «Я делаю кольцо. Вычти площадь внутренней пустоты S2 из общей площади S1!»",
+      "task_data": {
+        "blank_options": [
+          "+",
+          "-",
+          "*",
+          "/"
+        ],
+        "code_template": "val S3 = S1 ___ S2",
+        "correct_option": "-",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin14. Найти радиус R = L / (2 * pi) по длине окружности L.",
+      "id": "Begin14",
+      "mechanic": "DragDrop",
+      "rpg_context": "Портной: «У меня есть длина ворота L. Как найти радиус R? Расставь блоки!»",
+      "task_data": {
+        "blocks": [
+          {
+            "code": "val L = 31.4",
+            "id": 0
+          },
+          {
+            "code": "val pi = 3.14",
+            "id": 1
+          },
+          {
+            "code": "val R = L / (2 * pi)",
+            "id": 2
+          }
+        ],
+        "correct_order": [
+          0,
+          1,
+          2
+        ],
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin15. Найти диаметр D = sqrt(4 * S / pi) по площади круга S.",
+      "id": "Begin15",
+      "mechanic": "BugHunt",
+      "rpg_context": "Астроном: «Нужно найти диаметр кратера по его площади S. Исправь формулу штурмана!»",
+      "task_data": {
+        "bug_line_index": 0,
+        "bug_options": [
+          "val D = sqrt(4 * S / pi)",
+          "val D = 4 * S",
+          "val D = sqrt(S * pi)"
+        ],
+        "code_with_bug": "val D = sqrt(S / pi)",
+        "correct_option": "val D = sqrt(4 * S / pi)",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin16. Найти расстояние между точками x1 и x2: |x2 - x1|.",
+      "id": "Begin16",
+      "mechanic": "FillBlank",
+      "rpg_context": "Лучник: «Мишени на точках x1 и x2. Какое между ними расстояние? Помни про модуль!»",
+      "task_data": {
+        "blank_options": [
+          "+",
+          "-",
+          "*",
+          "/"
+        ],
+        "code_template": "import kotlin.math.abs\nval dist = abs(x2 ___ x1)",
+        "correct_option": "-",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin17. Найти сумму отрезков AC и BC.",
+      "id": "Begin17",
+      "mechanic": "DragDrop",
+      "rpg_context": "Караванщик: «Мы прошли от A до C, потом от B до C. Каков общий путь? Собери код!»",
+      "task_data": {
+        "blocks": [
+          {
+            "code": "val AC = abs(C - A)",
+            "id": 0
+          },
+          {
+            "code": "val BC = abs(C - B)",
+            "id": 1
+          },
+          {
+            "code": "val total = AC + BC",
+            "id": 2
+          }
+        ],
+        "correct_order": [
+          0,
+          1,
+          2
+        ],
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin18. Найти произведение отрезков AC и BC (точка C между A и B).",
+      "id": "Begin18",
+      "mechanic": "BugHunt",
+      "rpg_context": "Маг: «Сила резонанса — это произведение длин AC и BC. Исправь ошибку, тут не сумма!»",
+      "task_data": {
+        "bug_line_index": 0,
+        "bug_options": [
+          "val power = AC * BC",
+          "val power = AC - BC",
+          "val power = AC / BC"
+        ],
+        "code_with_bug": "val power = AC + BC",
+        "correct_option": "val power = AC * BC",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin19. Найти периметр и площадь прямоугольника по двум вершинам.",
+      "id": "Begin19",
+      "mechanic": "FillBlank",
+      "rpg_context": "Зодчий: «Рассчитай площадь здания. Дополни формулу: ширина * высота!»",
+      "task_data": {
+        "blank_options": [
+          "+",
+          "-",
+          "*",
+          "/"
+        ],
+        "code_template": "val area = width ___ height",
+        "correct_option": "*",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin20. Найти расстояние между (x1, y1) и (x2, y2).",
+      "id": "Begin20",
+      "mechanic": "DragDrop",
+      "rpg_context": "Капитан: «Нужна дистанция до сокровищ по теореме Пифагора. Собери расчет!»",
+      "task_data": {
+        "blocks": [
+          {
+            "code": "val dx = x2 - x1",
+            "id": 0
+          },
+          {
+            "code": "val dy = y2 - y1",
+            "id": 1
+          },
+          {
+            "code": "val d = sqrt(dx*dx + dy*dy)",
+            "id": 2
+          }
+        ],
+        "correct_order": [
+          0,
+          1,
+          2
+        ],
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin21. Треугольник задан координатами своих вершин. Найти его периметр и площадь, используя формулу Герона.",
+      "id": "Begin21",
+      "mechanic": "BugHunt",
+      "rpg_context": "Землемер: «Мой участок имеет форму треугольника. Для формулы Герона нужен полупериметр p = P / 2. Мой ученик ошибся в формуле, поправь его!»",
+      "task_data": {
+        "bug_line_index": 1,
+        "bug_options": [
+          "val p = P / 2.0",
+          "val p = P / 4.0",
+          "val p = P * 2.0"
+        ],
+        "code_with_bug": "val P = a + b + c\nval p = P / 3.0\nval S = sqrt(p * (p - a) * (p - b) * (p - c))",
+        "correct_option": "val p = P / 2.0",
+        "description": "Исправь ошибку при вычислении полупериметра.",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin22. Поменять местами содержимое переменных A и B и вывести новые значения A и B.",
+      "id": "Begin22",
+      "mechanic": "DragDrop",
+      "rpg_context": "Иллюзионист: «Мне нужно незаметно поменять содержимое двух сундуков А и В. Используй пустой сундук temp для временного хранения!»",
+      "task_data": {
+        "blocks": [
+          {
+            "code": "val temp = A",
+            "id": 0
+          },
+          {
+            "code": "A = B",
+            "id": 1
+          },
+          {
+            "code": "B = temp",
+            "id": 2
+          }
+        ],
+        "correct_order": [
+          0,
+          1,
+          2
+        ],
+        "description": "Расставь строки, чтобы поменять значения местами.",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin23. Даны переменные A, B, C. Изменить их значения путем перемещения содержимого A в B, B в C, C в A.",
+      "id": "Begin23",
+      "mechanic": "FillBlank",
+      "rpg_context": "Алхимик: «Перелей зелья по кругу: из A в B, из B в C, из C в A. Не дай ценному эликсиру пропасть, сохрани начальное зелье в котел temp!»",
+      "task_data": {
+        "blank_options": [
+          "A",
+          "B",
+          "C",
+          "0"
+        ],
+        "code_template": "val temp = ___\nA = C\nC = B\nB = temp",
+        "correct_option": "A",
+        "description": "Заполни пропуск для правильного кругового обмена значений.",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin24. Даны переменные A, B, C. Изменить их значения путем перемещения A в C, C в B, B в A.",
+      "id": "Begin24",
+      "mechanic": "BugHunt",
+      "rpg_context": "Жрец: «Ритуал требует правильной передачи реликвий: A в C, C в B, B в A. Иначе магический круг разомкнется!»",
+      "task_data": {
+        "bug_line_index": 3,
+        "bug_options": [
+          "C = temp",
+          "A = temp",
+          "temp = A"
+        ],
+        "code_with_bug": "val temp = A\nA = B\nB = C\nB = temp",
+        "correct_option": "C = temp",
+        "description": "Найди и исправь ошибку при завершении ритуала перемещения.",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin25. Найти значение функции y = 3*x^6 - 6*x^2 - 7 при данном x.",
+      "id": "Begin25",
+      "mechanic": "DragDrop",
+      "rpg_context": "Знахарь: «Для идеальной пропорции лечебной мази нужна формула y = 3x^6 - 6x^2 - 7. Собери заклинание расчета последовательно!»",
+      "task_data": {
+        "blocks": [
+          {
+            "code": "val y = 3 * x6 - 6 * x2 - 7",
+            "id": 0
+          },
+          {
+            "code": "val x2 = x * x",
+            "id": 1
+          },
+          {
+            "code": "val x6 = x2 * x2 * x2",
+            "id": 2
+          }
+        ],
+        "correct_order": [
+          1,
+          2,
+          0
+        ],
+        "description": "Собери вычисление так, чтобы минимизировать количество операций умножения.",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin26. Найти значение функции y = 4*(x-3)^6 - 7*(x-3)^3 + 2 при данном x.",
+      "id": "Begin26",
+      "mechanic": "FillBlank",
+      "rpg_context": "Астролог: «Траектория падения звезды зависит от сдвига (x - 3). Что мы должны вычесть из переменной x для вычисления t?»",
+      "task_data": {
+        "blank_options": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "code_template": "val t = x - ___\nval t3 = t * t * t\nval t6 = t3 * t3\nval y = 4 * t6 - 7 * t3 + 2",
+        "correct_option": "3",
+        "description": "Дополни промежуточную переменную для упрощения уравнения.",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin27. Дано число A. Вычислить A^8, используя вспомогательную переменную и 3 операции умножения.",
+      "id": "Begin27",
+      "mechanic": "DragDrop",
+      "rpg_context": "Кузнец: «Чтобы раскалить горн до степени A^8, меха нужно качнут ровно трижды, каждый раз умножая огонь сам на себя. Собери этот процесс!»",
+      "task_data": {
+        "blocks": [
+          {
+            "code": "val a4 = a2 * a2",
+            "id": 0
+          },
+          {
+            "code": "val a8 = a4 * a4",
+            "id": 1
+          },
+          {
+            "code": "val a2 = A * A",
+            "id": 2
+          }
+        ],
+        "correct_order": [
+          2,
+          0,
+          1
+        ],
+        "description": "Выстрой операции, чтобы за 3 умножения получить 8 степень.",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin28. Дано число A. Вычислить A^15, используя две вспомогательные переменные и 5 операций умножения.",
+      "id": "Begin28",
+      "mechanic": "BugHunt",
+      "rpg_context": "Архимаг: «Открываю портал 15-го порядка (A^15). Формирование должно уложиться ровно в 5 магических операций, но ученик ошибся на последнем шаге.»",
+      "task_data": {
+        "bug_line_index": 4,
+        "bug_options": [
+          "val a15 = a10 * a5",
+          "val a15 = a10 * a3",
+          "val a15 = a10 * A"
+        ],
+        "code_with_bug": "val a2 = A * A\nval a3 = a2 * A\nval a5 = a2 * a3\nval a10 = a5 * a5\nval a15 = a10 * a4",
+        "correct_option": "val a15 = a10 * a5",
+        "description": "Найди ошибку при вычислении 15-й степени на последней строке.",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin29. Дан угол alpha в градусах. Найти его значение в радианах. 180 градусов = pi радиан.",
+      "id": "Begin29",
+      "mechanic": "FillBlank",
+      "rpg_context": "Штурман: «Градусы на компасе нужно перевести в радианы для древней карты. Радиан равен градусам, умноженным на Pi и деленным на... на что?»",
+      "task_data": {
+        "blank_options": [
+          "90",
+          "180",
+          "270",
+          "360"
+        ],
+        "code_template": "val pi = 3.14\nval rad = alpha * pi / ___",
+        "correct_option": "180",
+        "description": "Вставь делитель для конвертации градусов в радианы.",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin30. Дан угол alpha в радианах. Найти его значение в градусах (180 градусов = pi радиан).",
+      "id": "Begin30",
+      "mechanic": "DragDrop",
+      "rpg_context": "Пират: «Разрази меня гром! Эта карта сокровищ написана в радианах, а мой компас размечен в градусах! Помоги перевернуть формулу штурмана.»",
+      "task_data": {
+        "blocks": [
+          {
+            "code": "val deg = rad * 180 / pi",
+            "id": 0
+          },
+          {
+            "code": "val pi = 3.14",
+            "id": 1
+          },
+          {
+            "code": "val rad = 1.5",
+            "id": 2
+          }
+        ],
+        "correct_order": [
+          2,
+          1,
+          0
+        ],
+        "description": "Собери правильный порядок для получения градусов из радиан.",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin31. Дана температура в градусах Фаренгейта. Найти её в градусах Цельсия: Tc = (Tf - 32) * 5/9.",
+      "id": "Begin31",
+      "mechanic": "BugHunt",
+      "rpg_context": "Чужеземец: «В ваших краях измеряют тепло в градусах Цельсия, а я знаю лишь Фаренгейты. Ваш подмастерье напутал дроби!»",
+      "task_data": {
+        "bug_line_index": 1,
+        "bug_options": [
+          "val Tc = (Tf - 32) * 5 / 9",
+          "val Tc = (Tf + 32) * 5 / 9",
+          "val Tc = (Tf - 32) * 5 * 9"
+        ],
+        "code_with_bug": "val Tf = 100.0\nval Tc = (Tf - 32) * 9 / 5\nprintln(Tc)",
+        "correct_option": "val Tc = (Tf - 32) * 5 / 9",
+        "description": "Исправь множитель при переводе из фаренгейтов в градусы по цельсию.",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin32. Дана температура в градусах Цельсия. Найти её в градусах Фаренгейта: Tf = (Tc * 9/5) + 32.",
+      "id": "Begin32",
+      "mechanic": "FillBlank",
+      "rpg_context": "Чужеземец: «Благодарю! Теперь мне нужно перевести температуру вашей кузницы обратно в Фаренгейты. Какая цифра сверху в дроби?»",
+      "task_data": {
+        "blank_options": [
+          "5",
+          "7",
+          "9",
+          "11"
+        ],
+        "code_template": "val Tf = (Tc * ___ / 5.0) + 32",
+        "correct_option": "9",
+        "description": "Дополни формулу перевода градусов Цельсия в Фаренгейты.",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin33. Известно, что X кг конфет стоит A рублей. Найти цену 1 кг и Y кг тех же конфет.",
+      "id": "Begin33",
+      "mechanic": "DragDrop",
+      "rpg_context": "Торговец: «Пошлина уплачена! Ты купил X кило эльфийского хлеба за A золотых. Рассчитай цену для одного кг, а затем для большого обоза на Y кг!»",
+      "task_data": {
+        "blocks": [
+          {
+            "code": "val costY = price1 * Y",
+            "id": 0
+          },
+          {
+            "code": "val price1 = A / X",
+            "id": 1
+          },
+          {
+            "code": "println(costY)",
+            "id": 2
+          }
+        ],
+        "correct_order": [
+          1,
+          0,
+          2
+        ],
+        "description": "Собери логику расчёта цены 1 кг и затем Y кг.",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin34. X кг шоколадных конфет стоит A, а Y кг ирисок стоит B. Во сколько раз шоколадные конфеты дороже ирисок?",
+      "id": "Begin34",
+      "mechanic": "BugHunt",
+      "rpg_context": "Казначей: «Шелк стоит A золотых за X локтей, а лен — B за Y. Во сколько раз шелк дороже? Вычитание тут не поможет, исправь код!»",
+      "task_data": {
+        "bug_line_index": 2,
+        "bug_options": [
+          "val ratio = pSilk / pLinen",
+          "val ratio = pSilk + pLinen",
+          "val ratio = pLinen / pSilk"
+        ],
+        "code_with_bug": "val pSilk = A / X\nval pLinen = B / Y\nval ratio = pSilk - pLinen",
+        "correct_option": "val ratio = pSilk / pLinen",
+        "description": "Исправь операцию в последней строке, чтобы узнать 'во сколько раз'.",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin35. Скорость лодки V, скорость течения U. Время по озеру T1, против течения T2. Найти путь S лодки.",
+      "id": "Begin35",
+      "mechanic": "FillBlank",
+      "rpg_context": "Лодочник: «Мы шли по спокойному озеру, а потом против течения бурной реки. Какой знак у течения, когда река бьёт в нос лодки?»",
+      "task_data": {
+        "blank_options": [
+          "+",
+          "-",
+          "*",
+          "/"
+        ],
+        "code_template": "val S = V * T1 + (V ___ U) * T2",
+        "correct_option": "-",
+        "description": "Вставь правильный знак для скорости лодки против течения.",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin36. Скорость первого авто V1, второго V2, расстояние между ними S. Они удаляются друг от друга. Найти расстояние через время T.",
+      "id": "Begin36",
+      "mechanic": "DragDrop",
+      "rpg_context": "Гонец: «Два всадника разъезжаются в разные стороны. Вычисли общее расстояние между ними, которое появится через время T!»",
+      "task_data": {
+        "blocks": [
+          {
+            "code": "val S_total = S0 + v_sum * T",
+            "id": 0
+          },
+          {
+            "code": "val v_sum = v1 + v2",
+            "id": 1
+          },
+          {
+            "code": "println(S_total)",
+            "id": 2
+          }
+        ],
+        "correct_order": [
+          1,
+          0,
+          2
+        ],
+        "description": "Сложи скорости сближения и добавь их к начальному расстоянию.",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin37. Скорость первого авто V1, второго V2. Они сближаются. Начальное расстояние S. Найти расстояние через время T.",
+      "id": "Begin37",
+      "mechanic": "BugHunt",
+      "rpg_context": "Стражник на стене: «К нам навстречу едет посольство. Начальное расстояние было S0. Всадники идут на сближение, какое расстояние останется между нами?»",
+      "task_data": {
+        "bug_line_index": 1,
+        "bug_options": [
+          "val S_total = S0 - v_sum * T",
+          "val S_total = S0 * v_sum - T",
+          "val S_total = S0 / (v_sum * T)"
+        ],
+        "code_with_bug": "val v_sum = v1 + v2\nval S_total = S0 + v_sum * T\nprintln(S_total)",
+        "correct_option": "val S_total = S0 - v_sum * T",
+        "description": "Исправь формулу: так как объекты сближаются, оставшееся расстояние должно уменьшаться.",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin38. Найти решение линейного уравнения A*x + B = 0.",
+      "id": "Begin38",
+      "mechanic": "FillBlank",
+      "rpg_context": "Ученый: «Решаю баланс магической силы: A*x + B = 0. Переносим B вправо с противоположным знаком. Что окажется в числителе?»",
+      "task_data": {
+        "blank_options": [
+          "B",
+          "-B",
+          "A",
+          "-A"
+        ],
+        "code_template": "val x = (___) / A",
+        "correct_option": "-B",
+        "description": "Заполни числитель для решения линейного уравнения.",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin39. Найти корни квадратного уравнения A*x^2 + B*x + C = 0. Сначала найти дискриминант D = B^2 - 4*A*C.",
+      "id": "Begin39",
+      "mechanic": "DragDrop",
+      "rpg_context": "Архитектор: «Для расчёта прочности свода ратуши нужно решить квадратное уравнение. Но перед этим собери чертеж дискриминанта D!»",
+      "task_data": {
+        "blocks": [
+          {
+            "code": "val b2 = B * B",
+            "id": 0
+          },
+          {
+            "code": "val ac4 = 4 * A * C",
+            "id": 1
+          },
+          {
+            "code": "val D = b2 - ac4",
+            "id": 2
+          }
+        ],
+        "correct_order": [
+          0,
+          1,
+          2
+        ],
+        "description": "Собери правильное вычисление дискриминанта квадратного уравнения.",
+        "language": "kotlin"
+      }
+    },
+    {
+      "abramyan_text": "Begin40. Решить систему линейных уравнений по методу Крамера. Вычислить главный определитель: D = A1*B2 - A2*B1.",
+      "id": "Begin40",
+      "mechanic": "BugHunt",
+      "rpg_context": "Шифровальщик: «Ломаю тайный код методом Крамера. Но главный определитель матрицы (Дельта) собран с ошибкой. Помоги взломать систему!»",
+      "task_data": {
+        "bug_line_index": 0,
+        "bug_options": [
+          "val D = A1 * A2 - B1 * B2",
+          "val D = A1 * B2 - A2 * B1",
+          "val D = A1 * B2 + A2 * B1"
+        ],
+        "code_with_bug": "val D = A1 * B1 - A2 * B2\nval x = (C1 * B2 - C2 * B1) / D\nval y = (A1 * C2 - A2 * C1) / D",
+        "correct_option": "val D = A1 * B2 - A2 * B1",
+        "description": "Найди ошибку при вычислении главного определителя D.",
+        "language": "kotlin"
+      }
+    }
+  ],
+  "world_id": 1,
+  "world_name": "Долина Начинаний"
+}

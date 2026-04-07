@@ -135,7 +135,7 @@ private fun TaskListItem(
 
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = task.abramyanId ?: task.id,
+                    text = task.id,
                     style = typography.titleMedium,
                     color = colors.textPrimary
                 )
@@ -148,7 +148,7 @@ private fun TaskListItem(
 
             Column(horizontalAlignment = Alignment.End) {
                 Text(
-                    text = difficultyStars(task.difficulty),
+                    text = getMechanicName(task.mechanic),
                     style = typography.labelMedium,
                     color = colors.textSecondary
                 )
@@ -178,11 +178,8 @@ private fun difficultyStars(difficulty: Int): String {
 private fun getMechanicName(mechanic: TaskMechanic): String {
     return when (mechanic) {
         TaskMechanic.DRAG_DROP -> "Собери код"
-        TaskMechanic.FILL_BLANKS -> "Заполни пропуски"
         TaskMechanic.BUG_HUNT -> "Найди ошибку"
-        TaskMechanic.CODE_TRACE -> "Трассировка"
-        TaskMechanic.OUTPUT_PREDICTION -> "Что выведет код?"
-        TaskMechanic.REFACTORING -> "Рефакторинг"
+        TaskMechanic.FILL_BLANK -> "Заполни пропуск"
     }
 }
 

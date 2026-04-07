@@ -25,7 +25,8 @@ val sharedModule = module {
     // Repositories
     single<PlayerRepository> { PlayerRepositoryImpl(get()) }
     single<WorldRepository> { WorldRepositoryImpl(get(), get()) }
-    single<TaskRepository> { TaskRepositoryImpl(get(), get()) }
+    // TaskRepository is created in uiModule (composeApp) to support JSON resource loading
+    // single<TaskRepository> { TaskRepositoryImpl(get(), get()) }
     single<AbilityRepository> { AbilityRepositoryImpl(get()) }
     single<AchievementRepository> { AchievementRepositoryImpl(get()) }
     single<SettingsRepository> { SettingsRepositoryImpl(get()) }

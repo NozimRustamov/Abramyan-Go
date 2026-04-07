@@ -4,27 +4,18 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
- * Механика решения задачи
+ * Механика решения задачи (3 типа из JSON)
  */
 @Serializable
 enum class TaskMechanic {
-    @SerialName("drag_drop")
-    DRAG_DROP,              // Сборка кода из блоков
-    
-    @SerialName("fill_blanks")
-    FILL_BLANKS,            // Заполни пропуски
-    
-    @SerialName("bug_hunt")
-    BUG_HUNT,               // Найди ошибку
-    
-    @SerialName("code_trace")
-    CODE_TRACE,             // Трассировка
-    
-    @SerialName("output_prediction")
-    OUTPUT_PREDICTION,      // Что выведет код?
-    
-    @SerialName("refactoring")
-    REFACTORING             // Мини-рефакторинг
+    @SerialName("DragDrop")
+    DRAG_DROP,
+
+    @SerialName("BugHunt")
+    BUG_HUNT,
+
+    @SerialName("FillBlank")
+    FILL_BLANK
 }
 
 /**
@@ -34,36 +25,55 @@ enum class TaskMechanic {
 enum class ProgrammingLanguage(val displayName: String, val colorHex: String) {
     @SerialName("python")
     PYTHON("Python", "#3776AB"),
-    
+
     @SerialName("javascript")
     JAVASCRIPT("JavaScript", "#F7DF1E"),
-    
+
     @SerialName("kotlin")
     KOTLIN("Kotlin", "#7F52FF"),
-    
+
     @SerialName("csharp")
     CSHARP("C#", "#239120")
 }
 
 /**
- * Код задачи на разных языках
+ * Блок кода для DragDrop механики
  */
 @Serializable
-data class MultiLanguageCode(
-    val python: String,
-    val javascript: String? = null,
-    val kotlin: String? = null,
-    val csharp: String? = null
-) {
-    fun getCode(language: ProgrammingLanguage): String {
-        return when (language) {
-            ProgrammingLanguage.PYTHON -> python
-            ProgrammingLanguage.JAVASCRIPT -> javascript ?: python
-            ProgrammingLanguage.KOTLIN -> kotlin ?: python
-            ProgrammingLanguage.CSHARP -> csharp ?: python
-        }
-    }
-}
+data class DragDropBlock(
+    val id: Int,
+    val code: String
+)
+
+/**
+ * Данные задачи из JSON (поля заполняются в зависимости от механики)
+ */
+@Serializable
+data class TaskData(
+    val language: String = "kotlin",
+    val description: String? = null,
+    // DragDrop
+    val blocks: List<DragDropBlock>? = null,
+    @SerialName("correct_order") val correctOrder: List<Int>? = null,
+    // BugHunt
+    @SerialName("code_with_bug") val codeWithBug: String? = null,
+    @SerialName("bug_line_index") val bugLineIndex: Int? = null,
+    @SerialName("bug_options") val bugOptions: List<String>? = null,
+    @SerialName("correct_option") val correctOption: String? = null,
+    // FillBlank (correct_option shared with BugHunt)
+    @SerialName("code_template") val codeTemplate: String? = null,
+    @SerialName("blank_options") val blankOptions: List<String>? = null
+)
+
+/**
+ * Обёртка JSON файла с задачами
+ */
+@Serializable
+data class TasksFileJson(
+    val tasks: List<Task>,
+    @SerialName("world_id") val worldId: Int,
+    @SerialName("world_name") val worldName: String
+)
 
 /**
  * Задача из задачника Абрамяна
@@ -71,87 +81,14 @@ data class MultiLanguageCode(
 @Serializable
 data class Task(
     val id: String,
-    val worldId: String,
-    val mechanic: TaskMechanic,
-    val difficulty: Int,            // 1-5
-    val code: MultiLanguageCode,
-    val storyContextKey: String,    // Ключ локализации для сюжетного контекста
-    val xpReward: Int,
-    val order: Int,                 // Порядок в мире
-    val abramyanId: String? = null, // Оригинальный ID из задачника (Begin1, Integer5...)
-    val fillBlanksData: FillBlanksData? = null
-)
-
-/**
- * Данные для механики Drag & Drop
- */
-@Serializable
-data class DragDropData(
-    val correctOrder: List<String>,     // Правильный порядок блоков
-    val distractors: List<String> = emptyList()  // Блоки-обманки
-)
-
-/**
- * Данные для механики Fill Blanks
- */
-@Serializable
-data class FillBlanksData(
-    val template: String,               // Код с плейсхолдерами {0}, {1}...
-    val blanks: List<BlankOption>       // Варианты для каждого пропуска
-)
-
-@Serializable
-data class BlankOption(
-    val blankIndex: Int,
-    val correctAnswer: String,
-    val options: List<String>           // Включая правильный ответ
-)
-
-/**
- * Данные для механики Bug Hunt
- */
-@Serializable
-data class BugHuntData(
-    val buggyCode: String,
-    val bugLineIndex: Int,              // Индекс строки с ошибкой (0-based)
-    val bugExplanationKey: String,      // Ключ локализации для объяснения
-    val fixedCode: String
-)
-
-/**
- * Данные для механики Code Trace
- */
-@Serializable
-data class CodeTraceData(
-    val steps: List<TraceStep>
-)
-
-@Serializable
-data class TraceStep(
-    val lineIndex: Int,
-    val variableName: String,
-    val expectedValue: String,
-    val options: List<String> = emptyList()  // Варианты ответа
-)
-
-/**
- * Данные для механики Output Prediction
- */
-@Serializable
-data class OutputPredictionData(
-    val correctOutput: String,
-    val options: List<String>           // Включая правильный ответ
-)
-
-/**
- * Данные для механики Refactoring
- */
-@Serializable
-data class RefactoringData(
-    val optionA: String,
-    val optionB: String,
-    val correctOption: String,          // "A" или "B"
-    val explanationKey: String
+    @SerialName("abramyan_text") val abramyanText: String = "",
+    @SerialName("rpg_context") val rpgContext: String = "",
+    val mechanic: TaskMechanic = TaskMechanic.DRAG_DROP,
+    @SerialName("task_data") val taskData: TaskData = TaskData(),
+    // Поля, устанавливаемые после парсинга JSON
+    val worldId: String = "",
+    val xpReward: Int = 10,
+    val order: Int = 0
 )
 
 /**

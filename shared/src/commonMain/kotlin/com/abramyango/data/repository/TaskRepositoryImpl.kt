@@ -11,25 +11,43 @@ import com.abramyango.domain.repository.TaskRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 
 class TaskRepositoryImpl(
     private val database: AbramyanGoDatabase,
-    private val tasksDataSource: TasksDataSource
+    private val tasksDataSource: TasksDataSource,
+    private val jsonLoader: (suspend () -> List<String>)? = null
 ) : TaskRepository {
-    
+
     private val queries = database.abramyanGoDatabaseQueries
-    
-    override fun getTasksForWorld(worldId: String): Flow<List<Task>> {
-        return flowOf(tasksDataSource.getTasksForWorld(worldId))
+    private val loadMutex = Mutex()
+    private var loaded = false
+
+    private suspend fun ensureLoaded() {
+        if (loaded) return
+        loadMutex.withLock {
+            if (!loaded && jsonLoader != null) {
+                val jsonStrings = jsonLoader.invoke()
+                jsonStrings.forEach { tasksDataSource.loadFromJson(it) }
+                loaded = true
+            }
+        }
     }
-    
-    override fun getTask(taskId: String): Flow<Task?> {
-        return flowOf(tasksDataSource.getTask(taskId))
+
+    override fun getTasksForWorld(worldId: String): Flow<List<Task>> = flow {
+        ensureLoaded()
+        emit(tasksDataSource.getTasksForWorld(worldId))
     }
-    
+
+    override fun getTask(taskId: String): Flow<Task?> = flow {
+        ensureLoaded()
+        emit(tasksDataSource.getTask(taskId))
+    }
+
     override fun getTaskProgress(taskId: String): Flow<TaskProgress?> {
         return queries.getTaskProgress(taskId)
             .asFlow()
@@ -45,9 +63,8 @@ class TaskRepositoryImpl(
                 }
             }
     }
-    
+
     override suspend fun saveTaskResult(result: TaskResult) = withContext(Dispatchers.IO) {
-        // Save to task_result table
         queries.insertTaskResult(
             task_id = result.taskId,
             is_correct = if (result.isCorrect) 1 else 0,
@@ -57,31 +74,28 @@ class TaskRepositoryImpl(
             combo_multiplier = result.comboMultiplier.toLong(),
             timestamp = result.timestamp
         )
-        
-        // Update task_progress if correct
+
         if (result.isCorrect) {
             val existing = queries.getTaskProgress(result.taskId).executeAsOneOrNull()
             val bestAttempt = existing?.best_attempt?.toInt()?.coerceAtMost(result.attemptNumber)
                 ?: result.attemptNumber
-            
+
             queries.insertOrUpdateTaskProgress(
                 task_id = result.taskId,
                 is_completed = 1,
                 best_attempt = bestAttempt.toLong(),
                 last_attempt_timestamp = result.timestamp
             )
-            
-            // Update player stats
+
             queries.incrementTasksSolved()
             if (result.attemptNumber == 1) {
                 queries.incrementFirstAttempt()
             }
         }
     }
-    
+
     override suspend fun getCompletedTaskIds(worldId: String): List<String> = withContext(Dispatchers.IO) {
-        // Get all task IDs that start with world prefix
-        val prefix = worldId // The SQL query uses LIKE ? || '%'
+        val prefix = worldId
         queries.getCompletedTasksForWorld(prefix)
             .executeAsList()
     }
