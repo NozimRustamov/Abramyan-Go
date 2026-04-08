@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
@@ -30,9 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
-import com.abramyango.domain.model.Solution
 import com.abramyango.ui.components.GlassCard
 import com.abramyango.ui.components.GlassIconButton
 import com.abramyango.ui.theme.AppTheme
@@ -82,7 +79,7 @@ fun TaskDetailScreen(
                     }
                     Spacer(modifier = Modifier.width(Spacing.medium))
                     Text(
-                        text = state.task?.title ?: "",
+                        text = state.task?.id ?: "",
                         style = typography.titleMedium,
                         color = colors.textPrimary
                     )
@@ -103,6 +100,8 @@ fun TaskDetailScreen(
                 }
             } else {
                 val task = state.task
+                val solutionEntries = task.solutions.entries.sortedBy { it.key }
+
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxSize()
@@ -113,7 +112,7 @@ fun TaskDetailScreen(
                     ),
                     verticalArrangement = Arrangement.spacedBy(Spacing.medium)
                 ) {
-                    // Task description
+                    // Task question
                     item {
                         GlassCard(
                             modifier = Modifier.fillMaxWidth(),
@@ -122,7 +121,7 @@ fun TaskDetailScreen(
                             contentPadding = Spacing.default
                         ) {
                             Text(
-                                text = task.description,
+                                text = task.question,
                                 style = typography.bodyLarge,
                                 color = colors.textPrimary
                             )
@@ -141,15 +140,14 @@ fun TaskDetailScreen(
 
                     // Collapsible solution buttons
                     items(
-                        items = task.solutions,
-                        key = { it.language }
-                    ) { solution ->
+                        items = solutionEntries,
+                        key = { it.key }
+                    ) { (language, code) ->
                         SolutionItem(
-                            solution = solution,
-                            isExpanded = solution.language in state.expandedSolutions,
-                            onToggle = {
-                                onIntent(TaskDetailIntent.ToggleSolution(solution.language))
-                            }
+                            language = language,
+                            code = code,
+                            isExpanded = language in state.expandedSolutions,
+                            onToggle = { onIntent(TaskDetailIntent.ToggleSolution(language)) }
                         )
                     }
                 }
@@ -160,7 +158,8 @@ fun TaskDetailScreen(
 
 @Composable
 private fun SolutionItem(
-    solution: Solution,
+    language: String,
+    code: String,
     isExpanded: Boolean,
     onToggle: () -> Unit
 ) {
@@ -206,7 +205,7 @@ private fun SolutionItem(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = solution.language,
+                    text = language,
                     style = typography.titleMedium,
                     color = if (isExpanded) colors.accentPrimary else colors.textPrimary,
                     modifier = Modifier.weight(1f)
@@ -236,41 +235,15 @@ private fun SolutionItem(
                         color = Color.White.copy(alpha = 0.1f),
                         shape = RoundedCornerShape(12.dp)
                     )
+                    .horizontalScroll(rememberScrollState())
             ) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(12.dp)
-                ) {
-                    // Line numbers
-                    val lines = solution.code.lines()
-                    Column(
-                        modifier = Modifier.padding(end = 12.dp)
-                    ) {
-                        lines.forEachIndexed { index, _ ->
-                            Text(
-                                text = (index + 1).toString().padStart(2, ' '),
-                                style = typography.codeBlock,
-                                color = colors.textTertiary
-                            )
-                        }
-                    }
-
-                    // Code content
-                    Column(
-                        modifier = Modifier
-                            .weight(1f)
-                            .horizontalScroll(rememberScrollState())
-                    ) {
-                        lines.forEach { line ->
-                            Text(
-                                text = line,
-                                style = typography.codeBlock,
-                                color = colors.textPrimary
-                            )
-                        }
-                    }
-                }
+                Text(
+                    text = code,
+                    style = typography.codeBlock,
+                    color = colors.textPrimary,
+                    softWrap = false,
+                    modifier = Modifier.padding(12.dp)
+                )
             }
         }
     }
