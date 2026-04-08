@@ -1,0 +1,194 @@
+{
+  "tasks": [
+    {
+      "id": "Begin1",
+      "title": "Begin 1",
+      "description": "Дана сторона квадрата a. Найти его периметр P = 4·a.",
+      "solutions": [
+        {
+          "language": "Python",
+          "code": "a = float(input())\nP = 4 * a\nprint(P)"
+        },
+        {
+          "language": "Kotlin",
+          "code": "fun main() {\n    val a = readLine()!!.toDouble()\n    val P = 4 * a\n    println(P)\n}"
+        },
+        {
+          "language": "C#",
+          "code": "using System;\n\nclass Program {\n    static void Main() {\n        double a = double.Parse(Console.ReadLine());\n        double P = 4 * a;\n        Console.WriteLine(P);\n    }\n}"
+        }
+      ]
+    },
+    {
+      "id": "Begin2",
+      "title": "Begin 2",
+      "description": "Дана сторона квадрата a. Найти его площадь S = a².",
+      "solutions": [
+        {
+          "language": "Python",
+          "code": "a = float(input())\nS = a ** 2\nprint(S)"
+        },
+        {
+          "language": "Kotlin",
+          "code": "fun main() {\n    val a = readLine()!!.toDouble()\n    val S = a * a\n    println(S)\n}"
+        },
+        {
+          "language": "C#",
+          "code": "using System;\n\nclass Program {\n    static void Main() {\n        double a = double.Parse(Console.ReadLine());\n        double S = a * a;\n        Console.WriteLine(S);\n    }\n}"
+        }
+      ]
+    },
+    {
+      "id": "Begin3",
+      "title": "Begin 3",
+      "description": "Даны стороны прямоугольника a и b. Найти его площадь S = a·b и периметр P = 2·(a + b).",
+      "solutions": [
+        {
+          "language": "Python",
+          "code": "a = float(input())\nb = float(input())\nS = a * b\nP = 2 * (a + b)\nprint(S)\nprint(P)"
+        },
+        {
+          "language": "Kotlin",
+          "code": "fun main() {\n    val a = readLine()!!.toDouble()\n    val b = readLine()!!.toDouble()\n    val S = a * b\n    val P = 2 * (a + b)\n    println(S)\n    println(P)\n}"
+        },
+        {
+          "language": "C#",
+          "code": "using System;\n\nclass Program {\n    static void Main() {\n        double a = double.Parse(Console.ReadLine());\n        double b = double.Parse(Console.ReadLine());\n        double S = a * b;\n        double P = 2 * (a + b);\n        Console.WriteLine(S);\n        Console.WriteLine(P);\n    }\n}"
+        }
+      ]
+    },
+    {
+      "id": "Begin4",
+      "title": "Begin 4",
+      "description": "Дан диаметр окружности d. Найти её длину L = π·d.",
+      "solutions": [
+        {
+          "language": "Python",
+          "code": "import math\n\nd = float(input())\nL = math.pi * d\nprint(L)"
+        },
+        {
+          "language": "Kotlin",
+          "code": "import kotlin.math.PI\n\nfun main() {\n    val d = readLine()!!.toDouble()\n    val L = PI * d\n    println(L)\n}"
+        },
+        {
+          "language": "C#",
+          "code": "using System;\n\nclass Program {\n    static void Main() {\n        double d = double.Parse(Console.ReadLine());\n        double L = Math.PI * d;\n        Console.WriteLine(L);\n    }\n}"
+        }
+      ]
+    },
+    {
+      "id": "Begin5",
+      "title": "Begin 5",
+      "description": "Дан диаметр окружности d. Найти площадь круга S = π·d²/4.",
+      "solutions": [
+        {
+          "language": "Python",
+          "code": "import math\n\nd = float(input())\nS = math.pi * d ** 2 / 4\nprint(S)"
+        },
+        {
+          "language": "Kotlin",
+          "code": "import kotlin.math.PI\n\nfun main() {\n    val d = readLine()!!.toDouble()\n    val S = PI * d * d / 4\n    println(S)\n}"
+        },
+        {
+          "language": "C#",
+          "code": "using System;\n\nclass Program {\n    static void Main() {\n        double d = double.Parse(Console.ReadLine());\n        double S = Math.PI * d * d / 4;\n        Console.WriteLine(S);\n    }\n}"
+        }
+      ]
+    },
+    {
+      "id": "Begin6",
+      "title": "Begin 6",
+      "description": "Даны два числа a и b. Найти их среднее арифметическое: (a + b) / 2.",
+      "solutions": [
+        {
+          "language": "Python",
+          "code": "a = float(input())\nb = float(input())\nresult = (a + b) / 2\nprint(result)"
+        },
+        {
+          "language": "Kotlin",
+          "code": "fun main() {\n    val a = readLine()!!.toDouble()\n    val b = readLine()!!.toDouble()\n    val result = (a + b) / 2\n    println(result)\n}"
+        },
+        {
+          "language": "C#",
+          "code": "using System;\n\nclass Program {\n    static void Main() {\n        double a = double.Parse(Console.ReadLine());\n        double b = double.Parse(Console.ReadLine());\n        double result = (a + b) / 2;\n        Console.WriteLine(result);\n    }\n}"
+        }
+      ]
+    },
+    {
+      "id": "Begin7",
+      "title": "Begin 7",
+      "description": "Даны два числа a и b. Найти их среднее геометрическое: √(a·b).",
+      "solutions": [
+        {
+          "language": "Python",
+          "code": "import math\n\na = float(input())\nb = float(input())\nresult = math.sqrt(a * b)\nprint(result)"
+        },
+        {
+          "language": "Kotlin",
+          "code": "import kotlin.math.sqrt\n\nfun main() {\n    val a = readLine()!!.toDouble()\n    val b = readLine()!!.toDouble()\n    val result = sqrt(a * b)\n    println(result)\n}"
+        },
+        {
+          "language": "C#",
+          "code": "using System;\n\nclass Program {\n    static void Main() {\n        double a = double.Parse(Console.ReadLine());\n        double b = double.Parse(Console.ReadLine());\n        double result = Math.Sqrt(a * b);\n        Console.WriteLine(result);\n    }\n}"
+        }
+      ]
+    },
+    {
+      "id": "Begin8",
+      "title": "Begin 8",
+      "description": "Даны два ненулевых числа. Найти сумму, разность, произведение и частное их модулей.",
+      "solutions": [
+        {
+          "language": "Python",
+          "code": "a = float(input())\nb = float(input())\na_abs = abs(a)\nb_abs = abs(b)\nprint(a_abs + b_abs)\nprint(a_abs - b_abs)\nprint(a_abs * b_abs)\nprint(a_abs / b_abs)"
+        },
+        {
+          "language": "Kotlin",
+          "code": "import kotlin.math.abs\n\nfun main() {\n    val a = readLine()!!.toDouble()\n    val b = readLine()!!.toDouble()\n    val aAbs = abs(a)\n    val bAbs = abs(b)\n    println(aAbs + bAbs)\n    println(aAbs - bAbs)\n    println(aAbs * bAbs)\n    println(aAbs / bAbs)\n}"
+        },
+        {
+          "language": "C#",
+          "code": "using System;\n\nclass Program {\n    static void Main() {\n        double a = double.Parse(Console.ReadLine());\n        double b = double.Parse(Console.ReadLine());\n        double aAbs = Math.Abs(a);\n        double bAbs = Math.Abs(b);\n        Console.WriteLine(aAbs + bAbs);\n        Console.WriteLine(aAbs - bAbs);\n        Console.WriteLine(aAbs * bAbs);\n        Console.WriteLine(aAbs / bAbs);\n    }\n}"
+        }
+      ]
+    },
+    {
+      "id": "Begin9",
+      "title": "Begin 9",
+      "description": "Даны два числа. Найти среднее арифметическое их кубов и среднее кубическое этих чисел.",
+      "solutions": [
+        {
+          "language": "Python",
+          "code": "a = float(input())\nb = float(input())\navg_cubes = (a**3 + b**3) / 2\ncubic_mean = ((a + b) / 2) ** (1/3)\nprint(avg_cubes)\nprint(cubic_mean)"
+        },
+        {
+          "language": "Kotlin",
+          "code": "import kotlin.math.pow\n\nfun main() {\n    val a = readLine()!!.toDouble()\n    val b = readLine()!!.toDouble()\n    val avgCubes = (a.pow(3) + b.pow(3)) / 2\n    val cubicMean = ((a + b) / 2).pow(1.0 / 3)\n    println(avgCubes)\n    println(cubicMean)\n}"
+        },
+        {
+          "language": "C#",
+          "code": "using System;\n\nclass Program {\n    static void Main() {\n        double a = double.Parse(Console.ReadLine());\n        double b = double.Parse(Console.ReadLine());\n        double avgCubes = (Math.Pow(a, 3) + Math.Pow(b, 3)) / 2;\n        double cubicMean = Math.Pow((a + b) / 2, 1.0 / 3);\n        Console.WriteLine(avgCubes);\n        Console.WriteLine(cubicMean);\n    }\n}"
+        }
+      ]
+    },
+    {
+      "id": "Begin10",
+      "title": "Begin 10",
+      "description": "Дана длина ребра куба a. Найти объём V = a³ и площадь поверхности S = 6·a².",
+      "solutions": [
+        {
+          "language": "Python",
+          "code": "a = float(input())\nV = a ** 3\nS = 6 * a ** 2\nprint(V)\nprint(S)"
+        },
+        {
+          "language": "Kotlin",
+          "code": "fun main() {\n    val a = readLine()!!.toDouble()\n    val V = a * a * a\n    val S = 6 * a * a\n    println(V)\n    println(S)\n}"
+        },
+        {
+          "language": "C#",
+          "code": "using System;\n\nclass Program {\n    static void Main() {\n        double a = double.Parse(Console.ReadLine());\n        double V = Math.Pow(a, 3);\n        double S = 6 * Math.Pow(a, 2);\n        Console.WriteLine(V);\n        Console.WriteLine(S);\n    }\n}"
+        }
+      ]
+    }
+  ]
+}
