@@ -19,7 +19,7 @@ val uiModule = module {
     single<TaskRepository> {
         TaskRepositoryImpl(get(), get(), jsonLoader = {
             listOf(
-                Res.readBytes("files/begin 1-40.json").decodeToString()
+                Res.readBytes("files/begin_1-40.json").decodeToString()
             )
             // Сюда можно добавить новые JSON файлы:
             // Res.readBytes("files/integer 1-40.json").decodeToString(),

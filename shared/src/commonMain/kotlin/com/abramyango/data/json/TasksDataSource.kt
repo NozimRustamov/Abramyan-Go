@@ -7,7 +7,7 @@ import kotlinx.serialization.json.Json
 
 /**
  * Источник данных для задач.
- * Загружает задачи из JSON файлов (begin 1-40.json, integer 1-40.json и т.д.)
+ * Загружает задачи из JSON файлов (begin_1-40.json, integer 1-40.json и т.д.)
  */
 class TasksDataSource {
 
