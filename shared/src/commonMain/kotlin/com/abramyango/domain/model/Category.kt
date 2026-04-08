@@ -1,42 +1,29 @@
 package com.abramyango.domain.model
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonPrimitive
 
 /**
  * Категория задач (отображается на главном экране)
+ * id может быть строкой или числом в JSON
  */
 @Serializable
 data class Category(
-    val id: String,
+    val id: JsonPrimitive,
     val name: String
-)
+) {
+    val idString: String get() = id.content
+}
 
 /**
- * Обёртка JSON файла с категориями
- */
-@Serializable
-data class CategoriesFileJson(
-    val categories: List<Category>
-)
-
-/**
- * Решение задачи на конкретном языке программирования
- */
-@Serializable
-data class Solution(
-    val language: String,
-    val code: String
-)
-
-/**
- * Задача с описанием и решениями (формат для просмотра)
+ * Задача с описанием и решениями на разных языках
+ * solutions — это map: {"python": "code...", "javascript": "code...", ...}
  */
 @Serializable
 data class CategoryTask(
     val id: String,
-    val title: String,
-    val description: String,
-    val solutions: List<Solution> = emptyList()
+    val question: String,
+    val solutions: Map<String, String> = emptyMap()
 )
 
 /**
@@ -44,5 +31,7 @@ data class CategoryTask(
  */
 @Serializable
 data class CategoryTasksFileJson(
+    val category: String,
+    val id: String,
     val tasks: List<CategoryTask>
 )

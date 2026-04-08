@@ -1,6 +1,5 @@
 package com.abramyango.data.repository
 
-import com.abramyango.domain.model.CategoriesFileJson
 import com.abramyango.domain.model.Category
 import com.abramyango.domain.model.CategoryTask
 import com.abramyango.domain.model.CategoryTasksFileJson
@@ -18,9 +17,9 @@ class CategoryRepositoryImpl(
     override suspend fun getCategories(): List<Category> {
         cachedCategories?.let { return it }
         val jsonString = categoriesLoader()
-        val file = json.decodeFromString<CategoriesFileJson>(jsonString)
-        cachedCategories = file.categories
-        return file.categories
+        val categories = json.decodeFromString<List<Category>>(jsonString)
+        cachedCategories = categories
+        return categories
     }
 
     override suspend fun getTasksForCategory(categoryId: String): List<CategoryTask> {
