@@ -8,29 +8,38 @@ import kotlinx.serialization.Serializable
 @Serializable
 sealed class Route {
     @Serializable
+    data object Categories : Route()
+
+    @Serializable
+    data class CategoryTaskList(val categoryId: String, val categoryName: String) : Route()
+
+    @Serializable
+    data class TaskDetail(val categoryId: String, val taskIndex: Int) : Route()
+
+    @Serializable
     data object WorldMap : Route()
-    
+
     @Serializable
     data class WorldDetail(val worldId: String) : Route()
-    
+
     @Serializable
     data class Task(val worldId: String, val taskId: String) : Route()
-    
+
     @Serializable
     data class Boss(val worldId: String) : Route()
-    
+
     @Serializable
     data object Profile : Route()
-    
+
     @Serializable
     data object Settings : Route()
-    
+
     @Serializable
     data object BlitzMode : Route()
-    
+
     @Serializable
     data class Lesson(val worldId: String) : Route()
-    
+
     @Serializable
     data object Onboarding : Route()
 }
