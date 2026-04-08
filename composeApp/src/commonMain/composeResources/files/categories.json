@@ -1,40 +1,11 @@
-{
-  "categories": [
-    {
-      "id": "begin_1-40",
-      "name": "Begin"
-    },
-    {
-      "id": "integer_1-40",
-      "name": "Integer"
-    },
-    {
-      "id": "boolean_1-40",
-      "name": "Boolean"
-    },
-    {
-      "id": "if_1-40",
-      "name": "If"
-    },
-    {
-      "id": "case_1-40",
-      "name": "Case"
-    },
-    {
-      "id": "for_1-40",
-      "name": "For"
-    },
-    {
-      "id": "while_1-40",
-      "name": "While"
-    },
-    {
-      "id": "series_1-40",
-      "name": "Series"
-    },
-    {
-      "id": "proc_1-40",
-      "name": "Proc"
-    }
-  ]
-}
+[
+  { "id": "begin_1-40", "name": "Begin" },
+  { "id": 2, "name": "Integer" },
+  { "id": 3, "name": "Boolean" },
+  { "id": 4, "name": "If" },
+  { "id": 5, "name": "Case" },
+  { "id": 6, "name": "For" },
+  { "id": 7, "name": "While" },
+  { "id": 8, "name": "Series" },
+  { "id": 9, "name": "Proc" }
+]

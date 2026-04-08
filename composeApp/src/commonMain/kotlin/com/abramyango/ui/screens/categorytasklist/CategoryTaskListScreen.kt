@@ -154,7 +154,7 @@ private fun TaskListItem(
             Spacer(modifier = Modifier.width(Spacing.small))
 
             Text(
-                text = task.title,
+                text = task.id,
                 style = typography.titleMedium,
                 color = colors.textPrimary,
                 modifier = Modifier.weight(1f)
