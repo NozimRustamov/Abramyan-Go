@@ -15,21 +15,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.abramyango.ui.navigation.Route
-import com.abramyango.ui.screens.categories.CategoriesScreen
-import com.abramyango.ui.screens.categories.CategoriesSideEffect
-import com.abramyango.ui.screens.categories.CategoriesViewModel
-import com.abramyango.ui.screens.categorytasklist.CategoryTaskListIntent
-import com.abramyango.ui.screens.categorytasklist.CategoryTaskListScreen
-import com.abramyango.ui.screens.categorytasklist.CategoryTaskListSideEffect
-import com.abramyango.ui.screens.categorytasklist.CategoryTaskListViewModel
 import com.abramyango.ui.screens.task.TaskIntent
 import com.abramyango.ui.screens.task.TaskScreen
 import com.abramyango.ui.screens.task.TaskSideEffect
 import com.abramyango.ui.screens.task.TaskViewModel
-import com.abramyango.ui.screens.taskdetail.TaskDetailIntent
-import com.abramyango.ui.screens.taskdetail.TaskDetailScreen
-import com.abramyango.ui.screens.taskdetail.TaskDetailSideEffect
-import com.abramyango.ui.screens.taskdetail.TaskDetailViewModel
 import com.abramyango.ui.screens.worlddetail.WorldDetailIntent
 import com.abramyango.ui.screens.worlddetail.WorldDetailScreen
 import com.abramyango.ui.screens.worlddetail.WorldDetailSideEffect
@@ -41,107 +30,23 @@ import com.abramyango.ui.theme.AbramyanGoTheme
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.compose.viewmodel.koinViewModel
 
+/**
+ * Главная точка входа в Compose UI
+ */
 @Composable
 fun App() {
     AbramyanGoTheme {
         val navController = rememberNavController()
-
+        
         NavHost(
             navController = navController,
-            startDestination = Route.Categories
+            startDestination = Route.WorldMap
         ) {
-            // Categories list (start screen)
-            composable<Route.Categories> {
-                val viewModel: CategoriesViewModel = koinViewModel()
-                val state by viewModel.state.collectAsState()
-
-                LaunchedEffect(Unit) {
-                    viewModel.sideEffect.collectLatest { effect ->
-                        when (effect) {
-                            is CategoriesSideEffect.NavigateToTaskList -> {
-                                navController.navigate(
-                                    Route.CategoryTaskList(
-                                        effect.categoryId,
-                                        effect.categoryName
-                                    )
-                                )
-                            }
-                        }
-                    }
-                }
-
-                CategoriesScreen(
-                    state = state,
-                    onIntent = viewModel::processIntent
-                )
-            }
-
-            // Task list for a category
-            composable<Route.CategoryTaskList> { backStackEntry ->
-                val route = backStackEntry.toRoute<Route.CategoryTaskList>()
-                val viewModel: CategoryTaskListViewModel = koinViewModel()
-                val state by viewModel.state.collectAsState()
-
-                LaunchedEffect(route.categoryId) {
-                    viewModel.processIntent(
-                        CategoryTaskListIntent.LoadTasks(route.categoryId, route.categoryName)
-                    )
-                }
-
-                LaunchedEffect(Unit) {
-                    viewModel.sideEffect.collectLatest { effect ->
-                        when (effect) {
-                            is CategoryTaskListSideEffect.NavigateToTaskDetail -> {
-                                navController.navigate(
-                                    Route.TaskDetail(effect.categoryId, effect.taskIndex)
-                                )
-                            }
-                            is CategoryTaskListSideEffect.NavigateBack -> {
-                                navController.popBackStack()
-                            }
-                        }
-                    }
-                }
-
-                CategoryTaskListScreen(
-                    state = state,
-                    onIntent = viewModel::processIntent
-                )
-            }
-
-            // Task detail with solutions
-            composable<Route.TaskDetail> { backStackEntry ->
-                val route = backStackEntry.toRoute<Route.TaskDetail>()
-                val viewModel: TaskDetailViewModel = koinViewModel()
-                val state by viewModel.state.collectAsState()
-
-                LaunchedEffect(route.categoryId, route.taskIndex) {
-                    viewModel.processIntent(
-                        TaskDetailIntent.LoadTask(route.categoryId, route.taskIndex)
-                    )
-                }
-
-                LaunchedEffect(Unit) {
-                    viewModel.sideEffect.collectLatest { effect ->
-                        when (effect) {
-                            is TaskDetailSideEffect.NavigateBack -> {
-                                navController.popBackStack()
-                            }
-                        }
-                    }
-                }
-
-                TaskDetailScreen(
-                    state = state,
-                    onIntent = viewModel::processIntent
-                )
-            }
-
-            // World map (legacy)
+            // Карта миров
             composable<Route.WorldMap> {
                 val viewModel: WorldMapViewModel = koinViewModel()
                 val state by viewModel.state.collectAsState()
-
+                
                 LaunchedEffect(Unit) {
                     viewModel.sideEffect.collectLatest { effect ->
                         when (effect) {
@@ -154,18 +59,20 @@ fun App() {
                             is WorldMapSideEffect.NavigateToSettings -> {
                                 navController.navigate(Route.Settings)
                             }
-                            is WorldMapSideEffect.ShowError -> {}
+                            is WorldMapSideEffect.ShowError -> {
+                                // TODO: показать snackbar
+                            }
                         }
                     }
                 }
-
+                
                 WorldMapScreen(
                     state = state,
                     onIntent = viewModel::processIntent
                 )
             }
-
-            // World detail (legacy)
+            
+            // Детали мира
             composable<Route.WorldDetail> { backStackEntry ->
                 val route = backStackEntry.toRoute<Route.WorldDetail>()
                 val viewModel: WorldDetailViewModel = koinViewModel()
@@ -193,17 +100,17 @@ fun App() {
                     onIntent = viewModel::processIntent
                 )
             }
-
-            // Task screen (legacy)
+            
+            // Экран задачи
             composable<Route.Task> { backStackEntry ->
                 val route = backStackEntry.toRoute<Route.Task>()
                 val viewModel: TaskViewModel = koinViewModel()
                 val state by viewModel.state.collectAsState()
-
+                
                 LaunchedEffect(route.taskId) {
                     viewModel.processIntent(TaskIntent.LoadTask(route.taskId))
                 }
-
+                
                 LaunchedEffect(Unit) {
                     viewModel.sideEffect.collectLatest { effect ->
                         when (effect) {
@@ -215,29 +122,39 @@ fun App() {
                                     popUpTo(Route.WorldDetail(route.worldId))
                                 }
                             }
-                            is TaskSideEffect.ShowReward -> {}
-                            is TaskSideEffect.PlaySound -> {}
-                            is TaskSideEffect.TriggerHaptic -> {}
-                            is TaskSideEffect.ShowError -> {}
+                            is TaskSideEffect.ShowReward -> {
+                                // Анимация награды показывается в TaskScreen
+                            }
+                            is TaskSideEffect.PlaySound -> {
+                                // TODO: воспроизвести звук
+                            }
+                            is TaskSideEffect.TriggerHaptic -> {
+                                // TODO: haptic feedback
+                            }
+                            is TaskSideEffect.ShowError -> {
+                                // TODO: показать ошибку
+                            }
                         }
                     }
                 }
-
+                
                 TaskScreen(
                     state = state,
                     onIntent = viewModel::processIntent
                 )
             }
-
-            // Profile
+            
+            // Профиль
             composable<Route.Profile> {
+                // TODO: ProfileScreen
                 ProfilePlaceholder(
                     onBack = { navController.popBackStack() }
                 )
             }
-
-            // Settings
+            
+            // Настройки
             composable<Route.Settings> {
+                // TODO: SettingsScreen
                 SettingsPlaceholder(
                     onBack = { navController.popBackStack() }
                 )
@@ -246,6 +163,7 @@ fun App() {
     }
 }
 
+// Временные заглушки для экранов
 @Composable
 private fun ProfilePlaceholder(onBack: () -> Unit) {
     Column(
@@ -253,12 +171,12 @@ private fun ProfilePlaceholder(onBack: () -> Unit) {
         horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally,
         verticalArrangement = androidx.compose.foundation.layout.Arrangement.Center
     ) {
-        Text("Profile")
+        Text("Профиль")
         Spacer(
             modifier = androidx.compose.ui.Modifier.height(16.dp)
         )
         com.abramyango.ui.components.SecondaryButton(
-            text = "Back",
+            text = "Назад",
             onClick = onBack
         )
     }
@@ -271,12 +189,12 @@ private fun SettingsPlaceholder(onBack: () -> Unit) {
         horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally,
         verticalArrangement = androidx.compose.foundation.layout.Arrangement.Center
     ) {
-        Text("Settings")
+        Text("Настройки")
         Spacer(
             modifier = androidx.compose.ui.Modifier.height(16.dp)
         )
         com.abramyango.ui.components.SecondaryButton(
-            text = "Back",
+            text = "Назад",
             onClick = onBack
         )
     }

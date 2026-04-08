@@ -1,8 +1,6 @@
 package com.abramyango.domain.repository
 
 import com.abramyango.domain.model.*
-import com.abramyango.domain.model.Category
-import com.abramyango.domain.model.CategoryTask
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -88,12 +86,4 @@ interface SettingsRepository {
 
 enum class AppTheme {
     DARK, LIGHT, SYSTEM
-}
-
-/**
- * Репозиторий категорий
- */
-interface CategoryRepository {
-    suspend fun getCategories(): List<Category>
-    suspend fun getTasksForCategory(categoryId: String): List<CategoryTask>
 }
