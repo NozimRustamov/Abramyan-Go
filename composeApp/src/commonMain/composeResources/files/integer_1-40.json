@@ -1,0 +1,51 @@
+{
+  "category": "Integer",
+  "id": "integer_1-40",
+  "tasks": [
+    {
+      "id": "Integer1",
+      "question": "Дано двузначное число. Найти сумму и произведение его цифр.",
+      "solutions": {
+        "python": "n = int(input())\na = n // 10\nb = n % 10\nprint(a + b)\nprint(a * b)",
+        "kotlin": "fun main() {\n    val n = readLine()!!.toInt()\n    val a = n / 10\n    val b = n % 10\n    println(a + b)\n    println(a * b)\n}",
+        "csharp": "using System;\nclass Program {\n    static void Main() {\n        int n = int.Parse(Console.ReadLine());\n        int a = n / 10;\n        int b = n % 10;\n        Console.WriteLine(a + b);\n        Console.WriteLine(a * b);\n    }\n}"
+      }
+    },
+    {
+      "id": "Integer2",
+      "question": "Дано двузначное число. Вывести число, полученное при перестановке цифр исходного числа.",
+      "solutions": {
+        "python": "n = int(input())\na = n // 10\nb = n % 10\nprint(b * 10 + a)",
+        "kotlin": "fun main() {\n    val n = readLine()!!.toInt()\n    val a = n / 10\n    val b = n % 10\n    println(b * 10 + a)\n}",
+        "csharp": "using System;\nclass Program {\n    static void Main() {\n        int n = int.Parse(Console.ReadLine());\n        int a = n / 10;\n        int b = n % 10;\n        Console.WriteLine(b * 10 + a);\n    }\n}"
+      }
+    },
+    {
+      "id": "Integer3",
+      "question": "Дано трёхзначное число. Найти сумму его цифр.",
+      "solutions": {
+        "python": "n = int(input())\na = n // 100\nb = n // 10 % 10\nc = n % 10\nprint(a + b + c)",
+        "kotlin": "fun main() {\n    val n = readLine()!!.toInt()\n    val a = n / 100\n    val b = n / 10 % 10\n    val c = n % 10\n    println(a + b + c)\n}",
+        "csharp": "using System;\nclass Program {\n    static void Main() {\n        int n = int.Parse(Console.ReadLine());\n        int a = n / 100;\n        int b = n / 10 % 10;\n        int c = n % 10;\n        Console.WriteLine(a + b + c);\n    }\n}"
+      }
+    },
+    {
+      "id": "Integer4",
+      "question": "Дано трёхзначное число. Вывести число, полученное при перестановке цифр числа в обратном порядке.",
+      "solutions": {
+        "python": "n = int(input())\na = n // 100\nb = n // 10 % 10\nc = n % 10\nprint(c * 100 + b * 10 + a)",
+        "kotlin": "fun main() {\n    val n = readLine()!!.toInt()\n    val a = n / 100\n    val b = n / 10 % 10\n    val c = n % 10\n    println(c * 100 + b * 10 + a)\n}",
+        "csharp": "using System;\nclass Program {\n    static void Main() {\n        int n = int.Parse(Console.ReadLine());\n        int a = n / 100;\n        int b = n / 10 % 10;\n        int c = n % 10;\n        Console.WriteLine(c * 100 + b * 10 + a);\n    }\n}"
+      }
+    },
+    {
+      "id": "Integer5",
+      "question": "Дано целое число (> 99). Найти третью от конца цифру числа.",
+      "solutions": {
+        "python": "n = int(input())\nresult = n // 100 % 10\nprint(result)",
+        "kotlin": "fun main() {\n    val n = readLine()!!.toInt()\n    val result = n / 100 % 10\n    println(result)\n}",
+        "csharp": "using System;\nclass Program {\n    static void Main() {\n        int n = int.Parse(Console.ReadLine());\n        int result = n / 100 % 10;\n        Console.WriteLine(result);\n    }\n}"
+      }
+    }
+  ]
+}

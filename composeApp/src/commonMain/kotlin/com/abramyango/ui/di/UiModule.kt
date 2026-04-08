@@ -12,7 +12,6 @@ import org.koin.dsl.module
 
 @OptIn(ExperimentalResourceApi::class)
 val uiModule = module {
-    // CategoryRepository with dynamic JSON loading from compose resources
     single<CategoryRepository> {
         CategoryRepositoryImpl(
             categoriesLoader = {
@@ -24,7 +23,6 @@ val uiModule = module {
         )
     }
 
-    // ViewModels
     viewModel { CategoriesViewModel(get()) }
     viewModel { CategoryTaskListViewModel(get()) }
     viewModel { TaskDetailViewModel(get()) }

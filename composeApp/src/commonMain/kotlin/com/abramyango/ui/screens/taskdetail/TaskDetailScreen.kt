@@ -100,7 +100,7 @@ fun TaskDetailScreen(
                 }
             } else {
                 val task = state.task
-                val solutionEntries = task.solutions.entries.toList()
+                val solutionEntries = task.solutions.entries.sortedBy { it.key }
 
                 LazyColumn(
                     modifier = Modifier
@@ -147,25 +147,12 @@ fun TaskDetailScreen(
                             language = language,
                             code = code,
                             isExpanded = language in state.expandedSolutions,
-                            onToggle = {
-                                onIntent(TaskDetailIntent.ToggleSolution(language))
-                            }
+                            onToggle = { onIntent(TaskDetailIntent.ToggleSolution(language)) }
                         )
                     }
                 }
             }
         }
-    }
-}
-
-private fun formatLanguageName(key: String): String {
-    return when (key) {
-        "python" -> "Python"
-        "javascript" -> "JavaScript"
-        "java" -> "Java"
-        "csharp" -> "C#"
-        "kotlin" -> "Kotlin"
-        else -> key.replaceFirstChar { it.uppercase() }
     }
 }
 
@@ -179,7 +166,6 @@ private fun SolutionItem(
     val colors = AppTheme.colors
     val typography = AppTheme.typography
     val shape = RoundedCornerShape(12.dp)
-    val displayName = formatLanguageName(language)
 
     Column(modifier = Modifier.fillMaxWidth()) {
         // Language button
@@ -219,7 +205,7 @@ private fun SolutionItem(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = displayName,
+                    text = language,
                     style = typography.titleMedium,
                     color = if (isExpanded) colors.accentPrimary else colors.textPrimary,
                     modifier = Modifier.weight(1f)
@@ -249,41 +235,15 @@ private fun SolutionItem(
                         color = Color.White.copy(alpha = 0.1f),
                         shape = RoundedCornerShape(12.dp)
                     )
+                    .horizontalScroll(rememberScrollState())
             ) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(12.dp)
-                ) {
-                    // Line numbers
-                    val lines = code.lines()
-                    Column(
-                        modifier = Modifier.padding(end = 12.dp)
-                    ) {
-                        lines.forEachIndexed { index, _ ->
-                            Text(
-                                text = (index + 1).toString().padStart(2, ' '),
-                                style = typography.codeBlock,
-                                color = colors.textTertiary
-                            )
-                        }
-                    }
-
-                    // Code content
-                    Column(
-                        modifier = Modifier
-                            .weight(1f)
-                            .horizontalScroll(rememberScrollState())
-                    ) {
-                        lines.forEach { line ->
-                            Text(
-                                text = line,
-                                style = typography.codeBlock,
-                                color = colors.textPrimary
-                            )
-                        }
-                    }
-                }
+                Text(
+                    text = code,
+                    style = typography.codeBlock,
+                    color = colors.textPrimary,
+                    softWrap = false,
+                    modifier = Modifier.padding(12.dp)
+                )
             }
         }
     }
