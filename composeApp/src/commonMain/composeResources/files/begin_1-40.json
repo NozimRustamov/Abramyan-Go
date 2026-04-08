@@ -1,0 +1,406 @@
+{
+  "category": "Begin",
+  "id": "1",
+  "tasks": [
+    {
+      "id": "Begin1",
+      "question": "Дана сторона квадрата a. Найти его периметр P = 4 * a.",
+      "solutions": {
+        "python": "def begin1(a: float) -> float: return 4.0 * a",
+        "javascript": "const begin1 = (a) => 4 * a;",
+        "java": "public static double begin1(double a) { return 4 * a; }",
+        "csharp": "public static double Begin1(double a) => 4 * a;"
+      }
+    },
+    {
+      "id": "Begin2",
+      "question": "Дана сторона квадрата a. Найти его площадь S = a^2.",
+      "solutions": {
+        "python": "def begin2(a: float) -> float: return a * a",
+        "javascript": "const begin2 = (a) => a ** 2;",
+        "java": "public static double begin2(double a) { return a * a; }",
+        "csharp": "public static double Begin2(double a) => a * a;"
+      }
+    },
+    {
+      "id": "Begin3",
+      "question": "Даны стороны прямоугольника a и b. Найти площадь S = a * b и периметр P = 2 * (a + b).",
+      "solutions": {
+        "python": "def begin3(a, b): return a * b, 2 * (a + b)",
+        "javascript": "const begin3 = (a, b) => ({ S: a * b, P: 2 * (a + b) });",
+        "java": "public static double[] begin3(double a, double b) { return new double[]{a * b, 2 * (a + b)}; }",
+        "csharp": "public static (double S, double P) Begin3(double a, double b) => (a * b, 2 * (a + b));"
+      }
+    },
+    {
+      "id": "Begin4",
+      "question": "Дан диаметр окружности d. Найти ее длину L = pi * d (pi = 3.14).",
+      "solutions": {
+        "python": "def begin4(d): return 3.14 * d",
+        "javascript": "const begin4 = (d) => 3.14 * d;",
+        "java": "public static double begin4(double d) { return 3.14 * d; }",
+        "csharp": "public static double Begin4(double d) => 3.14 * d;"
+      }
+    },
+    {
+      "id": "Begin5",
+      "question": "Дана длина ребра куба a. Найти объем V = a^3 и площадь поверхности S = 6 * a^2.",
+      "solutions": {
+        "python": "def begin5(a): return a**3, 6 * a**2",
+        "javascript": "const begin5 = (a) => ({ V: a ** 3, S: 6 * a ** 2 });",
+        "java": "public static double[] begin5(double a) { return new double[]{Math.pow(a, 3), 6 * a * a}; }",
+        "csharp": "public static (double V, double S) Begin5(double a) => (Math.Pow(a, 3), 6 * a * a);"
+      }
+    },
+    {
+      "id": "Begin6",
+      "question": "Даны ребра a, b, c параллелепипеда. Найти его объем V = a*b*c и площадь поверхности S = 2*(a*b + b*c + a*c).",
+      "solutions": {
+        "python": "def begin6(a, b, c): return a*b*c, 2*(a*b + b*c + a*c)",
+        "javascript": "const begin6 = (a, b, c) => ({ V: a*b*c, S: 2*(a*b + b*c + a*c) });",
+        "java": "public static double[] begin6(double a, double b, double c) { return new double[]{a*b*c, 2*(a*b + b*c + a*c)}; }",
+        "csharp": "public static (double V, double S) Begin6(double a, double b, double c) => (a*b*c, 2*(a*b+b*c+a*c));"
+      }
+    },
+    {
+      "id": "Begin7",
+      "question": "Найти длину L и площадь S круга радиуса R. (pi = 3.14)",
+      "solutions": {
+        "python": "def begin7(r): return 6.28 * r, 3.14 * r * r",
+        "javascript": "const begin7 = (r) => ({ L: 6.28 * r, S: 3.14 * r * r });",
+        "java": "public static double[] begin7(double r) { return new double[]{6.28 * r, 3.14 * r * r}; }",
+        "csharp": "public static (double L, double S) Begin7(double r) => (6.28 * r, 3.14 * r * r);"
+      }
+    },
+    {
+      "id": "Begin8",
+      "question": "Даны два числа a и b. Найти их среднее арифметическое: (a + b) / 2.",
+      "solutions": {
+        "python": "def begin8(a, b): return (a + b) / 2.0",
+        "javascript": "const begin8 = (a, b) => (a + b) / 2;",
+        "java": "public static double begin8(double a, double b) { return (a + b) / 2.0; }",
+        "csharp": "public static double Begin8(double a, double b) => (a + b) / 2.0;"
+      }
+    },
+    {
+      "id": "Begin9",
+      "question": "Даны два неотрицательных числа a и b. Найти их среднее геометрическое: sqrt(a * b).",
+      "solutions": {
+        "python": "import math\ndef begin9(a, b): return math.sqrt(a * b)",
+        "javascript": "const begin9 = (a, b) => Math.sqrt(a * b);",
+        "java": "public static double begin9(double a, double b) { return Math.sqrt(a * b); }",
+        "csharp": "public static double Begin9(double a, double b) => Math.Sqrt(a * b);"
+      }
+    },
+    {
+      "id": "Begin10",
+      "question": "Даны два ненулевых числа. Найти сумму, разность, произведение и частное их квадратов.",
+      "solutions": {
+        "python": "def begin10(a, b): a2, b2 = a*a, b*b; return a2+b2, a2-b2, a2*b2, a2/b2",
+        "javascript": "const begin10 = (a, b) => { const a2=a*a, b2=b*b; return [a2+b2, a2-b2, a2*b2, a2/b2]; };",
+        "java": "public static double[] begin10(double a, double b) { double a2=a*a, b2=b*b; return new double[]{a2+b2, a2-b2, a2*b2, a2/b2}; }",
+        "csharp": "public static (double, double, double, double) Begin10(double a, double b) { double a2=a*a, b2=b*b; return (a2+b2, a2-b2, a2*b2, a2/b2); }"
+      }
+    },
+    {
+      "id": "Begin11",
+      "question": "Даны два ненулевых числа. Найти сумму, разность, произведение и частное их модулей.",
+      "solutions": {
+        "python": "def begin11(a, b): m1, m2 = abs(a), abs(b); return m1+m2, m1-m2, m1*m2, m1/m2",
+        "javascript": "const begin11 = (a, b) => { const m1=Math.abs(a), m2=Math.abs(b); return [m1+m2, m1-m2, m1*m2, m1/m2]; };",
+        "java": "public static double[] begin11(double a, double b) { double m1=Math.abs(a), m2=Math.abs(b); return new double[]{m1+m2, m1-m2, m1*m2, m1/m2}; }",
+        "csharp": "public static (double, double, double, double) Begin11(double a, double b) { double m1=Math.Abs(a), m2=Math.Abs(b); return (m1+m2, m1-m2, m1*m2, m1/m2); }"
+      }
+    },
+    {
+      "id": "Begin12",
+      "question": "Даны катеты a и b. Найти гипотенузу c и периметр P.",
+      "solutions": {
+        "python": "import math\ndef begin12(a, b): c = math.sqrt(a*a + b*b); return c, a + b + c",
+        "javascript": "const begin12 = (a, b) => { const c = Math.sqrt(a*a+b*b); return { c, P: a+b+c }; };",
+        "java": "public static double[] begin12(double a, double b) { double c = Math.sqrt(a*a+b*b); return new double[]{c, a+b+c}; }",
+        "csharp": "public static (double c, double P) Begin12(double a, double b) { double c = Math.Sqrt(a*a+b*b); return (c, a+b+c); }"
+      }
+    },
+    {
+      "id": "Begin13",
+      "question": "Даны радиусы R1 и R2 (R1 > R2). Найти площади S1, S2 и площадь кольца S3.",
+      "solutions": {
+        "python": "def begin13(r1, r2): s1, s2 = 3.14*r1**2, 3.14*r2**2; return s1, s2, s1-s2",
+        "javascript": "const begin13 = (r1, r2) => { const s1=3.14*r1*r1, s2=3.14*r2*r2; return [s1, s2, s1-s2]; };",
+        "java": "public static double[] begin13(double r1, double r2) { double s1=3.14*r1*r1, s2=3.14*r2*r2; return new double[]{s1, s2, s1-s2}; }",
+        "csharp": "public static (double, double, double) Begin13(double r1, double r2) { double s1=3.14*r1*r1, s2=3.14*r2*r2; return (s1, s2, s1-s2); }"
+      }
+    },
+    {
+      "id": "Begin14",
+      "question": "Дана длина окружности L. Найти радиус R и площадь S.",
+      "solutions": {
+        "python": "def begin14(l): r = l/6.28; return r, 3.14*r*r",
+        "javascript": "const begin14 = (l) => { const r = l/6.28; return { r, s: 3.14*r*r }; };",
+        "java": "public static double[] begin14(double l) { double r = l/6.28; return new double[]{r, 3.14*r*r}; }",
+        "csharp": "public static (double r, double s) Begin14(double l) { double r = l/6.28; return (r, 3.14*r*r); }"
+      }
+    },
+    {
+      "id": "Begin15",
+      "question": "Дана площадь круга S. Найти диаметр D и длину окружности L.",
+      "solutions": {
+        "python": "import math\ndef begin15(s): r = math.sqrt(s/3.14); return 2*r, 6.28*r",
+        "javascript": "const begin15 = (s) => { const r = Math.sqrt(s/3.14); return [2*r, 6.28*r]; };",
+        "java": "public static double[] begin15(double s) { double r = Math.sqrt(s/3.14); return new double[]{2*r, 6.28*r}; }",
+        "csharp": "public static (double d, double l) Begin15(double s) { double r = Math.Sqrt(s/3.14); return (2*r, 6.28*r); }"
+      }
+    },
+    {
+      "id": "Begin16",
+      "question": "Расстояние между точками x1 и x2: |x2 - x1|.",
+      "solutions": {
+        "python": "def begin16(x1, x2): return abs(x2 - x1)",
+        "javascript": "const begin16 = (x1, x2) => Math.abs(x2 - x1);",
+        "java": "public static double begin16(double x1, double x2) { return Math.abs(x2 - x1); }",
+        "csharp": "public static double Begin16(double x1, double x2) => Math.Abs(x2 - x1);"
+      }
+    },
+    {
+      "id": "Begin17",
+      "question": "Найти длины отрезков AC, BC и их сумму (точки A, B, C на оси).",
+      "solutions": {
+        "python": "def begin17(a, b, c): ac, bc = abs(c-a), abs(c-b); return ac, bc, ac+bc",
+        "javascript": "const begin17 = (a, b, c) => { const ac=Math.abs(c-a), bc=Math.abs(c-b); return [ac, bc, ac+bc]; };",
+        "java": "public static double[] begin17(double a, double b, double c) { double ac=Math.abs(c-a), bc=Math.abs(c-b); return new double[]{ac, bc, ac+bc}; }",
+        "csharp": "public static (double, double, double) Begin17(double a, double b, double c) { var ac=Math.Abs(c-a); var bc=Math.Abs(c-b); return (ac, bc, ac+bc); }"
+      }
+    },
+    {
+      "id": "Begin18",
+      "question": "Точка C между A и B. Найти произведение AC * BC.",
+      "solutions": {
+        "python": "def begin18(a, b, c): return abs(c-a) * abs(b-c)",
+        "javascript": "const begin18 = (a, b, c) => Math.abs(c-a) * Math.abs(b-c);",
+        "java": "public static double begin18(double a, double b, double c) { return Math.abs(c-a) * Math.abs(b-c); }",
+        "csharp": "public static double Begin18(double a, double b, double c) => Math.Abs(c-a) * Math.Abs(b-c);"
+      }
+    },
+    {
+      "id": "Begin19",
+      "question": "Даны (x1,y1) и (x2,y2). Найти P и S прямоугольника.",
+      "solutions": {
+        "python": "def begin19(x1,y1,x2,y2): w, h = abs(x2-x1), abs(y2-y1); return 2*(w+h), w*h",
+        "javascript": "const begin19 = (x1,y1,x2,y2) => { const w=Math.abs(x2-x1), h=Math.abs(y2-y1); return [2*(w+h), w*h]; };",
+        "java": "public static double[] begin19(double x1, double y1, double x2, double y2) { double w=Math.abs(x2-x1), h=Math.abs(y2-y1); return new double[]{2*(w+h), w*h}; }",
+        "csharp": "public static (double P, double S) Begin19(double x1, double y1, double x2, double y2) { var w=Math.Abs(x2-x1); var h=Math.Abs(y2-y1); return (2*(w+h), w*h); }"
+      }
+    },
+    {
+      "id": "Begin20",
+      "question": "Расстояние между (x1,y1) и (x2,y2).",
+      "solutions": {
+        "python": "import math\ndef begin20(x1,y1,x2,y2): return math.sqrt((x2-x1)**2 + (y2-y1)**2)",
+        "javascript": "const begin20 = (x1,y1,x2,y2) => Math.sqrt((x2-x1)**2 + (y2-y1)**2);",
+        "java": "public static double begin20(double x1, double y1, double x2, double y2) { return Math.sqrt(Math.pow(x2-x1,2)+Math.pow(y2-y1,2)); }",
+        "csharp": "public static double Begin20(double x1, double y1, double x2, double y2) => Math.Sqrt(Math.Pow(x2-x1,2)+Math.Pow(y2-y1,2));"
+      }
+    },
+    {
+      "id": "Begin21",
+      "question": "Найти P и S треугольника по координатам трех вершин (Герон).",
+      "solutions": {
+        "python": "import math\ndef begin21(x1,y1,x2,y2,x3,y3):\n    a=math.sqrt((x2-x1)**2+(y2-y1)**2); b=math.sqrt((x3-x2)**2+(y3-y2)**2); c=math.sqrt((x1-x3)**2+(y1-y3)**2)\n    p=(a+b+c)/2; s=math.sqrt(p*(p-a)*(p-b)*(p-c))\n    return a+b+c, s",
+        "javascript": "const begin21 = (x1,y1,x2,y2,x3,y3) => {\n    const d=(ax,ay,bx,by)=>Math.sqrt((bx-ax)**2+(by-ay)**2);\n    const a=d(x1,y1,x2,y2), b=d(x2,y2,x3,y3), c=d(x3,y3,x1,y1), p=(a+b+c)/2;\n    return [a+b+c, Math.sqrt(p*(p-a)*(p-b)*(p-c))];\n};",
+        "java": "public static double[] begin21(double x1, double y1, double x2, double y2, double x3, double y3) {\n    double a=Math.sqrt(Math.pow(x2-x1,2)+Math.pow(y2-y1,2)), b=Math.sqrt(Math.pow(x3-x2,2)+Math.pow(y3-y2,2)), c=Math.sqrt(Math.pow(x1-x3,2)+Math.pow(y1-y3,2));\n    double p=(a+b+c)/2.0; return new double[]{a+b+c, Math.sqrt(p*(p-a)*(p-b)*(p-c))};\n}",
+        "csharp": "public static (double P, double S) Begin21(double x1,double y1,double x2,double y2,double x3,double y3) {\n    double a=Math.Sqrt(Math.Pow(x2-x1,2)+Math.Pow(y2-y1,2)), b=Math.Sqrt(Math.Pow(x3-x2,2)+Math.Pow(y3-y2,2)), c=Math.Sqrt(Math.Pow(x1-x3,2)+Math.Pow(y1-y3,2));\n    double p=(a+b+c)/2.0; return (a+b+c, Math.Sqrt(p*(p-a)*(p-b)*(p-c)));\n}"
+      }
+    },
+    {
+      "id": "Begin22",
+      "question": "Поменять местами A и B.",
+      "solutions": {
+        "python": "def begin22(a, b): return b, a",
+        "javascript": "const begin22 = (a, b) => [b, a];",
+        "java": "public static double[] begin22(double a, double b) { double t=a; a=b; b=t; return new double[]{a, b}; }",
+        "csharp": "public static (double, double) Begin22(double a, double b) => (b, a);"
+      }
+    },
+    {
+      "id": "Begin23",
+      "question": "Переместить A -> B -> C -> A.",
+      "solutions": {
+        "python": "def begin23(a, b, c): return c, a, b",
+        "javascript": "const begin23 = (a, b, c) => [c, a, b];",
+        "java": "public static double[] begin23(double a, double b, double c) { double t=c; c=b; b=a; a=t; return new double[]{a, b, c}; }",
+        "csharp": "public static (double, double, double) Begin23(double a, double b, double c) => (c, a, b);"
+      }
+    },
+    {
+      "id": "Begin24",
+      "question": "Переместить A -> C -> B -> A.",
+      "solutions": {
+        "python": "def begin24(a, b, c): return b, c, a",
+        "javascript": "const begin24 = (a, b, c) => [b, c, a];",
+        "java": "public static double[] begin24(double a, double b, double c) { double t=b; b=c; c=a; a=t; return new double[]{a, b, c}; }",
+        "csharp": "public static (double, double, double) Begin24(double a, double b, double c) => (b, c, a);"
+      }
+    },
+    {
+      "id": "Begin25",
+      "question": "Найти y = 3x^6 - 6x^2 - 7.",
+      "solutions": {
+        "python": "def begin25(x): x2=x*x; return 3*x2*x2*x2 - 6*x2 - 7",
+        "javascript": "const begin25 = (x) => { const x2=x*x; return 3*x2*x2*x2 - 6*x2 - 7; };",
+        "java": "public static double begin25(double x) { double x2=x*x; return 3*x2*x2*x2 - 6*x2 - 7; }",
+        "csharp": "public static double Begin25(double x) { double x2=x*x; return 3*x2*x2*x2 - 6*x2 - 7; }"
+      }
+    },
+    {
+      "id": "Begin26",
+      "question": "Найти y = 4(x-3)^6 - 7(x-3)^3 + 2.",
+      "solutions": {
+        "python": "def begin26(x): t=(x-3)**3; return 4*t*t - 7*t + 2",
+        "javascript": "const begin26 = (x) => { const t=(x-3)**3; return 4*t*t - 7*t + 2; };",
+        "java": "public static double begin26(double x) { double t=Math.pow(x-3,3); return 4*t*t - 7*t + 2; }",
+        "csharp": "public static double Begin26(double x) { double t=Math.Pow(x-3,3); return 4*t*t - 7*t + 2; }"
+      }
+    },
+    {
+      "id": "Begin27",
+      "question": "Найти A^8 за 3 умножения.",
+      "solutions": {
+        "python": "def begin27(a): a2=a*a; a4=a2*a2; return a4*a4",
+        "javascript": "const begin27 = (a) => { let res=a*a; res*=res; return res*res; };",
+        "java": "public static double begin27(double a) { double a2=a*a, a4=a2*a2; return a4*a4; }",
+        "csharp": "public static double Begin27(double a) { double a2=a*a, a4=a2*a2; return a4*a4; }"
+      }
+    },
+    {
+      "id": "Begin28",
+      "question": "Найти A^15 за 5 умножений.",
+      "solutions": {
+        "python": "def begin28(a): a2=a*a; a3=a2*a; a5=a3*a2; a10=a5*a5; return a10*a5",
+        "javascript": "const begin28 = (a) => { const a2=a*a, a3=a2*a, a5=a3*a2, a10=a5*a5; return a10*a5; };",
+        "java": "public static double begin28(double a) { double a2=a*a, a3=a2*a, a5=a3*a2, a10=a5*a5; return a10*a5; }",
+        "csharp": "public static double Begin28(double a) { double a2=a*a, a3=a2*a, a5=a3*a2, a10=a5*a5; return a10*a5; }"
+      }
+    },
+    {
+      "id": "Begin29",
+      "question": "Градусы -> Радианы.",
+      "solutions": {
+        "python": "def begin29(a): return a * 3.14 / 180",
+        "javascript": "const begin29 = (a) => a * 3.14 / 180;",
+        "java": "public static double begin29(double a) { return a * 3.14 / 180; }",
+        "csharp": "public static double Begin29(double a) => a * 3.14 / 180;"
+      }
+    },
+    {
+      "id": "Begin30",
+      "question": "Радианы -> Градусы.",
+      "solutions": {
+        "python": "def begin30(r): return r * 180 / 3.14",
+        "javascript": "const begin30 = (r) => r * 180 / 3.14;",
+        "java": "public static double begin30(double r) { return r * 180 / 3.14; }",
+        "csharp": "public static double Begin30(double r) => r * 180 / 3.14;"
+      }
+    },
+    {
+      "id": "Begin31",
+      "question": "Фаренгейт -> Цельсий.",
+      "solutions": {
+        "python": "def begin31(tf): return (tf-32)*5/9",
+        "javascript": "const begin31 = (tf) => (tf-32)*5/9;",
+        "java": "public static double begin31(double tf) { return (tf-32)*5/9.0; }",
+        "csharp": "public static double Begin31(double tf) => (tf-32)*5/9.0;"
+      }
+    },
+    {
+      "id": "Begin32",
+      "question": "Цельсий -> Фаренгейт.",
+      "solutions": {
+        "python": "def begin32(tc): return tc*1.8 + 32",
+        "javascript": "const begin32 = (tc) => tc*1.8 + 32;",
+        "java": "public static double begin32(double tc) { return tc*1.8 + 32; }",
+        "csharp": "public static double Begin32(double tc) => tc*1.8 + 32;"
+      }
+    },
+    {
+      "id": "Begin33",
+      "question": "X кг стоят A руб. Найти цену за 1 кг и Y кг.",
+      "solutions": {
+        "python": "def begin33(x, a, y): p=a/x; return p, p*y",
+        "javascript": "const begin33 = (x, a, y) => { const p=a/x; return [p, p*y]; };",
+        "java": "public static double[] begin33(double x, double a, double y) { double p=a/x; return new double[]{p, p*y}; }",
+        "csharp": "public static (double, double) Begin33(double x, double a, double y) { double p=a/x; return (p, p*y); }"
+      }
+    },
+    {
+      "id": "Begin34",
+      "question": "Шоколад (X за A) vs Ириски (Y за B). Во сколько раз дороже?",
+      "solutions": {
+        "python": "def begin34(x, a, y, b): return (a/x) / (b/y)",
+        "javascript": "const begin34 = (x, a, y, b) => (a/x) / (b/y);",
+        "java": "public static double begin34(double x, double a, double y, double b) { return (a/x) / (b/y); }",
+        "csharp": "public static double Begin34(double x, double a, double y, double b) => (a/x) / (b/y);"
+      }
+    },
+    {
+      "id": "Begin35",
+      "question": "Путь лодки (V) по озеру (T1) и против течения (U, T2).",
+      "solutions": {
+        "python": "def begin35(v, u, t1, t2): return v*t1 + (v-u)*t2",
+        "javascript": "const begin35 = (v, u, t1, t2) => v*t1 + (v-u)*t2;",
+        "java": "public static double begin35(double v, double u, double t1, double t2) { return v*t1 + (v-u)*t2; }",
+        "csharp": "public static double Begin35(double v, double u, double t1, double t2) => v*t1 + (v-u)*t2;"
+      }
+    },
+    {
+      "id": "Begin36",
+      "question": "Расстояние между удаляющимися авто через T.",
+      "solutions": {
+        "python": "def begin36(v1, v2, s, t): return s + (v1+v2)*t",
+        "javascript": "const begin36 = (v1, v2, s, t) => s + (v1+v2)*t;",
+        "java": "public static double begin36(double v1, double v2, double s, double t) { return s + (v1+v2)*t; }",
+        "csharp": "public static double Begin36(double v1, double v2, double s, double t) => s + (v1+v2)*t;"
+      }
+    },
+    {
+      "id": "Begin37",
+      "question": "Расстояние между сближающимися авто через T.",
+      "solutions": {
+        "python": "def begin37(v1, v2, s, t): return abs(s - (v1+v2)*t)",
+        "javascript": "const begin37 = (v1, v2, s, t) => Math.abs(s - (v1+v2)*t);",
+        "java": "public static double begin37(double v1, double v2, double s, double t) { return Math.abs(s - (v1+v2)*t); }",
+        "csharp": "public static double Begin37(double v1, double v2, double s, double t) => Math.Abs(s - (v1+v2)*t);"
+      }
+    },
+    {
+      "id": "Begin38",
+      "question": "Решить Ax + B = 0.",
+      "solutions": {
+        "python": "def begin38(a, b): return -b/a",
+        "javascript": "const begin38 = (a, b) => -b/a;",
+        "java": "public static double begin38(double a, double b) { return -b/a; }",
+        "csharp": "public static double Begin38(double a, double b) => -b/a;"
+      }
+    },
+    {
+      "id": "Begin39",
+      "question": "Дискриминант Ax^2 + Bx + C = 0.",
+      "solutions": {
+        "python": "def begin39(a, b, c): return b*b - 4*a*c",
+        "javascript": "const begin39 = (a, b, c) => b*b - 4*a*c;",
+        "java": "public static double begin39(double a, double b, double c) { return b*b - 4*a*c; }",
+        "csharp": "public static double Begin39(double a, double b, double c) => b*b - 4*a*c;"
+      }
+    },
+    {
+      "id": "Begin40",
+      "question": "Метод Крамера. Найти D, x, y.",
+      "solutions": {
+        "python": "def begin40(a1,b1,c1,a2,b2,c2): d=a1*b2-a2*b1; return d, (c1*b2-c2*b1)/d, (a1*c2-a2*c1)/d",
+        "javascript": "const begin40 = (a1,b1,c1,a2,b2,c2) => { const d=a1*b2-a2*b1; return [d, (c1*b2-c2*b1)/d, (a1*c2-a2*c1)/d]; };",
+        "java": "public static double[] begin40(double a1, double b1, double c1, double a2, double b2, double c2) { double d=a1*b2-a2*b1; return new double[]{d, (c1*b2-c2*b1)/d, (a1*c2-a2*c1)/d}; }",
+        "csharp": "public static (double, double, double) Begin40(double a1,double b1,double c1,double a2,double b2,double c2) { double d=a1*b2-a2*b1; return (d, (c1*b2-c2*b1)/d, (a1*c2-a2*c1)/d); }"
+      }
+    }
+  ]
+}
