@@ -37,9 +37,4 @@ object AppTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalAppTypography.current
-    
-    val shapes: AppShapes
-        @Composable
-        @ReadOnlyComposable
-        get() = LocalAppShapes.current
 }

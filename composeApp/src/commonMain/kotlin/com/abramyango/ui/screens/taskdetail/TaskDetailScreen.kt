@@ -29,6 +29,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import com.abramyango.ui.components.GlassCard
 import com.abramyango.ui.components.GlassIconButton
@@ -224,26 +226,55 @@ private fun SolutionItem(
             enter = expandVertically(),
             exit = shrinkVertically()
         ) {
+            val clipboardManager = LocalClipboardManager.current
+
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = Spacing.extraSmall)
-                    .clip(RoundedCornerShape(12.dp))
-                    .background(colors.codeBackground)
-                    .border(
-                        width = 1.dp,
-                        color = Color.White.copy(alpha = 0.1f),
-                        shape = RoundedCornerShape(12.dp)
-                    )
-                    .horizontalScroll(rememberScrollState())
             ) {
-                Text(
-                    text = code,
-                    style = typography.codeBlock,
-                    color = colors.textPrimary,
-                    softWrap = false,
-                    modifier = Modifier.padding(12.dp)
-                )
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(colors.codeBackground)
+                        .border(
+                            width = 1.dp,
+                            color = Color.White.copy(alpha = 0.1f),
+                            shape = RoundedCornerShape(12.dp)
+                        )
+                        .horizontalScroll(rememberScrollState())
+                ) {
+                    Text(
+                        text = code,
+                        style = typography.codeBlock,
+                        color = colors.textPrimary,
+                        softWrap = false,
+                        modifier = Modifier.padding(start = 12.dp, end = 12.dp, bottom = 12.dp, top = 40.dp)
+                    )
+                }
+
+                // Copy button
+                Box(
+                    modifier = Modifier
+                        .align(Alignment.TopEnd)
+                        .padding(6.dp)
+                        .clip(RoundedCornerShape(6.dp))
+                        .background(Color.White.copy(alpha = 0.12f))
+                        .border(
+                            width = 1.dp,
+                            color = Color.White.copy(alpha = 0.2f),
+                            shape = RoundedCornerShape(6.dp)
+                        )
+                        .clickable { clipboardManager.setText(AnnotatedString(code)) }
+                        .padding(horizontal = 10.dp, vertical = 4.dp)
+                ) {
+                    Text(
+                        text = "Copy",
+                        style = typography.labelMedium,
+                        color = colors.textSecondary
+                    )
+                }
             }
         }
     }

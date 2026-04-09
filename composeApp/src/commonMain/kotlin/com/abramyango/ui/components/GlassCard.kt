@@ -12,7 +12,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.abramyango.ui.theme.AppTheme
 
 /**
  * Glass Card - базовый компонент с эффектом стекла
@@ -27,7 +26,6 @@ fun GlassCard(
     contentPadding: Dp = 16.dp,
     content: @Composable BoxScope.() -> Unit
 ) {
-    val colors = AppTheme.colors
     val shape = androidx.compose.foundation.shape.RoundedCornerShape(cornerRadius)
     
     Box(
@@ -52,66 +50,6 @@ fun GlassCard(
                 shape = shape
             )
             .padding(contentPadding),
-        content = content
-    )
-}
-
-/**
- * Glass Card с акцентным цветом (для миров)
- */
-@Composable
-fun GlassCardAccent(
-    accentColor: Color,
-    modifier: Modifier = Modifier,
-    glassAlpha: Float = 0.12f,
-    cornerRadius: Dp = 20.dp,
-    contentPadding: Dp = 16.dp,
-    content: @Composable BoxScope.() -> Unit
-) {
-    val shape = androidx.compose.foundation.shape.RoundedCornerShape(cornerRadius)
-    
-    Box(
-        modifier = modifier
-            .clip(shape)
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        accentColor.copy(alpha = glassAlpha + 0.08f),
-                        accentColor.copy(alpha = glassAlpha)
-                    )
-                )
-            )
-            .border(
-                width = 1.dp,
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        accentColor.copy(alpha = 0.4f),
-                        accentColor.copy(alpha = 0.2f)
-                    )
-                ),
-                shape = shape
-            )
-            .padding(contentPadding),
-        content = content
-    )
-}
-
-/**
- * Glass Surface - более прозрачная версия для вложенных элементов
- */
-@Composable
-fun GlassSurface(
-    modifier: Modifier = Modifier,
-    cornerRadius: Dp = 12.dp,
-    contentPadding: Dp = 12.dp,
-    content: @Composable BoxScope.() -> Unit
-) {
-    GlassCard(
-        modifier = modifier,
-        glassAlpha = 0.08f,
-        borderAlpha = 0.15f,
-        cornerRadius = cornerRadius,
-        contentPadding = contentPadding,
         content = content
     )
 }
