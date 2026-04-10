@@ -1,15 +1,9 @@
 package com.abramyango.ui
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -126,41 +120,6 @@ fun App() {
                 )
             }
 
-            // Profile
-            composable<Route.Profile> {
-                ProfilePlaceholder(onBack = { navController.popBackStack() })
-            }
-
-            // Settings
-            composable<Route.Settings> {
-                SettingsPlaceholder(onBack = { navController.popBackStack() })
-            }
         }
-    }
-}
-
-@Composable
-private fun ProfilePlaceholder(onBack: () -> Unit) {
-    Column(
-        modifier = androidx.compose.ui.Modifier.fillMaxSize(),
-        horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally,
-        verticalArrangement = androidx.compose.foundation.layout.Arrangement.Center
-    ) {
-        Text("Profile")
-        Spacer(modifier = androidx.compose.ui.Modifier.height(16.dp))
-        com.abramyango.ui.components.SecondaryButton(text = "Back", onClick = onBack)
-    }
-}
-
-@Composable
-private fun SettingsPlaceholder(onBack: () -> Unit) {
-    Column(
-        modifier = androidx.compose.ui.Modifier.fillMaxSize(),
-        horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally,
-        verticalArrangement = androidx.compose.foundation.layout.Arrangement.Center
-    ) {
-        Text("Settings")
-        Spacer(modifier = androidx.compose.ui.Modifier.height(16.dp))
-        com.abramyango.ui.components.SecondaryButton(text = "Back", onClick = onBack)
     }
 }

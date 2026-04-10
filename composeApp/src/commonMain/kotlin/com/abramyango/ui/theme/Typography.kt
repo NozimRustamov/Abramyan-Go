@@ -1,6 +1,5 @@
 package com.abramyango.ui.theme
 
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
@@ -16,17 +15,12 @@ import androidx.compose.ui.unit.sp
  */
 @Immutable
 data class AppTypography(
-    val displayLarge: TextStyle,      // Заголовки миров
-    val displayMedium: TextStyle,     // Большие числа (XP, комбо)
-    val headlineLarge: TextStyle,     // Заголовки экранов
     val headlineMedium: TextStyle,    // Подзаголовки
     val titleLarge: TextStyle,        // Названия задач
     val titleMedium: TextStyle,       // Названия секций
     val bodyLarge: TextStyle,         // Основной текст
-    val bodyMedium: TextStyle,        // Вторичный текст
     val labelLarge: TextStyle,        // Кнопки
     val labelMedium: TextStyle,       // Бейджи
-    val labelSmall: TextStyle,        // Мелкие подписи
     val codeBlock: TextStyle          // Monospace для кода
 )
 
@@ -34,24 +28,6 @@ data class AppTypography(
  * Базовая типографика
  */
 val DefaultTypography = AppTypography(
-    displayLarge = TextStyle(
-        fontWeight = FontWeight.Bold,
-        fontSize = 48.sp,
-        lineHeight = 56.sp,
-        letterSpacing = (-0.25).sp
-    ),
-    displayMedium = TextStyle(
-        fontWeight = FontWeight.Bold,
-        fontSize = 36.sp,
-        lineHeight = 44.sp,
-        letterSpacing = 0.sp
-    ),
-    headlineLarge = TextStyle(
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 28.sp,
-        lineHeight = 36.sp,
-        letterSpacing = 0.sp
-    ),
     headlineMedium = TextStyle(
         fontWeight = FontWeight.SemiBold,
         fontSize = 24.sp,
@@ -76,12 +52,6 @@ val DefaultTypography = AppTypography(
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp
     ),
-    bodyMedium = TextStyle(
-        fontWeight = FontWeight.Normal,
-        fontSize = 14.sp,
-        lineHeight = 20.sp,
-        letterSpacing = 0.25.sp
-    ),
     labelLarge = TextStyle(
         fontWeight = FontWeight.Medium,
         fontSize = 16.sp,
@@ -92,12 +62,6 @@ val DefaultTypography = AppTypography(
         fontWeight = FontWeight.Medium,
         fontSize = 14.sp,
         lineHeight = 20.sp,
-        letterSpacing = 0.5.sp
-    ),
-    labelSmall = TextStyle(
-        fontWeight = FontWeight.Medium,
-        fontSize = 12.sp,
-        lineHeight = 16.sp,
         letterSpacing = 0.5.sp
     ),
     codeBlock = TextStyle(
@@ -147,22 +111,9 @@ object Spacing {
     val small = 8.dp
     val medium = 12.dp
     val default = 16.dp
-    val large = 20.dp
-    val extraLarge = 24.dp
-    val huge = 32.dp
     val massive = 48.dp
 }
 
-/**
- * Размеры иконок
- */
-object IconSize {
-    val small = 16.dp
-    val medium = 24.dp
-    val large = 32.dp
-    val extraLarge = 48.dp
-    val huge = 64.dp
-}
 
 val LocalAppTypography = staticCompositionLocalOf { DefaultTypography }
 val LocalAppShapes = staticCompositionLocalOf { DefaultShapes }

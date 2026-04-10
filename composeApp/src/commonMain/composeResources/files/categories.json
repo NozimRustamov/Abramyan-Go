@@ -1,4 +1,11 @@
 [
   { "id": "begin_1-40", "name": "Begin" },
-  { "id": "integer_1-40", "name": "Integer" }
+  { "id": "integer_1-30", "name": "Integer" },
+  { "id": "boolean_1-30", "name": "Boolean" },
+  { "id": "if_1-30", "name": "If" },
+  { "id": "case_1-20", "name": "Case" },
+  { "id": "for_1-40", "name": "For" },
+  { "id": "while_1-30", "name": "While" },
+  { "id": "series_1-40", "name": "Series" },
+  { "id": "proc_1-60", "name": "Proc" }
 ]
