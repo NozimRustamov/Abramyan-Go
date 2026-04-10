@@ -89,7 +89,7 @@ fun CategoriesScreen(
                 ) {
                     itemsIndexed(
                         items = state.categories,
-                        key = { _, category -> category.idString }
+                        key = { _, category -> category.id }
                     ) { index, category ->
                         CategoryListItem(
                             index = index + 1,
@@ -97,7 +97,7 @@ fun CategoriesScreen(
                             onClick = {
                                 onIntent(
                                     CategoriesIntent.SelectCategory(
-                                        category.idString,
+                                        category.id,
                                         category.name
                                     )
                                 )

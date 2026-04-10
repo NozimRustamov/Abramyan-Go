@@ -5,9 +5,6 @@
 # Keep Kotlin metadata for reflection
 -keep class kotlin.Metadata { *; }
 
-# SQLDelight
--keep class app.cash.sqldelight.** { *; }
--keep interface app.cash.sqldelight.** { *; }
 
 # Koin
 -keepnames class * implements org.koin.core.KoinComponent
@@ -30,9 +27,6 @@
 -keep class androidx.compose.** { *; }
 -dontwarn androidx.compose.**
 
-# Ktor (if used in future)
--dontwarn io.ktor.**
--keep class io.ktor.** { *; }
 
 # Coroutines
 -keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
