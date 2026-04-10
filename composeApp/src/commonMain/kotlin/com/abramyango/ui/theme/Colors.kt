@@ -55,15 +55,10 @@ val DarkAppColors = AppColors(
  * Светлая тема
  */
 val LightAppColors = AppColors(
-    // Background - светлый градиент (чуть темнее, чтобы белые карточки выделялись)
-    backgroundPrimary = Color(0xFFEEF2F7),
-    backgroundGradientStart = Color(0xFFEEF2F7),
-    backgroundGradientEnd = Color(0xFFDCE3EC),
+    // Background - светлый градиент
+    backgroundGradientStart = Color(0xFFF8F9FA),
+    backgroundGradientEnd = Color(0xFFE9ECEF),
 
-    // Glass - почти solid белые карточки для контраста с фоном
-    glassSurface = Color(0xF2FFFFFF),         // ~95% white
-    glassBorder = Color(0x1F000000),          // ~12% black outline
-    glassHighlight = Color(0xFFFFFFFF),       // pure white top stop
     
     // Solid - текст
     textPrimary = Color(0xFF1A1A2E),
