@@ -1,0 +1,306 @@
+{
+  "category": "If",
+  "id": "6",
+  "tasks": [
+    {
+      "id": "If1",
+      "question": "Дано целое число. Если оно является положительным, то прибавить к нему 1; в противном случае не изменять его. Вывести полученное число.",
+      "solutions": {
+        "python": "def if1(n: int) -> int:\n    return n + 1 if n > 0 else n",
+        "javascript": "const if1 = (n) => n > 0 ? n + 1 : n;",
+        "java": "public static int if1(int n) {\n    return n > 0 ? n + 1 : n;\n}",
+        "csharp": "public static int If1(int n) => n > 0 ? n + 1 : n;"
+      }
+    },
+    {
+      "id": "If2",
+      "question": "Дано целое число. Если оно является положительным, то прибавить к нему 1; в противном случае вычесть из него 2. Вывести полученное число.",
+      "solutions": {
+        "python": "def if2(n: int) -> int:\n    return n + 1 if n > 0 else n - 2",
+        "javascript": "const if2 = (n) => n > 0 ? n + 1 : n - 2;",
+        "java": "public static int if2(int n) {\n    return n > 0 ? n + 1 : n - 2;\n}",
+        "csharp": "public static int If2(int n) => n > 0 ? n + 1 : n - 2;"
+      }
+    },
+    {
+      "id": "If3",
+      "question": "Дано целое число. Если оно является положительным, то прибавить к нему 1; если отрицательным, то вычесть из него 2; если нулевым, то заменить его на 10. Вывести полученное число.",
+      "solutions": {
+        "python": "def if3(n: int) -> int:\n    if n > 0: return n + 1\n    elif n < 0: return n - 2\n    else: return 10",
+        "javascript": "const if3 = (n) => n > 0 ? n + 1 : (n < 0 ? n - 2 : 10);",
+        "java": "public static int if3(int n) {\n    if (n > 0) return n + 1;\n    if (n < 0) return n - 2;\n    return 10;\n}",
+        "csharp": "public static int If3(int n) => n > 0 ? n + 1 : (n < 0 ? n - 2 : 10);"
+      }
+    },
+    {
+      "id": "If4",
+      "question": "Даны три целых числа. Найти количество положительных чисел в исходном наборе.",
+      "solutions": {
+        "python": "def if4(a: int, b: int, c: int) -> int:\n    return sum(1 for x in [a, b, c] if x > 0)",
+        "javascript": "const if4 = (a, b, c) => [a, b, c].filter(x => x > 0).length;",
+        "java": "public static int if4(int a, int b, int c) {\n    int count = 0;\n    if (a > 0) count++;\n    if (b > 0) count++;\n    if (c > 0) count++;\n    return count;\n}",
+        "csharp": "public static int If4(int a, int b, int c) => (a > 0 ? 1 : 0) + (b > 0 ? 1 : 0) + (c > 0 ? 1 : 0);"
+      }
+    },
+    {
+      "id": "If5",
+      "question": "Даны три целых числа. Найти количество положительных и количество отрицательных чисел в исходном наборе.",
+      "solutions": {
+        "python": "def if5(a, b, c):\n    pos = sum(1 for x in [a,b,c] if x > 0)\n    neg = sum(1 for x in [a,b,c] if x < 0)\n    return pos, neg",
+        "javascript": "const if5 = (a, b, c) => {\n    const pos = [a,b,c].filter(x => x > 0).length;\n    const neg = [a,b,c].filter(x => x < 0).length;\n    return [pos, neg];\n};",
+        "java": "public static int[] if5(int a, int b, int c) {\n    int p = 0, n = 0;\n    if (a > 0) p++;\n    else if (a < 0) n++;\n    if (b > 0) p++;\n    else if (b < 0) n++;\n    if (c > 0) p++;\n    else if (c < 0) n++;\n    return new int[]{p, n};\n}",
+        "csharp": "public static (int, int) If5(int a, int b, int c) {\n    var vals = new[] {a, b, c};\n    return (vals.Count(x => x > 0), vals.Count(x => x < 0));\n}"
+      }
+    },
+    {
+      "id": "If6",
+      "question": "Даны два числа. Вывести большее из них.",
+      "solutions": {
+        "python": "def if6(a: float, b: float) -> float:\n    return max(a, b)",
+        "javascript": "const if6 = (a, b) => Math.max(a, b);",
+        "java": "public static double if6(double a, double b) {\n    return Math.max(a, b);\n}",
+        "csharp": "public static double If6(double a, double b) => Math.Max(a, b);"
+      }
+    },
+    {
+      "id": "If7",
+      "question": "Даны два числа. Вывести порядковый номер меньшего из них.",
+      "solutions": {
+        "python": "def if7(a, b):\n    return 1 if a < b else 2",
+        "javascript": "const if7 = (a, b) => a < b ? 1 : 2;",
+        "java": "public static int if7(double a, double b) {\n    return a < b ? 1 : 2;\n}",
+        "csharp": "public static int If7(double a, double b) => a < b ? 1 : 2;"
+      }
+    },
+    {
+      "id": "If8",
+      "question": "Даны два числа. Вывести вначале большее, а затем меньшее из них.",
+      "solutions": {
+        "python": "def if8(a, b):\n    return (a, b) if a > b else (b, a)",
+        "javascript": "const if8 = (a, b) => a > b ? [a, b] : [b, a];",
+        "java": "public static void if8(double a, double b) {\n    if (a > b) System.out.println(a + \" \" + b);\n    else System.out.println(b + \" \" + a);\n}",
+        "csharp": "public static (double, double) If8(double a, double b) => a > b ? (a, b) : (b, a);"
+      }
+    },
+    {
+      "id": "If9",
+      "question": "Даны две переменные вещественного типа: A, B. Перераспределить значения данных переменных так, чтобы в A оказалось меньшее из значений, а в B — большее.",
+      "solutions": {
+        "python": "def if9(a, b):\n    return (min(a, b), max(a, b))",
+        "javascript": "const if9 = (a, b) => a > b ? [b, a] : [a, b];",
+        "java": "public static double[] if9(double a, double b) {\n    return a > b ? new double[]{b, a} : new double[]{a, b};\n}",
+        "csharp": "public static (double, double) If9(double a, double b) => a > b ? (b, a) : (a, b);"
+      }
+    },
+    {
+      "id": "If10",
+      "question": "Даны две переменные целого типа: A, B. Если их значения не равны, то присвоить каждой переменной сумму этих значений, а если равны, то присвоить переменным нулевые значения.",
+      "solutions": {
+        "python": "def if10(a, b):\n    res = a + b if a != b else 0\n    return res, res",
+        "javascript": "const if10 = (a, b) => {\n    const s = a !== b ? a + b : 0;\n    return [s, s];\n};",
+        "java": "public static int[] if10(int a, int b) {\n    int s = (a != b) ? a + b : 0;\n    return new int[]{s, s};\n}",
+        "csharp": "public static (int, int) If10(int a, int b) {\n    int s = a != b ? a + b : 0;\n    return (s, s);\n}"
+      }
+    },
+    {
+      "id": "If11",
+      "question": "Даны A, B. Если не равны — присвоить каждому большее, иначе нули.",
+      "solutions": {
+        "python": "def if11(a: int, b: int):\n    if a != b:\n        m = max(a, b)\n        return m, m\n    return 0, 0",
+        "javascript": "const if11 = (a, b) => {\n    if (a !== b) { const m = Math.max(a, b); return [m, m]; }\n    return [0, 0];\n};",
+        "java": "public static int[] if11(int a, int b) {\n    if (a != b) { int m = Math.max(a, b); return new int[]{m, m}; }\n    return new int[]{0, 0};\n}",
+        "csharp": "public static (int, int) If11(int a, int b) {\n    if (a != b) { int m = Math.Max(a, b); return (m, m); }\n    return (0, 0);\n}"
+      }
+    },
+    {
+      "id": "If12",
+      "question": "Даны три числа. Найти наименьшее из них.",
+      "solutions": {
+        "python": "def if12(a, b, c):\n    return min(a, b, c)",
+        "javascript": "const if12 = (a, b, c) => Math.min(a, b, c);",
+        "java": "public static double if12(double a, double b, double c) {\n    return Math.min(a, Math.min(b, c));\n}",
+        "csharp": "public static double If12(double a, double b, double c) => Math.Min(a, Math.Min(b, c));"
+      }
+    },
+    {
+      "id": "If13",
+      "question": "Даны три числа. Найти среднее (между минимальным и максимальным).",
+      "solutions": {
+        "python": "def if13(a: float, b: float, c: float) -> float:\n    return a + b + c - min(a, b, c) - max(a, b, c)",
+        "javascript": "const if13 = (a, b, c) => a + b + c - Math.min(a, b, c) - Math.max(a, b, c);",
+        "java": "public static double if13(double a, double b, double c) {\n    return a + b + c - Math.min(a, Math.min(b, c)) - Math.max(a, Math.max(b, c));\n}",
+        "csharp": "public static double If13(double a, double b, double c) =>\n    a + b + c - Math.Min(a, Math.Min(b, c)) - Math.Max(a, Math.Max(b, c));"
+      }
+    },
+    {
+      "id": "If14",
+      "question": "Даны три числа. Вывести наименьшее и наибольшее.",
+      "solutions": {
+        "python": "def if14(a: float, b: float, c: float):\n    return min(a, b, c), max(a, b, c)",
+        "javascript": "const if14 = (a, b, c) => [Math.min(a, b, c), Math.max(a, b, c)];",
+        "java": "public static double[] if14(double a, double b, double c) {\n    return new double[]{Math.min(a, Math.min(b, c)), Math.max(a, Math.max(b, c))};\n}",
+        "csharp": "public static (double, double) If14(double a, double b, double c) =>\n    (Math.Min(a, Math.Min(b, c)), Math.Max(a, Math.Max(b, c)));"
+      }
+    },
+    {
+      "id": "If15",
+      "question": "Даны три числа. Найти сумму двух наибольших из них.",
+      "solutions": {
+        "python": "def if15(a, b, c):\n    return sum([a, b, c]) - min(a, b, c)",
+        "javascript": "const if15 = (a, b, c) => a + b + c - Math.min(a, b, c);",
+        "java": "public static double if15(double a, double b, double c) {\n    return a + b + c - Math.min(a, Math.min(b, c));\n}",
+        "csharp": "public static double If15(double a, double b, double c) => a + b + c - Math.Min(a, Math.Min(b, c));"
+      }
+    },
+    {
+      "id": "If16",
+      "question": "Даны A, B, C. Если упорядочены по возрастанию — удвоить, иначе сменить знак.",
+      "solutions": {
+        "python": "def if16(a: float, b: float, c: float):\n    if a < b < c:\n        return 2 * a, 2 * b, 2 * c\n    return -a, -b, -c",
+        "javascript": "const if16 = (a, b, c) => a < b && b < c ? [2 * a, 2 * b, 2 * c] : [-a, -b, -c];",
+        "java": "public static double[] if16(double a, double b, double c) {\n    if (a < b && b < c) return new double[]{2 * a, 2 * b, 2 * c};\n    return new double[]{-a, -b, -c};\n}",
+        "csharp": "public static (double, double, double) If16(double a, double b, double c) =>\n    (a < b && b < c) ? (2 * a, 2 * b, 2 * c) : (-a, -b, -c);"
+      }
+    },
+    {
+      "id": "If17",
+      "question": "Даны A, B, C. Если упорядочены по возр или убыв — удвоить, иначе сменить знак.",
+      "solutions": {
+        "python": "def if17(a: float, b: float, c: float):\n    if a < b < c or a > b > c:\n        return 2 * a, 2 * b, 2 * c\n    return -a, -b, -c",
+        "javascript": "const if17 = (a, b, c) => (a < b && b < c) || (a > b && b > c) ? [2 * a, 2 * b, 2 * c] : [-a, -b, -c];",
+        "java": "public static double[] if17(double a, double b, double c) {\n    if ((a < b && b < c) || (a > b && b > c)) return new double[]{2 * a, 2 * b, 2 * c};\n    return new double[]{-a, -b, -c};\n}",
+        "csharp": "public static (double, double, double) If17(double a, double b, double c) =>\n    ((a < b && b < c) || (a > b && b > c)) ? (2 * a, 2 * b, 2 * c) : (-a, -b, -c);"
+      }
+    },
+    {
+      "id": "If18",
+      "question": "Даны три целых, одно отлично от двух равных. Номер отличного.",
+      "solutions": {
+        "python": "def if18(a: int, b: int, c: int) -> int:\n    if a == b: return 3\n    if a == c: return 2\n    return 1",
+        "javascript": "const if18 = (a, b, c) => a === b ? 3 : a === c ? 2 : 1;",
+        "java": "public static int if18(int a, int b, int c) {\n    if (a == b) return 3;\n    if (a == c) return 2;\n    return 1;\n}",
+        "csharp": "public static int If18(int a, int b, int c) =>\n    a == b ? 3 : a == c ? 2 : 1;"
+      }
+    },
+    {
+      "id": "If19",
+      "question": "Даны четыре целых, одно отлично от трёх равных. Номер отличного.",
+      "solutions": {
+        "python": "def if19(a: int, b: int, c: int, d: int) -> int:\n    if a != b: return 1 if a != c else 2\n    if a != c: return 3\n    return 4",
+        "javascript": "const if19 = (a, b, c, d) => {\n    if (a !== b) return a !== c ? 1 : 2;\n    if (a !== c) return 3;\n    return 4;\n};",
+        "java": "public static int if19(int a, int b, int c, int d) {\n    if (a != b) return a != c ? 1 : 2;\n    if (a != c) return 3;\n    return 4;\n}",
+        "csharp": "public static int If19(int a, int b, int c, int d) {\n    if (a != b) return a != c ? 1 : 2;\n    if (a != c) return 3;\n    return 4;\n}"
+      }
+    },
+    {
+      "id": "If20",
+      "question": "На числовой оси расположены три точки: A, B, C. Определить, какая из точек (B или C) расположена ближе к A, и вывести расстояние до нее.",
+      "solutions": {
+        "python": "def if20(a, b, c):\n    d_b, d_c = abs(a-b), abs(a-c)\n    return ('B', d_b) if d_b < d_c else ('C', d_c)",
+        "javascript": "const if20 = (a, b, c) => {\n    const db = Math.abs(a-b), dc = Math.abs(a-c);\n    return db < dc ? ['B', db] : ['C', dc];\n};",
+        "java": "public static void if20(double a, double b, double c) {\n    double db = Math.abs(a-b), dc = Math.abs(a-c);\n    if (db < dc) System.out.println(\"B \" + db);\n    else System.out.println(\"C \" + dc);\n}",
+        "csharp": "public static (string, double) If20(double a, double b, double c) {\n    double db = Math.Abs(a-b), dc = Math.Abs(a-c);\n    return db < dc ? (\"B\", db) : (\"C\", dc);\n}"
+      }
+    },
+    {
+      "id": "If21",
+      "question": "Координаты точки. 0 — начало координат, 1 — на OX, 2 — на OY, 3 — иначе.",
+      "solutions": {
+        "python": "def if21(x: int, y: int) -> int:\n    if x == 0 and y == 0: return 0\n    if y == 0: return 1\n    if x == 0: return 2\n    return 3",
+        "javascript": "const if21 = (x, y) => {\n    if (x === 0 && y === 0) return 0;\n    if (y === 0) return 1;\n    if (x === 0) return 2;\n    return 3;\n};",
+        "java": "public static int if21(int x, int y) {\n    if (x == 0 && y == 0) return 0;\n    if (y == 0) return 1;\n    if (x == 0) return 2;\n    return 3;\n}",
+        "csharp": "public static int If21(int x, int y) {\n    if (x == 0 && y == 0) return 0;\n    if (y == 0) return 1;\n    if (x == 0) return 2;\n    return 3;\n}"
+      }
+    },
+    {
+      "id": "If22",
+      "question": "Координаты точки не на осях. Номер координатной четверти.",
+      "solutions": {
+        "python": "def if22(x: float, y: float) -> int:\n    if x > 0 and y > 0: return 1\n    if x < 0 and y > 0: return 2\n    if x < 0 and y < 0: return 3\n    return 4",
+        "javascript": "const if22 = (x, y) => {\n    if (x > 0 && y > 0) return 1;\n    if (x < 0 && y > 0) return 2;\n    if (x < 0 && y < 0) return 3;\n    return 4;\n};",
+        "java": "public static int if22(double x, double y) {\n    if (x > 0 && y > 0) return 1;\n    if (x < 0 && y > 0) return 2;\n    if (x < 0 && y < 0) return 3;\n    return 4;\n}",
+        "csharp": "public static int If22(double x, double y) {\n    if (x > 0 && y > 0) return 1;\n    if (x < 0 && y > 0) return 2;\n    if (x < 0 && y < 0) return 3;\n    return 4;\n}"
+      }
+    },
+    {
+      "id": "If23",
+      "question": "Координаты трёх вершин прямоугольника со сторонами вдоль осей. Найти четвёртую.",
+      "solutions": {
+        "python": "def if23(x1: int, y1: int, x2: int, y2: int, x3: int, y3: int):\n    x = x1 ^ x2 ^ x3\n    y = y1 ^ y2 ^ y3\n    return x, y",
+        "javascript": "const if23 = (x1, y1, x2, y2, x3, y3) => [x1 ^ x2 ^ x3, y1 ^ y2 ^ y3];",
+        "java": "public static int[] if23(int x1, int y1, int x2, int y2, int x3, int y3) {\n    return new int[]{x1 ^ x2 ^ x3, y1 ^ y2 ^ y3};\n}",
+        "csharp": "public static (int, int) If23(int x1, int y1, int x2, int y2, int x3, int y3) =>\n    (x1 ^ x2 ^ x3, y1 ^ y2 ^ y3);"
+      }
+    },
+    {
+      "id": "If24",
+      "question": "f(x) = 2·sin(x), если x>0; иначе 6 - x.",
+      "solutions": {
+        "python": "import math\ndef if24(x: float) -> float:\n    return 2 * math.sin(x) if x > 0 else 6 - x",
+        "javascript": "const if24 = (x) => x > 0 ? 2 * Math.sin(x) : 6 - x;",
+        "java": "public static double if24(double x) {\n    return x > 0 ? 2 * Math.sin(x) : 6 - x;\n}",
+        "csharp": "public static double If24(double x) => x > 0 ? 2 * Math.Sin(x) : 6 - x;"
+      }
+    },
+    {
+      "id": "If25",
+      "question": "f(x) = 2·x, если |x|>2; иначе -3·x.",
+      "solutions": {
+        "python": "def if25(x: int) -> int:\n    return 2 * x if x < -2 or x > 2 else -3 * x",
+        "javascript": "const if25 = (x) => (x < -2 || x > 2) ? 2 * x : -3 * x;",
+        "java": "public static int if25(int x) {\n    return (x < -2 || x > 2) ? 2 * x : -3 * x;\n}",
+        "csharp": "public static int If25(int x) => (x < -2 || x > 2) ? 2 * x : -3 * x;"
+      }
+    },
+    {
+      "id": "If26",
+      "question": "f(x) = -x при x≤0; x² при 0<x<2; 4 при x≥2.",
+      "solutions": {
+        "python": "def if26(x: float) -> float:\n    if x <= 0: return -x\n    if x < 2: return x * x\n    return 4.0",
+        "javascript": "const if26 = (x) => x <= 0 ? -x : x < 2 ? x * x : 4;",
+        "java": "public static double if26(double x) {\n    if (x <= 0) return -x;\n    if (x < 2) return x * x;\n    return 4;\n}",
+        "csharp": "public static double If26(double x) => x <= 0 ? -x : x < 2 ? x * x : 4;"
+      }
+    },
+    {
+      "id": "If27",
+      "question": "f(x) = 0 при x<0; 1 на чётных целых интервалах [0,1),[2,3)...; -1 на нечётных [1,2),[3,4)...",
+      "solutions": {
+        "python": "import math\ndef if27(x: float) -> int:\n    if x < 0: return 0\n    return 1 if math.floor(x) % 2 == 0 else -1",
+        "javascript": "const if27 = (x) => {\n    if (x < 0) return 0;\n    return Math.floor(x) % 2 === 0 ? 1 : -1;\n};",
+        "java": "public static int if27(double x) {\n    if (x < 0) return 0;\n    return ((int) Math.floor(x)) % 2 == 0 ? 1 : -1;\n}",
+        "csharp": "public static int If27(double x) {\n    if (x < 0) return 0;\n    return ((int) Math.Floor(x)) % 2 == 0 ? 1 : -1;\n}"
+      }
+    },
+    {
+      "id": "If28",
+      "question": "Дан номер года (положительное целое число). Определить количество дней в этом году, учитывая, что обычный год содержит 365 дней, а високосный — 366 дней.",
+      "solutions": {
+        "python": "def if28(y):\n    return 366 if (y % 4 == 0 and y % 100 != 0) or (y % 400 == 0) else 365",
+        "javascript": "const if28 = (y) => ((y % 4 === 0 && y % 100 !== 0) || (y % 400 === 0)) ? 366 : 365;",
+        "java": "public static int if28(int y) {\n    return ((y % 4 == 0 && y % 100 != 0) || (y % 400 == 0)) ? 366 : 365;\n}",
+        "csharp": "public static int If28(int y) => ((y % 4 == 0 && y % 100 != 0) || (y % 400 == 0)) ? 366 : 365;"
+      }
+    },
+    {
+      "id": "If29",
+      "question": "Дано целое число. Вывести строку-описание (знак + чётность).",
+      "solutions": {
+        "python": "def if29(n: int) -> str:\n    if n == 0: return \"нулевое число\"\n    sign = \"положительное\" if n > 0 else \"отрицательное\"\n    parity = \"четное\" if n % 2 == 0 else \"нечетное\"\n    return f\"{sign} {parity} число\"",
+        "javascript": "const if29 = (n) => {\n    if (n === 0) return 'нулевое число';\n    const sign = n > 0 ? 'положительное' : 'отрицательное';\n    const parity = n % 2 === 0 ? 'четное' : 'нечетное';\n    return `${sign} ${parity} число`;\n};",
+        "java": "public static String if29(int n) {\n    if (n == 0) return \"нулевое число\";\n    String sign = n > 0 ? \"положительное\" : \"отрицательное\";\n    String parity = n % 2 == 0 ? \"четное\" : \"нечетное\";\n    return sign + \" \" + parity + \" число\";\n}",
+        "csharp": "public static string If29(int n) {\n    if (n == 0) return \"нулевое число\";\n    string sign = n > 0 ? \"положительное\" : \"отрицательное\";\n    string parity = n % 2 == 0 ? \"четное\" : \"нечетное\";\n    return $\"{sign} {parity} число\";\n}"
+      }
+    },
+    {
+      "id": "If30",
+      "question": "Дано целое число, лежащее в диапазоне 1–999. Вывести его строку-описание вида «четное двузначное число», «нечетное трехзначное число» и т. д.",
+      "solutions": {
+        "python": "def if30(n):\n    p = \"четное\" if n % 2 == 0 else \"нечетное\"\n    if n < 10: r = \"однозначное\"\n    elif n < 100: r = \"двузначное\"\n    else: r = \"трехзначное\"\n    return f\"{p} {r} число\"",
+        "javascript": "const if30 = (n) => {\n    const p = n % 2 === 0 ? 'четное' : 'нечетное';\n    const r = n < 10 ? 'однозначное' : (n < 100 ? 'двузначное' : 'трехзначное');\n    return `${p} ${r} число`;\n};",
+        "java": "public static String if30(int n) {\n    String p = (n % 2 == 0) ? \"четное\" : \"нечетное\";\n    String r = (n < 10) ? \"однозначное\" : (n < 100) ? \"двузначное\" : \"трехзначное\";\n    return p + \" \" + r + \" число\";\n}",
+        "csharp": "public static string If30(int n) {\n    string p = n % 2 == 0 ? \"четное\" : \"нечетное\";\n    string r = n < 10 ? \"однозначное\" : n < 100 ? \"двузначное\" : \"трехзначное\";\n    return $\"{p} {r} число\";\n}"
+      }
+    }
+  ]
+}

@@ -1,0 +1,406 @@
+{
+  "category": "For",
+  "id": "8",
+  "tasks": [
+    {
+      "id": "For1",
+      "question": "Даны K и N (N > 0). Вывести N раз число K.",
+      "solutions": {
+        "python": "def for1(k: int, n: int) -> list:\n    return [k] * n",
+        "javascript": "const for1 = (k, n) => Array(n).fill(k);",
+        "java": "public static int[] for1(int k, int n) {\n    int[] r = new int[n];\n    java.util.Arrays.fill(r, k);\n    return r;\n}",
+        "csharp": "public static int[] For1(int k, int n) => Enumerable.Repeat(k, n).ToArray();"
+      }
+    },
+    {
+      "id": "For2",
+      "question": "Даны A и B (A < B). Вывести все целые от A до B включительно.",
+      "solutions": {
+        "python": "def for2(a: int, b: int) -> list:\n    return list(range(a, b + 1))",
+        "javascript": "const for2 = (a, b) => Array.from({length: b - a + 1}, (_, i) => a + i);",
+        "java": "public static int[] for2(int a, int b) {\n    int[] r = new int[b - a + 1];\n    for (int i = 0; i < r.length; i++) r[i] = a + i;\n    return r;\n}",
+        "csharp": "public static int[] For2(int a, int b) => Enumerable.Range(a, b - a + 1).ToArray();"
+      }
+    },
+    {
+      "id": "For3",
+      "question": "Даны A и B (A < B). Вывести по убыванию целые между A и B (не включая).",
+      "solutions": {
+        "python": "def for3(a: int, b: int) -> list:\n    return list(range(b - 1, a, -1))",
+        "javascript": "const for3 = (a, b) => Array.from({length: b - a - 1}, (_, i) => b - 1 - i);",
+        "java": "public static int[] for3(int a, int b) {\n    int[] r = new int[b - a - 1];\n    for (int i = 0; i < r.length; i++) r[i] = b - 1 - i;\n    return r;\n}",
+        "csharp": "public static int[] For3(int a, int b) => Enumerable.Range(a + 1, b - a - 1).Reverse().ToArray();"
+      }
+    },
+    {
+      "id": "For4",
+      "question": "Цена 1 кг конфет. Вывести стоимость 1..10 кг.",
+      "solutions": {
+        "python": "def for4(price: float) -> list:\n    return [price * i for i in range(1, 11)]",
+        "javascript": "const for4 = (price) => Array.from({length: 10}, (_, i) => price * (i + 1));",
+        "java": "public static double[] for4(double price) {\n    double[] r = new double[10];\n    for (int i = 0; i < 10; i++) r[i] = price * (i + 1);\n    return r;\n}",
+        "csharp": "public static double[] For4(double price) => Enumerable.Range(1, 10).Select(i => price * i).ToArray();"
+      }
+    },
+    {
+      "id": "For5",
+      "question": "Цена 1 кг конфет. Вывести стоимость 0.1..1.0 кг (шаг 0.1).",
+      "solutions": {
+        "python": "def for5(price: float) -> list:\n    return [price * i / 10 for i in range(1, 11)]",
+        "javascript": "const for5 = (price) => Array.from({length: 10}, (_, i) => price * (i + 1) / 10);",
+        "java": "public static double[] for5(double price) {\n    double[] r = new double[10];\n    for (int i = 0; i < 10; i++) r[i] = price * (i + 1) / 10.0;\n    return r;\n}",
+        "csharp": "public static double[] For5(double price) => Enumerable.Range(1, 10).Select(i => price * i / 10.0).ToArray();"
+      }
+    },
+    {
+      "id": "For6",
+      "question": "Цена 1 кг конфет. Вывести стоимость 1.2, 1.4, ..., 2.0 кг.",
+      "solutions": {
+        "python": "def for6(price: float) -> list:\n    return [price * (1.0 + i * 0.2) for i in range(1, 6)]",
+        "javascript": "const for6 = (price) => Array.from({length: 5}, (_, i) => price * (1 + (i + 1) * 0.2));",
+        "java": "public static double[] for6(double price) {\n    double[] r = new double[5];\n    for (int i = 0; i < 5; i++) r[i] = price * (1 + (i + 1) * 0.2);\n    return r;\n}",
+        "csharp": "public static double[] For6(double price) => Enumerable.Range(1, 5).Select(i => price * (1 + i * 0.2)).ToArray();"
+      }
+    },
+    {
+      "id": "For7",
+      "question": "Даны A и B (A < B). Сумма целых от A до B.",
+      "solutions": {
+        "python": "def for7(a: int, b: int) -> int:\n    return (a + b) * (b - a + 1) // 2",
+        "javascript": "const for7 = (a, b) => (a + b) * (b - a + 1) / 2;",
+        "java": "public static long for7(int a, int b) {\n    return (long)(a + b) * (b - a + 1) / 2;\n}",
+        "csharp": "public static long For7(int a, int b) => (long)(a + b) * (b - a + 1) / 2;"
+      }
+    },
+    {
+      "id": "For8",
+      "question": "Даны A и B (A < B). Произведение целых от A до B.",
+      "solutions": {
+        "python": "def for8(a: int, b: int) -> int:\n    result = 1\n    for i in range(a, b + 1):\n        result *= i\n    return result",
+        "javascript": "const for8 = (a, b) => {\n    let r = 1n;\n    for (let i = BigInt(a); i <= BigInt(b); i++) r *= i;\n    return r;\n};",
+        "java": "public static java.math.BigInteger for8(int a, int b) {\n    java.math.BigInteger r = java.math.BigInteger.ONE;\n    for (int i = a; i <= b; i++) r = r.multiply(java.math.BigInteger.valueOf(i));\n    return r;\n}",
+        "csharp": "public static System.Numerics.BigInteger For8(int a, int b) {\n    var r = System.Numerics.BigInteger.One;\n    for (int i = a; i <= b; i++) r *= i;\n    return r;\n}"
+      }
+    },
+    {
+      "id": "For9",
+      "question": "Даны A и B (A < B). Сумма квадратов целых от A до B.",
+      "solutions": {
+        "python": "def for9(a: int, b: int) -> int:\n    return sum(i * i for i in range(a, b + 1))",
+        "javascript": "const for9 = (a, b) => {\n    let s = 0;\n    for (let i = a; i <= b; i++) s += i * i;\n    return s;\n};",
+        "java": "public static long for9(int a, int b) {\n    long s = 0;\n    for (int i = a; i <= b; i++) s += (long) i * i;\n    return s;\n}",
+        "csharp": "public static long For9(int a, int b) {\n    long s = 0;\n    for (int i = a; i <= b; i++) s += (long)i * i;\n    return s;\n}"
+      }
+    },
+    {
+      "id": "For10",
+      "question": "Дано N > 0. Найти сумму 1 + 1/2 + ... + 1/N.",
+      "solutions": {
+        "python": "def for10(n: int) -> float:\n    return sum(1.0 / i for i in range(1, n + 1))",
+        "javascript": "const for10 = (n) => {\n    let s = 0;\n    for (let i = 1; i <= n; i++) s += 1 / i;\n    return s;\n};",
+        "java": "public static double for10(int n) {\n    double s = 0;\n    for (int i = 1; i <= n; i++) s += 1.0 / i;\n    return s;\n}",
+        "csharp": "public static double For10(int n) {\n    double s = 0;\n    for (int i = 1; i <= n; i++) s += 1.0 / i;\n    return s;\n}"
+      }
+    },
+    {
+      "id": "For11",
+      "question": "Дано N > 0. Найти сумму N^2 + (N+1)^2 + ... + (2N)^2.",
+      "solutions": {
+        "python": "def for11(n: int) -> int:\n    return sum(i * i for i in range(n, 2 * n + 1))",
+        "javascript": "const for11 = (n) => {\n    let s = 0;\n    for (let i = n; i <= 2 * n; i++) s += i * i;\n    return s;\n};",
+        "java": "public static long for11(int n) {\n    long s = 0;\n    for (int i = n; i <= 2 * n; i++) s += (long) i * i;\n    return s;\n}",
+        "csharp": "public static long For11(int n) {\n    long s = 0;\n    for (int i = n; i <= 2 * n; i++) s += (long)i * i;\n    return s;\n}"
+      }
+    },
+    {
+      "id": "For12",
+      "question": "Дано N > 0. Найти произведение 1.1 * 1.2 * ... (N сомножителей).",
+      "solutions": {
+        "python": "def for12(n: int) -> float:\n    p = 1.0\n    for i in range(1, n + 1):\n        p *= 1.0 + i / 10.0\n    return p",
+        "javascript": "const for12 = (n) => {\n    let p = 1;\n    for (let i = 1; i <= n; i++) p *= 1 + i / 10;\n    return p;\n};",
+        "java": "public static double for12(int n) {\n    double p = 1;\n    for (int i = 1; i <= n; i++) p *= 1 + i / 10.0;\n    return p;\n}",
+        "csharp": "public static double For12(int n) {\n    double p = 1;\n    for (int i = 1; i <= n; i++) p *= 1 + i / 10.0;\n    return p;\n}"
+      }
+    },
+    {
+      "id": "For13",
+      "question": "Дано N > 0. Найти 1.1 - 1.2 + 1.3 - ... (N слагаемых).",
+      "solutions": {
+        "python": "def for13(n: int) -> float:\n    s = 0.0\n    sign = 1\n    for i in range(1, n + 1):\n        s += sign * (1.0 + i / 10.0)\n        sign = -sign\n    return s",
+        "javascript": "const for13 = (n) => {\n    let s = 0, sign = 1;\n    for (let i = 1; i <= n; i++) {\n        s += sign * (1 + i / 10);\n        sign = -sign;\n    }\n    return s;\n};",
+        "java": "public static double for13(int n) {\n    double s = 0;\n    int sign = 1;\n    for (int i = 1; i <= n; i++) {\n        s += sign * (1 + i / 10.0);\n        sign = -sign;\n    }\n    return s;\n}",
+        "csharp": "public static double For13(int n) {\n    double s = 0;\n    int sign = 1;\n    for (int i = 1; i <= n; i++) {\n        s += sign * (1 + i / 10.0);\n        sign = -sign;\n    }\n    return s;\n}"
+      }
+    },
+    {
+      "id": "For14",
+      "question": "Дано N > 0. Квадрат N через сумму нечётных: 1+3+5+...+(2N-1). Выводить текущую сумму.",
+      "solutions": {
+        "python": "def for14(n: int) -> list:\n    result = []\n    s = 0\n    for i in range(1, n + 1):\n        s += 2 * i - 1\n        result.append(s)\n    return result",
+        "javascript": "const for14 = (n) => {\n    const r = [];\n    let s = 0;\n    for (let i = 1; i <= n; i++) { s += 2 * i - 1; r.push(s); }\n    return r;\n};",
+        "java": "public static int[] for14(int n) {\n    int[] r = new int[n];\n    int s = 0;\n    for (int i = 1; i <= n; i++) { s += 2 * i - 1; r[i - 1] = s; }\n    return r;\n}",
+        "csharp": "public static int[] For14(int n) {\n    var r = new int[n];\n    int s = 0;\n    for (int i = 1; i <= n; i++) { s += 2 * i - 1; r[i - 1] = s; }\n    return r;\n}"
+      }
+    },
+    {
+      "id": "For15",
+      "question": "Даны A и N > 0. Найти A^N.",
+      "solutions": {
+        "python": "def for15(a: float, n: int) -> float:\n    result = 1.0\n    for _ in range(n):\n        result *= a\n    return result",
+        "javascript": "const for15 = (a, n) => {\n    let r = 1;\n    for (let i = 0; i < n; i++) r *= a;\n    return r;\n};",
+        "java": "public static double for15(double a, int n) {\n    double r = 1;\n    for (int i = 0; i < n; i++) r *= a;\n    return r;\n}",
+        "csharp": "public static double For15(double a, int n) {\n    double r = 1;\n    for (int i = 0; i < n; i++) r *= a;\n    return r;\n}"
+      }
+    },
+    {
+      "id": "For16",
+      "question": "Даны A и N > 0. Вывести A^1, A^2, ..., A^N одним циклом.",
+      "solutions": {
+        "python": "def for16(a: float, n: int) -> list:\n    result = []\n    power = 1.0\n    for _ in range(n):\n        power *= a\n        result.append(power)\n    return result",
+        "javascript": "const for16 = (a, n) => {\n    const r = [];\n    let p = 1;\n    for (let i = 0; i < n; i++) {\n        p *= a;\n        r.push(p);\n    }\n    return r;\n};",
+        "java": "public static double[] for16(double a, int n) {\n    double[] r = new double[n];\n    double p = 1;\n    for (int i = 0; i < n; i++) {\n        p *= a;\n        r[i] = p;\n    }\n    return r;\n}",
+        "csharp": "public static double[] For16(double a, int n) {\n    double[] r = new double[n];\n    double p = 1;\n    for (int i = 0; i < n; i++) {\n        p *= a;\n        r[i] = p;\n    }\n    return r;\n}"
+      }
+    },
+    {
+      "id": "For17",
+      "question": "Даны A и N > 0. Найти 1 + A + A^2 + ... + A^N.",
+      "solutions": {
+        "python": "def for17(a: float, n: int) -> float:\n    s = 1.0\n    power = 1.0\n    for _ in range(n):\n        power *= a\n        s += power\n    return s",
+        "javascript": "const for17 = (a, n) => {\n    let s = 1, p = 1;\n    for (let i = 0; i < n; i++) {\n        p *= a;\n        s += p;\n    }\n    return s;\n};",
+        "java": "public static double for17(double a, int n) {\n    double s = 1, p = 1;\n    for (int i = 0; i < n; i++) {\n        p *= a;\n        s += p;\n    }\n    return s;\n}",
+        "csharp": "public static double For17(double a, int n) {\n    double s = 1, p = 1;\n    for (int i = 0; i < n; i++) {\n        p *= a;\n        s += p;\n    }\n    return s;\n}"
+      }
+    },
+    {
+      "id": "For18",
+      "question": "Даны A и N > 0. Найти 1 - A + A^2 - ... + (-1)^N * A^N.",
+      "solutions": {
+        "python": "def for18(a: float, n: int) -> float:\n    s = 1.0\n    power = 1.0\n    for _ in range(n):\n        power *= -a\n        s += power\n    return s",
+        "javascript": "const for18 = (a, n) => {\n    let s = 1, p = 1;\n    for (let i = 0; i < n; i++) {\n        p *= -a;\n        s += p;\n    }\n    return s;\n};",
+        "java": "public static double for18(double a, int n) {\n    double s = 1, p = 1;\n    for (int i = 0; i < n; i++) {\n        p *= -a;\n        s += p;\n    }\n    return s;\n}",
+        "csharp": "public static double For18(double a, int n) {\n    double s = 1, p = 1;\n    for (int i = 0; i < n; i++) {\n        p *= -a;\n        s += p;\n    }\n    return s;\n}"
+      }
+    },
+    {
+      "id": "For19",
+      "question": "Дано N > 0. Найти N! (как вещественное).",
+      "solutions": {
+        "python": "def for19(n: int) -> float:\n    result = 1.0\n    for i in range(2, n + 1):\n        result *= i\n    return result",
+        "javascript": "const for19 = (n) => {\n    let r = 1;\n    for (let i = 2; i <= n; i++) r *= i;\n    return r;\n};",
+        "java": "public static double for19(int n) {\n    double r = 1;\n    for (int i = 2; i <= n; i++) r *= i;\n    return r;\n}",
+        "csharp": "public static double For19(int n) {\n    double r = 1;\n    for (int i = 2; i <= n; i++) r *= i;\n    return r;\n}"
+      }
+    },
+    {
+      "id": "For20",
+      "question": "Дано N > 0. Найти 1! + 2! + ... + N!.",
+      "solutions": {
+        "python": "def for20(n: int) -> float:\n    s = 0.0\n    fact = 1.0\n    for i in range(1, n + 1):\n        fact *= i\n        s += fact\n    return s",
+        "javascript": "const for20 = (n) => {\n    let s = 0, f = 1;\n    for (let i = 1; i <= n; i++) {\n        f *= i;\n        s += f;\n    }\n    return s;\n};",
+        "java": "public static double for20(int n) {\n    double s = 0, f = 1;\n    for (int i = 1; i <= n; i++) {\n        f *= i;\n        s += f;\n    }\n    return s;\n}",
+        "csharp": "public static double For20(int n) {\n    double s = 0, f = 1;\n    for (int i = 1; i <= n; i++) {\n        f *= i;\n        s += f;\n    }\n    return s;\n}"
+      }
+    },
+    {
+      "id": "For21",
+      "question": "Дано N > 0. Найти 1 + 1/1! + 1/2! + ... + 1/N! (приближение e).",
+      "solutions": {
+        "python": "def for21(n: int) -> float:\n    s = 1.0\n    fact = 1.0\n    for i in range(1, n + 1):\n        fact *= i\n        s += 1.0 / fact\n    return s",
+        "javascript": "const for21 = (n) => {\n    let s = 1, f = 1;\n    for (let i = 1; i <= n; i++) {\n        f *= i;\n        s += 1 / f;\n    }\n    return s;\n};",
+        "java": "public static double for21(int n) {\n    double s = 1, f = 1;\n    for (int i = 1; i <= n; i++) {\n        f *= i;\n        s += 1.0 / f;\n    }\n    return s;\n}",
+        "csharp": "public static double For21(int n) {\n    double s = 1, f = 1;\n    for (int i = 1; i <= n; i++) {\n        f *= i;\n        s += 1.0 / f;\n    }\n    return s;\n}"
+      }
+    },
+    {
+      "id": "For22",
+      "question": "Даны X и N > 0. Найти 1 + X + X^2/2! + ... + X^N/N! (приближение exp).",
+      "solutions": {
+        "python": "def for22(x: float, n: int) -> float:\n    s = 1.0\n    term = 1.0\n    for i in range(1, n + 1):\n        term *= x / i\n        s += term\n    return s",
+        "javascript": "const for22 = (x, n) => {\n    let s = 1, t = 1;\n    for (let i = 1; i <= n; i++) {\n        t *= x / i;\n        s += t;\n    }\n    return s;\n};",
+        "java": "public static double for22(double x, int n) {\n    double s = 1, t = 1;\n    for (int i = 1; i <= n; i++) {\n        t *= x / i;\n        s += t;\n    }\n    return s;\n}",
+        "csharp": "public static double For22(double x, int n) {\n    double s = 1, t = 1;\n    for (int i = 1; i <= n; i++) {\n        t *= x / i;\n        s += t;\n    }\n    return s;\n}"
+      }
+    },
+    {
+      "id": "For23",
+      "question": "Приближение sin(x) через ряд Тейлора до N.",
+      "solutions": {
+        "python": "def for23(x: float, n: int) -> float:\n    s = x\n    term = x\n    for k in range(1, n + 1):\n        term *= -x * x / ((2 * k) * (2 * k + 1))\n        s += term\n    return s",
+        "javascript": "const for23 = (x, n) => {\n    let s = x, t = x;\n    for (let k = 1; k <= n; k++) {\n        t *= -x * x / ((2 * k) * (2 * k + 1));\n        s += t;\n    }\n    return s;\n};",
+        "java": "public static double for23(double x, int n) {\n    double s = x, t = x;\n    for (int k = 1; k <= n; k++) {\n        t *= -x * x / ((2 * k) * (2 * k + 1));\n        s += t;\n    }\n    return s;\n}",
+        "csharp": "public static double For23(double x, int n) {\n    double s = x, t = x;\n    for (int k = 1; k <= n; k++) {\n        t *= -x * x / ((2 * k) * (2 * k + 1));\n        s += t;\n    }\n    return s;\n}"
+      }
+    },
+    {
+      "id": "For24",
+      "question": "Приближение cos(x) через ряд Тейлора до N.",
+      "solutions": {
+        "python": "def for24(x: float, n: int) -> float:\n    s = 1.0\n    term = 1.0\n    for k in range(1, n + 1):\n        term *= -x * x / ((2 * k - 1) * (2 * k))\n        s += term\n    return s",
+        "javascript": "const for24 = (x, n) => {\n    let s = 1, t = 1;\n    for (let k = 1; k <= n; k++) {\n        t *= -x * x / ((2 * k - 1) * (2 * k));\n        s += t;\n    }\n    return s;\n};",
+        "java": "public static double for24(double x, int n) {\n    double s = 1, t = 1;\n    for (int k = 1; k <= n; k++) {\n        t *= -x * x / ((2 * k - 1) * (2 * k));\n        s += t;\n    }\n    return s;\n}",
+        "csharp": "public static double For24(double x, int n) {\n    double s = 1, t = 1;\n    for (int k = 1; k <= n; k++) {\n        t *= -x * x / ((2 * k - 1) * (2 * k));\n        s += t;\n    }\n    return s;\n}"
+      }
+    },
+    {
+      "id": "For25",
+      "question": "Приближение ln(1+x) через ряд до N.",
+      "solutions": {
+        "python": "def for25(x: float, n: int) -> float:\n    s = 0.0\n    term = 1.0\n    for k in range(1, n + 1):\n        term *= -x if k > 1 else x\n        s += term / k if k == 1 else 0\n    # cleaner:\n    s = 0.0\n    power = 1.0\n    for k in range(1, n + 1):\n        power *= x\n        s += ((-1) ** (k - 1)) * power / k\n    return s",
+        "javascript": "const for25 = (x, n) => {\n    let s = 0, p = 1;\n    for (let k = 1; k <= n; k++) {\n        p *= x;\n        s += (k % 2 === 1 ? 1 : -1) * p / k;\n    }\n    return s;\n};",
+        "java": "public static double for25(double x, int n) {\n    double s = 0, p = 1;\n    for (int k = 1; k <= n; k++) {\n        p *= x;\n        s += (k % 2 == 1 ? 1 : -1) * p / k;\n    }\n    return s;\n}",
+        "csharp": "public static double For25(double x, int n) {\n    double s = 0, p = 1;\n    for (int k = 1; k <= n; k++) {\n        p *= x;\n        s += (k % 2 == 1 ? 1 : -1) * p / k;\n    }\n    return s;\n}"
+      }
+    },
+    {
+      "id": "For26",
+      "question": "Приближение arctg(x) через ряд: x - x³/3 + x⁵/5 - ...",
+      "solutions": {
+        "python": "def for26(x: float, n: int) -> float:\n    s = 0.0\n    power = x\n    x2 = x * x\n    for k in range(n + 1):\n        s += ((-1) ** k) * power / (2 * k + 1)\n        power *= x2\n    return s",
+        "javascript": "const for26 = (x, n) => {\n    let s = 0, p = x;\n    const x2 = x * x;\n    for (let k = 0; k <= n; k++) {\n        s += (k % 2 === 0 ? 1 : -1) * p / (2 * k + 1);\n        p *= x2;\n    }\n    return s;\n};",
+        "java": "public static double for26(double x, int n) {\n    double s = 0, p = x, x2 = x * x;\n    for (int k = 0; k <= n; k++) {\n        s += (k % 2 == 0 ? 1 : -1) * p / (2 * k + 1);\n        p *= x2;\n    }\n    return s;\n}",
+        "csharp": "public static double For26(double x, int n) {\n    double s = 0, p = x, x2 = x * x;\n    for (int k = 0; k <= n; k++) {\n        s += (k % 2 == 0 ? 1 : -1) * p / (2 * k + 1);\n        p *= x2;\n    }\n    return s;\n}"
+      }
+    },
+    {
+      "id": "For27",
+      "question": "|X|<1, N>0. Приближение arcsin(x).",
+      "solutions": {
+        "python": "def for27(x: float, n: int) -> float:\n    s, num, den, power = x, 1.0, 1.0, x\n    for k in range(1, n + 1):\n        num *= 2 * k - 1\n        den *= 2 * k\n        power *= x * x\n        s += num * power / (den * (2 * k + 1))\n    return s",
+        "javascript": "const for27 = (x, n) => {\n    let s = x, num = 1, den = 1, p = x;\n    for (let k = 1; k <= n; k++) {\n        num *= 2 * k - 1;\n        den *= 2 * k;\n        p *= x * x;\n        s += num * p / (den * (2 * k + 1));\n    }\n    return s;\n};",
+        "java": "public static double for27(double x, int n) {\n    double s = x, num = 1, den = 1, p = x;\n    for (int k = 1; k <= n; k++) {\n        num *= 2 * k - 1;\n        den *= 2 * k;\n        p *= x * x;\n        s += num * p / (den * (2 * k + 1));\n    }\n    return s;\n}",
+        "csharp": "public static double For27(double x, int n) {\n    double s = x, num = 1, den = 1, p = x;\n    for (int k = 1; k <= n; k++) {\n        num *= 2 * k - 1;\n        den *= 2 * k;\n        p *= x * x;\n        s += num * p / (den * (2 * k + 1));\n    }\n    return s;\n}"
+      }
+    },
+    {
+      "id": "For28",
+      "question": "|X|<1, N>0. Приближение √(1+X).",
+      "solutions": {
+        "python": "def for28(x: float, n: int) -> float:\n    s = 1.0 + x / 2\n    term = x / 2\n    for k in range(2, n + 1):\n        term *= -x * (2 * k - 3) / (2 * k)\n        s += term\n    return s",
+        "javascript": "const for28 = (x, n) => {\n    let s = 1 + x / 2, t = x / 2;\n    for (let k = 2; k <= n; k++) {\n        t *= -x * (2 * k - 3) / (2 * k);\n        s += t;\n    }\n    return s;\n};",
+        "java": "public static double for28(double x, int n) {\n    double s = 1 + x / 2, t = x / 2;\n    for (int k = 2; k <= n; k++) {\n        t *= -x * (2 * k - 3) / (2 * k);\n        s += t;\n    }\n    return s;\n}",
+        "csharp": "public static double For28(double x, int n) {\n    double s = 1 + x / 2, t = x / 2;\n    for (int k = 2; k <= n; k++) {\n        t *= -x * (2 * k - 3) / (2 * k);\n        s += t;\n    }\n    return s;\n}"
+      }
+    },
+    {
+      "id": "For29",
+      "question": "Даны N>1, A, B. Вывести H и точки разбиения [A,B] на N равных отрезков.",
+      "solutions": {
+        "python": "def for29(n: int, a: float, b: float):\n    h = (b - a) / n\n    points = [a + i * h for i in range(n + 1)]\n    return h, points",
+        "javascript": "const for29 = (n, a, b) => {\n    const h = (b - a) / n;\n    const points = Array.from({length: n + 1}, (_, i) => a + i * h);\n    return [h, points];\n};",
+        "java": "public static Object[] for29(int n, double a, double b) {\n    double h = (b - a) / n;\n    double[] points = new double[n + 1];\n    for (int i = 0; i <= n; i++) points[i] = a + i * h;\n    return new Object[]{h, points};\n}",
+        "csharp": "public static (double, double[]) For29(int n, double a, double b) {\n    double h = (b - a) / n;\n    var points = new double[n + 1];\n    for (int i = 0; i <= n; i++) points[i] = a + i * h;\n    return (h, points);\n}"
+      }
+    },
+    {
+      "id": "For30",
+      "question": "Даны N>1, A, B. Вывести H и значения F(X)=1-sin(X) в точках разбиения [A,B].",
+      "solutions": {
+        "python": "import math\ndef for30(n: int, a: float, b: float):\n    h = (b - a) / n\n    values = [1 - math.sin(a + i * h) for i in range(n + 1)]\n    return h, values",
+        "javascript": "const for30 = (n, a, b) => {\n    const h = (b - a) / n;\n    const values = Array.from({length: n + 1}, (_, i) => 1 - Math.sin(a + i * h));\n    return [h, values];\n};",
+        "java": "public static Object[] for30(int n, double a, double b) {\n    double h = (b - a) / n;\n    double[] values = new double[n + 1];\n    for (int i = 0; i <= n; i++) values[i] = 1 - Math.sin(a + i * h);\n    return new Object[]{h, values};\n}",
+        "csharp": "public static (double, double[]) For30(int n, double a, double b) {\n    double h = (b - a) / n;\n    var values = new double[n + 1];\n    for (int i = 0; i <= n; i++) values[i] = 1 - Math.Sin(a + i * h);\n    return (h, values);\n}"
+      }
+    },
+    {
+      "id": "For31",
+      "question": "Последовательность: A0=2, Ak=2+1/Ak-1. Вывести A1..AN.",
+      "solutions": {
+        "python": "def for31(n: int) -> list:\n    result = []\n    a = 2.0\n    for _ in range(n):\n        a = 2 + 1 / a\n        result.append(a)\n    return result",
+        "javascript": "const for31 = (n) => {\n    const r = [];\n    let a = 2;\n    for (let i = 0; i < n; i++) { a = 2 + 1 / a; r.push(a); }\n    return r;\n};",
+        "java": "public static double[] for31(int n) {\n    double[] r = new double[n];\n    double a = 2;\n    for (int i = 0; i < n; i++) { a = 2 + 1.0 / a; r[i] = a; }\n    return r;\n}",
+        "csharp": "public static double[] For31(int n) {\n    var r = new double[n];\n    double a = 2;\n    for (int i = 0; i < n; i++) { a = 2 + 1.0 / a; r[i] = a; }\n    return r;\n}"
+      }
+    },
+    {
+      "id": "For32",
+      "question": "A0=1, Ak=(Ak-1+1)/k. Вывести A1..AN.",
+      "solutions": {
+        "python": "def for32(n: int) -> list:\n    result = []\n    a = 1.0\n    for k in range(1, n + 1):\n        a = (a + 1) / k\n        result.append(a)\n    return result",
+        "javascript": "const for32 = (n) => {\n    const r = [];\n    let a = 1;\n    for (let k = 1; k <= n; k++) { a = (a + 1) / k; r.push(a); }\n    return r;\n};",
+        "java": "public static double[] for32(int n) {\n    double[] r = new double[n];\n    double a = 1;\n    for (int k = 1; k <= n; k++) { a = (a + 1) / k; r[k - 1] = a; }\n    return r;\n}",
+        "csharp": "public static double[] For32(int n) {\n    var r = new double[n];\n    double a = 1;\n    for (int k = 1; k <= n; k++) { a = (a + 1) / k; r[k - 1] = a; }\n    return r;\n}"
+      }
+    },
+    {
+      "id": "For33",
+      "question": "Дано N>1. Вывести первые N чисел Фибоначчи.",
+      "solutions": {
+        "python": "def for33(n: int) -> list:\n    fib = [1, 1]\n    for i in range(2, n):\n        fib.append(fib[-1] + fib[-2])\n    return fib[:n]",
+        "javascript": "const for33 = (n) => {\n    const fib = [1, 1];\n    for (let i = 2; i < n; i++) fib.push(fib[i - 1] + fib[i - 2]);\n    return fib.slice(0, n);\n};",
+        "java": "public static long[] for33(int n) {\n    long[] fib = new long[n];\n    fib[0] = 1;\n    if (n > 1) fib[1] = 1;\n    for (int i = 2; i < n; i++) fib[i] = fib[i - 1] + fib[i - 2];\n    return fib;\n}",
+        "csharp": "public static long[] For33(int n) {\n    var fib = new long[n];\n    fib[0] = 1;\n    if (n > 1) fib[1] = 1;\n    for (int i = 2; i < n; i++) fib[i] = fib[i - 1] + fib[i - 2];\n    return fib;\n}"
+      }
+    },
+    {
+      "id": "For34",
+      "question": "A1=1, A2=2, Ak=(Ak-2+2·Ak-1)/3. Вывести A1..AN.",
+      "solutions": {
+        "python": "def for34(n: int) -> list:\n    if n == 1: return [1.0]\n    if n == 2: return [1.0, 2.0]\n    result = [1.0, 2.0]\n    for _ in range(3, n + 1):\n        result.append((result[-2] + 2 * result[-1]) / 3)\n    return result",
+        "javascript": "const for34 = (n) => {\n    const r = [1, 2];\n    for (let k = 3; k <= n; k++) r.push((r[k - 3] + 2 * r[k - 2]) / 3);\n    return r.slice(0, n);\n};",
+        "java": "public static double[] for34(int n) {\n    double[] r = new double[n];\n    r[0] = 1;\n    if (n > 1) r[1] = 2;\n    for (int k = 2; k < n; k++) r[k] = (r[k - 2] + 2 * r[k - 1]) / 3;\n    return r;\n}",
+        "csharp": "public static double[] For34(int n) {\n    var r = new double[n];\n    r[0] = 1;\n    if (n > 1) r[1] = 2;\n    for (int k = 2; k < n; k++) r[k] = (r[k - 2] + 2 * r[k - 1]) / 3;\n    return r;\n}"
+      }
+    },
+    {
+      "id": "For35",
+      "question": "A1=1, A2=2, A3=3, Ak=Ak-1+Ak-2-2·Ak-3. Вывести A1..AN.",
+      "solutions": {
+        "python": "def for35(n: int) -> list:\n    r = [1, 2, 3]\n    for k in range(4, n + 1):\n        r.append(r[-1] + r[-2] - 2 * r[-3])\n    return r[:n]",
+        "javascript": "const for35 = (n) => {\n    const r = [1, 2, 3];\n    for (let k = 4; k <= n; k++) r.push(r[k - 2] + r[k - 3] - 2 * r[k - 4]);\n    return r.slice(0, n);\n};",
+        "java": "public static long[] for35(int n) {\n    long[] r = new long[n];\n    long[] init = {1, 2, 3};\n    for (int i = 0; i < Math.min(3, n); i++) r[i] = init[i];\n    for (int k = 3; k < n; k++) r[k] = r[k - 1] + r[k - 2] - 2 * r[k - 3];\n    return r;\n}",
+        "csharp": "public static long[] For35(int n) {\n    var r = new long[n];\n    long[] init = {1, 2, 3};\n    for (int i = 0; i < Math.Min(3, n); i++) r[i] = init[i];\n    for (int k = 3; k < n; k++) r[k] = r[k - 1] + r[k - 2] - 2 * r[k - 3];\n    return r;\n}"
+      }
+    },
+    {
+      "id": "For36",
+      "question": "Даны N, K > 0. Найти 1^K + 2^K + ... + N^K.",
+      "solutions": {
+        "python": "def for36(n: int, k: int) -> float:\n    return float(sum(i ** k for i in range(1, n + 1)))",
+        "javascript": "const for36 = (n, k) => {\n    let s = 0;\n    for (let i = 1; i <= n; i++) s += Math.pow(i, k);\n    return s;\n};",
+        "java": "public static double for36(int n, int k) {\n    double s = 0;\n    for (int i = 1; i <= n; i++) s += Math.pow(i, k);\n    return s;\n}",
+        "csharp": "public static double For36(int n, int k) {\n    double s = 0;\n    for (int i = 1; i <= n; i++) s += Math.Pow(i, k);\n    return s;\n}"
+      }
+    },
+    {
+      "id": "For37",
+      "question": "Дано N. Найти 1¹ + 2² + ... + NⁿN.",
+      "solutions": {
+        "python": "def for37(n: int) -> float:\n    return float(sum(i ** i for i in range(1, n + 1)))",
+        "javascript": "const for37 = (n) => {\n    let s = 0;\n    for (let i = 1; i <= n; i++) s += Math.pow(i, i);\n    return s;\n};",
+        "java": "public static double for37(int n) {\n    double s = 0;\n    for (int i = 1; i <= n; i++) s += Math.pow(i, i);\n    return s;\n}",
+        "csharp": "public static double For37(int n) {\n    double s = 0;\n    for (int i = 1; i <= n; i++) s += Math.Pow(i, i);\n    return s;\n}"
+      }
+    },
+    {
+      "id": "For38",
+      "question": "Дано N. Найти 1ⁿ + 2ⁿ⁻¹ + ... + Nⁿ¹.",
+      "solutions": {
+        "python": "def for38(n: int) -> float:\n    return float(sum(i ** (n - i + 1) for i in range(1, n + 1)))",
+        "javascript": "const for38 = (n) => {\n    let s = 0;\n    for (let i = 1; i <= n; i++) s += Math.pow(i, n - i + 1);\n    return s;\n};",
+        "java": "public static double for38(int n) {\n    double s = 0;\n    for (int i = 1; i <= n; i++) s += Math.pow(i, n - i + 1);\n    return s;\n}",
+        "csharp": "public static double For38(int n) {\n    double s = 0;\n    for (int i = 1; i <= n; i++) s += Math.Pow(i, n - i + 1);\n    return s;\n}"
+      }
+    },
+    {
+      "id": "For39",
+      "question": "Даны A, B (A < B). Вывести все целые от A до B, каждое число по его значению раз.",
+      "solutions": {
+        "python": "def for39(a: int, b: int) -> list:\n    return [i for i in range(a, b + 1) for _ in range(i)]",
+        "javascript": "const for39 = (a, b) => {\n    const r = [];\n    for (let i = a; i <= b; i++)\n        for (let j = 0; j < i; j++) r.push(i);\n    return r;\n};",
+        "java": "public static java.util.List<Integer> for39(int a, int b) {\n    var r = new java.util.ArrayList<Integer>();\n    for (int i = a; i <= b; i++)\n        for (int j = 0; j < i; j++) r.add(i);\n    return r;\n}",
+        "csharp": "public static List<int> For39(int a, int b) {\n    var r = new List<int>();\n    for (int i = a; i <= b; i++)\n        for (int j = 0; j < i; j++) r.Add(i);\n    return r;\n}"
+      }
+    },
+    {
+      "id": "For40",
+      "question": "Даны A, B (A<B). Число A — 1 раз, A+1 — 2 раза и т.д.",
+      "solutions": {
+        "python": "def for40(a: int, b: int) -> list:\n    return [a + k for k in range(b - a + 1) for _ in range(k + 1)]",
+        "javascript": "const for40 = (a, b) => {\n    const r = [];\n    for (let k = 0; k <= b - a; k++)\n        for (let j = 0; j <= k; j++) r.push(a + k);\n    return r;\n};",
+        "java": "public static java.util.List<Integer> for40(int a, int b) {\n    var r = new java.util.ArrayList<Integer>();\n    for (int k = 0; k <= b - a; k++)\n        for (int j = 0; j <= k; j++) r.add(a + k);\n    return r;\n}",
+        "csharp": "public static List<int> For40(int a, int b) {\n    var r = new List<int>();\n    for (int k = 0; k <= b - a; k++)\n        for (int j = 0; j <= k; j++) r.Add(a + k);\n    return r;\n}"
+      }
+    }
+  ]
+}

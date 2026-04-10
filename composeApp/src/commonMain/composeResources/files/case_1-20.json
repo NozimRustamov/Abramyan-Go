@@ -1,0 +1,206 @@
+{
+  "category": "Case",
+  "id": "7",
+  "tasks": [
+    {
+      "id": "Case1",
+      "question": "Дано целое число в диапазоне 1–7. Вывести название дня недели.",
+      "solutions": {
+        "python": "def case1(n: int) -> str:\n    days = [\"понедельник\",\"вторник\",\"среда\",\"четверг\",\"пятница\",\"суббота\",\"воскресенье\"]\n    return days[n - 1]",
+        "javascript": "const case1 = (n) => {\n    const days = ['понедельник','вторник','среда','четверг','пятница','суббота','воскресенье'];\n    return days[n - 1];\n};",
+        "java": "public static String case1(int n) {\n    String[] days = {\"понедельник\",\"вторник\",\"среда\",\"четверг\",\"пятница\",\"суббота\",\"воскресенье\"};\n    return days[n - 1];\n}",
+        "csharp": "public static string Case1(int n) {\n    var days = new[] {\"понедельник\",\"вторник\",\"среда\",\"четверг\",\"пятница\",\"суббота\",\"воскресенье\"};\n    return days[n - 1];\n}"
+      }
+    },
+    {
+      "id": "Case2",
+      "question": "Дано целое число K. Вывести строку-описание оценки (1–плохо, 2–неуд, 3–удовл, 4–хорошо, 5–отлично). Иначе «ошибка».",
+      "solutions": {
+        "python": "def case2(k: int) -> str:\n    marks = {1:\"плохо\",2:\"неудовлетворительно\",3:\"удовлетворительно\",4:\"хорошо\",5:\"отлично\"}\n    return marks.get(k, \"ошибка\")",
+        "javascript": "const case2 = (k) => {\n    const marks = {1:'плохо',2:'неудовлетворительно',3:'удовлетворительно',4:'хорошо',5:'отлично'};\n    return marks[k] ?? 'ошибка';\n};",
+        "java": "public static String case2(int k) {\n    switch (k) {\n        case 1: return \"плохо\";\n        case 2: return \"неудовлетворительно\";\n        case 3: return \"удовлетворительно\";\n        case 4: return \"хорошо\";\n        case 5: return \"отлично\";\n        default: return \"ошибка\";\n    }\n}",
+        "csharp": "public static string Case2(int k) => k switch {\n    1 => \"плохо\",\n    2 => \"неудовлетворительно\",\n    3 => \"удовлетворительно\",\n    4 => \"хорошо\",\n    5 => \"отлично\",\n    _ => \"ошибка\"\n};"
+      }
+    },
+    {
+      "id": "Case3",
+      "question": "Дан номер месяца (1–12). Вывести название времени года.",
+      "solutions": {
+        "python": "def case3(m: int) -> str:\n    if m in (12, 1, 2): return \"зима\"\n    if m in (3, 4, 5): return \"весна\"\n    if m in (6, 7, 8): return \"лето\"\n    return \"осень\"",
+        "javascript": "const case3 = (m) => {\n    if ([12,1,2].includes(m)) return 'зима';\n    if ([3,4,5].includes(m)) return 'весна';\n    if ([6,7,8].includes(m)) return 'лето';\n    return 'осень';\n};",
+        "java": "public static String case3(int m) {\n    if (m == 12 || m == 1 || m == 2) return \"зима\";\n    if (m >= 3 && m <= 5) return \"весна\";\n    if (m >= 6 && m <= 8) return \"лето\";\n    return \"осень\";\n}",
+        "csharp": "public static string Case3(int m) => m switch {\n    12 or 1 or 2 => \"зима\",\n    >= 3 and <= 5 => \"весна\",\n    >= 6 and <= 8 => \"лето\",\n    _ => \"осень\"\n};"
+      }
+    },
+    {
+      "id": "Case4",
+      "question": "Дан номер месяца (1–12). Определить количество дней в нём для невисокосного года.",
+      "solutions": {
+        "python": "def case4(m: int) -> int:\n    days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]\n    return days[m - 1]",
+        "javascript": "const case4 = (m) => {\n    const days = [31,28,31,30,31,30,31,31,30,31,30,31];\n    return days[m - 1];\n};",
+        "java": "public static int case4(int m) {\n    int[] days = {31,28,31,30,31,30,31,31,30,31,30,31};\n    return days[m - 1];\n}",
+        "csharp": "public static int Case4(int m) {\n    int[] days = {31,28,31,30,31,30,31,31,30,31,30,31};\n    return days[m - 1];\n}"
+      }
+    },
+    {
+      "id": "Case5",
+      "question": "1–сложение, 2–вычитание, 3–умножение, 4–деление. Выполнить над A и B.",
+      "solutions": {
+        "python": "def case5(n: int, a: float, b: float) -> float:\n    ops = {1: a + b, 2: a - b, 3: a * b, 4: a / b}\n    return ops[n]",
+        "javascript": "const case5 = (n, a, b) => {\n    switch (n) {\n        case 1: return a + b;\n        case 2: return a - b;\n        case 3: return a * b;\n        case 4: return a / b;\n    }\n};",
+        "java": "public static double case5(int n, double a, double b) {\n    switch (n) {\n        case 1: return a + b;\n        case 2: return a - b;\n        case 3: return a * b;\n        case 4: return a / b;\n        default: throw new IllegalArgumentException();\n    }\n}",
+        "csharp": "public static double Case5(int n, double a, double b) => n switch {\n    1 => a + b,\n    2 => a - b,\n    3 => a * b,\n    4 => a / b,\n    _ => throw new ArgumentException()\n};"
+      }
+    },
+    {
+      "id": "Case6",
+      "question": "1–дм, 2–км, 3–м, 4–мм, 5–см. Перевести длину в метры.",
+      "solutions": {
+        "python": "def case6(n: int, x: float) -> float:\n    factors = {1: 0.1, 2: 1000.0, 3: 1.0, 4: 0.001, 5: 0.01}\n    return x * factors[n]",
+        "javascript": "const case6 = (n, x) => {\n    const f = {1: 0.1, 2: 1000, 3: 1, 4: 0.001, 5: 0.01};\n    return x * f[n];\n};",
+        "java": "public static double case6(int n, double x) {\n    double[] f = {0.1, 1000, 1, 0.001, 0.01};\n    return x * f[n - 1];\n}",
+        "csharp": "public static double Case6(int n, double x) {\n    double[] f = {0.1, 1000, 1, 0.001, 0.01};\n    return x * f[n - 1];\n}"
+      }
+    },
+    {
+      "id": "Case7",
+      "question": "1–кг, 2–мг, 3–г, 4–тонна, 5–центнер. Перевести в кг.",
+      "solutions": {
+        "python": "def case7(n: int, x: float) -> float:\n    factors = {1: 1.0, 2: 1e-6, 3: 1e-3, 4: 1000.0, 5: 100.0}\n    return x * factors[n]",
+        "javascript": "const case7 = (n, x) => {\n    const f = {1: 1, 2: 1e-6, 3: 1e-3, 4: 1000, 5: 100};\n    return x * f[n];\n};",
+        "java": "public static double case7(int n, double x) {\n    double[] f = {1, 1e-6, 1e-3, 1000, 100};\n    return x * f[n - 1];\n}",
+        "csharp": "public static double Case7(int n, double x) {\n    double[] f = {1, 1e-6, 1e-3, 1000, 100};\n    return x * f[n - 1];\n}"
+      }
+    },
+    {
+      "id": "Case8",
+      "question": "Даны D и M — правильная дата невисокосного года. Вывести предыдущую дату.",
+      "solutions": {
+        "python": "def case8(d: int, m: int):\n    days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]\n    if d > 1:\n        return d - 1, m\n    new_m = 12 if m == 1 else m - 1\n    return days[new_m - 1], new_m",
+        "javascript": "const case8 = (d, m) => {\n    const days = [31,28,31,30,31,30,31,31,30,31,30,31];\n    if (d > 1) return [d - 1, m];\n    const nm = m === 1 ? 12 : m - 1;\n    return [days[nm - 1], nm];\n};",
+        "java": "public static int[] case8(int d, int m) {\n    int[] days = {31,28,31,30,31,30,31,31,30,31,30,31};\n    if (d > 1) return new int[]{d - 1, m};\n    int nm = (m == 1) ? 12 : m - 1;\n    return new int[]{days[nm - 1], nm};\n}",
+        "csharp": "public static (int, int) Case8(int d, int m) {\n    int[] days = {31,28,31,30,31,30,31,31,30,31,30,31};\n    if (d > 1) return (d - 1, m);\n    int nm = m == 1 ? 12 : m - 1;\n    return (days[nm - 1], nm);\n}"
+      }
+    },
+    {
+      "id": "Case9",
+      "question": "Даны D и M — правильная дата невисокосного года. Вывести следующую дату.",
+      "solutions": {
+        "python": "def case9(d: int, m: int):\n    days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]\n    if d < days[m - 1]:\n        return d + 1, m\n    return 1, 1 if m == 12 else m + 1",
+        "javascript": "const case9 = (d, m) => {\n    const days = [31,28,31,30,31,30,31,31,30,31,30,31];\n    if (d < days[m - 1]) return [d + 1, m];\n    return [1, m === 12 ? 1 : m + 1];\n};",
+        "java": "public static int[] case9(int d, int m) {\n    int[] days = {31,28,31,30,31,30,31,31,30,31,30,31};\n    if (d < days[m - 1]) return new int[]{d + 1, m};\n    return new int[]{1, m == 12 ? 1 : m + 1};\n}",
+        "csharp": "public static (int, int) Case9(int d, int m) {\n    int[] days = {31,28,31,30,31,30,31,31,30,31,30,31};\n    if (d < days[m - 1]) return (d + 1, m);\n    return (1, m == 12 ? 1 : m + 1);\n}"
+      }
+    },
+    {
+      "id": "Case10",
+      "question": "Робот: направления С/З/Ю/В, команды 0/1/-1. Вывести новое направление.",
+      "solutions": {
+        "python": "def case10(c: str, n: int) -> str:\n    dirs = [\"С\", \"З\", \"Ю\", \"В\"]\n    i = dirs.index(c)\n    return dirs[(i + n) % 4]",
+        "javascript": "const case10 = (c, n) => {\n    const dirs = ['С','З','Ю','В'];\n    const i = dirs.indexOf(c);\n    return dirs[((i + n) % 4 + 4) % 4];\n};",
+        "java": "public static String case10(String c, int n) {\n    String[] dirs = {\"С\",\"З\",\"Ю\",\"В\"};\n    int i = java.util.Arrays.asList(dirs).indexOf(c);\n    return dirs[((i + n) % 4 + 4) % 4];\n}",
+        "csharp": "public static string Case10(string c, int n) {\n    var dirs = new[] {\"С\",\"З\",\"Ю\",\"В\"};\n    int i = Array.IndexOf(dirs, c);\n    return dirs[((i + n) % 4 + 4) % 4];\n}"
+      }
+    },
+    {
+      "id": "Case11",
+      "question": "Локатор С/З/Ю/В, команды 1/-1/2. Две команды — вывести ориентацию.",
+      "solutions": {
+        "python": "def case11(c: str, n1: int, n2: int) -> str:\n    dirs = [\"С\", \"З\", \"Ю\", \"В\"]\n    i = (dirs.index(c) + n1 + n2) % 4\n    return dirs[i]",
+        "javascript": "const case11 = (c, n1, n2) => {\n    const dirs = ['С','З','Ю','В'];\n    const i = ((dirs.indexOf(c) + n1 + n2) % 4 + 4) % 4;\n    return dirs[i];\n};",
+        "java": "public static String case11(String c, int n1, int n2) {\n    String[] dirs = {\"С\",\"З\",\"Ю\",\"В\"};\n    int i = java.util.Arrays.asList(dirs).indexOf(c);\n    return dirs[((i + n1 + n2) % 4 + 4) % 4];\n}",
+        "csharp": "public static string Case11(string c, int n1, int n2) {\n    var dirs = new[] {\"С\",\"З\",\"Ю\",\"В\"};\n    int i = Array.IndexOf(dirs, c);\n    return dirs[((i + n1 + n2) % 4 + 4) % 4];\n}"
+      }
+    },
+    {
+      "id": "Case12",
+      "question": "Окружность: 1–R, 2–D, 3–L, 4–S. По номеру и значению вывести остальные.",
+      "solutions": {
+        "python": "import math\ndef case12(n: int, v: float):\n    PI = 3.14\n    if n == 1: r = v\n    elif n == 2: r = v / 2\n    elif n == 3: r = v / (2 * PI)\n    else: r = math.sqrt(v / PI)\n    return r, 2 * r, 2 * PI * r, PI * r * r",
+        "javascript": "const case12 = (n, v) => {\n    const PI = 3.14;\n    let r;\n    if (n === 1) r = v;\n    else if (n === 2) r = v / 2;\n    else if (n === 3) r = v / (2 * PI);\n    else r = Math.sqrt(v / PI);\n    return [r, 2 * r, 2 * PI * r, PI * r * r];\n};",
+        "java": "public static double[] case12(int n, double v) {\n    final double PI = 3.14;\n    double r;\n    switch (n) {\n        case 1: r = v; break;\n        case 2: r = v / 2; break;\n        case 3: r = v / (2 * PI); break;\n        default: r = Math.sqrt(v / PI);\n    }\n    return new double[]{r, 2 * r, 2 * PI * r, PI * r * r};\n}",
+        "csharp": "public static (double, double, double, double) Case12(int n, double v) {\n    const double PI = 3.14;\n    double r = n switch {\n        1 => v,\n        2 => v / 2,\n        3 => v / (2 * PI),\n        _ => Math.Sqrt(v / PI)\n    };\n    return (r, 2 * r, 2 * PI * r, PI * r * r);\n}"
+      }
+    },
+    {
+      "id": "Case13",
+      "question": "Равнобедренный прямоугольный треугольник: 1–катет a, 2–гипотенуза c=a√2, 3–высота h=c/2, 4–площадь S=c·h/2. По номеру и значению вывести остальные.",
+      "solutions": {
+        "python": "import math\ndef case13(n: int, v: float):\n    if n == 1: a = v\n    elif n == 2: a = v / math.sqrt(2)\n    elif n == 3: a = v * math.sqrt(2)\n    else: a = math.sqrt(2 * v)\n    c = a * math.sqrt(2)\n    h = c / 2\n    s = c * h / 2\n    return a, c, h, s",
+        "javascript": "const case13 = (n, v) => {\n    const S2 = Math.sqrt(2);\n    let a;\n    if (n === 1) a = v;\n    else if (n === 2) a = v / S2;\n    else if (n === 3) a = v * S2;\n    else a = Math.sqrt(2 * v);\n    const c = a * S2, h = c / 2, s = c * h / 2;\n    return [a, c, h, s];\n};",
+        "java": "public static double[] case13(int n, double v) {\n    double s2 = Math.sqrt(2);\n    double a;\n    switch (n) {\n        case 1: a = v; break;\n        case 2: a = v / s2; break;\n        case 3: a = v * s2; break;\n        default: a = Math.sqrt(2 * v);\n    }\n    double c = a * s2, h = c / 2, s = c * h / 2;\n    return new double[]{a, c, h, s};\n}",
+        "csharp": "public static (double, double, double, double) Case13(int n, double v) {\n    double s2 = Math.Sqrt(2);\n    double a = n switch {\n        1 => v,\n        2 => v / s2,\n        3 => v * s2,\n        _ => Math.Sqrt(2 * v)\n    };\n    double c = a * s2, h = c / 2, s = c * h / 2;\n    return (a, c, h, s);\n}"
+      }
+    },
+    {
+      "id": "Case14",
+      "question": "Равносторонний треугольник: 1–a, 2–R1=a√3/6, 3–R2=2R1, 4–S=a²√3/4. По номеру и значению вывести остальные.",
+      "solutions": {
+        "python": "import math\ndef case14(n: int, v: float):\n    sqrt3 = math.sqrt(3)\n    if n == 1: a = v\n    elif n == 2: a = v * 6 / sqrt3\n    elif n == 3: a = v * 3 / sqrt3\n    else: a = math.sqrt(v * 4 / sqrt3)\n    r1 = a * sqrt3 / 6\n    r2 = 2 * r1\n    s = a * a * sqrt3 / 4\n    return a, r1, r2, s",
+        "javascript": "const case14 = (n, v) => {\n    const s3 = Math.sqrt(3);\n    let a;\n    if (n === 1) a = v;\n    else if (n === 2) a = v * 6 / s3;\n    else if (n === 3) a = v * 3 / s3;\n    else a = Math.sqrt(v * 4 / s3);\n    const r1 = a * s3 / 6, r2 = 2 * r1, s = a * a * s3 / 4;\n    return [a, r1, r2, s];\n};",
+        "java": "public static double[] case14(int n, double v) {\n    double s3 = Math.sqrt(3);\n    double a;\n    switch (n) {\n        case 1: a = v; break;\n        case 2: a = v * 6 / s3; break;\n        case 3: a = v * 3 / s3; break;\n        default: a = Math.sqrt(v * 4 / s3);\n    }\n    double r1 = a * s3 / 6, r2 = 2 * r1, s = a * a * s3 / 4;\n    return new double[]{a, r1, r2, s};\n}",
+        "csharp": "public static (double, double, double, double) Case14(int n, double v) {\n    double s3 = Math.Sqrt(3);\n    double a = n switch {\n        1 => v,\n        2 => v * 6 / s3,\n        3 => v * 3 / s3,\n        _ => Math.Sqrt(v * 4 / s3)\n    };\n    double r1 = a * s3 / 6, r2 = 2 * r1, s = a * a * s3 / 4;\n    return (a, r1, r2, s);\n}"
+      }
+    },
+    {
+      "id": "Case15",
+      "question": "Карты: масти 1–пики, 2–трефы, 3–бубны, 4–червы. Старшие: 11–валет, 12–дама, 13–король, 14–туз. По N (6–14) и M (1–4) вернуть название карты.",
+      "solutions": {
+        "python": "def case15(n: int, m: int) -> str:\n    ranks = {6:\"шестерка\",7:\"семерка\",8:\"восьмерка\",9:\"девятка\",10:\"десятка\",\n             11:\"валет\",12:\"дама\",13:\"король\",14:\"туз\"}\n    suits = {1:\"пик\",2:\"треф\",3:\"бубен\",4:\"червей\"}\n    return f\"{ranks[n]} {suits[m]}\"",
+        "javascript": "const case15 = (n, m) => {\n    const ranks = {6:'шестерка',7:'семерка',8:'восьмерка',9:'девятка',10:'десятка',\n                   11:'валет',12:'дама',13:'король',14:'туз'};\n    const suits = {1:'пик',2:'треф',3:'бубен',4:'червей'};\n    return `${ranks[n]} ${suits[m]}`;\n};",
+        "java": "public static String case15(int n, int m) {\n    String[] ranks = {\"шестерка\",\"семерка\",\"восьмерка\",\"девятка\",\"десятка\",\"валет\",\"дама\",\"король\",\"туз\"};\n    String[] suits = {\"пик\",\"треф\",\"бубен\",\"червей\"};\n    return ranks[n - 6] + \" \" + suits[m - 1];\n}",
+        "csharp": "public static string Case15(int n, int m) {\n    var ranks = new[] {\"шестерка\",\"семерка\",\"восьмерка\",\"девятка\",\"десятка\",\"валет\",\"дама\",\"король\",\"туз\"};\n    var suits = new[] {\"пик\",\"треф\",\"бубен\",\"червей\"};\n    return $\"{ranks[n - 6]} {suits[m - 1]}\";\n}"
+      }
+    },
+    {
+      "id": "Case16",
+      "question": "Возраст в диапазоне 20–69. Вывести строку с правильным согласованием со словом «год».",
+      "solutions": {
+        "python": "def case16(n: int) -> str:\n    tens = [\"\",\"\",\"двадцать\",\"тридцать\",\"сорок\",\"пятьдесят\",\"шестьдесят\"]\n    units = [\"\",\"один\",\"два\",\"три\",\"четыре\",\"пять\",\"шесть\",\"семь\",\"восемь\",\"девять\"]\n    t, u = n // 10, n % 10\n    word = \"лет\"\n    if u == 1: word = \"год\"\n    elif 2 <= u <= 4: word = \"года\"\n    if u == 0:\n        return f\"{tens[t]} {word}\"\n    return f\"{tens[t]} {units[u]} {word}\"",
+        "javascript": "const case16 = (n) => {\n    const tens = ['','','двадцать','тридцать','сорок','пятьдесят','шестьдесят'];\n    const units = ['','один','два','три','четыре','пять','шесть','семь','восемь','девять'];\n    const t = Math.floor(n / 10), u = n % 10;\n    let word = 'лет';\n    if (u === 1) word = 'год';\n    else if (u >= 2 && u <= 4) word = 'года';\n    return u === 0 ? `${tens[t]} ${word}` : `${tens[t]} ${units[u]} ${word}`;\n};",
+        "java": "public static String case16(int n) {\n    String[] tens = {\"\",\"\",\"двадцать\",\"тридцать\",\"сорок\",\"пятьдесят\",\"шестьдесят\"};\n    String[] units = {\"\",\"один\",\"два\",\"три\",\"четыре\",\"пять\",\"шесть\",\"семь\",\"восемь\",\"девять\"};\n    int t = n / 10, u = n % 10;\n    String word = \"лет\";\n    if (u == 1) word = \"год\";\n    else if (u >= 2 && u <= 4) word = \"года\";\n    return u == 0 ? tens[t] + \" \" + word : tens[t] + \" \" + units[u] + \" \" + word;\n}",
+        "csharp": "public static string Case16(int n) {\n    var tens = new[] {\"\",\"\",\"двадцать\",\"тридцать\",\"сорок\",\"пятьдесят\",\"шестьдесят\"};\n    var units = new[] {\"\",\"один\",\"два\",\"три\",\"четыре\",\"пять\",\"шесть\",\"семь\",\"восемь\",\"девять\"};\n    int t = n / 10, u = n % 10;\n    string word = u == 1 ? \"год\" : (u >= 2 && u <= 4 ? \"года\" : \"лет\");\n    return u == 0 ? $\"{tens[t]} {word}\" : $\"{tens[t]} {units[u]} {word}\";\n}"
+      }
+    },
+    {
+      "id": "Case17",
+      "question": "Количество заданий 10–40. Правильное согласование со словами «учебное задание».",
+      "solutions": {
+        "python": "def case17(n: int) -> str:\n    u = n % 10\n    if 11 <= n <= 14:\n        return f\"{n} учебных заданий\"\n    if u == 1: return f\"{n} учебное задание\"\n    if 2 <= u <= 4: return f\"{n} учебных задания\"\n    return f\"{n} учебных заданий\"",
+        "javascript": "const case17 = (n) => {\n    const u = n % 10;\n    if (n >= 11 && n <= 14) return `${n} учебных заданий`;\n    if (u === 1) return `${n} учебное задание`;\n    if (u >= 2 && u <= 4) return `${n} учебных задания`;\n    return `${n} учебных заданий`;\n};",
+        "java": "public static String case17(int n) {\n    int u = n % 10;\n    if (n >= 11 && n <= 14) return n + \" учебных заданий\";\n    if (u == 1) return n + \" учебное задание\";\n    if (u >= 2 && u <= 4) return n + \" учебных задания\";\n    return n + \" учебных заданий\";\n}",
+        "csharp": "public static string Case17(int n) {\n    int u = n % 10;\n    if (n >= 11 && n <= 14) return $\"{n} учебных заданий\";\n    if (u == 1) return $\"{n} учебное задание\";\n    if (u >= 2 && u <= 4) return $\"{n} учебных задания\";\n    return $\"{n} учебных заданий\";\n}"
+      }
+    },
+    {
+      "id": "Case18",
+      "question": "Число 100–999. Вывести его прописью.",
+      "solutions": {
+        "python": "def case18(n: int) -> str:\n    hundreds = [\"\",\"сто\",\"двести\",\"триста\",\"четыреста\",\"пятьсот\",\"шестьсот\",\"семьсот\",\"восемьсот\",\"девятьсот\"]\n    teens = [\"десять\",\"одиннадцать\",\"двенадцать\",\"тринадцать\",\"четырнадцать\",\"пятнадцать\",\"шестнадцать\",\"семнадцать\",\"восемнадцать\",\"девятнадцать\"]\n    tens = [\"\",\"\",\"двадцать\",\"тридцать\",\"сорок\",\"пятьдесят\",\"шестьдесят\",\"семьдесят\",\"восемьдесят\",\"девяносто\"]\n    units = [\"\",\"один\",\"два\",\"три\",\"четыре\",\"пять\",\"шесть\",\"семь\",\"восемь\",\"девять\"]\n    h, rest = n // 100, n % 100\n    parts = [hundreds[h]]\n    if 10 <= rest <= 19:\n        parts.append(teens[rest - 10])\n    else:\n        t, u = rest // 10, rest % 10\n        if tens[t]: parts.append(tens[t])\n        if units[u]: parts.append(units[u])\n    return \" \".join(p for p in parts if p)",
+        "javascript": "const case18 = (n) => {\n    const hundreds = ['','сто','двести','триста','четыреста','пятьсот','шестьсот','семьсот','восемьсот','девятьсот'];\n    const teens = ['десять','одиннадцать','двенадцать','тринадцать','четырнадцать','пятнадцать','шестнадцать','семнадцать','восемнадцать','девятнадцать'];\n    const tens = ['','','двадцать','тридцать','сорок','пятьдесят','шестьдесят','семьдесят','восемьдесят','девяносто'];\n    const units = ['','один','два','три','четыре','пять','шесть','семь','восемь','девять'];\n    const h = Math.floor(n / 100), rest = n % 100;\n    const parts = [hundreds[h]];\n    if (rest >= 10 && rest <= 19) parts.push(teens[rest - 10]);\n    else {\n        parts.push(tens[Math.floor(rest / 10)]);\n        parts.push(units[rest % 10]);\n    }\n    return parts.filter(Boolean).join(' ');\n};",
+        "java": "public static String case18(int n) {\n    String[] hundreds = {\"\",\"сто\",\"двести\",\"триста\",\"четыреста\",\"пятьсот\",\"шестьсот\",\"семьсот\",\"восемьсот\",\"девятьсот\"};\n    String[] teens = {\"десять\",\"одиннадцать\",\"двенадцать\",\"тринадцать\",\"четырнадцать\",\"пятнадцать\",\"шестнадцать\",\"семнадцать\",\"восемнадцать\",\"девятнадцать\"};\n    String[] tens = {\"\",\"\",\"двадцать\",\"тридцать\",\"сорок\",\"пятьдесят\",\"шестьдесят\",\"семьдесят\",\"восемьдесят\",\"девяносто\"};\n    String[] units = {\"\",\"один\",\"два\",\"три\",\"четыре\",\"пять\",\"шесть\",\"семь\",\"восемь\",\"девять\"};\n    int h = n / 100, rest = n % 100;\n    StringBuilder sb = new StringBuilder(hundreds[h]);\n    if (rest >= 10 && rest <= 19) sb.append(\" \").append(teens[rest - 10]);\n    else {\n        if (!tens[rest / 10].isEmpty()) sb.append(\" \").append(tens[rest / 10]);\n        if (!units[rest % 10].isEmpty()) sb.append(\" \").append(units[rest % 10]);\n    }\n    return sb.toString().trim();\n}",
+        "csharp": "public static string Case18(int n) {\n    var hundreds = new[] {\"\",\"сто\",\"двести\",\"триста\",\"четыреста\",\"пятьсот\",\"шестьсот\",\"семьсот\",\"восемьсот\",\"девятьсот\"};\n    var teens = new[] {\"десять\",\"одиннадцать\",\"двенадцать\",\"тринадцать\",\"четырнадцать\",\"пятнадцать\",\"шестнадцать\",\"семнадцать\",\"восемнадцать\",\"девятнадцать\"};\n    var tens = new[] {\"\",\"\",\"двадцать\",\"тридцать\",\"сорок\",\"пятьдесят\",\"шестьдесят\",\"семьдесят\",\"восемьдесят\",\"девяносто\"};\n    var units = new[] {\"\",\"один\",\"два\",\"три\",\"четыре\",\"пять\",\"шесть\",\"семь\",\"восемь\",\"девять\"};\n    int h = n / 100, rest = n % 100;\n    var parts = new List<string> { hundreds[h] };\n    if (rest >= 10 && rest <= 19) parts.Add(teens[rest - 10]);\n    else {\n        parts.Add(tens[rest / 10]);\n        parts.Add(units[rest % 10]);\n    }\n    return string.Join(\" \", parts.Where(p => !string.IsNullOrEmpty(p)));\n}"
+      }
+    },
+    {
+      "id": "Case19",
+      "question": "Восточный календарь, 60-летний цикл. 1984 — год зелёной крысы. По году вернуть название.",
+      "solutions": {
+        "python": "def case19(year: int) -> str:\n    colors = [\"зеленой\",\"красной\",\"желтой\",\"белой\",\"черной\"]\n    animals = [\"крысы\",\"коровы\",\"тигра\",\"зайца\",\"дракона\",\"змеи\",\"лошади\",\"овцы\",\"обезьяны\",\"курицы\",\"собаки\",\"свиньи\"]\n    diff = (year - 1984) % 60\n    color = colors[(diff // 2) % 5]\n    animal = animals[diff % 12]\n    return f\"год {color} {animal}\"",
+        "javascript": "const case19 = (year) => {\n    const colors = ['зеленой','красной','желтой','белой','черной'];\n    const animals = ['крысы','коровы','тигра','зайца','дракона','змеи','лошади','овцы','обезьяны','курицы','собаки','свиньи'];\n    const diff = ((year - 1984) % 60 + 60) % 60;\n    return `год ${colors[Math.floor(diff / 2) % 5]} ${animals[diff % 12]}`;\n};",
+        "java": "public static String case19(int year) {\n    String[] colors = {\"зеленой\",\"красной\",\"желтой\",\"белой\",\"черной\"};\n    String[] animals = {\"крысы\",\"коровы\",\"тигра\",\"зайца\",\"дракона\",\"змеи\",\"лошади\",\"овцы\",\"обезьяны\",\"курицы\",\"собаки\",\"свиньи\"};\n    int diff = ((year - 1984) % 60 + 60) % 60;\n    return \"год \" + colors[(diff / 2) % 5] + \" \" + animals[diff % 12];\n}",
+        "csharp": "public static string Case19(int year) {\n    var colors = new[] {\"зеленой\",\"красной\",\"желтой\",\"белой\",\"черной\"};\n    var animals = new[] {\"крысы\",\"коровы\",\"тигра\",\"зайца\",\"дракона\",\"змеи\",\"лошади\",\"овцы\",\"обезьяны\",\"курицы\",\"собаки\",\"свиньи\"};\n    int diff = ((year - 1984) % 60 + 60) % 60;\n    return $\"год {colors[(diff / 2) % 5]} {animals[diff % 12]}\";\n}"
+      }
+    },
+    {
+      "id": "Case20",
+      "question": "Даны D (день) и M (месяц). Вывести знак Зодиака.",
+      "solutions": {
+        "python": "def case20(d: int, m: int) -> str:\n    signs = [\n        (1, 20, \"Козерог\"), (2, 19, \"Водолей\"), (3, 21, \"Рыбы\"),\n        (4, 20, \"Овен\"), (5, 21, \"Телец\"), (6, 21, \"Близнецы\"),\n        (7, 23, \"Рак\"), (8, 23, \"Лев\"), (9, 23, \"Дева\"),\n        (10, 23, \"Весы\"), (11, 23, \"Скорпион\"), (12, 22, \"Стрелец\"),\n    ]\n    month, cutoff, sign = signs[m - 1]\n    return sign if d < cutoff else signs[m % 12][2]",
+        "javascript": "const case20 = (d, m) => {\n    const signs = [\n        [20,'Козерог'],[19,'Водолей'],[21,'Рыбы'],[20,'Овен'],\n        [21,'Телец'],[21,'Близнецы'],[23,'Рак'],[23,'Лев'],\n        [23,'Дева'],[23,'Весы'],[23,'Скорпион'],[22,'Стрелец']\n    ];\n    const [cut, sign] = signs[m - 1];\n    return d < cut ? sign : signs[m % 12][1];\n};",
+        "java": "public static String case20(int d, int m) {\n    int[] cut = {20,19,21,20,21,21,23,23,23,23,23,22};\n    String[] sig = {\"Козерог\",\"Водолей\",\"Рыбы\",\"Овен\",\"Телец\",\"Близнецы\",\"Рак\",\"Лев\",\"Дева\",\"Весы\",\"Скорпион\",\"Стрелец\"};\n    return d < cut[m - 1] ? sig[m - 1] : sig[m % 12];\n}",
+        "csharp": "public static string Case20(int d, int m) {\n    int[] cut = {20,19,21,20,21,21,23,23,23,23,23,22};\n    string[] sig = {\"Козерог\",\"Водолей\",\"Рыбы\",\"Овен\",\"Телец\",\"Близнецы\",\"Рак\",\"Лев\",\"Дева\",\"Весы\",\"Скорпион\",\"Стрелец\"};\n    return d < cut[m - 1] ? sig[m - 1] : sig[m % 12];\n}"
+      }
+    }
+  ]
+}

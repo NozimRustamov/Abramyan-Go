@@ -1,0 +1,406 @@
+{
+  "category": "Series",
+  "id": "10",
+  "tasks": [
+    {
+      "id": "Series1",
+      "question": "Даны десять вещественных чисел. Найти их сумму.",
+      "solutions": {
+        "python": "def series1(nums: list) -> float:\n    return sum(nums)",
+        "javascript": "const series1 = (nums) => nums.reduce((a, b) => a + b, 0);",
+        "java": "public static double series1(double[] nums) {\n    double s = 0;\n    for (double x : nums) s += x;\n    return s;\n}",
+        "csharp": "public static double Series1(double[] nums) => nums.Sum();"
+      }
+    },
+    {
+      "id": "Series2",
+      "question": "Даны десять чисел. Найти их произведение.",
+      "solutions": {
+        "python": "from math import prod\ndef series2(nums: list) -> float:\n    return prod(nums)",
+        "javascript": "const series2 = (nums) => nums.reduce((a, b) => a * b, 1);",
+        "java": "public static double series2(double[] nums) {\n    double p = 1;\n    for (double x : nums) p *= x;\n    return p;\n}",
+        "csharp": "public static double Series2(double[] nums) => nums.Aggregate(1.0, (a, b) => a * b);"
+      }
+    },
+    {
+      "id": "Series3",
+      "question": "Даны десять чисел. Найти их среднее арифметическое.",
+      "solutions": {
+        "python": "def series3(nums: list) -> float:\n    return sum(nums) / len(nums)",
+        "javascript": "const series3 = (nums) => nums.reduce((a, b) => a + b, 0) / nums.length;",
+        "java": "public static double series3(double[] nums) {\n    double s = 0;\n    for (double x : nums) s += x;\n    return s / nums.length;\n}",
+        "csharp": "public static double Series3(double[] nums) => nums.Average();"
+      }
+    },
+    {
+      "id": "Series4",
+      "question": "Дан набор из N вещественных. Вывести сумму и произведение.",
+      "solutions": {
+        "python": "from math import prod\ndef series4(nums: list):\n    return sum(nums), prod(nums)",
+        "javascript": "const series4 = (nums) => [\n    nums.reduce((a, b) => a + b, 0),\n    nums.reduce((a, b) => a * b, 1)\n];",
+        "java": "public static double[] series4(double[] nums) {\n    double s = 0, p = 1;\n    for (double x : nums) { s += x; p *= x; }\n    return new double[]{s, p};\n}",
+        "csharp": "public static (double, double) Series4(double[] nums) {\n    double s = 0, p = 1;\n    foreach (var x in nums) { s += x; p *= x; }\n    return (s, p);\n}"
+      }
+    },
+    {
+      "id": "Series5",
+      "question": "N положительных чисел. Вывести целые части и их сумму.",
+      "solutions": {
+        "python": "def series5(nums: list):\n    ints = [int(x) for x in nums]\n    return ints, sum(ints)",
+        "javascript": "const series5 = (nums) => {\n    const ints = nums.map(x => Math.trunc(x));\n    return [ints, ints.reduce((a, b) => a + b, 0)];\n};",
+        "java": "public static Object[] series5(double[] nums) {\n    int[] ints = new int[nums.length];\n    int s = 0;\n    for (int i = 0; i < nums.length; i++) { ints[i] = (int) nums[i]; s += ints[i]; }\n    return new Object[]{ints, s};\n}",
+        "csharp": "public static (int[], int) Series5(double[] nums) {\n    var ints = nums.Select(x => (int)x).ToArray();\n    return (ints, ints.Sum());\n}"
+      }
+    },
+    {
+      "id": "Series6",
+      "question": "N положительных чисел. Вывести дробные части и их произведение.",
+      "solutions": {
+        "python": "from math import prod\ndef series6(nums: list):\n    fracs = [x - int(x) for x in nums]\n    return fracs, prod(fracs)",
+        "javascript": "const series6 = (nums) => {\n    const fracs = nums.map(x => x - Math.trunc(x));\n    return [fracs, fracs.reduce((a, b) => a * b, 1)];\n};",
+        "java": "public static Object[] series6(double[] nums) {\n    double[] fracs = new double[nums.length];\n    double p = 1;\n    for (int i = 0; i < nums.length; i++) { fracs[i] = nums[i] - (int) nums[i]; p *= fracs[i]; }\n    return new Object[]{fracs, p};\n}",
+        "csharp": "public static (double[], double) Series6(double[] nums) {\n    var fracs = nums.Select(x => x - (int)x).ToArray();\n    return (fracs, fracs.Aggregate(1.0, (a, b) => a * b));\n}"
+      }
+    },
+    {
+      "id": "Series7",
+      "question": "N чисел. Вывести округлённые значения и их сумму.",
+      "solutions": {
+        "python": "def series7(nums: list):\n    rounded = [round(x) for x in nums]\n    return rounded, sum(rounded)",
+        "javascript": "const series7 = (nums) => {\n    const r = nums.map(Math.round);\n    return [r, r.reduce((a, b) => a + b, 0)];\n};",
+        "java": "public static Object[] series7(double[] nums) {\n    int[] r = new int[nums.length];\n    int s = 0;\n    for (int i = 0; i < nums.length; i++) { r[i] = (int) Math.round(nums[i]); s += r[i]; }\n    return new Object[]{r, s};\n}",
+        "csharp": "public static (int[], int) Series7(double[] nums) {\n    var r = nums.Select(x => (int)Math.Round(x)).ToArray();\n    return (r, r.Sum());\n}"
+      }
+    },
+    {
+      "id": "Series8",
+      "question": "Даны N целых. Вывести все чётные и их количество.",
+      "solutions": {
+        "python": "def series8(nums: list):\n    evens = [x for x in nums if x % 2 == 0]\n    return evens, len(evens)",
+        "javascript": "const series8 = (nums) => {\n    const evens = nums.filter(x => x % 2 === 0);\n    return [evens, evens.length];\n};",
+        "java": "public static Object[] series8(int[] nums) {\n    var evens = new java.util.ArrayList<Integer>();\n    for (int x : nums) if (x % 2 == 0) evens.add(x);\n    return new Object[]{evens, evens.size()};\n}",
+        "csharp": "public static (List<int>, int) Series8(int[] nums) {\n    var evens = nums.Where(x => x % 2 == 0).ToList();\n    return (evens, evens.Count);\n}"
+      }
+    },
+    {
+      "id": "Series9",
+      "question": "N целых. Вывести номера всех нечётных и их количество.",
+      "solutions": {
+        "python": "def series9(nums: list):\n    indices = [i + 1 for i, x in enumerate(nums) if x % 2 != 0]\n    return indices, len(indices)",
+        "javascript": "const series9 = (nums) => {\n    const ix = [];\n    nums.forEach((x, i) => { if (x % 2 !== 0) ix.push(i + 1); });\n    return [ix, ix.length];\n};",
+        "java": "public static Object[] series9(int[] nums) {\n    var ix = new java.util.ArrayList<Integer>();\n    for (int i = 0; i < nums.length; i++) if (nums[i] % 2 != 0) ix.add(i + 1);\n    return new Object[]{ix, ix.size()};\n}",
+        "csharp": "public static (List<int>, int) Series9(int[] nums) {\n    var ix = new List<int>();\n    for (int i = 0; i < nums.Length; i++) if (nums[i] % 2 != 0) ix.Add(i + 1);\n    return (ix, ix.Count);\n}"
+      }
+    },
+    {
+      "id": "Series10",
+      "question": "Есть ли в наборе положительное число.",
+      "solutions": {
+        "python": "def series10(nums: list) -> bool:\n    return any(x > 0 for x in nums)",
+        "javascript": "const series10 = (nums) => nums.some(x => x > 0);",
+        "java": "public static boolean series10(int[] nums) {\n    for (int x : nums) if (x > 0) return true;\n    return false;\n}",
+        "csharp": "public static bool Series10(int[] nums) => nums.Any(x => x > 0);"
+      }
+    },
+    {
+      "id": "Series11",
+      "question": "K и N целых. Есть ли числа, меньшие K.",
+      "solutions": {
+        "python": "def series11(k: int, nums: list) -> bool:\n    return any(x < k for x in nums)",
+        "javascript": "const series11 = (k, nums) => nums.some(x => x < k);",
+        "java": "public static boolean series11(int k, int[] nums) {\n    for (int x : nums) if (x < k) return true;\n    return false;\n}",
+        "csharp": "public static bool Series11(int k, int[] nums) => nums.Any(x => x < k);"
+      }
+    },
+    {
+      "id": "Series12",
+      "question": "Дан набор ненулевых целых, 0 — признак конца. Количество чисел.",
+      "solutions": {
+        "python": "def series12(nums: list) -> int:\n    count = 0\n    for x in nums:\n        if x == 0:\n            break\n        count += 1\n    return count",
+        "javascript": "const series12 = (nums) => {\n    let c = 0;\n    for (const x of nums) { if (x === 0) break; c++; }\n    return c;\n};",
+        "java": "public static int series12(int[] nums) {\n    int c = 0;\n    for (int x : nums) { if (x == 0) break; c++; }\n    return c;\n}",
+        "csharp": "public static int Series12(int[] nums) {\n    int c = 0;\n    foreach (var x in nums) { if (x == 0) break; c++; }\n    return c;\n}"
+      }
+    },
+    {
+      "id": "Series13",
+      "question": "Набор ненулевых целых, 0 — конец. Сумма положительных чётных.",
+      "solutions": {
+        "python": "def series13(nums: list) -> int:\n    s = 0\n    for x in nums:\n        if x == 0: break\n        if x > 0 and x % 2 == 0: s += x\n    return s",
+        "javascript": "const series13 = (nums) => {\n    let s = 0;\n    for (const x of nums) {\n        if (x === 0) break;\n        if (x > 0 && x % 2 === 0) s += x;\n    }\n    return s;\n};",
+        "java": "public static int series13(int[] nums) {\n    int s = 0;\n    for (int x : nums) {\n        if (x == 0) break;\n        if (x > 0 && x % 2 == 0) s += x;\n    }\n    return s;\n}",
+        "csharp": "public static int Series13(int[] nums) {\n    int s = 0;\n    foreach (var x in nums) {\n        if (x == 0) break;\n        if (x > 0 && x % 2 == 0) s += x;\n    }\n    return s;\n}"
+      }
+    },
+    {
+      "id": "Series14",
+      "question": "K и набор (0 — конец). Количество чисел, меньших K.",
+      "solutions": {
+        "python": "def series14(k: int, nums: list) -> int:\n    count = 0\n    for x in nums:\n        if x == 0: break\n        if x < k: count += 1\n    return count",
+        "javascript": "const series14 = (k, nums) => {\n    let c = 0;\n    for (const x of nums) {\n        if (x === 0) break;\n        if (x < k) c++;\n    }\n    return c;\n};",
+        "java": "public static int series14(int k, int[] nums) {\n    int c = 0;\n    for (int x : nums) {\n        if (x == 0) break;\n        if (x < k) c++;\n    }\n    return c;\n}",
+        "csharp": "public static int Series14(int k, int[] nums) {\n    int c = 0;\n    foreach (var x in nums) {\n        if (x == 0) break;\n        if (x < k) c++;\n    }\n    return c;\n}"
+      }
+    },
+    {
+      "id": "Series15",
+      "question": "Дан K и набор (0 — конец). Номер первого числа > K (или 0).",
+      "solutions": {
+        "python": "def series15(k: int, nums: list) -> int:\n    for i, x in enumerate(nums, 1):\n        if x == 0:\n            break\n        if x > k:\n            return i\n    return 0",
+        "javascript": "const series15 = (k, nums) => {\n    for (let i = 0; i < nums.length; i++) {\n        if (nums[i] === 0) break;\n        if (nums[i] > k) return i + 1;\n    }\n    return 0;\n};",
+        "java": "public static int series15(int k, int[] nums) {\n    for (int i = 0; i < nums.length; i++) {\n        if (nums[i] == 0) break;\n        if (nums[i] > k) return i + 1;\n    }\n    return 0;\n}",
+        "csharp": "public static int Series15(int k, int[] nums) {\n    for (int i = 0; i < nums.Length; i++) {\n        if (nums[i] == 0) break;\n        if (nums[i] > k) return i + 1;\n    }\n    return 0;\n}"
+      }
+    },
+    {
+      "id": "Series16",
+      "question": "K и набор (0 — конец). Номер последнего числа > K (или 0).",
+      "solutions": {
+        "python": "def series16(k: int, nums: list) -> int:\n    last = 0\n    for i, x in enumerate(nums, 1):\n        if x == 0: break\n        if x > k: last = i\n    return last",
+        "javascript": "const series16 = (k, nums) => {\n    let last = 0;\n    for (let i = 0; i < nums.length; i++) {\n        if (nums[i] === 0) break;\n        if (nums[i] > k) last = i + 1;\n    }\n    return last;\n};",
+        "java": "public static int series16(int k, int[] nums) {\n    int last = 0;\n    for (int i = 0; i < nums.length; i++) {\n        if (nums[i] == 0) break;\n        if (nums[i] > k) last = i + 1;\n    }\n    return last;\n}",
+        "csharp": "public static int Series16(int k, int[] nums) {\n    int last = 0;\n    for (int i = 0; i < nums.Length; i++) {\n        if (nums[i] == 0) break;\n        if (nums[i] > k) last = i + 1;\n    }\n    return last;\n}"
+      }
+    },
+    {
+      "id": "Series17",
+      "question": "B и отсортированный набор. Вставить B с сохранением порядка.",
+      "solutions": {
+        "python": "import bisect\ndef series17(b: float, nums: list) -> list:\n    result = list(nums)\n    bisect.insort(result, b)\n    return result",
+        "javascript": "const series17 = (b, nums) => {\n    const r = [...nums];\n    let i = 0;\n    while (i < r.length && r[i] < b) i++;\n    r.splice(i, 0, b);\n    return r;\n};",
+        "java": "public static double[] series17(double b, double[] nums) {\n    double[] r = new double[nums.length + 1];\n    int i = 0;\n    while (i < nums.length && nums[i] < b) { r[i] = nums[i]; i++; }\n    r[i] = b;\n    for (int j = i; j < nums.length; j++) r[j + 1] = nums[j];\n    return r;\n}",
+        "csharp": "public static double[] Series17(double b, double[] nums) {\n    var list = nums.ToList();\n    int i = 0;\n    while (i < list.Count && list[i] < b) i++;\n    list.Insert(i, b);\n    return list.ToArray();\n}"
+      }
+    },
+    {
+      "id": "Series18",
+      "question": "Отсортированный набор. Вывести все различные элементы.",
+      "solutions": {
+        "python": "def series18(nums: list) -> list:\n    result = []\n    for x in nums:\n        if not result or x != result[-1]:\n            result.append(x)\n    return result",
+        "javascript": "const series18 = (nums) => {\n    const r = [];\n    for (const x of nums) if (r.length === 0 || x !== r[r.length - 1]) r.push(x);\n    return r;\n};",
+        "java": "public static java.util.List<Integer> series18(int[] nums) {\n    var r = new java.util.ArrayList<Integer>();\n    for (int x : nums) if (r.isEmpty() || x != r.get(r.size() - 1)) r.add(x);\n    return r;\n}",
+        "csharp": "public static List<int> Series18(int[] nums) {\n    var r = new List<int>();\n    foreach (var x in nums) if (r.Count == 0 || x != r[^1]) r.Add(x);\n    return r;\n}"
+      }
+    },
+    {
+      "id": "Series19",
+      "question": "Дан набор. Вывести элементы, меньшие своего левого соседа, и их количество.",
+      "solutions": {
+        "python": "def series19(nums: list):\n    result = [nums[i] for i in range(1, len(nums)) if nums[i] < nums[i - 1]]\n    return result, len(result)",
+        "javascript": "const series19 = (nums) => {\n    const r = [];\n    for (let i = 1; i < nums.length; i++)\n        if (nums[i] < nums[i - 1]) r.push(nums[i]);\n    return [r, r.length];\n};",
+        "java": "public static Object[] series19(int[] nums) {\n    var r = new java.util.ArrayList<Integer>();\n    for (int i = 1; i < nums.length; i++)\n        if (nums[i] < nums[i - 1]) r.add(nums[i]);\n    return new Object[]{r, r.size()};\n}",
+        "csharp": "public static (List<int>, int) Series19(int[] nums) {\n    var r = new List<int>();\n    for (int i = 1; i < nums.Length; i++)\n        if (nums[i] < nums[i - 1]) r.Add(nums[i]);\n    return (r, r.Count);\n}"
+      }
+    },
+    {
+      "id": "Series20",
+      "question": "Набор. Вывести элементы, меньшие правого соседа, и их количество.",
+      "solutions": {
+        "python": "def series20(nums: list):\n    r = [nums[i] for i in range(len(nums) - 1) if nums[i] < nums[i + 1]]\n    return r, len(r)",
+        "javascript": "const series20 = (nums) => {\n    const r = [];\n    for (let i = 0; i < nums.length - 1; i++) if (nums[i] < nums[i + 1]) r.push(nums[i]);\n    return [r, r.length];\n};",
+        "java": "public static Object[] series20(int[] nums) {\n    var r = new java.util.ArrayList<Integer>();\n    for (int i = 0; i < nums.length - 1; i++) if (nums[i] < nums[i + 1]) r.add(nums[i]);\n    return new Object[]{r, r.size()};\n}",
+        "csharp": "public static (List<int>, int) Series20(int[] nums) {\n    var r = new List<int>();\n    for (int i = 0; i < nums.Length - 1; i++) if (nums[i] < nums[i + 1]) r.Add(nums[i]);\n    return (r, r.Count);\n}"
+      }
+    },
+    {
+      "id": "Series21",
+      "question": "Образует ли набор возрастающую последовательность.",
+      "solutions": {
+        "python": "def series21(nums: list) -> bool:\n    return all(nums[i] > nums[i - 1] for i in range(1, len(nums)))",
+        "javascript": "const series21 = (nums) => nums.every((x, i) => i === 0 || x > nums[i - 1]);",
+        "java": "public static boolean series21(double[] nums) {\n    for (int i = 1; i < nums.length; i++)\n        if (nums[i] <= nums[i - 1]) return false;\n    return true;\n}",
+        "csharp": "public static bool Series21(double[] nums) {\n    for (int i = 1; i < nums.Length; i++)\n        if (nums[i] <= nums[i - 1]) return false;\n    return true;\n}"
+      }
+    },
+    {
+      "id": "Series22",
+      "question": "Убывает ли набор. Если да — 0, иначе номер первого нарушения.",
+      "solutions": {
+        "python": "def series22(nums: list) -> int:\n    for i in range(1, len(nums)):\n        if nums[i] >= nums[i - 1]:\n            return i + 1\n    return 0",
+        "javascript": "const series22 = (nums) => {\n    for (let i = 1; i < nums.length; i++)\n        if (nums[i] >= nums[i - 1]) return i + 1;\n    return 0;\n};",
+        "java": "public static int series22(double[] nums) {\n    for (int i = 1; i < nums.length; i++)\n        if (nums[i] >= nums[i - 1]) return i + 1;\n    return 0;\n}",
+        "csharp": "public static int Series22(double[] nums) {\n    for (int i = 1; i < nums.Length; i++)\n        if (nums[i] >= nums[i - 1]) return i + 1;\n    return 0;\n}"
+      }
+    },
+    {
+      "id": "Series23",
+      "question": "Пилообразный ли набор (каждый внутренний — зубец). Иначе номер первого не-зубца.",
+      "solutions": {
+        "python": "def series23(nums: list) -> int:\n    for i in range(1, len(nums) - 1):\n        a, b, c = nums[i - 1], nums[i], nums[i + 1]\n        if not ((b > a and b > c) or (b < a and b < c)):\n            return i + 1\n    return 0",
+        "javascript": "const series23 = (nums) => {\n    for (let i = 1; i < nums.length - 1; i++) {\n        const [a, b, c] = [nums[i - 1], nums[i], nums[i + 1]];\n        if (!((b > a && b > c) || (b < a && b < c))) return i + 1;\n    }\n    return 0;\n};",
+        "java": "public static int series23(double[] nums) {\n    for (int i = 1; i < nums.length - 1; i++) {\n        double a = nums[i - 1], b = nums[i], c = nums[i + 1];\n        if (!((b > a && b > c) || (b < a && b < c))) return i + 1;\n    }\n    return 0;\n}",
+        "csharp": "public static int Series23(double[] nums) {\n    for (int i = 1; i < nums.Length - 1; i++) {\n        double a = nums[i - 1], b = nums[i], c = nums[i + 1];\n        if (!((b > a && b > c) || (b < a && b < c))) return i + 1;\n    }\n    return 0;\n}"
+      }
+    },
+    {
+      "id": "Series24",
+      "question": "Набор с минимум двумя нулями. Сумма между последними двумя нулями.",
+      "solutions": {
+        "python": "def series24(nums: list) -> int:\n    zero_positions = [i for i, x in enumerate(nums) if x == 0]\n    i, j = zero_positions[-2], zero_positions[-1]\n    return sum(nums[i + 1:j])",
+        "javascript": "const series24 = (nums) => {\n    const zeros = [];\n    nums.forEach((x, i) => { if (x === 0) zeros.push(i); });\n    const i = zeros[zeros.length - 2], j = zeros[zeros.length - 1];\n    return nums.slice(i + 1, j).reduce((a, b) => a + b, 0);\n};",
+        "java": "public static int series24(int[] nums) {\n    int last = -1, secondLast = -1;\n    for (int i = 0; i < nums.length; i++) {\n        if (nums[i] == 0) { secondLast = last; last = i; }\n    }\n    int s = 0;\n    for (int k = secondLast + 1; k < last; k++) s += nums[k];\n    return s;\n}",
+        "csharp": "public static int Series24(int[] nums) {\n    int last = -1, secondLast = -1;\n    for (int i = 0; i < nums.Length; i++)\n        if (nums[i] == 0) { secondLast = last; last = i; }\n    int s = 0;\n    for (int k = secondLast + 1; k < last; k++) s += nums[k];\n    return s;\n}"
+      }
+    },
+    {
+      "id": "Series25",
+      "question": "Набор с минимум двумя нулями. Сумма между первым и последним нулём.",
+      "solutions": {
+        "python": "def series25(nums: list) -> int:\n    first = nums.index(0)\n    last = len(nums) - 1 - nums[::-1].index(0)\n    return sum(nums[first + 1:last])",
+        "javascript": "const series25 = (nums) => {\n    const first = nums.indexOf(0);\n    const last = nums.lastIndexOf(0);\n    return nums.slice(first + 1, last).reduce((a, b) => a + b, 0);\n};",
+        "java": "public static int series25(int[] nums) {\n    int first = -1, last = -1;\n    for (int i = 0; i < nums.length; i++) {\n        if (nums[i] == 0) { if (first == -1) first = i; last = i; }\n    }\n    int s = 0;\n    for (int k = first + 1; k < last; k++) s += nums[k];\n    return s;\n}",
+        "csharp": "public static int Series25(int[] nums) {\n    int first = -1, last = -1;\n    for (int i = 0; i < nums.Length; i++) {\n        if (nums[i] == 0) { if (first == -1) first = i; last = i; }\n    }\n    int s = 0;\n    for (int k = first + 1; k < last; k++) s += nums[k];\n    return s;\n}"
+      }
+    },
+    {
+      "id": "Series26",
+      "question": "Даны K, N и N чисел. Вывести K-е степени всех чисел.",
+      "solutions": {
+        "python": "def series26(k: int, nums: list) -> list:\n    return [x ** k for x in nums]",
+        "javascript": "const series26 = (k, nums) => nums.map(x => Math.pow(x, k));",
+        "java": "public static double[] series26(int k, double[] nums) {\n    double[] r = new double[nums.length];\n    for (int i = 0; i < nums.length; i++) r[i] = Math.pow(nums[i], k);\n    return r;\n}",
+        "csharp": "public static double[] Series26(int k, double[] nums) => nums.Select(x => Math.Pow(x, k)).ToArray();"
+      }
+    },
+    {
+      "id": "Series27",
+      "question": "N чисел A1..AN. Вывести A1, A2², A3³, ..., ANⁿ.",
+      "solutions": {
+        "python": "def series27(nums: list) -> list:\n    return [x ** (i + 1) for i, x in enumerate(nums)]",
+        "javascript": "const series27 = (nums) => nums.map((x, i) => Math.pow(x, i + 1));",
+        "java": "public static double[] series27(double[] nums) {\n    double[] r = new double[nums.length];\n    for (int i = 0; i < nums.length; i++) r[i] = Math.pow(nums[i], i + 1);\n    return r;\n}",
+        "csharp": "public static double[] Series27(double[] nums) => nums.Select((x, i) => Math.Pow(x, i + 1)).ToArray();"
+      }
+    },
+    {
+      "id": "Series28",
+      "question": "N чисел. Вывести A1ⁿ, A2ⁿ⁻¹, ..., AN¹.",
+      "solutions": {
+        "python": "def series28(nums: list) -> list:\n    n = len(nums)\n    return [x ** (n - i) for i, x in enumerate(nums)]",
+        "javascript": "const series28 = (nums) => {\n    const n = nums.length;\n    return nums.map((x, i) => Math.pow(x, n - i));\n};",
+        "java": "public static double[] series28(double[] nums) {\n    int n = nums.length;\n    double[] r = new double[n];\n    for (int i = 0; i < n; i++) r[i] = Math.pow(nums[i], n - i);\n    return r;\n}",
+        "csharp": "public static double[] Series28(double[] nums) {\n    int n = nums.Length;\n    return nums.Select((x, i) => Math.Pow(x, n - i)).ToArray();\n}"
+      }
+    },
+    {
+      "id": "Series29",
+      "question": "K наборов по N элементов. Общая сумма всех элементов.",
+      "solutions": {
+        "python": "def series29(sets: list) -> int:\n    return sum(sum(s) for s in sets)",
+        "javascript": "const series29 = (sets) => sets.flat().reduce((a, b) => a + b, 0);",
+        "java": "public static long series29(int[][] sets) {\n    long s = 0;\n    for (int[] set : sets) for (int x : set) s += x;\n    return s;\n}",
+        "csharp": "public static long Series29(int[][] sets) => sets.Sum(set => (long)set.Sum());"
+      }
+    },
+    {
+      "id": "Series30",
+      "question": "K наборов по N. Для каждого — сумма элементов.",
+      "solutions": {
+        "python": "def series30(sets: list) -> list:\n    return [sum(s) for s in sets]",
+        "javascript": "const series30 = (sets) => sets.map(s => s.reduce((a, b) => a + b, 0));",
+        "java": "public static long[] series30(int[][] sets) {\n    long[] r = new long[sets.length];\n    for (int i = 0; i < sets.length; i++) { long s = 0; for (int x : sets[i]) s += x; r[i] = s; }\n    return r;\n}",
+        "csharp": "public static long[] Series30(int[][] sets) => sets.Select(s => (long)s.Sum()).ToArray();"
+      }
+    },
+    {
+      "id": "Series31",
+      "question": "K наборов. Количество наборов, содержащих число 2.",
+      "solutions": {
+        "python": "def series31(sets: list) -> int:\n    return sum(1 for s in sets if 2 in s)",
+        "javascript": "const series31 = (sets) => sets.filter(s => s.includes(2)).length;",
+        "java": "public static int series31(int[][] sets) {\n    int c = 0;\n    for (int[] set : sets) for (int x : set) if (x == 2) { c++; break; }\n    return c;\n}",
+        "csharp": "public static int Series31(int[][] sets) => sets.Count(s => s.Contains(2));"
+      }
+    },
+    {
+      "id": "Series32",
+      "question": "K наборов. Для каждого — номер первого элемента = 2 (или 0).",
+      "solutions": {
+        "python": "def series32(sets: list) -> list:\n    return [(s.index(2) + 1) if 2 in s else 0 for s in sets]",
+        "javascript": "const series32 = (sets) => sets.map(s => {\n    const i = s.indexOf(2);\n    return i === -1 ? 0 : i + 1;\n});",
+        "java": "public static int[] series32(int[][] sets) {\n    int[] r = new int[sets.length];\n    for (int i = 0; i < sets.length; i++) {\n        r[i] = 0;\n        for (int j = 0; j < sets[i].length; j++)\n            if (sets[i][j] == 2) { r[i] = j + 1; break; }\n    }\n    return r;\n}",
+        "csharp": "public static int[] Series32(int[][] sets) {\n    var r = new int[sets.Length];\n    for (int i = 0; i < sets.Length; i++) {\n        int idx = Array.IndexOf(sets[i], 2);\n        r[i] = idx == -1 ? 0 : idx + 1;\n    }\n    return r;\n}"
+      }
+    },
+    {
+      "id": "Series33",
+      "question": "K наборов. Для каждого — номер последнего элемента = 2 (или 0).",
+      "solutions": {
+        "python": "def series33(sets: list) -> list:\n    result = []\n    for s in sets:\n        last = 0\n        for i, x in enumerate(s, 1):\n            if x == 2: last = i\n        result.append(last)\n    return result",
+        "javascript": "const series33 = (sets) => sets.map(s => {\n    let last = 0;\n    s.forEach((x, i) => { if (x === 2) last = i + 1; });\n    return last;\n});",
+        "java": "public static int[] series33(int[][] sets) {\n    int[] r = new int[sets.length];\n    for (int i = 0; i < sets.length; i++) {\n        int last = 0;\n        for (int j = 0; j < sets[i].length; j++)\n            if (sets[i][j] == 2) last = j + 1;\n        r[i] = last;\n    }\n    return r;\n}",
+        "csharp": "public static int[] Series33(int[][] sets) {\n    var r = new int[sets.Length];\n    for (int i = 0; i < sets.Length; i++) {\n        int last = 0;\n        for (int j = 0; j < sets[i].Length; j++)\n            if (sets[i][j] == 2) last = j + 1;\n        r[i] = last;\n    }\n    return r;\n}"
+      }
+    },
+    {
+      "id": "Series34",
+      "question": "K наборов. Для каждого: если есть 2 — сумма элементов, иначе 0.",
+      "solutions": {
+        "python": "def series34(sets: list) -> list:\n    return [sum(s) if 2 in s else 0 for s in sets]",
+        "javascript": "const series34 = (sets) => sets.map(s => s.includes(2) ? s.reduce((a, b) => a + b, 0) : 0);",
+        "java": "public static int[] series34(int[][] sets) {\n    int[] r = new int[sets.length];\n    for (int i = 0; i < sets.length; i++) {\n        boolean has = false;\n        int s = 0;\n        for (int x : sets[i]) { s += x; if (x == 2) has = true; }\n        r[i] = has ? s : 0;\n    }\n    return r;\n}",
+        "csharp": "public static int[] Series34(int[][] sets) => sets.Select(s => s.Contains(2) ? s.Sum() : 0).ToArray();"
+      }
+    },
+    {
+      "id": "Series35",
+      "question": "K наборов (каждый завершается 0). Для каждого — количество элементов, и общее количество.",
+      "solutions": {
+        "python": "def series35(sets: list):\n    counts = []\n    for s in sets:\n        c = 0\n        for x in s:\n            if x == 0: break\n            c += 1\n        counts.append(c)\n    return counts, sum(counts)",
+        "javascript": "const series35 = (sets) => {\n    const counts = sets.map(s => {\n        let c = 0;\n        for (const x of s) { if (x === 0) break; c++; }\n        return c;\n    });\n    return [counts, counts.reduce((a, b) => a + b, 0)];\n};",
+        "java": "public static Object[] series35(int[][] sets) {\n    int[] counts = new int[sets.length];\n    int total = 0;\n    for (int i = 0; i < sets.length; i++) {\n        int c = 0;\n        for (int x : sets[i]) { if (x == 0) break; c++; }\n        counts[i] = c;\n        total += c;\n    }\n    return new Object[]{counts, total};\n}",
+        "csharp": "public static (int[], int) Series35(int[][] sets) {\n    var counts = sets.Select(s => { int c = 0; foreach (var x in s) { if (x == 0) break; c++; } return c; }).ToArray();\n    return (counts, counts.Sum());\n}"
+      }
+    },
+    {
+      "id": "Series36",
+      "question": "K наборов (0 — конец). Количество возрастающих наборов.",
+      "solutions": {
+        "python": "def series36(sets: list) -> int:\n    count = 0\n    for s in sets:\n        vals = []\n        for x in s:\n            if x == 0: break\n            vals.append(x)\n        if all(vals[i] > vals[i - 1] for i in range(1, len(vals))):\n            count += 1\n    return count",
+        "javascript": "const series36 = (sets) => {\n    let count = 0;\n    for (const s of sets) {\n        const vals = [];\n        for (const x of s) { if (x === 0) break; vals.push(x); }\n        if (vals.every((x, i) => i === 0 || x > vals[i - 1])) count++;\n    }\n    return count;\n};",
+        "java": "public static int series36(int[][] sets) {\n    int count = 0;\n    for (int[] s : sets) {\n        boolean inc = true;\n        int prev = Integer.MIN_VALUE;\n        for (int x : s) {\n            if (x == 0) break;\n            if (x <= prev) { inc = false; break; }\n            prev = x;\n        }\n        if (inc) count++;\n    }\n    return count;\n}",
+        "csharp": "public static int Series36(int[][] sets) {\n    int count = 0;\n    foreach (var s in sets) {\n        bool inc = true;\n        int prev = int.MinValue;\n        foreach (var x in s) {\n            if (x == 0) break;\n            if (x <= prev) { inc = false; break; }\n            prev = x;\n        }\n        if (inc) count++;\n    }\n    return count;\n}"
+      }
+    },
+    {
+      "id": "Series37",
+      "question": "K наборов (0 — конец). Количество монотонных (возр. или убыв.).",
+      "solutions": {
+        "python": "def series37(sets: list) -> int:\n    count = 0\n    for s in sets:\n        vals = []\n        for x in s:\n            if x == 0: break\n            vals.append(x)\n        inc = all(vals[i] > vals[i - 1] for i in range(1, len(vals)))\n        dec = all(vals[i] < vals[i - 1] for i in range(1, len(vals)))\n        if inc or dec: count += 1\n    return count",
+        "javascript": "const series37 = (sets) => {\n    let count = 0;\n    for (const s of sets) {\n        const v = [];\n        for (const x of s) { if (x === 0) break; v.push(x); }\n        const inc = v.every((x, i) => i === 0 || x > v[i - 1]);\n        const dec = v.every((x, i) => i === 0 || x < v[i - 1]);\n        if (inc || dec) count++;\n    }\n    return count;\n};",
+        "java": "public static int series37(int[][] sets) {\n    int count = 0;\n    for (int[] s : sets) {\n        boolean inc = true, dec = true;\n        int prev = Integer.MIN_VALUE;\n        boolean first = true;\n        for (int x : s) {\n            if (x == 0) break;\n            if (!first) {\n                if (x <= prev) inc = false;\n                if (x >= prev) dec = false;\n            }\n            prev = x;\n            first = false;\n        }\n        if (inc || dec) count++;\n    }\n    return count;\n}",
+        "csharp": "public static int Series37(int[][] sets) {\n    int count = 0;\n    foreach (var s in sets) {\n        bool inc = true, dec = true;\n        int prev = 0;\n        bool first = true;\n        foreach (var x in s) {\n            if (x == 0) break;\n            if (!first) { if (x <= prev) inc = false; if (x >= prev) dec = false; }\n            prev = x; first = false;\n        }\n        if (inc || dec) count++;\n    }\n    return count;\n}"
+      }
+    },
+    {
+      "id": "Series38",
+      "question": "K наборов (0 — конец). Для каждого: 1 — возр., -1 — убыв., 0 — ни то ни другое.",
+      "solutions": {
+        "python": "def series38(sets: list) -> list:\n    result = []\n    for s in sets:\n        vals = []\n        for x in s:\n            if x == 0: break\n            vals.append(x)\n        inc = all(vals[i] > vals[i - 1] for i in range(1, len(vals)))\n        dec = all(vals[i] < vals[i - 1] for i in range(1, len(vals)))\n        result.append(1 if inc else (-1 if dec else 0))\n    return result",
+        "javascript": "const series38 = (sets) => sets.map(s => {\n    const v = [];\n    for (const x of s) { if (x === 0) break; v.push(x); }\n    const inc = v.every((x, i) => i === 0 || x > v[i - 1]);\n    const dec = v.every((x, i) => i === 0 || x < v[i - 1]);\n    return inc ? 1 : (dec ? -1 : 0);\n});",
+        "java": "public static int[] series38(int[][] sets) {\n    int[] r = new int[sets.length];\n    for (int i = 0; i < sets.length; i++) {\n        boolean inc = true, dec = true;\n        int prev = 0;\n        boolean first = true;\n        for (int x : sets[i]) {\n            if (x == 0) break;\n            if (!first) { if (x <= prev) inc = false; if (x >= prev) dec = false; }\n            prev = x; first = false;\n        }\n        r[i] = inc ? 1 : (dec ? -1 : 0);\n    }\n    return r;\n}",
+        "csharp": "public static int[] Series38(int[][] sets) {\n    var r = new int[sets.Length];\n    for (int i = 0; i < sets.Length; i++) {\n        bool inc = true, dec = true;\n        int prev = 0;\n        bool first = true;\n        foreach (var x in sets[i]) {\n            if (x == 0) break;\n            if (!first) { if (x <= prev) inc = false; if (x >= prev) dec = false; }\n            prev = x; first = false;\n        }\n        r[i] = inc ? 1 : (dec ? -1 : 0);\n    }\n    return r;\n}"
+      }
+    },
+    {
+      "id": "Series39",
+      "question": "K наборов (0 — конец). Количество пилообразных.",
+      "solutions": {
+        "python": "def series39(sets: list) -> int:\n    count = 0\n    for s in sets:\n        vals = []\n        for x in s:\n            if x == 0: break\n            vals.append(x)\n        ok = True\n        for i in range(1, len(vals) - 1):\n            a, b, c = vals[i - 1], vals[i], vals[i + 1]\n            if not ((b > a and b > c) or (b < a and b < c)):\n                ok = False\n                break\n        if ok and len(vals) >= 3: count += 1\n    return count",
+        "javascript": "const series39 = (sets) => {\n    let count = 0;\n    for (const s of sets) {\n        const v = [];\n        for (const x of s) { if (x === 0) break; v.push(x); }\n        let ok = true;\n        for (let i = 1; i < v.length - 1; i++) {\n            const [a, b, c] = [v[i - 1], v[i], v[i + 1]];\n            if (!((b > a && b > c) || (b < a && b < c))) { ok = false; break; }\n        }\n        if (ok && v.length >= 3) count++;\n    }\n    return count;\n};",
+        "java": "public static int series39(int[][] sets) {\n    int count = 0;\n    for (int[] s : sets) {\n        var v = new java.util.ArrayList<Integer>();\n        for (int x : s) { if (x == 0) break; v.add(x); }\n        boolean ok = v.size() >= 3;\n        for (int i = 1; i < v.size() - 1 && ok; i++) {\n            int a = v.get(i - 1), b = v.get(i), c = v.get(i + 1);\n            if (!((b > a && b > c) || (b < a && b < c))) ok = false;\n        }\n        if (ok) count++;\n    }\n    return count;\n}",
+        "csharp": "public static int Series39(int[][] sets) {\n    int count = 0;\n    foreach (var s in sets) {\n        var v = new List<int>();\n        foreach (var x in s) { if (x == 0) break; v.Add(x); }\n        bool ok = v.Count >= 3;\n        for (int i = 1; i < v.Count - 1 && ok; i++) {\n            int a = v[i - 1], b = v[i], c = v[i + 1];\n            if (!((b > a && b > c) || (b < a && b < c))) ok = false;\n        }\n        if (ok) count++;\n    }\n    return count;\n}"
+      }
+    },
+    {
+      "id": "Series40",
+      "question": "K наборов (0 — конец). Для каждого: если пилообразный — количество элементов, иначе номер первого не-зубца.",
+      "solutions": {
+        "python": "def series40(sets: list) -> list:\n    result = []\n    for s in sets:\n        vals = []\n        for x in s:\n            if x == 0: break\n            vals.append(x)\n        broken = 0\n        for i in range(1, len(vals) - 1):\n            a, b, c = vals[i - 1], vals[i], vals[i + 1]\n            if not ((b > a and b > c) or (b < a and b < c)):\n                broken = i + 1\n                break\n        result.append(len(vals) if broken == 0 else broken)\n    return result",
+        "javascript": "const series40 = (sets) => sets.map(s => {\n    const v = [];\n    for (const x of s) { if (x === 0) break; v.push(x); }\n    for (let i = 1; i < v.length - 1; i++) {\n        const [a, b, c] = [v[i - 1], v[i], v[i + 1]];\n        if (!((b > a && b > c) || (b < a && b < c))) return i + 1;\n    }\n    return v.length;\n});",
+        "java": "public static int[] series40(int[][] sets) {\n    int[] r = new int[sets.length];\n    for (int k = 0; k < sets.length; k++) {\n        var v = new java.util.ArrayList<Integer>();\n        for (int x : sets[k]) { if (x == 0) break; v.add(x); }\n        int broken = 0;\n        for (int i = 1; i < v.size() - 1; i++) {\n            int a = v.get(i - 1), b = v.get(i), c = v.get(i + 1);\n            if (!((b > a && b > c) || (b < a && b < c))) { broken = i + 1; break; }\n        }\n        r[k] = broken == 0 ? v.size() : broken;\n    }\n    return r;\n}",
+        "csharp": "public static int[] Series40(int[][] sets) {\n    var r = new int[sets.Length];\n    for (int k = 0; k < sets.Length; k++) {\n        var v = new List<int>();\n        foreach (var x in sets[k]) { if (x == 0) break; v.Add(x); }\n        int broken = 0;\n        for (int i = 1; i < v.Count - 1; i++) {\n            int a = v[i - 1], b = v[i], c = v[i + 1];\n            if (!((b > a && b > c) || (b < a && b < c))) { broken = i + 1; break; }\n        }\n        r[k] = broken == 0 ? v.Count : broken;\n    }\n    return r;\n}"
+      }
+    }
+  ]
+}

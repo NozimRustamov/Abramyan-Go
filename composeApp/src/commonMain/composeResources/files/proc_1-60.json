@@ -1,0 +1,606 @@
+{
+  "category": "Proc",
+  "id": "11",
+  "tasks": [
+    {
+      "id": "Proc1",
+      "question": "Процедура PowerA3(A): вернуть A^3.",
+      "solutions": {
+        "python": "def proc1(a: float) -> float:\n    return a * a * a",
+        "javascript": "const proc1 = (a) => a * a * a;",
+        "java": "public static double proc1(double a) {\n    return a * a * a;\n}",
+        "csharp": "public static double Proc1(double a) => a * a * a;"
+      }
+    },
+    {
+      "id": "Proc2",
+      "question": "Процедура PowerA234(A): вернуть A^2, A^3, A^4.",
+      "solutions": {
+        "python": "def proc2(a: float):\n    a2 = a * a\n    a3 = a2 * a\n    a4 = a3 * a\n    return a2, a3, a4",
+        "javascript": "const proc2 = (a) => {\n    const a2 = a * a;\n    const a3 = a2 * a;\n    const a4 = a3 * a;\n    return [a2, a3, a4];\n};",
+        "java": "public static double[] proc2(double a) {\n    double a2 = a * a;\n    double a3 = a2 * a;\n    double a4 = a3 * a;\n    return new double[]{a2, a3, a4};\n}",
+        "csharp": "public static (double, double, double) Proc2(double a) {\n    double a2 = a * a;\n    double a3 = a2 * a;\n    double a4 = a3 * a;\n    return (a2, a3, a4);\n}"
+      }
+    },
+    {
+      "id": "Proc3",
+      "question": "Mean(X, Y): среднее арифметическое и среднее геометрическое.",
+      "solutions": {
+        "python": "import math\ndef proc3(x: float, y: float):\n    return (x + y) / 2, math.sqrt(x * y)",
+        "javascript": "const proc3 = (x, y) => [(x + y) / 2, Math.sqrt(x * y)];",
+        "java": "public static double[] proc3(double x, double y) {\n    return new double[]{(x + y) / 2, Math.sqrt(x * y)};\n}",
+        "csharp": "public static (double, double) Proc3(double x, double y) => ((x + y) / 2, Math.Sqrt(x * y));"
+      }
+    },
+    {
+      "id": "Proc4",
+      "question": "TrianglePS(a): периметр и площадь равностороннего треугольника.",
+      "solutions": {
+        "python": "import math\ndef proc4(a: float):\n    return 3 * a, a * a * math.sqrt(3) / 4",
+        "javascript": "const proc4 = (a) => [3 * a, a * a * Math.sqrt(3) / 4];",
+        "java": "public static double[] proc4(double a) {\n    return new double[]{3 * a, a * a * Math.sqrt(3) / 4};\n}",
+        "csharp": "public static (double, double) Proc4(double a) => (3 * a, a * a * Math.Sqrt(3) / 4);"
+      }
+    },
+    {
+      "id": "Proc5",
+      "question": "RectPS(x1,y1,x2,y2): периметр и площадь прямоугольника по двум противоположным вершинам.",
+      "solutions": {
+        "python": "def proc5(x1: float, y1: float, x2: float, y2: float):\n    a = abs(x2 - x1)\n    b = abs(y2 - y1)\n    return 2 * (a + b), a * b",
+        "javascript": "const proc5 = (x1, y1, x2, y2) => {\n    const a = Math.abs(x2 - x1), b = Math.abs(y2 - y1);\n    return [2 * (a + b), a * b];\n};",
+        "java": "public static double[] proc5(double x1, double y1, double x2, double y2) {\n    double a = Math.abs(x2 - x1), b = Math.abs(y2 - y1);\n    return new double[]{2 * (a + b), a * b};\n}",
+        "csharp": "public static (double, double) Proc5(double x1, double y1, double x2, double y2) {\n    double a = Math.Abs(x2 - x1), b = Math.Abs(y2 - y1);\n    return (2 * (a + b), a * b);\n}"
+      }
+    },
+    {
+      "id": "Proc6",
+      "question": "DigitCountSum(K): количество и сумма цифр.",
+      "solutions": {
+        "python": "def proc6(k: int):\n    count, total = 0, 0\n    while k > 0:\n        total += k % 10\n        k //= 10\n        count += 1\n    return count, total",
+        "javascript": "const proc6 = (k) => {\n    let c = 0, s = 0;\n    while (k > 0) { s += k % 10; k = Math.floor(k / 10); c++; }\n    return [c, s];\n};",
+        "java": "public static int[] proc6(int k) {\n    int c = 0, s = 0;\n    while (k > 0) { s += k % 10; k /= 10; c++; }\n    return new int[]{c, s};\n}",
+        "csharp": "public static (int, int) Proc6(int k) {\n    int c = 0, s = 0;\n    while (k > 0) { s += k % 10; k /= 10; c++; }\n    return (c, s);\n}"
+      }
+    },
+    {
+      "id": "Proc7",
+      "question": "InvertDigits(K): поменять порядок цифр на обратный.",
+      "solutions": {
+        "python": "def proc7(k: int) -> int:\n    result = 0\n    while k > 0:\n        result = result * 10 + k % 10\n        k //= 10\n    return result",
+        "javascript": "const proc7 = (k) => {\n    let r = 0;\n    while (k > 0) { r = r * 10 + k % 10; k = Math.floor(k / 10); }\n    return r;\n};",
+        "java": "public static int proc7(int k) {\n    int r = 0;\n    while (k > 0) { r = r * 10 + k % 10; k /= 10; }\n    return r;\n}",
+        "csharp": "public static int Proc7(int k) {\n    int r = 0;\n    while (k > 0) { r = r * 10 + k % 10; k /= 10; }\n    return r;\n}"
+      }
+    },
+    {
+      "id": "Proc8",
+      "question": "AddRightDigit(D, K): добавить цифру D справа к K.",
+      "solutions": {
+        "python": "def proc8(d: int, k: int) -> int:\n    return k * 10 + d",
+        "javascript": "const proc8 = (d, k) => k * 10 + d;",
+        "java": "public static int proc8(int d, int k) {\n    return k * 10 + d;\n}",
+        "csharp": "public static int Proc8(int d, int k) => k * 10 + d;"
+      }
+    },
+    {
+      "id": "Proc9",
+      "question": "AddLeftDigit(D, K): добавить цифру D слева к K.",
+      "solutions": {
+        "python": "def proc9(d: int, k: int) -> int:\n    power = 1\n    while power <= k:\n        power *= 10\n    return d * power + k",
+        "javascript": "const proc9 = (d, k) => {\n    let p = 1;\n    while (p <= k) p *= 10;\n    return d * p + k;\n};",
+        "java": "public static int proc9(int d, int k) {\n    int p = 1;\n    while (p <= k) p *= 10;\n    return d * p + k;\n}",
+        "csharp": "public static int Proc9(int d, int k) {\n    int p = 1;\n    while (p <= k) p *= 10;\n    return d * p + k;\n}"
+      }
+    },
+    {
+      "id": "Proc10",
+      "question": "Swap(X, Y): поменять местами.",
+      "solutions": {
+        "python": "def proc10(x: float, y: float):\n    return y, x",
+        "javascript": "const proc10 = (x, y) => [y, x];",
+        "java": "public static double[] proc10(double x, double y) {\n    return new double[]{y, x};\n}",
+        "csharp": "public static (double, double) Proc10(double x, double y) => (y, x);"
+      }
+    },
+    {
+      "id": "Proc11",
+      "question": "Minmax(X, Y): вернуть (min, max).",
+      "solutions": {
+        "python": "def proc11(x: float, y: float):\n    return (x, y) if x < y else (y, x)",
+        "javascript": "const proc11 = (x, y) => x < y ? [x, y] : [y, x];",
+        "java": "public static double[] proc11(double x, double y) {\n    return x < y ? new double[]{x, y} : new double[]{y, x};\n}",
+        "csharp": "public static (double, double) Proc11(double x, double y) => x < y ? (x, y) : (y, x);"
+      }
+    },
+    {
+      "id": "Proc12",
+      "question": "SortInc3(A, B, C): упорядочить по возрастанию.",
+      "solutions": {
+        "python": "def proc12(a: float, b: float, c: float):\n    return tuple(sorted([a, b, c]))",
+        "javascript": "const proc12 = (a, b, c) => [a, b, c].sort((x, y) => x - y);",
+        "java": "public static double[] proc12(double a, double b, double c) {\n    double[] arr = {a, b, c};\n    java.util.Arrays.sort(arr);\n    return arr;\n}",
+        "csharp": "public static (double, double, double) Proc12(double a, double b, double c) {\n    var arr = new[] {a, b, c};\n    Array.Sort(arr);\n    return (arr[0], arr[1], arr[2]);\n}"
+      }
+    },
+    {
+      "id": "Proc13",
+      "question": "SortDec3(A, B, C): упорядочить по убыванию.",
+      "solutions": {
+        "python": "def proc13(a: float, b: float, c: float):\n    return tuple(sorted([a, b, c], reverse=True))",
+        "javascript": "const proc13 = (a, b, c) => [a, b, c].sort((x, y) => y - x);",
+        "java": "public static double[] proc13(double a, double b, double c) {\n    double[] arr = {a, b, c};\n    java.util.Arrays.sort(arr);\n    return new double[]{arr[2], arr[1], arr[0]};\n}",
+        "csharp": "public static (double, double, double) Proc13(double a, double b, double c) {\n    var arr = new[] {a, b, c};\n    Array.Sort(arr);\n    return (arr[2], arr[1], arr[0]);\n}"
+      }
+    },
+    {
+      "id": "Proc14",
+      "question": "ShiftRight3(A, B, C): правый циклический сдвиг.",
+      "solutions": {
+        "python": "def proc14(a: float, b: float, c: float):\n    return c, a, b",
+        "javascript": "const proc14 = (a, b, c) => [c, a, b];",
+        "java": "public static double[] proc14(double a, double b, double c) {\n    return new double[]{c, a, b};\n}",
+        "csharp": "public static (double, double, double) Proc14(double a, double b, double c) => (c, a, b);"
+      }
+    },
+    {
+      "id": "Proc15",
+      "question": "ShiftLeft3(A, B, C): левый циклический сдвиг.",
+      "solutions": {
+        "python": "def proc15(a: float, b: float, c: float):\n    return b, c, a",
+        "javascript": "const proc15 = (a, b, c) => [b, c, a];",
+        "java": "public static double[] proc15(double a, double b, double c) {\n    return new double[]{b, c, a};\n}",
+        "csharp": "public static (double, double, double) Proc15(double a, double b, double c) => (b, c, a);"
+      }
+    },
+    {
+      "id": "Proc16",
+      "question": "Sign(X): -1/0/1.",
+      "solutions": {
+        "python": "def proc16(x: float) -> int:\n    return (x > 0) - (x < 0)",
+        "javascript": "const proc16 = (x) => Math.sign(x);",
+        "java": "public static int proc16(double x) {\n    return Double.compare(x, 0);\n}",
+        "csharp": "public static int Proc16(double x) => Math.Sign(x);"
+      }
+    },
+    {
+      "id": "Proc17",
+      "question": "RootsCount(A, B, C): количество корней квадратного уравнения.",
+      "solutions": {
+        "python": "def proc17(a: float, b: float, c: float) -> int:\n    d = b * b - 4 * a * c\n    if d > 0: return 2\n    if d == 0: return 1\n    return 0",
+        "javascript": "const proc17 = (a, b, c) => {\n    const d = b * b - 4 * a * c;\n    return d > 0 ? 2 : d === 0 ? 1 : 0;\n};",
+        "java": "public static int proc17(double a, double b, double c) {\n    double d = b * b - 4 * a * c;\n    if (d > 0) return 2;\n    if (d == 0) return 1;\n    return 0;\n}",
+        "csharp": "public static int Proc17(double a, double b, double c) {\n    double d = b * b - 4 * a * c;\n    return d > 0 ? 2 : d == 0 ? 1 : 0;\n}"
+      }
+    },
+    {
+      "id": "Proc18",
+      "question": "CircleS(R): площадь круга.",
+      "solutions": {
+        "python": "def proc18(r: float) -> float:\n    return 3.14 * r * r",
+        "javascript": "const proc18 = (r) => 3.14 * r * r;",
+        "java": "public static double proc18(double r) {\n    return 3.14 * r * r;\n}",
+        "csharp": "public static double Proc18(double r) => 3.14 * r * r;"
+      }
+    },
+    {
+      "id": "Proc19",
+      "question": "RingS(R1, R2): площадь кольца.",
+      "solutions": {
+        "python": "def proc19(r1: float, r2: float) -> float:\n    return 3.14 * (r1 * r1 - r2 * r2)",
+        "javascript": "const proc19 = (r1, r2) => 3.14 * (r1 * r1 - r2 * r2);",
+        "java": "public static double proc19(double r1, double r2) {\n    return 3.14 * (r1 * r1 - r2 * r2);\n}",
+        "csharp": "public static double Proc19(double r1, double r2) => 3.14 * (r1 * r1 - r2 * r2);"
+      }
+    },
+    {
+      "id": "Proc20",
+      "question": "TriangleP(a, h): периметр равнобедренного треугольника.",
+      "solutions": {
+        "python": "import math\ndef proc20(a: float, h: float) -> float:\n    b = math.sqrt((a / 2) ** 2 + h * h)\n    return a + 2 * b",
+        "javascript": "const proc20 = (a, h) => {\n    const b = Math.sqrt((a / 2) ** 2 + h * h);\n    return a + 2 * b;\n};",
+        "java": "public static double proc20(double a, double h) {\n    double b = Math.sqrt((a / 2) * (a / 2) + h * h);\n    return a + 2 * b;\n}",
+        "csharp": "public static double Proc20(double a, double h) {\n    double b = Math.Sqrt((a / 2) * (a / 2) + h * h);\n    return a + 2 * b;\n}"
+      }
+    },
+    {
+      "id": "Proc21",
+      "question": "SumRange(A, B): сумма целых от A до B включительно. Если A>B — 0.",
+      "solutions": {
+        "python": "def proc21(a: int, b: int) -> int:\n    if a > b: return 0\n    return (a + b) * (b - a + 1) // 2",
+        "javascript": "const proc21 = (a, b) => a > b ? 0 : (a + b) * (b - a + 1) / 2;",
+        "java": "public static long proc21(int a, int b) {\n    if (a > b) return 0;\n    return (long)(a + b) * (b - a + 1) / 2;\n}",
+        "csharp": "public static long Proc21(int a, int b) => a > b ? 0 : (long)(a + b) * (b - a + 1) / 2;"
+      }
+    },
+    {
+      "id": "Proc22",
+      "question": "Calc(A, B, Op): 1-вычитание, 2-умножение, 3-деление, иначе сложение.",
+      "solutions": {
+        "python": "def proc22(a: float, b: float, op: int) -> float:\n    if op == 1: return a - b\n    if op == 2: return a * b\n    if op == 3: return a / b\n    return a + b",
+        "javascript": "const proc22 = (a, b, op) => {\n    switch (op) {\n        case 1: return a - b;\n        case 2: return a * b;\n        case 3: return a / b;\n        default: return a + b;\n    }\n};",
+        "java": "public static double proc22(double a, double b, int op) {\n    switch (op) {\n        case 1: return a - b;\n        case 2: return a * b;\n        case 3: return a / b;\n        default: return a + b;\n    }\n}",
+        "csharp": "public static double Proc22(double a, double b, int op) => op switch {\n    1 => a - b,\n    2 => a * b,\n    3 => a / b,\n    _ => a + b\n};"
+      }
+    },
+    {
+      "id": "Proc23",
+      "question": "Quarter(x, y): номер координатной четверти.",
+      "solutions": {
+        "python": "def proc23(x: float, y: float) -> int:\n    if x > 0 and y > 0: return 1\n    if x < 0 and y > 0: return 2\n    if x < 0 and y < 0: return 3\n    return 4",
+        "javascript": "const proc23 = (x, y) => {\n    if (x > 0 && y > 0) return 1;\n    if (x < 0 && y > 0) return 2;\n    if (x < 0 && y < 0) return 3;\n    return 4;\n};",
+        "java": "public static int proc23(double x, double y) {\n    if (x > 0 && y > 0) return 1;\n    if (x < 0 && y > 0) return 2;\n    if (x < 0 && y < 0) return 3;\n    return 4;\n}",
+        "csharp": "public static int Proc23(double x, double y) {\n    if (x > 0 && y > 0) return 1;\n    if (x < 0 && y > 0) return 2;\n    if (x < 0 && y < 0) return 3;\n    return 4;\n}"
+      }
+    },
+    {
+      "id": "Proc24",
+      "question": "Even(K): True, если K чётное.",
+      "solutions": {
+        "python": "def proc24(k: int) -> bool:\n    return k % 2 == 0",
+        "javascript": "const proc24 = (k) => k % 2 === 0;",
+        "java": "public static boolean proc24(int k) {\n    return k % 2 == 0;\n}",
+        "csharp": "public static bool Proc24(int k) => k % 2 == 0;"
+      }
+    },
+    {
+      "id": "Proc25",
+      "question": "IsSquare(K): True, если K квадрат целого.",
+      "solutions": {
+        "python": "import math\ndef proc25(k: int) -> bool:\n    if k < 0: return False\n    r = int(math.isqrt(k))\n    return r * r == k",
+        "javascript": "const proc25 = (k) => {\n    if (k < 0) return false;\n    const r = Math.floor(Math.sqrt(k));\n    return r * r === k;\n};",
+        "java": "public static boolean proc25(int k) {\n    if (k < 0) return false;\n    int r = (int) Math.sqrt(k);\n    return r * r == k || (r + 1) * (r + 1) == k;\n}",
+        "csharp": "public static bool Proc25(int k) {\n    if (k < 0) return false;\n    int r = (int)Math.Sqrt(k);\n    return r * r == k || (r + 1) * (r + 1) == k;\n}"
+      }
+    },
+    {
+      "id": "Proc26",
+      "question": "IsPower5(K): является ли K степенью 5.",
+      "solutions": {
+        "python": "def proc26(k: int) -> bool:\n    if k < 1: return False\n    while k % 5 == 0:\n        k //= 5\n    return k == 1",
+        "javascript": "const proc26 = (k) => {\n    if (k < 1) return false;\n    while (k % 5 === 0) k /= 5;\n    return k === 1;\n};",
+        "java": "public static boolean proc26(int k) {\n    if (k < 1) return false;\n    while (k % 5 == 0) k /= 5;\n    return k == 1;\n}",
+        "csharp": "public static bool Proc26(int k) {\n    if (k < 1) return false;\n    while (k % 5 == 0) k /= 5;\n    return k == 1;\n}"
+      }
+    },
+    {
+      "id": "Proc27",
+      "question": "IsPowerN(K, N): True, если K — степень N.",
+      "solutions": {
+        "python": "def proc27(k: int, n: int) -> bool:\n    if k < 1 or n < 2: return False\n    while k % n == 0:\n        k //= n\n    return k == 1",
+        "javascript": "const proc27 = (k, n) => {\n    if (k < 1 || n < 2) return false;\n    while (k % n === 0) k /= n;\n    return k === 1;\n};",
+        "java": "public static boolean proc27(int k, int n) {\n    if (k < 1 || n < 2) return false;\n    while (k % n == 0) k /= n;\n    return k == 1;\n}",
+        "csharp": "public static bool Proc27(int k, int n) {\n    if (k < 1 || n < 2) return false;\n    while (k % n == 0) k /= n;\n    return k == 1;\n}"
+      }
+    },
+    {
+      "id": "Proc28",
+      "question": "IsPrime(N): проверка на простоту.",
+      "solutions": {
+        "python": "def proc28(n: int) -> bool:\n    if n < 2: return False\n    i = 2\n    while i * i <= n:\n        if n % i == 0: return False\n        i += 1\n    return True",
+        "javascript": "const proc28 = (n) => {\n    if (n < 2) return false;\n    for (let i = 2; i * i <= n; i++)\n        if (n % i === 0) return false;\n    return true;\n};",
+        "java": "public static boolean proc28(int n) {\n    if (n < 2) return false;\n    for (int i = 2; i * i <= n; i++)\n        if (n % i == 0) return false;\n    return true;\n}",
+        "csharp": "public static bool Proc28(int n) {\n    if (n < 2) return false;\n    for (int i = 2; i * i <= n; i++)\n        if (n % i == 0) return false;\n    return true;\n}"
+      }
+    },
+    {
+      "id": "Proc29",
+      "question": "DigitCount(K): количество цифр.",
+      "solutions": {
+        "python": "def proc29(k: int) -> int:\n    count = 0\n    while k > 0:\n        k //= 10\n        count += 1\n    return count",
+        "javascript": "const proc29 = (k) => {\n    let c = 0;\n    while (k > 0) { k = Math.floor(k / 10); c++; }\n    return c;\n};",
+        "java": "public static int proc29(int k) {\n    int c = 0;\n    while (k > 0) { k /= 10; c++; }\n    return c;\n}",
+        "csharp": "public static int Proc29(int k) {\n    int c = 0;\n    while (k > 0) { k /= 10; c++; }\n    return c;\n}"
+      }
+    },
+    {
+      "id": "Proc30",
+      "question": "DigitN(K, N): N-я цифра K справа налево. Если цифр меньше N — вернуть -1.",
+      "solutions": {
+        "python": "def proc30(k: int, n: int) -> int:\n    for _ in range(n - 1):\n        k //= 10\n        if k == 0: return -1\n    return k % 10 if k > 0 else -1",
+        "javascript": "const proc30 = (k, n) => {\n    for (let i = 0; i < n - 1; i++) {\n        k = Math.floor(k / 10);\n        if (k === 0) return -1;\n    }\n    return k > 0 ? k % 10 : -1;\n};",
+        "java": "public static int proc30(int k, int n) {\n    for (int i = 0; i < n - 1; i++) {\n        k /= 10;\n        if (k == 0) return -1;\n    }\n    return k > 0 ? k % 10 : -1;\n}",
+        "csharp": "public static int Proc30(int k, int n) {\n    for (int i = 0; i < n - 1; i++) {\n        k /= 10;\n        if (k == 0) return -1;\n    }\n    return k > 0 ? k % 10 : -1;\n}"
+      }
+    },
+    {
+      "id": "Proc31",
+      "question": "IsPalindrom(K): палиндром ли K.",
+      "solutions": {
+        "python": "def proc31(k: int) -> bool:\n    original, reversed_n = k, 0\n    while k > 0:\n        reversed_n = reversed_n * 10 + k % 10\n        k //= 10\n    return original == reversed_n",
+        "javascript": "const proc31 = (k) => {\n    let original = k, r = 0;\n    while (k > 0) { r = r * 10 + k % 10; k = Math.floor(k / 10); }\n    return original === r;\n};",
+        "java": "public static boolean proc31(int k) {\n    int original = k, r = 0;\n    while (k > 0) { r = r * 10 + k % 10; k /= 10; }\n    return original == r;\n}",
+        "csharp": "public static bool Proc31(int k) {\n    int original = k, r = 0;\n    while (k > 0) { r = r * 10 + k % 10; k /= 10; }\n    return original == r;\n}"
+      }
+    },
+    {
+      "id": "Proc32",
+      "question": "DegToRad(D): градусы в радианы.",
+      "solutions": {
+        "python": "def proc32(d: float) -> float:\n    return d * 3.14 / 180",
+        "javascript": "const proc32 = (d) => d * 3.14 / 180;",
+        "java": "public static double proc32(double d) {\n    return d * 3.14 / 180;\n}",
+        "csharp": "public static double Proc32(double d) => d * 3.14 / 180;"
+      }
+    },
+    {
+      "id": "Proc33",
+      "question": "RadToDeg(R): радианы в градусы.",
+      "solutions": {
+        "python": "def proc33(r: float) -> float:\n    return r * 180 / 3.14",
+        "javascript": "const proc33 = (r) => r * 180 / 3.14;",
+        "java": "public static double proc33(double r) {\n    return r * 180 / 3.14;\n}",
+        "csharp": "public static double Proc33(double r) => r * 180 / 3.14;"
+      }
+    },
+    {
+      "id": "Proc34",
+      "question": "Fact(N): факториал как вещественное.",
+      "solutions": {
+        "python": "def proc34(n: int) -> float:\n    result = 1.0\n    for i in range(2, n + 1):\n        result *= i\n    return result",
+        "javascript": "const proc34 = (n) => {\n    let r = 1;\n    for (let i = 2; i <= n; i++) r *= i;\n    return r;\n};",
+        "java": "public static double proc34(int n) {\n    double r = 1;\n    for (int i = 2; i <= n; i++) r *= i;\n    return r;\n}",
+        "csharp": "public static double Proc34(int n) {\n    double r = 1;\n    for (int i = 2; i <= n; i++) r *= i;\n    return r;\n}"
+      }
+    },
+    {
+      "id": "Proc35",
+      "question": "Fact2(N): двойной факториал.",
+      "solutions": {
+        "python": "def proc35(n: int) -> float:\n    result = 1.0\n    i = n\n    while i > 0:\n        result *= i\n        i -= 2\n    return result",
+        "javascript": "const proc35 = (n) => {\n    let r = 1;\n    for (let i = n; i > 0; i -= 2) r *= i;\n    return r;\n};",
+        "java": "public static double proc35(int n) {\n    double r = 1;\n    for (int i = n; i > 0; i -= 2) r *= i;\n    return r;\n}",
+        "csharp": "public static double Proc35(int n) {\n    double r = 1;\n    for (int i = n; i > 0; i -= 2) r *= i;\n    return r;\n}"
+      }
+    },
+    {
+      "id": "Proc36",
+      "question": "Fib(N): N-е число Фибоначчи.",
+      "solutions": {
+        "python": "def proc36(n: int) -> int:\n    a, b = 1, 1\n    for _ in range(n - 1):\n        a, b = b, a + b\n    return a",
+        "javascript": "const proc36 = (n) => {\n    let a = 1, b = 1;\n    for (let i = 1; i < n; i++) [a, b] = [b, a + b];\n    return a;\n};",
+        "java": "public static long proc36(int n) {\n    long a = 1, b = 1;\n    for (int i = 1; i < n; i++) { long t = b; b = a + b; a = t; }\n    return a;\n}",
+        "csharp": "public static long Proc36(int n) {\n    long a = 1, b = 1;\n    for (int i = 1; i < n; i++) (a, b) = (b, a + b);\n    return a;\n}"
+      }
+    },
+    {
+      "id": "Proc37",
+      "question": "Power1(A, B): A^B через exp(B·ln(A)). Если A≤0 — 0.",
+      "solutions": {
+        "python": "import math\ndef proc37(a: float, b: float) -> float:\n    if a <= 0: return 0\n    return math.exp(b * math.log(a))",
+        "javascript": "const proc37 = (a, b) => a <= 0 ? 0 : Math.exp(b * Math.log(a));",
+        "java": "public static double proc37(double a, double b) {\n    return a <= 0 ? 0 : Math.exp(b * Math.log(a));\n}",
+        "csharp": "public static double Proc37(double a, double b) => a <= 0 ? 0 : Math.Exp(b * Math.Log(a));"
+      }
+    },
+    {
+      "id": "Proc38",
+      "question": "Power2(A, N): A^N для целого N (включая отрицательные).",
+      "solutions": {
+        "python": "def proc38(a: float, n: int) -> float:\n    if n == 0: return 1\n    result = 1.0\n    for _ in range(abs(n)):\n        result *= a\n    return result if n > 0 else 1 / result",
+        "javascript": "const proc38 = (a, n) => {\n    if (n === 0) return 1;\n    let r = 1;\n    for (let i = 0; i < Math.abs(n); i++) r *= a;\n    return n > 0 ? r : 1 / r;\n};",
+        "java": "public static double proc38(double a, int n) {\n    if (n == 0) return 1;\n    double r = 1;\n    for (int i = 0; i < Math.abs(n); i++) r *= a;\n    return n > 0 ? r : 1 / r;\n}",
+        "csharp": "public static double Proc38(double a, int n) {\n    if (n == 0) return 1;\n    double r = 1;\n    for (int i = 0; i < Math.Abs(n); i++) r *= a;\n    return n > 0 ? r : 1 / r;\n}"
+      }
+    },
+    {
+      "id": "Proc39",
+      "question": "Power3(A, B): если B целое — Power2, иначе Power1.",
+      "solutions": {
+        "python": "import math\ndef proc39(a: float, b: float) -> float:\n    if b == int(b):\n        n = int(round(b))\n        if n == 0: return 1\n        r = 1.0\n        for _ in range(abs(n)): r *= a\n        return r if n > 0 else 1 / r\n    return 0 if a <= 0 else math.exp(b * math.log(a))",
+        "javascript": "const proc39 = (a, b) => {\n    if (b === Math.floor(b)) {\n        const n = Math.round(b);\n        if (n === 0) return 1;\n        let r = 1;\n        for (let i = 0; i < Math.abs(n); i++) r *= a;\n        return n > 0 ? r : 1 / r;\n    }\n    return a <= 0 ? 0 : Math.exp(b * Math.log(a));\n};",
+        "java": "public static double proc39(double a, double b) {\n    if (b == Math.floor(b)) {\n        int n = (int) Math.round(b);\n        if (n == 0) return 1;\n        double r = 1;\n        for (int i = 0; i < Math.abs(n); i++) r *= a;\n        return n > 0 ? r : 1 / r;\n    }\n    return a <= 0 ? 0 : Math.exp(b * Math.log(a));\n}",
+        "csharp": "public static double Proc39(double a, double b) {\n    if (b == Math.Floor(b)) {\n        int n = (int) Math.Round(b);\n        if (n == 0) return 1;\n        double r = 1;\n        for (int i = 0; i < Math.Abs(n); i++) r *= a;\n        return n > 0 ? r : 1 / r;\n    }\n    return a <= 0 ? 0 : Math.Exp(b * Math.Log(a));\n}"
+      }
+    },
+    {
+      "id": "Proc40",
+      "question": "Exp1(x, ε): приближение exp(x) рядом, пока слагаемые > ε.",
+      "solutions": {
+        "python": "def proc40(x: float, eps: float) -> float:\n    s = 1.0\n    term = 1.0\n    i = 1\n    while abs(term) > eps:\n        term *= x / i\n        s += term\n        i += 1\n    return s",
+        "javascript": "const proc40 = (x, eps) => {\n    let s = 1, t = 1, i = 1;\n    while (Math.abs(t) > eps) {\n        t *= x / i;\n        s += t;\n        i++;\n    }\n    return s;\n};",
+        "java": "public static double proc40(double x, double eps) {\n    double s = 1, t = 1;\n    int i = 1;\n    while (Math.abs(t) > eps) {\n        t *= x / i;\n        s += t;\n        i++;\n    }\n    return s;\n}",
+        "csharp": "public static double Proc40(double x, double eps) {\n    double s = 1, t = 1;\n    int i = 1;\n    while (Math.Abs(t) > eps) {\n        t *= x / i;\n        s += t;\n        i++;\n    }\n    return s;\n}"
+      }
+    },
+    {
+      "id": "Proc41",
+      "question": "Sin1(x, ε): приближение sin(x).",
+      "solutions": {
+        "python": "def proc41(x: float, eps: float) -> float:\n    s = x\n    term = x\n    k = 1\n    while True:\n        term *= -x * x / ((2 * k) * (2 * k + 1))\n        if abs(term) <= eps: break\n        s += term\n        k += 1\n    return s",
+        "javascript": "const proc41 = (x, eps) => {\n    let s = x, t = x, k = 1;\n    while (true) {\n        t *= -x * x / ((2 * k) * (2 * k + 1));\n        if (Math.abs(t) <= eps) break;\n        s += t;\n        k++;\n    }\n    return s;\n};",
+        "java": "public static double proc41(double x, double eps) {\n    double s = x, t = x;\n    int k = 1;\n    while (true) {\n        t *= -x * x / ((2 * k) * (2 * k + 1));\n        if (Math.abs(t) <= eps) break;\n        s += t;\n        k++;\n    }\n    return s;\n}",
+        "csharp": "public static double Proc41(double x, double eps) {\n    double s = x, t = x;\n    int k = 1;\n    while (true) {\n        t *= -x * x / ((2 * k) * (2 * k + 1));\n        if (Math.Abs(t) <= eps) break;\n        s += t;\n        k++;\n    }\n    return s;\n}"
+      }
+    },
+    {
+      "id": "Proc42",
+      "question": "Cos1(x, ε): приближение cos(x).",
+      "solutions": {
+        "python": "def proc42(x: float, eps: float) -> float:\n    s = 1.0\n    term = 1.0\n    k = 1\n    while True:\n        term *= -x * x / ((2 * k - 1) * (2 * k))\n        if abs(term) <= eps: break\n        s += term\n        k += 1\n    return s",
+        "javascript": "const proc42 = (x, eps) => {\n    let s = 1, t = 1, k = 1;\n    while (true) {\n        t *= -x * x / ((2 * k - 1) * (2 * k));\n        if (Math.abs(t) <= eps) break;\n        s += t;\n        k++;\n    }\n    return s;\n};",
+        "java": "public static double proc42(double x, double eps) {\n    double s = 1, t = 1;\n    int k = 1;\n    while (true) {\n        t *= -x * x / ((2 * k - 1) * (2 * k));\n        if (Math.abs(t) <= eps) break;\n        s += t;\n        k++;\n    }\n    return s;\n}",
+        "csharp": "public static double Proc42(double x, double eps) {\n    double s = 1, t = 1;\n    int k = 1;\n    while (true) {\n        t *= -x * x / ((2 * k - 1) * (2 * k));\n        if (Math.Abs(t) <= eps) break;\n        s += t;\n        k++;\n    }\n    return s;\n}"
+      }
+    },
+    {
+      "id": "Proc43",
+      "question": "Ln1(x, ε): приближение ln(1+x).",
+      "solutions": {
+        "python": "def proc43(x: float, eps: float) -> float:\n    s = 0.0\n    power = 1.0\n    k = 1\n    while True:\n        power *= x\n        term = ((-1) ** (k - 1)) * power / k\n        if abs(term) <= eps: break\n        s += term\n        k += 1\n    return s",
+        "javascript": "const proc43 = (x, eps) => {\n    let s = 0, p = 1, k = 1;\n    while (true) {\n        p *= x;\n        const t = (k % 2 === 1 ? 1 : -1) * p / k;\n        if (Math.abs(t) <= eps) break;\n        s += t;\n        k++;\n    }\n    return s;\n};",
+        "java": "public static double proc43(double x, double eps) {\n    double s = 0, p = 1;\n    int k = 1;\n    while (true) {\n        p *= x;\n        double t = (k % 2 == 1 ? 1 : -1) * p / k;\n        if (Math.abs(t) <= eps) break;\n        s += t;\n        k++;\n    }\n    return s;\n}",
+        "csharp": "public static double Proc43(double x, double eps) {\n    double s = 0, p = 1;\n    int k = 1;\n    while (true) {\n        p *= x;\n        double t = (k % 2 == 1 ? 1 : -1) * p / k;\n        if (Math.Abs(t) <= eps) break;\n        s += t;\n        k++;\n    }\n    return s;\n}"
+      }
+    },
+    {
+      "id": "Proc44",
+      "question": "Arctg1(x, ε): приближение arctg(x).",
+      "solutions": {
+        "python": "def proc44(x: float, eps: float) -> float:\n    s = 0.0\n    power = x\n    x2 = x * x\n    k = 0\n    while True:\n        term = ((-1) ** k) * power / (2 * k + 1)\n        if abs(term) <= eps: break\n        s += term\n        power *= x2\n        k += 1\n    return s",
+        "javascript": "const proc44 = (x, eps) => {\n    let s = 0, p = x, k = 0;\n    const x2 = x * x;\n    while (true) {\n        const t = (k % 2 === 0 ? 1 : -1) * p / (2 * k + 1);\n        if (Math.abs(t) <= eps) break;\n        s += t;\n        p *= x2;\n        k++;\n    }\n    return s;\n};",
+        "java": "public static double proc44(double x, double eps) {\n    double s = 0, p = x, x2 = x * x;\n    int k = 0;\n    while (true) {\n        double t = (k % 2 == 0 ? 1 : -1) * p / (2 * k + 1);\n        if (Math.abs(t) <= eps) break;\n        s += t;\n        p *= x2;\n        k++;\n    }\n    return s;\n}",
+        "csharp": "public static double Proc44(double x, double eps) {\n    double s = 0, p = x, x2 = x * x;\n    int k = 0;\n    while (true) {\n        double t = (k % 2 == 0 ? 1 : -1) * p / (2 * k + 1);\n        if (Math.Abs(t) <= eps) break;\n        s += t;\n        p *= x2;\n        k++;\n    }\n    return s;\n}"
+      }
+    },
+    {
+      "id": "Proc45",
+      "question": "Power4(x, a, ε): приближение (1+x)^a.",
+      "solutions": {
+        "python": "def proc45(x: float, a: float, eps: float) -> float:\n    s = 1.0\n    term = 1.0\n    n = 1\n    while True:\n        term *= (a - n + 1) * x / n\n        if abs(term) <= eps: break\n        s += term\n        n += 1\n    return s",
+        "javascript": "const proc45 = (x, a, eps) => {\n    let s = 1, t = 1, n = 1;\n    while (true) {\n        t *= (a - n + 1) * x / n;\n        if (Math.abs(t) <= eps) break;\n        s += t;\n        n++;\n    }\n    return s;\n};",
+        "java": "public static double proc45(double x, double a, double eps) {\n    double s = 1, t = 1;\n    int n = 1;\n    while (true) {\n        t *= (a - n + 1) * x / n;\n        if (Math.abs(t) <= eps) break;\n        s += t;\n        n++;\n    }\n    return s;\n}",
+        "csharp": "public static double Proc45(double x, double a, double eps) {\n    double s = 1, t = 1;\n    int n = 1;\n    while (true) {\n        t *= (a - n + 1) * x / n;\n        if (Math.Abs(t) <= eps) break;\n        s += t;\n        n++;\n    }\n    return s;\n}"
+      }
+    },
+    {
+      "id": "Proc46",
+      "question": "NOD2(A, B): НОД по алгоритму Евклида.",
+      "solutions": {
+        "python": "def proc46(a: int, b: int) -> int:\n    while b != 0:\n        a, b = b, a % b\n    return a",
+        "javascript": "const proc46 = (a, b) => {\n    while (b !== 0) [a, b] = [b, a % b];\n    return a;\n};",
+        "java": "public static int proc46(int a, int b) {\n    while (b != 0) { int t = b; b = a % b; a = t; }\n    return a;\n}",
+        "csharp": "public static int Proc46(int a, int b) {\n    while (b != 0) (a, b) = (b, a % b);\n    return a;\n}"
+      }
+    },
+    {
+      "id": "Proc47",
+      "question": "Frac1(a, b): привести дробь a/b к несократимому виду (p, q).",
+      "solutions": {
+        "python": "from math import gcd\ndef proc47(a: int, b: int):\n    g = gcd(abs(a), abs(b))\n    p, q = a // g, b // g\n    if q < 0: p, q = -p, -q\n    return p, q",
+        "javascript": "const proc47 = (a, b) => {\n    const gcd = (x, y) => y === 0 ? x : gcd(y, x % y);\n    const g = gcd(Math.abs(a), Math.abs(b));\n    let p = a / g, q = b / g;\n    if (q < 0) { p = -p; q = -q; }\n    return [p, q];\n};",
+        "java": "public static int[] proc47(int a, int b) {\n    int x = Math.abs(a), y = Math.abs(b);\n    while (y != 0) { int t = y; y = x % y; x = t; }\n    int p = a / x, q = b / x;\n    if (q < 0) { p = -p; q = -q; }\n    return new int[]{p, q};\n}",
+        "csharp": "public static (int, int) Proc47(int a, int b) {\n    int x = Math.Abs(a), y = Math.Abs(b);\n    while (y != 0) (x, y) = (y, x % y);\n    int p = a / x, q = b / x;\n    if (q < 0) { p = -p; q = -q; }\n    return (p, q);\n}"
+      }
+    },
+    {
+      "id": "Proc48",
+      "question": "NOK2(A, B): наименьшее общее кратное.",
+      "solutions": {
+        "python": "def proc48(a: int, b: int) -> int:\n    def gcd(x, y):\n        while y: x, y = y, x % y\n        return x\n    return a * (b // gcd(a, b))",
+        "javascript": "const proc48 = (a, b) => {\n    const gcd = (x, y) => { while (y) [x, y] = [y, x % y]; return x; };\n    return a * (b / gcd(a, b));\n};",
+        "java": "public static long proc48(int a, int b) {\n    int x = a, y = b;\n    while (y != 0) { int t = y; y = x % y; x = t; }\n    return (long) a * (b / x);\n}",
+        "csharp": "public static long Proc48(int a, int b) {\n    int x = a, y = b;\n    while (y != 0) (x, y) = (y, x % y);\n    return (long)a * (b / x);\n}"
+      }
+    },
+    {
+      "id": "Proc49",
+      "question": "NOD3(A, B, C): НОД трёх чисел.",
+      "solutions": {
+        "python": "from math import gcd\ndef proc49(a: int, b: int, c: int) -> int:\n    return gcd(gcd(a, b), c)",
+        "javascript": "const proc49 = (a, b, c) => {\n    const gcd = (x, y) => y === 0 ? x : gcd(y, x % y);\n    return gcd(gcd(a, b), c);\n};",
+        "java": "public static int proc49(int a, int b, int c) {\n    return gcd(gcd(a, b), c);\n}\nprivate static int gcd(int x, int y) {\n    while (y != 0) { int t = y; y = x % y; x = t; }\n    return x;\n}",
+        "csharp": "public static int Proc49(int a, int b, int c) {\n    static int Gcd(int x, int y) { while (y != 0) (x, y) = (y, x % y); return x; }\n    return Gcd(Gcd(a, b), c);\n}"
+      }
+    },
+    {
+      "id": "Proc50",
+      "question": "TimeToHMS(T): T секунд → (H, M, S).",
+      "solutions": {
+        "python": "def proc50(t: int):\n    h, rem = divmod(t, 3600)\n    m, s = divmod(rem, 60)\n    return h, m, s",
+        "javascript": "const proc50 = (t) => {\n    const h = Math.floor(t / 3600);\n    const m = Math.floor((t % 3600) / 60);\n    const s = t % 60;\n    return [h, m, s];\n};",
+        "java": "public static int[] proc50(int t) {\n    return new int[]{t / 3600, (t % 3600) / 60, t % 60};\n}",
+        "csharp": "public static (int, int, int) Proc50(int t) => (t / 3600, (t % 3600) / 60, t % 60);"
+      }
+    },
+    {
+      "id": "Proc51",
+      "question": "IncTime(H, M, S, T): увеличить время на T секунд.",
+      "solutions": {
+        "python": "def proc51(h: int, m: int, s: int, t: int):\n    total = h * 3600 + m * 60 + s + t\n    return total // 3600, (total % 3600) // 60, total % 60",
+        "javascript": "const proc51 = (h, m, s, t) => {\n    const total = h * 3600 + m * 60 + s + t;\n    return [Math.floor(total / 3600), Math.floor((total % 3600) / 60), total % 60];\n};",
+        "java": "public static int[] proc51(int h, int m, int s, int t) {\n    int total = h * 3600 + m * 60 + s + t;\n    return new int[]{total / 3600, (total % 3600) / 60, total % 60};\n}",
+        "csharp": "public static (int, int, int) Proc51(int h, int m, int s, int t) {\n    int total = h * 3600 + m * 60 + s + t;\n    return (total / 3600, (total % 3600) / 60, total % 60);\n}"
+      }
+    },
+    {
+      "id": "Proc52",
+      "question": "IsLeapYear(Y): високосный ли год.",
+      "solutions": {
+        "python": "def proc52(y: int) -> bool:\n    return (y % 4 == 0 and y % 100 != 0) or y % 400 == 0",
+        "javascript": "const proc52 = (y) => (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0;",
+        "java": "public static boolean proc52(int y) {\n    return (y % 4 == 0 && y % 100 != 0) || y % 400 == 0;\n}",
+        "csharp": "public static bool Proc52(int y) => (y % 4 == 0 && y % 100 != 0) || y % 400 == 0;"
+      }
+    },
+    {
+      "id": "Proc53",
+      "question": "MonthDays(M, Y): количество дней в месяце M года Y.",
+      "solutions": {
+        "python": "def proc53(m: int, y: int) -> int:\n    days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]\n    is_leap = (y % 4 == 0 and y % 100 != 0) or y % 400 == 0\n    if m == 2 and is_leap:\n        return 29\n    return days[m - 1]",
+        "javascript": "const proc53 = (m, y) => {\n    const days = [31,28,31,30,31,30,31,31,30,31,30,31];\n    const leap = (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0;\n    return m === 2 && leap ? 29 : days[m - 1];\n};",
+        "java": "public static int proc53(int m, int y) {\n    int[] days = {31,28,31,30,31,30,31,31,30,31,30,31};\n    boolean leap = (y % 4 == 0 && y % 100 != 0) || y % 400 == 0;\n    return m == 2 && leap ? 29 : days[m - 1];\n}",
+        "csharp": "public static int Proc53(int m, int y) {\n    int[] days = {31,28,31,30,31,30,31,31,30,31,30,31};\n    bool leap = (y % 4 == 0 && y % 100 != 0) || y % 400 == 0;\n    return m == 2 && leap ? 29 : days[m - 1];\n}"
+      }
+    },
+    {
+      "id": "Proc54",
+      "question": "PrevDate(D, M, Y): предыдущая дата.",
+      "solutions": {
+        "python": "def proc54(d: int, m: int, y: int):\n    def leap(yr): return (yr % 4 == 0 and yr % 100 != 0) or yr % 400 == 0\n    days = [31, 29 if leap(y) else 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]\n    if d > 1: return d - 1, m, y\n    if m > 1:\n        prev_m = m - 1\n        return days[prev_m - 1], prev_m, y\n    return 31, 12, y - 1",
+        "javascript": "const proc54 = (d, m, y) => {\n    const leap = (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0;\n    const days = [31, leap ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];\n    if (d > 1) return [d - 1, m, y];\n    if (m > 1) return [days[m - 2], m - 1, y];\n    return [31, 12, y - 1];\n};",
+        "java": "public static int[] proc54(int d, int m, int y) {\n    boolean leap = (y % 4 == 0 && y % 100 != 0) || y % 400 == 0;\n    int[] days = {31, leap ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};\n    if (d > 1) return new int[]{d - 1, m, y};\n    if (m > 1) return new int[]{days[m - 2], m - 1, y};\n    return new int[]{31, 12, y - 1};\n}",
+        "csharp": "public static (int, int, int) Proc54(int d, int m, int y) {\n    bool leap = (y % 4 == 0 && y % 100 != 0) || y % 400 == 0;\n    int[] days = {31, leap ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};\n    if (d > 1) return (d - 1, m, y);\n    if (m > 1) return (days[m - 2], m - 1, y);\n    return (31, 12, y - 1);\n}"
+      }
+    },
+    {
+      "id": "Proc55",
+      "question": "NextDate(D, M, Y): следующая дата.",
+      "solutions": {
+        "python": "def proc55(d: int, m: int, y: int):\n    def leap(yr): return (yr % 4 == 0 and yr % 100 != 0) or yr % 400 == 0\n    days = [31, 29 if leap(y) else 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]\n    if d < days[m - 1]: return d + 1, m, y\n    if m < 12: return 1, m + 1, y\n    return 1, 1, y + 1",
+        "javascript": "const proc55 = (d, m, y) => {\n    const leap = (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0;\n    const days = [31, leap ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];\n    if (d < days[m - 1]) return [d + 1, m, y];\n    if (m < 12) return [1, m + 1, y];\n    return [1, 1, y + 1];\n};",
+        "java": "public static int[] proc55(int d, int m, int y) {\n    boolean leap = (y % 4 == 0 && y % 100 != 0) || y % 400 == 0;\n    int[] days = {31, leap ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};\n    if (d < days[m - 1]) return new int[]{d + 1, m, y};\n    if (m < 12) return new int[]{1, m + 1, y};\n    return new int[]{1, 1, y + 1};\n}",
+        "csharp": "public static (int, int, int) Proc55(int d, int m, int y) {\n    bool leap = (y % 4 == 0 && y % 100 != 0) || y % 400 == 0;\n    int[] days = {31, leap ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};\n    if (d < days[m - 1]) return (d + 1, m, y);\n    if (m < 12) return (1, m + 1, y);\n    return (1, 1, y + 1);\n}"
+      }
+    },
+    {
+      "id": "Proc56",
+      "question": "Leng(xA,yA,xB,yB): длина отрезка AB.",
+      "solutions": {
+        "python": "import math\ndef proc56(xa: float, ya: float, xb: float, yb: float) -> float:\n    return math.hypot(xb - xa, yb - ya)",
+        "javascript": "const proc56 = (xa, ya, xb, yb) => Math.hypot(xb - xa, yb - ya);",
+        "java": "public static double proc56(double xa, double ya, double xb, double yb) {\n    return Math.hypot(xb - xa, yb - ya);\n}",
+        "csharp": "public static double Proc56(double xa, double ya, double xb, double yb) =>\n    Math.Sqrt((xb - xa) * (xb - xa) + (yb - ya) * (yb - ya));"
+      }
+    },
+    {
+      "id": "Proc57",
+      "question": "Perim(A, B, C): периметр треугольника.",
+      "solutions": {
+        "python": "import math\ndef proc57(xa, ya, xb, yb, xc, yc) -> float:\n    ab = math.hypot(xb - xa, yb - ya)\n    ac = math.hypot(xc - xa, yc - ya)\n    bc = math.hypot(xc - xb, yc - yb)\n    return ab + ac + bc",
+        "javascript": "const proc57 = (xa, ya, xb, yb, xc, yc) => {\n    return Math.hypot(xb - xa, yb - ya) + Math.hypot(xc - xa, yc - ya) + Math.hypot(xc - xb, yc - yb);\n};",
+        "java": "public static double proc57(double xa, double ya, double xb, double yb, double xc, double yc) {\n    return Math.hypot(xb - xa, yb - ya) + Math.hypot(xc - xa, yc - ya) + Math.hypot(xc - xb, yc - yb);\n}",
+        "csharp": "public static double Proc57(double xa, double ya, double xb, double yb, double xc, double yc) {\n    double len(double x1, double y1, double x2, double y2) => Math.Sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1));\n    return len(xa, ya, xb, yb) + len(xa, ya, xc, yc) + len(xb, yb, xc, yc);\n}"
+      }
+    },
+    {
+      "id": "Proc58",
+      "question": "Area(A,B,C): площадь треугольника по формуле Герона.",
+      "solutions": {
+        "python": "import math\ndef proc58(xa, ya, xb, yb, xc, yc) -> float:\n    ab = math.hypot(xb - xa, yb - ya)\n    ac = math.hypot(xc - xa, yc - ya)\n    bc = math.hypot(xc - xb, yc - yb)\n    p = (ab + ac + bc) / 2\n    return math.sqrt(p * (p - ab) * (p - ac) * (p - bc))",
+        "javascript": "const proc58 = (xa, ya, xb, yb, xc, yc) => {\n    const ab = Math.hypot(xb - xa, yb - ya);\n    const ac = Math.hypot(xc - xa, yc - ya);\n    const bc = Math.hypot(xc - xb, yc - yb);\n    const p = (ab + ac + bc) / 2;\n    return Math.sqrt(p * (p - ab) * (p - ac) * (p - bc));\n};",
+        "java": "public static double proc58(double xa, double ya, double xb, double yb, double xc, double yc) {\n    double ab = Math.hypot(xb - xa, yb - ya);\n    double ac = Math.hypot(xc - xa, yc - ya);\n    double bc = Math.hypot(xc - xb, yc - yb);\n    double p = (ab + ac + bc) / 2;\n    return Math.sqrt(p * (p - ab) * (p - ac) * (p - bc));\n}",
+        "csharp": "public static double Proc58(double xa, double ya, double xb, double yb, double xc, double yc) {\n    double ab = Math.Sqrt((xb-xa)*(xb-xa) + (yb-ya)*(yb-ya));\n    double ac = Math.Sqrt((xc-xa)*(xc-xa) + (yc-ya)*(yc-ya));\n    double bc = Math.Sqrt((xc-xb)*(xc-xb) + (yc-yb)*(yc-yb));\n    double p = (ab + ac + bc) / 2;\n    return Math.Sqrt(p * (p - ab) * (p - ac) * (p - bc));\n}"
+      }
+    },
+    {
+      "id": "Proc59",
+      "question": "Dist(P, A, B): расстояние от P до прямой AB = 2·S_PAB / |AB|.",
+      "solutions": {
+        "python": "import math\ndef proc59(xp, yp, xa, ya, xb, yb) -> float:\n    ab = math.hypot(xb - xa, yb - ya)\n    pa = math.hypot(xa - xp, ya - yp)\n    pb = math.hypot(xb - xp, yb - yp)\n    p = (ab + pa + pb) / 2\n    area = math.sqrt(max(0, p * (p - ab) * (p - pa) * (p - pb)))\n    return 2 * area / ab",
+        "javascript": "const proc59 = (xp, yp, xa, ya, xb, yb) => {\n    const ab = Math.hypot(xb - xa, yb - ya);\n    const pa = Math.hypot(xa - xp, ya - yp);\n    const pb = Math.hypot(xb - xp, yb - yp);\n    const p = (ab + pa + pb) / 2;\n    const area = Math.sqrt(Math.max(0, p * (p - ab) * (p - pa) * (p - pb)));\n    return 2 * area / ab;\n};",
+        "java": "public static double proc59(double xp, double yp, double xa, double ya, double xb, double yb) {\n    double ab = Math.hypot(xb - xa, yb - ya);\n    double pa = Math.hypot(xa - xp, ya - yp);\n    double pb = Math.hypot(xb - xp, yb - yp);\n    double p = (ab + pa + pb) / 2;\n    double area = Math.sqrt(Math.max(0, p * (p - ab) * (p - pa) * (p - pb)));\n    return 2 * area / ab;\n}",
+        "csharp": "public static double Proc59(double xp, double yp, double xa, double ya, double xb, double yb) {\n    double len(double x1, double y1, double x2, double y2) => Math.Sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1));\n    double ab = len(xa, ya, xb, yb);\n    double pa = len(xp, yp, xa, ya);\n    double pb = len(xp, yp, xb, yb);\n    double p = (ab + pa + pb) / 2;\n    double area = Math.Sqrt(Math.Max(0, p * (p - ab) * (p - pa) * (p - pb)));\n    return 2 * area / ab;\n}"
+      }
+    },
+    {
+      "id": "Proc60",
+      "question": "Heights(A, B, C): три высоты треугольника (hA, hB, hC).",
+      "solutions": {
+        "python": "import math\ndef proc60(xa, ya, xb, yb, xc, yc):\n    ab = math.hypot(xb - xa, yb - ya)\n    bc = math.hypot(xc - xb, yc - yb)\n    ac = math.hypot(xc - xa, yc - ya)\n    p = (ab + bc + ac) / 2\n    s = math.sqrt(max(0, p * (p - ab) * (p - bc) * (p - ac)))\n    return 2 * s / bc, 2 * s / ac, 2 * s / ab",
+        "javascript": "const proc60 = (xa, ya, xb, yb, xc, yc) => {\n    const ab = Math.hypot(xb - xa, yb - ya);\n    const bc = Math.hypot(xc - xb, yc - yb);\n    const ac = Math.hypot(xc - xa, yc - ya);\n    const p = (ab + bc + ac) / 2;\n    const s = Math.sqrt(Math.max(0, p * (p - ab) * (p - bc) * (p - ac)));\n    return [2 * s / bc, 2 * s / ac, 2 * s / ab];\n};",
+        "java": "public static double[] proc60(double xa, double ya, double xb, double yb, double xc, double yc) {\n    double ab = Math.hypot(xb - xa, yb - ya);\n    double bc = Math.hypot(xc - xb, yc - yb);\n    double ac = Math.hypot(xc - xa, yc - ya);\n    double p = (ab + bc + ac) / 2;\n    double s = Math.sqrt(Math.max(0, p * (p - ab) * (p - bc) * (p - ac)));\n    return new double[]{2 * s / bc, 2 * s / ac, 2 * s / ab};\n}",
+        "csharp": "public static (double, double, double) Proc60(double xa, double ya, double xb, double yb, double xc, double yc) {\n    double len(double x1, double y1, double x2, double y2) => Math.Sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1));\n    double ab = len(xa, ya, xb, yb);\n    double bc = len(xb, yb, xc, yc);\n    double ac = len(xa, ya, xc, yc);\n    double p = (ab + bc + ac) / 2;\n    double s = Math.Sqrt(Math.Max(0, p * (p - ab) * (p - bc) * (p - ac)));\n    return (2 * s / bc, 2 * s / ac, 2 * s / ab);\n}"
+      }
+    }
+  ]
+}
