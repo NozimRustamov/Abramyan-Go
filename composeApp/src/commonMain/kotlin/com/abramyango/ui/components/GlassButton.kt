@@ -152,25 +152,6 @@ fun GlassIconButton(
 }
 
 /**
- * Primary Action Button - основная кнопка действия
- */
-@Composable
-fun PrimaryButton(
-    text: String,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true
-) {
-    GlassButton(
-        text = text,
-        onClick = onClick,
-        modifier = modifier.fillMaxWidth(),
-        enabled = enabled,
-        isAccent = true
-    )
-}
-
-/**
  * Secondary Button - вторичная кнопка
  */
 @Composable

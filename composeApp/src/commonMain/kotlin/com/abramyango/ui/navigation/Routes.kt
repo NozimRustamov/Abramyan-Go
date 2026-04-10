@@ -12,10 +12,4 @@ sealed class Route {
 
     @Serializable
     data class TaskDetail(val categoryId: String, val taskIndex: Int) : Route()
-
-    @Serializable
-    data object Profile : Route()
-
-    @Serializable
-    data object Settings : Route()
 }

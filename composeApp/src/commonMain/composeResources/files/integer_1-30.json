@@ -1,0 +1,306 @@
+{
+  "category": "Integer",
+  "id": "2",
+  "tasks": [
+    {
+      "id": "Integer1",
+      "question": "Дано расстояние L в сантиметрах. Используя операцию деления нацело, найти количество полных метров в нем (1 метр = 100 см).",
+      "solutions": {
+        "python": "def integer1(l: int) -> int:\n    return l // 100",
+        "javascript": "const integer1 = (l) => Math.floor(l / 100);",
+        "java": "public static int integer1(int l) {\n    return l / 100;\n}",
+        "csharp": "public static int Integer1(int l) => l / 100;"
+      }
+    },
+    {
+      "id": "Integer2",
+      "question": "Дана масса М в килограммах. Используя операцию деления нацело, найти количество полных тонн в ней (1 тонна = 1000 кг).",
+      "solutions": {
+        "python": "def integer2(m: int) -> int:\n    return m // 1000",
+        "javascript": "const integer2 = (m) => Math.floor(m / 1000);",
+        "java": "public static int integer2(int m) {\n    return m / 1000;\n}",
+        "csharp": "public static int Integer2(int m) => m / 1000;"
+      }
+    },
+    {
+      "id": "Integer3",
+      "question": "Дан размер файла в байтах. Используя операцию деления нацело, найти количество полных килобайтов, которые занимает данный файл (1 килобайт = 1024 байта).",
+      "solutions": {
+        "python": "def integer3(size: int) -> int:\n    return size // 1024",
+        "javascript": "const integer3 = (size) => Math.floor(size / 1024);",
+        "java": "public static int integer3(int size) {\n    return size / 1024;\n}",
+        "csharp": "public static int Integer3(int size) => size / 1024;"
+      }
+    },
+    {
+      "id": "Integer4",
+      "question": "Даны целые положительные числа А и В (A > B). На отрезке длины А размещено максимально возможное количество отрезков длины В (без наложений). Используя операцию деления нацело, найти количество отрезков В, размещенных на отрезке А.",
+      "solutions": {
+        "python": "def integer4(a: int, b: int) -> int:\n    return a // b",
+        "javascript": "const integer4 = (a, b) => Math.floor(a / b);",
+        "java": "public static int integer4(int a, int b) {\n    return a / b;\n}",
+        "csharp": "public static int Integer4(int a, int b) => a / b;"
+      }
+    },
+    {
+      "id": "Integer5",
+      "question": "Даны целые положительные числа А и В (A > B). На отрезке длины А размещено максимально возможное количество отрезков длины В (без наложений). Используя операцию взятия остатка от деления нацело, найти длину незанятой части отрезка А.",
+      "solutions": {
+        "python": "def integer5(a: int, b: int) -> int:\n    return a % b",
+        "javascript": "const integer5 = (a, b) => a % b;",
+        "java": "public static int integer5(int a, int b) {\n    return a % b;\n}",
+        "csharp": "public static int Integer5(int a, int b) => a % b;"
+      }
+    },
+    {
+      "id": "Integer6",
+      "question": "Дано двузначное число. Вывести вначале его левую цифру (десятки), а затем — его правую цифру (единицы).",
+      "solutions": {
+        "python": "def integer6(n: int):\n    return n // 10, n % 10",
+        "javascript": "const integer6 = (n) => [Math.floor(n / 10), n % 10];",
+        "java": "public static int[] integer6(int n) {\n    return new int[]{n / 10, n % 10};\n}",
+        "csharp": "public static (int, int) Integer6(int n) => (n / 10, n % 10);"
+      }
+    },
+    {
+      "id": "Integer7",
+      "question": "Дано двузначное число. Найти сумму и произведение его цифр.",
+      "solutions": {
+        "python": "def integer7(n: int):\n    return (n // 10) + (n % 10), (n // 10) * (n % 10)",
+        "javascript": "const integer7 = (n) => {\n    const d1 = Math.floor(n / 10), d2 = n % 10;\n    return [d1 + d2, d1 * d2];\n};",
+        "java": "public static int[] integer7(int n) {\n    int d1 = n / 10, d2 = n % 10;\n    return new int[]{d1 + d2, d1 * d2};\n}",
+        "csharp": "public static (int, int) Integer7(int n) => (n / 10 + n % 10, (n / 10) * (n % 10));"
+      }
+    },
+    {
+      "id": "Integer8",
+      "question": "Дано двузначное число. Вывести число, полученное при перестановке цифр исходного числа.",
+      "solutions": {
+        "python": "def integer8(n: int) -> int:\n    return (n % 10) * 10 + (n // 10)",
+        "javascript": "const integer8 = (n) => (n % 10) * 10 + Math.floor(n / 10);",
+        "java": "public static int integer8(int n) {\n    return (n % 10) * 10 + (n / 10);\n}",
+        "csharp": "public static int Integer8(int n) => (n % 10) * 10 + (n / 10);"
+      }
+    },
+    {
+      "id": "Integer9",
+      "question": "Дано трехзначное число. Используя одну операцию деления нацело, вывести первую цифру данного числа (сотни).",
+      "solutions": {
+        "python": "def integer9(n: int) -> int:\n    return n // 100",
+        "javascript": "const integer9 = (n) => Math.floor(n / 100);",
+        "java": "public static int integer9(int n) {\n    return n / 100;\n}",
+        "csharp": "public static int Integer9(int n) => n / 100;"
+      }
+    },
+    {
+      "id": "Integer10",
+      "question": "Дано трехзначное число. Вывести вначале его последнюю цифру (единицы), а затем его среднюю цифру (десятки).",
+      "solutions": {
+        "python": "def integer10(n: int):\n    return n % 10, (n // 10) % 10",
+        "javascript": "const integer10 = (n) => [n % 10, Math.floor(n / 10) % 10];",
+        "java": "public static int[] integer10(int n) {\n    return new int[]{n % 10, (n / 10) % 10};\n}",
+        "csharp": "public static (int, int) Integer10(int n) => (n % 10, (n / 10) % 10);"
+      }
+    },
+    {
+      "id": "Integer11",
+      "question": "Дано трехзначное число. Найти сумму и произведение его цифр.",
+      "solutions": {
+        "python": "def integer11(n: int):\n    h = n // 100\n    t = (n // 10) % 10\n    u = n % 10\n    return h + t + u, h * t * u",
+        "javascript": "const integer11 = (n) => {\n    const h = Math.floor(n / 100), t = Math.floor(n / 10) % 10, u = n % 10;\n    return [h + t + u, h * t * u];\n};",
+        "java": "public static int[] integer11(int n) {\n    int h = n / 100, t = (n / 10) % 10, u = n % 10;\n    return new int[]{h + t + u, h * t * u};\n}",
+        "csharp": "public static (int, int) Integer11(int n) {\n    int h = n / 100, t = (n / 10) % 10, u = n % 10;\n    return (h + t + u, h * t * u);\n}"
+      }
+    },
+    {
+      "id": "Integer12",
+      "question": "Дано трехзначное число. Вывести число, полученное при прочтении исходного числа справа налево.",
+      "solutions": {
+        "python": "def integer12(n: int) -> int:\n    return (n % 10) * 100 + ((n // 10) % 10) * 10 + (n // 100)",
+        "javascript": "const integer12 = (n) => (n % 10) * 100 + (Math.floor(n / 10) % 10) * 10 + Math.floor(n / 100);",
+        "java": "public static int integer12(int n) {\n    return (n % 10) * 100 + ((n / 10) % 10) * 10 + (n / 100);\n}",
+        "csharp": "public static int Integer12(int n) => (n % 10) * 100 + ((n / 10) % 10) * 10 + (n / 100);"
+      }
+    },
+    {
+      "id": "Integer13",
+      "question": "Дано трехзначное число. В нем зачеркнули первую слева цифру и приписали ее справа. Вывести полученное число.",
+      "solutions": {
+        "python": "def integer13(n: int) -> int:\n    return (n % 100) * 10 + (n // 100)",
+        "javascript": "const integer13 = (n) => (n % 100) * 10 + Math.floor(n / 100);",
+        "java": "public static int integer13(int n) {\n    return (n % 100) * 10 + (n / 100);\n}",
+        "csharp": "public static int Integer13(int n) => (n % 100) * 10 + (n / 100);"
+      }
+    },
+    {
+      "id": "Integer14",
+      "question": "Дано трехзначное число. В нем зачеркнули первую справа цифру и приписали ее слева. Вывести полученное число.",
+      "solutions": {
+        "python": "def integer14(n: int) -> int:\n    return (n % 10) * 100 + (n // 10)",
+        "javascript": "const integer14 = (n) => (n % 10) * 100 + Math.floor(n / 10);",
+        "java": "public static int integer14(int n) {\n    return (n % 10) * 100 + (n / 10);\n}",
+        "csharp": "public static int Integer14(int n) => (n % 10) * 100 + (n / 10);"
+      }
+    },
+    {
+      "id": "Integer15",
+      "question": "Дано трехзначное число. Вывести число, полученное при перестановке цифр сотен и десятков исходного числа (например, 123 перейдет в 213).",
+      "solutions": {
+        "python": "def integer15(n: int) -> int:\n    return ((n // 10) % 10) * 100 + (n // 100) * 10 + (n % 10)",
+        "javascript": "const integer15 = (n) => (Math.floor(n / 10) % 10) * 100 + Math.floor(n / 100) * 10 + (n % 10);",
+        "java": "public static int integer15(int n) {\n    return ((n / 10) % 10) * 100 + (n / 100) * 10 + (n % 10);\n}",
+        "csharp": "public static int Integer15(int n) => ((n / 10) % 10) * 100 + (n / 100) * 10 + (n % 10);"
+      }
+    },
+    {
+      "id": "Integer16",
+      "question": "Дано трехзначное число. Вывести число, полученное при перестановке цифр десятков и единиц исходного числа (например, 123 перейдет в 132).",
+      "solutions": {
+        "python": "def integer16(n: int) -> int:\n    return (n // 100) * 100 + (n % 10) * 10 + ((n // 10) % 10)",
+        "javascript": "const integer16 = (n) => Math.floor(n / 100) * 100 + (n % 10) * 10 + (Math.floor(n / 10) % 10);",
+        "java": "public static int integer16(int n) {\n    return (n / 100) * 100 + (n % 10) * 10 + ((n / 10) % 10);\n}",
+        "csharp": "public static int Integer16(int n) => (n / 100) * 100 + (n % 10) * 10 + ((n / 10) % 10);"
+      }
+    },
+    {
+      "id": "Integer17",
+      "question": "Дано целое число, большее 999. Используя одну операцию деления нацело и одну операцию взятия остатка от деления, найти цифру, соответствующую разряду сотен в записи этого числа.",
+      "solutions": {
+        "python": "def integer17(n: int) -> int:\n    return (n // 100) % 10",
+        "javascript": "const integer17 = (n) => Math.floor(n / 100) % 10;",
+        "java": "public static int integer17(int n) {\n    return (n / 100) % 10;\n}",
+        "csharp": "public static int Integer17(int n) => (n / 100) % 10;"
+      }
+    },
+    {
+      "id": "Integer18",
+      "question": "Дано целое число, большее 999. Используя одну операцию деления нацело и одну операцию взятия остатка от деления, найти цифру, соответствующую разряду тысяч в записи этого числа.",
+      "solutions": {
+        "python": "def integer18(n: int) -> int:\n    return (n // 1000) % 10",
+        "javascript": "const integer18 = (n) => Math.floor(n / 1000) % 10;",
+        "java": "public static int integer18(int n) {\n    return (n / 1000) % 10;\n}",
+        "csharp": "public static int Integer18(int n) => (n / 1000) % 10;"
+      }
+    },
+    {
+      "id": "Integer19",
+      "question": "С начала суток прошло N секунд (N — целое). Найти количество полных минут, прошедших с начала суток.",
+      "solutions": {
+        "python": "def integer19(n: int) -> int:\n    return n // 60",
+        "javascript": "const integer19 = (n) => Math.floor(n / 60);",
+        "java": "public static int integer19(int n) {\n    return n / 60;\n}",
+        "csharp": "public static int Integer19(int n) => n / 60;"
+      }
+    },
+    {
+      "id": "Integer20",
+      "question": "С начала суток прошло N секунд (N — целое). Найти количество полных часов, прошедших с начала суток.",
+      "solutions": {
+        "python": "def integer20(n: int) -> int:\n    return n // 3600",
+        "javascript": "const integer20 = (n) => Math.floor(n / 3600);",
+        "java": "public static int integer20(int n) {\n    return n / 3600;\n}",
+        "csharp": "public static int Integer20(int n) => n / 3600;"
+      }
+    },
+    {
+      "id": "Integer21",
+      "question": "С начала суток прошло N секунд (N — целое). Найти количество секунд, прошедших с начала последней минуты.",
+      "solutions": {
+        "python": "def integer21(n: int) -> int:\n    return n % 60",
+        "javascript": "const integer21 = (n) => n % 60;",
+        "java": "public static int integer21(int n) {\n    return n % 60;\n}",
+        "csharp": "public static int Integer21(int n) => n % 60;"
+      }
+    },
+    {
+      "id": "Integer22",
+      "question": "С начала суток прошло N секунд (N — целое). Найти количество секунд, прошедших с начала последнего часа.",
+      "solutions": {
+        "python": "def integer22(n: int) -> int:\n    return n % 3600",
+        "javascript": "const integer22 = (n) => n % 3600;",
+        "java": "public static int integer22(int n) {\n    return n % 3600;\n}",
+        "csharp": "public static int Integer22(int n) => n % 3600;"
+      }
+    },
+    {
+      "id": "Integer23",
+      "question": "С начала суток прошло N секунд (N — целое). Найти количество полных минут, прошедших с начала последнего часа.",
+      "solutions": {
+        "python": "def integer23(n: int) -> int:\n    return (n // 60) % 60",
+        "javascript": "const integer23 = (n) => Math.floor(n / 60) % 60;",
+        "java": "public static int integer23(int n) {\n    return (n / 60) % 60;\n}",
+        "csharp": "public static int Integer23(int n) => (n / 60) % 60;"
+      }
+    },
+    {
+      "id": "Integer24",
+      "question": "Дни недели пронумерованы следующим образом: 0 — воскресенье, 1 — понедельник, 2 — вторник, ..., 6 — суббота. Дано целое число K, лежащее в диапазоне 1–365. Определить номер дня недели для K-го дня года, если известно, что в этом году 1 января было понедельником.",
+      "solutions": {
+        "python": "def integer24(k: int) -> int:\n    return k % 7",
+        "javascript": "const integer24 = (k) => k % 7;",
+        "java": "public static int integer24(int k) {\n    return k % 7;\n}",
+        "csharp": "public static int Integer24(int k) => k % 7;"
+      }
+    },
+    {
+      "id": "Integer25",
+      "question": "Дни недели пронумерованы следующим образом: 0 — воскресенье, 1 — понедельник, 2 — вторник, ..., 6 — суббота. Дано целое число K, лежащее в диапазоне 1–365. Определить номер дня недели для K-го дня года, если известно, что в этом году 1 января было четвергом.",
+      "solutions": {
+        "python": "def integer25(k: int) -> int:\n    return (k + 3) % 7",
+        "javascript": "const integer25 = (k) => (k + 3) % 7;",
+        "java": "public static int integer25(int k) {\n    return (k + 3) % 7;\n}",
+        "csharp": "public static int Integer25(int k) => (k + 3) % 7;"
+      }
+    },
+    {
+      "id": "Integer26",
+      "question": "Дни недели пронумерованы следующим образом: 1 — понедельник, 2 — вторник, ..., 6 — суббота, 7 — воскресенье. Дано целое число K, лежащее в диапазоне 1–365. Определить номер дня недели для K-го дня года, если известно, что в этом году 1 января было вторником.",
+      "solutions": {
+        "python": "def integer26(k: int) -> int:\n    return (k % 7) + 1",
+        "javascript": "const integer26 = (k) => (k % 7) + 1;",
+        "java": "public static int integer26(int k) {\n    return (k % 7) + 1;\n}",
+        "csharp": "public static int Integer26(int k) => (k % 7) + 1;"
+      }
+    },
+    {
+      "id": "Integer27",
+      "question": "Дни недели пронумерованы следующим образом: 1 — понедельник, 2 — вторник, ..., 6 — суббота, 7 — воскресенье. Дано целое число K, лежащее в диапазоне 1–365. Определить номер дня недели для K-го дня года, если известно, что в этом году 1 января было субботой.",
+      "solutions": {
+        "python": "def integer27(k: int) -> int:\n    return (k + 4) % 7 + 1",
+        "javascript": "const integer27 = (k) => (k + 4) % 7 + 1;",
+        "java": "public static int integer27(int k) {\n    return (k + 4) % 7 + 1;\n}",
+        "csharp": "public static int Integer27(int k) => (k + 4) % 7 + 1;"
+      }
+    },
+    {
+      "id": "Integer28",
+      "question": "Дни недели пронумерованы следующим образом: 1 — понедельник, 2 — вторник, ..., 6 — суббота, 7 — воскресенье. Дано целое число K, лежащее в диапазоне 1–365, и целое число N, лежащее в диапазоне 1–7. Определить номер дня недели для K-го дня года, если известно, что в этом году 1 января было днем недели с номером N.",
+      "solutions": {
+        "python": "def integer28(k: int, n: int) -> int:\n    return (k + n - 2) % 7 + 1",
+        "javascript": "const integer28 = (k, n) => (k + n - 2) % 7 + 1;",
+        "java": "public static int integer28(int k, int n) {\n    return (k + n - 2) % 7 + 1;\n}",
+        "csharp": "public static int Integer28(int k, int n) => (k + n - 2) % 7 + 1;"
+      }
+    },
+    {
+      "id": "Integer29",
+      "question": "Даны целые положительные числа А, В, С. На прямоугольнике размера A × B размещено максимально возможное количество квадратов со стороной С (без наложений). Найти количество квадратов, размещенных на прямоугольнике, а также площадь незанятой части прямоугольника.",
+      "solutions": {
+        "python": "def integer29(a: int, b: int, c: int):\n    count = (a // c) * (b // c)\n    return count, a * b - count * c * c",
+        "javascript": "const integer29 = (a, b, c) => {\n    const count = Math.floor(a / c) * Math.floor(b / c);\n    return [count, a * b - count * c * c];\n};",
+        "java": "public static int[] integer29(int a, int b, int c) {\n    int count = (a / c) * (b / c);\n    return new int[]{count, a * b - count * c * c};\n}",
+        "csharp": "public static (int, int) Integer29(int a, int b, int c) {\n    int count = (a / c) * (b / c);\n    return (count, a * b - count * c * c);\n}"
+      }
+    },
+    {
+      "id": "Integer30",
+      "question": "Дан номер некоторого года (целое положительное число). Определить соответствующий ему номер столетия, учитывая, что, к примеру, началом 20 столетия был 1901 год.",
+      "solutions": {
+        "python": "def integer30(year: int) -> int:\n    return (year - 1) // 100 + 1",
+        "javascript": "const integer30 = (year) => Math.floor((year - 1) / 100) + 1;",
+        "java": "public static int integer30(int year) {\n    return (year - 1) / 100 + 1;\n}",
+        "csharp": "public static int Integer30(int year) => (year - 1) / 100 + 1;"
+      }
+    }
+  ]
+}

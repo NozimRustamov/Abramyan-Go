@@ -13,7 +13,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.abramyango.ui.theme.AppTheme
 
 /**
  * Glass Card - базовый компонент с эффектом стекла
@@ -35,7 +34,6 @@ fun GlassCard(
     contentPadding: Dp = 16.dp,
     content: @Composable BoxScope.() -> Unit
 ) {
-    val colors = AppTheme.colors
     val shape = androidx.compose.foundation.shape.RoundedCornerShape(cornerRadius)
 
     Box(
