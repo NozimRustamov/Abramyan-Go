@@ -1,6 +1,7 @@
 package com.abramyango.ui.screens.categories
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -14,17 +15,22 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.abramyango.domain.model.Category
-import com.abramyango.ui.components.GlassCard
+import androidx.compose.ui.unit.sp
+import com.abramyango.data.Category
 import com.abramyango.ui.theme.AppTheme
-import com.abramyango.ui.theme.Spacing
+import com.abramyango.ui.theme.categoryStyleFor
 
 @Composable
 fun CategoriesScreen(
@@ -33,77 +39,93 @@ fun CategoriesScreen(
     modifier: Modifier = Modifier
 ) {
     val colors = AppTheme.colors
-    val typography = AppTheme.typography
 
-    Box(
+    Column(
         modifier = modifier
             .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        colors.backgroundGradientStart,
-                        colors.backgroundGradientEnd
-                    )
-                )
-            )
+            .background(colors.backgroundPrimary)
     ) {
-        Column(modifier = Modifier.fillMaxSize()) {
-            // Top bar
-            GlassCard(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(Spacing.default),
-                glassAlpha = 0.12f,
-                cornerRadius = 16.dp,
-                contentPadding = Spacing.medium
-            ) {
+        // Topbar
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 12.dp)
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
-                    text = "Abramyan Go",
-                    style = typography.headlineMedium,
+                    text = ">",
+                    fontFamily = FontFamily.Monospace,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 18.sp,
+                    color = colors.accentPrimary
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    text = "Абрамян",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 17.sp,
                     color = colors.textPrimary
                 )
+                Spacer(modifier = Modifier.width(6.dp))
+                Text(
+                    text = "1000 задач",
+                    fontSize = 12.sp,
+                    color = colors.textTertiary
+                )
+            }
+            Row(
+                modifier = Modifier.padding(top = 6.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "~/",
+                    fontFamily = FontFamily.Monospace,
+                    fontSize = 11.sp,
+                    color = colors.textTertiary
+                )
+                Text(
+                    text = "categories",
+                    fontFamily = FontFamily.Monospace,
+                    fontSize = 11.sp,
+                    color = colors.accentPrimary
+                )
+            }
+        }
+        HorizontalDivider(color = colors.surface0, thickness = 1.dp)
+
+        when {
+            state.isLoading -> Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator(color = colors.accentPrimary)
             }
 
-            if (state.isLoading) {
-                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    CircularProgressIndicator(color = colors.accentPrimary)
-                }
-            } else if (state.error != null) {
-                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    Text(
-                        text = state.error,
-                        style = typography.bodyLarge,
-                        color = colors.accentError
+            state.error != null -> Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(text = state.error, fontSize = 14.sp, color = colors.accentError)
+            }
+
+            else -> LazyColumn(
+                modifier = Modifier.fillMaxSize(),
+                contentPadding = PaddingValues(
+                    start = 12.dp, end = 12.dp, top = 10.dp, bottom = 16.dp
+                ),
+                verticalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
+                itemsIndexed(
+                    items = state.categories,
+                    key = { _, cat -> cat.id }
+                ) { index, category ->
+                    CategoryRow(
+                        lineNumber = index + 1,
+                        category = category,
+                        onClick = {
+                            onIntent(CategoriesIntent.SelectCategory(category.id, category.name))
+                        }
                     )
-                }
-            } else {
-                LazyColumn(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(horizontal = Spacing.default),
-                    contentPadding = PaddingValues(
-                        top = Spacing.small,
-                        bottom = Spacing.massive
-                    ),
-                    verticalArrangement = Arrangement.spacedBy(Spacing.small)
-                ) {
-                    itemsIndexed(
-                        items = state.categories,
-                        key = { _, category -> category.id }
-                    ) { index, category ->
-                        CategoryListItem(
-                            index = index + 1,
-                            category = category,
-                            onClick = {
-                                onIntent(
-                                    CategoriesIntent.SelectCategory(
-                                        category.id,
-                                        category.name
-                                    )
-                                )
-                            }
-                        )
-                    }
                 }
             }
         }
@@ -111,47 +133,90 @@ fun CategoriesScreen(
 }
 
 @Composable
-private fun CategoryListItem(
-    index: Int,
+private fun CategoryRow(
+    lineNumber: Int,
     category: Category,
     onClick: () -> Unit
 ) {
     val colors = AppTheme.colors
-    val typography = AppTheme.typography
+    val style = categoryStyleFor(category.id)
+    val shape = RoundedCornerShape(12.dp)
 
-    GlassCard(
+    Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onClick() },
-        glassAlpha = 0.1f,
-        cornerRadius = 12.dp,
-        contentPadding = Spacing.medium
+            .clip(shape)
+            .background(colors.glassSurface)
+            .border(width = 1.dp, color = colors.glassBorder, shape = shape)
+            .clickable { onClick() }
+            .padding(vertical = 12.dp, horizontal = 14.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
+        // Line number
+        Text(
+            text = lineNumber.toString().padStart(2, '0'),
+            fontFamily = FontFamily.Monospace,
+            fontSize = 10.sp,
+            color = colors.textTertiary,
+            textAlign = TextAlign.End,
+            modifier = Modifier.width(16.dp)
+        )
+
+        Spacer(modifier = Modifier.width(12.dp))
+
+        // Category icon
+        Text(
+            text = style.icon,
+            fontFamily = FontFamily.Monospace,
+            fontWeight = FontWeight.Bold,
+            fontSize = 15.sp,
+            color = style.accentColor,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.width(20.dp)
+        )
+
+        Spacer(modifier = Modifier.width(12.dp))
+
+        // Label + description
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+            modifier = Modifier.weight(1f),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Text(
-                text = "$index",
-                style = typography.headlineMedium,
-                color = colors.accentPrimary,
-                modifier = Modifier.width(36.dp)
-            )
-
-            Spacer(modifier = Modifier.width(Spacing.small))
-
-            Text(
                 text = category.name,
-                style = typography.titleMedium,
-                color = colors.textPrimary,
-                modifier = Modifier.weight(1f)
+                fontFamily = FontFamily.Monospace,
+                fontWeight = FontWeight.Bold,
+                fontSize = 14.sp,
+                color = colors.textPrimary
             )
-
             Text(
-                text = "->",
-                style = typography.titleLarge,
+                text = categoryDescription(category.id),
+                fontSize = 11.sp,
                 color = colors.textTertiary
             )
         }
+
+        // Chevron
+        Text(
+            text = "›",
+            fontFamily = FontFamily.Monospace,
+            fontSize = 18.sp,
+            color = colors.surface1
+        )
     }
 }
+
+private fun categoryDescription(categoryId: String): String =
+    when (categoryId.substringBefore('_').lowercase()) {
+        "begin"   -> "Первые программы"
+        "integer" -> "Целые числа"
+        "boolean" -> "Логические значения"
+        "if"      -> "Условные операторы"
+        "case"    -> "Оператор выбора"
+        "for"     -> "Цикл с параметром"
+        "while"   -> "Цикл с условием"
+        "series"  -> "Числовые ряды"
+        "proc"    -> "Процедуры и функции"
+        else      -> ""
+    }

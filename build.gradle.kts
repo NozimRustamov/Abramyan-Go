@@ -10,7 +10,5 @@ plugins {
     // Compose Multiplatform
     alias(libs.plugins.composeMultiplatform) apply false
     alias(libs.plugins.composeCompiler) apply false
-    
-    // SQLDelight
-    alias(libs.plugins.sqldelight) apply false
+
 }

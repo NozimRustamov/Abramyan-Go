@@ -1,7 +1,7 @@
 package com.abramyango
 
 import android.app.Application
-import com.abramyango.ui.di.uiModule
+import com.abramyango.ui.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -15,9 +15,7 @@ class AbramyanGoApplication : Application() {
         startKoin {
             androidLogger(Level.DEBUG)
             androidContext(this@AbramyanGoApplication)
-            modules(
-                uiModule
-            )
+            modules(appModule)
         }
     }
 }

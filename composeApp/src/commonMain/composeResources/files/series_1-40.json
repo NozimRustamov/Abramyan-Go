@@ -14,7 +14,7 @@
     },
     {
       "id": "Series2",
-      "question": "Даны десять чисел. Найти их произведение.",
+      "question": "Даны десять вещественных чисел. Найти их произведение.",
       "solutions": {
         "python": "from math import prod\ndef series2(nums: list) -> float:\n    return prod(nums)",
         "javascript": "const series2 = (nums) => nums.reduce((a, b) => a * b, 1);",
@@ -24,7 +24,7 @@
     },
     {
       "id": "Series3",
-      "question": "Даны десять чисел. Найти их среднее арифметическое.",
+      "question": "Даны десять вещественных чисел. Найти их среднее арифметическое.",
       "solutions": {
         "python": "def series3(nums: list) -> float:\n    return sum(nums) / len(nums)",
         "javascript": "const series3 = (nums) => nums.reduce((a, b) => a + b, 0) / nums.length;",
@@ -34,7 +34,7 @@
     },
     {
       "id": "Series4",
-      "question": "Дан набор из N вещественных. Вывести сумму и произведение.",
+      "question": "Дано целое число N и набор из N вещественных чисел. Вывести сумму и произведение чисел из данного набора.",
       "solutions": {
         "python": "from math import prod\ndef series4(nums: list):\n    return sum(nums), prod(nums)",
         "javascript": "const series4 = (nums) => [\n    nums.reduce((a, b) => a + b, 0),\n    nums.reduce((a, b) => a * b, 1)\n];",
@@ -44,7 +44,7 @@
     },
     {
       "id": "Series5",
-      "question": "N положительных чисел. Вывести целые части и их сумму.",
+      "question": "Дано целое число N и набор из N положительных вещественных чисел. Вывести в том же порядке целые части всех чисел из данного набора (как вещественные числа с нулевой дробной частью), а также сумму всех целых частей.",
       "solutions": {
         "python": "def series5(nums: list):\n    ints = [int(x) for x in nums]\n    return ints, sum(ints)",
         "javascript": "const series5 = (nums) => {\n    const ints = nums.map(x => Math.trunc(x));\n    return [ints, ints.reduce((a, b) => a + b, 0)];\n};",
@@ -54,7 +54,7 @@
     },
     {
       "id": "Series6",
-      "question": "N положительных чисел. Вывести дробные части и их произведение.",
+      "question": "Дано целое число N и набор из N положительных вещественных чисел. Вывести в том же порядке дробные части всех чисел из данного набора (как вещественные числа с нулевой целой частью), а также произведение всех дробных частей.",
       "solutions": {
         "python": "from math import prod\ndef series6(nums: list):\n    fracs = [x - int(x) for x in nums]\n    return fracs, prod(fracs)",
         "javascript": "const series6 = (nums) => {\n    const fracs = nums.map(x => x - Math.trunc(x));\n    return [fracs, fracs.reduce((a, b) => a * b, 1)];\n};",
@@ -64,7 +64,7 @@
     },
     {
       "id": "Series7",
-      "question": "N чисел. Вывести округлённые значения и их сумму.",
+      "question": "Дано целое число N и набор из N вещественных чисел. Вывести в том же порядке округленные значения всех чисел из данного набора (как целые числа), а также сумму всех округленных значений.",
       "solutions": {
         "python": "def series7(nums: list):\n    rounded = [round(x) for x in nums]\n    return rounded, sum(rounded)",
         "javascript": "const series7 = (nums) => {\n    const r = nums.map(Math.round);\n    return [r, r.reduce((a, b) => a + b, 0)];\n};",
@@ -74,7 +74,7 @@
     },
     {
       "id": "Series8",
-      "question": "Даны N целых. Вывести все чётные и их количество.",
+      "question": "Дано целое число N и набор из N целых чисел. Вывести в том же порядке все четные числа из данного набора и количество K таких чисел.",
       "solutions": {
         "python": "def series8(nums: list):\n    evens = [x for x in nums if x % 2 == 0]\n    return evens, len(evens)",
         "javascript": "const series8 = (nums) => {\n    const evens = nums.filter(x => x % 2 === 0);\n    return [evens, evens.length];\n};",
@@ -84,7 +84,7 @@
     },
     {
       "id": "Series9",
-      "question": "N целых. Вывести номера всех нечётных и их количество.",
+      "question": "Дано целое число N и набор из N целых чисел. Вывести в том же порядке номера всех нечетных чисел из данного набора и количество K таких чисел.",
       "solutions": {
         "python": "def series9(nums: list):\n    indices = [i + 1 for i, x in enumerate(nums) if x % 2 != 0]\n    return indices, len(indices)",
         "javascript": "const series9 = (nums) => {\n    const ix = [];\n    nums.forEach((x, i) => { if (x % 2 !== 0) ix.push(i + 1); });\n    return [ix, ix.length];\n};",
@@ -94,7 +94,7 @@
     },
     {
       "id": "Series10",
-      "question": "Есть ли в наборе положительное число.",
+      "question": "Дано целое число N и набор из N целых чисел. Если в наборе имеются положительные числа, то вывести True; в противном случае вывести False.",
       "solutions": {
         "python": "def series10(nums: list) -> bool:\n    return any(x > 0 for x in nums)",
         "javascript": "const series10 = (nums) => nums.some(x => x > 0);",
@@ -104,7 +104,7 @@
     },
     {
       "id": "Series11",
-      "question": "K и N целых. Есть ли числа, меньшие K.",
+      "question": "Даны целые числа K, N и набор из N целых чисел. Если в наборе имеются числа, меньшие K, то вывести True; в противном случае вывести False.",
       "solutions": {
         "python": "def series11(k: int, nums: list) -> bool:\n    return any(x < k for x in nums)",
         "javascript": "const series11 = (k, nums) => nums.some(x => x < k);",
@@ -114,7 +114,7 @@
     },
     {
       "id": "Series12",
-      "question": "Дан набор ненулевых целых, 0 — признак конца. Количество чисел.",
+      "question": "Дан набор ненулевых целых чисел; признак его завершения — число 0. Вывести количество чисел в наборе.",
       "solutions": {
         "python": "def series12(nums: list) -> int:\n    count = 0\n    for x in nums:\n        if x == 0:\n            break\n        count += 1\n    return count",
         "javascript": "const series12 = (nums) => {\n    let c = 0;\n    for (const x of nums) { if (x === 0) break; c++; }\n    return c;\n};",
@@ -124,7 +124,7 @@
     },
     {
       "id": "Series13",
-      "question": "Набор ненулевых целых, 0 — конец. Сумма положительных чётных.",
+      "question": "Дан набор ненулевых целых чисел; признак его завершения — число 0. Вывести сумму всех положительных четных чисел из данного набора. Если требуемые числа в наборе отсутствуют, то вывести 0.",
       "solutions": {
         "python": "def series13(nums: list) -> int:\n    s = 0\n    for x in nums:\n        if x == 0: break\n        if x > 0 and x % 2 == 0: s += x\n    return s",
         "javascript": "const series13 = (nums) => {\n    let s = 0;\n    for (const x of nums) {\n        if (x === 0) break;\n        if (x > 0 && x % 2 === 0) s += x;\n    }\n    return s;\n};",
@@ -134,7 +134,7 @@
     },
     {
       "id": "Series14",
-      "question": "K и набор (0 — конец). Количество чисел, меньших K.",
+      "question": "Дано целое число K и набор ненулевых целых чисел; признак его завершения — число 0. Вывести количество чисел в наборе, меньших K.",
       "solutions": {
         "python": "def series14(k: int, nums: list) -> int:\n    count = 0\n    for x in nums:\n        if x == 0: break\n        if x < k: count += 1\n    return count",
         "javascript": "const series14 = (k, nums) => {\n    let c = 0;\n    for (const x of nums) {\n        if (x === 0) break;\n        if (x < k) c++;\n    }\n    return c;\n};",
@@ -144,7 +144,7 @@
     },
     {
       "id": "Series15",
-      "question": "Дан K и набор (0 — конец). Номер первого числа > K (или 0).",
+      "question": "Дано целое число K и набор ненулевых целых чисел; признак его завершения — число 0. Вывести номер первого числа в наборе, большего K. Если таких чисел нет, то вывести 0.",
       "solutions": {
         "python": "def series15(k: int, nums: list) -> int:\n    for i, x in enumerate(nums, 1):\n        if x == 0:\n            break\n        if x > k:\n            return i\n    return 0",
         "javascript": "const series15 = (k, nums) => {\n    for (let i = 0; i < nums.length; i++) {\n        if (nums[i] === 0) break;\n        if (nums[i] > k) return i + 1;\n    }\n    return 0;\n};",
@@ -154,7 +154,7 @@
     },
     {
       "id": "Series16",
-      "question": "K и набор (0 — конец). Номер последнего числа > K (или 0).",
+      "question": "Дано целое число K и набор ненулевых целых чисел; признак его завершения — число 0. Вывести номер последнего числа в наборе, большего K. Если таких чисел нет, то вывести 0.",
       "solutions": {
         "python": "def series16(k: int, nums: list) -> int:\n    last = 0\n    for i, x in enumerate(nums, 1):\n        if x == 0: break\n        if x > k: last = i\n    return last",
         "javascript": "const series16 = (k, nums) => {\n    let last = 0;\n    for (let i = 0; i < nums.length; i++) {\n        if (nums[i] === 0) break;\n        if (nums[i] > k) last = i + 1;\n    }\n    return last;\n};",
@@ -164,7 +164,7 @@
     },
     {
       "id": "Series17",
-      "question": "B и отсортированный набор. Вставить B с сохранением порядка.",
+      "question": "Дано вещественное число B, целое число N и набор из N вещественных чисел, упорядоченных по возрастанию. Вывести элементы набора вместе с числом B, сохраняя упорядоченность выводимых чисел.",
       "solutions": {
         "python": "import bisect\ndef series17(b: float, nums: list) -> list:\n    result = list(nums)\n    bisect.insort(result, b)\n    return result",
         "javascript": "const series17 = (b, nums) => {\n    const r = [...nums];\n    let i = 0;\n    while (i < r.length && r[i] < b) i++;\n    r.splice(i, 0, b);\n    return r;\n};",
@@ -174,7 +174,7 @@
     },
     {
       "id": "Series18",
-      "question": "Отсортированный набор. Вывести все различные элементы.",
+      "question": "Дано целое число N и набор из N целых чисел, упорядоченный по возрастанию. Данный набор может содержать одинаковые элементы. Вывести в том же порядке все различные элементы данного набора.",
       "solutions": {
         "python": "def series18(nums: list) -> list:\n    result = []\n    for x in nums:\n        if not result or x != result[-1]:\n            result.append(x)\n    return result",
         "javascript": "const series18 = (nums) => {\n    const r = [];\n    for (const x of nums) if (r.length === 0 || x !== r[r.length - 1]) r.push(x);\n    return r;\n};",
@@ -184,7 +184,7 @@
     },
     {
       "id": "Series19",
-      "question": "Дан набор. Вывести элементы, меньшие своего левого соседа, и их количество.",
+      "question": "Дано целое число N (> 1) и набор из N целых чисел. Вывести те элементы в наборе, которые меньше своего левого соседа, и количество K таких элементов.",
       "solutions": {
         "python": "def series19(nums: list):\n    result = [nums[i] for i in range(1, len(nums)) if nums[i] < nums[i - 1]]\n    return result, len(result)",
         "javascript": "const series19 = (nums) => {\n    const r = [];\n    for (let i = 1; i < nums.length; i++)\n        if (nums[i] < nums[i - 1]) r.push(nums[i]);\n    return [r, r.length];\n};",
@@ -194,7 +194,7 @@
     },
     {
       "id": "Series20",
-      "question": "Набор. Вывести элементы, меньшие правого соседа, и их количество.",
+      "question": "Дано целое число N (> 1) и набор из N целых чисел. Вывести те элементы в наборе, которые меньше своего правого соседа, и количество K таких элементов.",
       "solutions": {
         "python": "def series20(nums: list):\n    r = [nums[i] for i in range(len(nums) - 1) if nums[i] < nums[i + 1]]\n    return r, len(r)",
         "javascript": "const series20 = (nums) => {\n    const r = [];\n    for (let i = 0; i < nums.length - 1; i++) if (nums[i] < nums[i + 1]) r.push(nums[i]);\n    return [r, r.length];\n};",
@@ -204,7 +204,7 @@
     },
     {
       "id": "Series21",
-      "question": "Образует ли набор возрастающую последовательность.",
+      "question": "Дано целое число N (> 1) и набор из N вещественных чисел. Проверить, образует ли данный набор возрастающую последовательность. Если образует, то вывести True, если нет — вывести False.",
       "solutions": {
         "python": "def series21(nums: list) -> bool:\n    return all(nums[i] > nums[i - 1] for i in range(1, len(nums)))",
         "javascript": "const series21 = (nums) => nums.every((x, i) => i === 0 || x > nums[i - 1]);",
@@ -214,7 +214,7 @@
     },
     {
       "id": "Series22",
-      "question": "Убывает ли набор. Если да — 0, иначе номер первого нарушения.",
+      "question": "Дано целое число N (> 1) и набор из N вещественных чисел. Если данный набор образует убывающую последовательность, то вывести 0; в противном случае вывести номер первого числа, нарушающего закономерность.",
       "solutions": {
         "python": "def series22(nums: list) -> int:\n    for i in range(1, len(nums)):\n        if nums[i] >= nums[i - 1]:\n            return i + 1\n    return 0",
         "javascript": "const series22 = (nums) => {\n    for (let i = 1; i < nums.length; i++)\n        if (nums[i] >= nums[i - 1]) return i + 1;\n    return 0;\n};",
@@ -224,7 +224,7 @@
     },
     {
       "id": "Series23",
-      "question": "Пилообразный ли набор (каждый внутренний — зубец). Иначе номер первого не-зубца.",
+      "question": "Дано целое число N (> 2) и набор из N вещественных чисел. Набор называется пилообразным, если каждый его внутренний элемент либо больше, либо меньше обоих своих соседей (то есть является «зубцом»). Если данный набор является пилообразным, то вывести 0; в противном случае вывести номер первого элемента, не являющегося зубцом.",
       "solutions": {
         "python": "def series23(nums: list) -> int:\n    for i in range(1, len(nums) - 1):\n        a, b, c = nums[i - 1], nums[i], nums[i + 1]\n        if not ((b > a and b > c) or (b < a and b < c)):\n            return i + 1\n    return 0",
         "javascript": "const series23 = (nums) => {\n    for (let i = 1; i < nums.length - 1; i++) {\n        const [a, b, c] = [nums[i - 1], nums[i], nums[i + 1]];\n        if (!((b > a && b > c) || (b < a && b < c))) return i + 1;\n    }\n    return 0;\n};",
@@ -234,7 +234,7 @@
     },
     {
       "id": "Series24",
-      "question": "Набор с минимум двумя нулями. Сумма между последними двумя нулями.",
+      "question": "Дано целое число N и набор из N целых чисел, содержащий по крайней мере два нуля. Вывести сумму чисел из данного набора, расположенных между последними двумя нулями (если последние нули идут подряд, то вывести 0).",
       "solutions": {
         "python": "def series24(nums: list) -> int:\n    zero_positions = [i for i, x in enumerate(nums) if x == 0]\n    i, j = zero_positions[-2], zero_positions[-1]\n    return sum(nums[i + 1:j])",
         "javascript": "const series24 = (nums) => {\n    const zeros = [];\n    nums.forEach((x, i) => { if (x === 0) zeros.push(i); });\n    const i = zeros[zeros.length - 2], j = zeros[zeros.length - 1];\n    return nums.slice(i + 1, j).reduce((a, b) => a + b, 0);\n};",
@@ -244,7 +244,7 @@
     },
     {
       "id": "Series25",
-      "question": "Набор с минимум двумя нулями. Сумма между первым и последним нулём.",
+      "question": "Дано целое число N и набор из N целых чисел, содержащий по крайней мере два нуля. Вывести сумму чисел из данного набора, расположенных между первым и последним нулем (если первый и последний нули идут подряд, то вывести 0). Вложенные циклы",
       "solutions": {
         "python": "def series25(nums: list) -> int:\n    first = nums.index(0)\n    last = len(nums) - 1 - nums[::-1].index(0)\n    return sum(nums[first + 1:last])",
         "javascript": "const series25 = (nums) => {\n    const first = nums.indexOf(0);\n    const last = nums.lastIndexOf(0);\n    return nums.slice(first + 1, last).reduce((a, b) => a + b, 0);\n};",
@@ -254,7 +254,7 @@
     },
     {
       "id": "Series26",
-      "question": "Даны K, N и N чисел. Вывести K-е степени всех чисел.",
+      "question": "Даны целые числа K, N и набор из N вещественных чисел: A1, A2, …, AN. Вывести K-e степени чисел из данного набора: (A1)K, (A2)K, …, (AN)K.",
       "solutions": {
         "python": "def series26(k: int, nums: list) -> list:\n    return [x ** k for x in nums]",
         "javascript": "const series26 = (k, nums) => nums.map(x => Math.pow(x, k));",
@@ -264,7 +264,7 @@
     },
     {
       "id": "Series27",
-      "question": "N чисел A1..AN. Вывести A1, A2², A3³, ..., ANⁿ.",
+      "question": "Дано целое число N и набор из N вещественных чисел: A1, A2, …, AN. Вывести следующие числа: A1, (A2)2, …, (AN–1)N–1, (AN)N.",
       "solutions": {
         "python": "def series27(nums: list) -> list:\n    return [x ** (i + 1) for i, x in enumerate(nums)]",
         "javascript": "const series27 = (nums) => nums.map((x, i) => Math.pow(x, i + 1));",
@@ -274,7 +274,7 @@
     },
     {
       "id": "Series28",
-      "question": "N чисел. Вывести A1ⁿ, A2ⁿ⁻¹, ..., AN¹.",
+      "question": "Дано целое число N и набор из N вещественных чисел: A1, A2, …, AN. Вывести следующие числа: (A1)N, (A2)N–1, …, (AN–1)2, AN.",
       "solutions": {
         "python": "def series28(nums: list) -> list:\n    n = len(nums)\n    return [x ** (n - i) for i, x in enumerate(nums)]",
         "javascript": "const series28 = (nums) => {\n    const n = nums.length;\n    return nums.map((x, i) => Math.pow(x, n - i));\n};",
@@ -284,7 +284,7 @@
     },
     {
       "id": "Series29",
-      "question": "K наборов по N элементов. Общая сумма всех элементов.",
+      "question": "Даны целые числа K, N, а также K наборов целых чисел по N элементов в каждом наборе. Вывести общую сумму всех элементов, входящих в данные наборы.",
       "solutions": {
         "python": "def series29(sets: list) -> int:\n    return sum(sum(s) for s in sets)",
         "javascript": "const series29 = (sets) => sets.flat().reduce((a, b) => a + b, 0);",
@@ -294,7 +294,7 @@
     },
     {
       "id": "Series30",
-      "question": "K наборов по N. Для каждого — сумма элементов.",
+      "question": "Даны целые числа K, N, а также K наборов целых чисел по N элементов в каждом наборе. Для каждого набора вывести сумму его элементов.",
       "solutions": {
         "python": "def series30(sets: list) -> list:\n    return [sum(s) for s in sets]",
         "javascript": "const series30 = (sets) => sets.map(s => s.reduce((a, b) => a + b, 0));",
@@ -304,7 +304,7 @@
     },
     {
       "id": "Series31",
-      "question": "K наборов. Количество наборов, содержащих число 2.",
+      "question": "Даны целые числа K, N, а также K наборов целых чисел по N элементов в каждом наборе. Найти количество наборов, содержащих число 2. Если таких наборов нет, то вывести 0.",
       "solutions": {
         "python": "def series31(sets: list) -> int:\n    return sum(1 for s in sets if 2 in s)",
         "javascript": "const series31 = (sets) => sets.filter(s => s.includes(2)).length;",
@@ -314,7 +314,7 @@
     },
     {
       "id": "Series32",
-      "question": "K наборов. Для каждого — номер первого элемента = 2 (или 0).",
+      "question": "Даны целые числа K, N, а также K наборов целых чисел по N элементов в каждом наборе. Для каждого набора вывести номер его первого элемента, равного 2, или число 0, если в данном наборе нет двоек.",
       "solutions": {
         "python": "def series32(sets: list) -> list:\n    return [(s.index(2) + 1) if 2 in s else 0 for s in sets]",
         "javascript": "const series32 = (sets) => sets.map(s => {\n    const i = s.indexOf(2);\n    return i === -1 ? 0 : i + 1;\n});",
@@ -324,7 +324,7 @@
     },
     {
       "id": "Series33",
-      "question": "K наборов. Для каждого — номер последнего элемента = 2 (или 0).",
+      "question": "Даны целые числа K, N, а также K наборов целых чисел по N элементов в каждом наборе. Для каждого набора вывести номер его последнего элемента, равного 2, или число 0, если в данном наборе нет двоек.",
       "solutions": {
         "python": "def series33(sets: list) -> list:\n    result = []\n    for s in sets:\n        last = 0\n        for i, x in enumerate(s, 1):\n            if x == 2: last = i\n        result.append(last)\n    return result",
         "javascript": "const series33 = (sets) => sets.map(s => {\n    let last = 0;\n    s.forEach((x, i) => { if (x === 2) last = i + 1; });\n    return last;\n});",
@@ -334,7 +334,7 @@
     },
     {
       "id": "Series34",
-      "question": "K наборов. Для каждого: если есть 2 — сумма элементов, иначе 0.",
+      "question": "Даны целые числа K, N, а также K наборов целых чисел по N элементов в каждом наборе. Для каждого набора выполнить следующее действие: если в наборе содержится число 2, то вывести сумму его элементов; если в наборе нет двоек, то вывести 0.",
       "solutions": {
         "python": "def series34(sets: list) -> list:\n    return [sum(s) if 2 in s else 0 for s in sets]",
         "javascript": "const series34 = (sets) => sets.map(s => s.includes(2) ? s.reduce((a, b) => a + b, 0) : 0);",
@@ -344,7 +344,7 @@
     },
     {
       "id": "Series35",
-      "question": "K наборов (каждый завершается 0). Для каждого — количество элементов, и общее количество.",
+      "question": "Дано целое число K, а также K наборов ненулевых целых чисел. Признаком завершения каждого набора является число 0. Для каждого набора вывести количество его элементов. Вывести также общее количество элементов во всех наборах.",
       "solutions": {
         "python": "def series35(sets: list):\n    counts = []\n    for s in sets:\n        c = 0\n        for x in s:\n            if x == 0: break\n            c += 1\n        counts.append(c)\n    return counts, sum(counts)",
         "javascript": "const series35 = (sets) => {\n    const counts = sets.map(s => {\n        let c = 0;\n        for (const x of s) { if (x === 0) break; c++; }\n        return c;\n    });\n    return [counts, counts.reduce((a, b) => a + b, 0)];\n};",
@@ -354,7 +354,7 @@
     },
     {
       "id": "Series36",
-      "question": "K наборов (0 — конец). Количество возрастающих наборов.",
+      "question": "Дано целое число K, а также K наборов ненулевых целых чисел. Каждый набор содержит не менее двух элементов, признаком его завершения является число 0. Найти количество наборов, элементы которых возрастают.",
       "solutions": {
         "python": "def series36(sets: list) -> int:\n    count = 0\n    for s in sets:\n        vals = []\n        for x in s:\n            if x == 0: break\n            vals.append(x)\n        if all(vals[i] > vals[i - 1] for i in range(1, len(vals))):\n            count += 1\n    return count",
         "javascript": "const series36 = (sets) => {\n    let count = 0;\n    for (const s of sets) {\n        const vals = [];\n        for (const x of s) { if (x === 0) break; vals.push(x); }\n        if (vals.every((x, i) => i === 0 || x > vals[i - 1])) count++;\n    }\n    return count;\n};",
@@ -364,7 +364,7 @@
     },
     {
       "id": "Series37",
-      "question": "K наборов (0 — конец). Количество монотонных (возр. или убыв.).",
+      "question": "Дано целое число K, а также K наборов ненулевых целых чисел. Каждый набор содержит не менее двух элементов, признаком его завершения является число 0. Найти количество наборов, элементы которых возрастают или убывают.",
       "solutions": {
         "python": "def series37(sets: list) -> int:\n    count = 0\n    for s in sets:\n        vals = []\n        for x in s:\n            if x == 0: break\n            vals.append(x)\n        inc = all(vals[i] > vals[i - 1] for i in range(1, len(vals)))\n        dec = all(vals[i] < vals[i - 1] for i in range(1, len(vals)))\n        if inc or dec: count += 1\n    return count",
         "javascript": "const series37 = (sets) => {\n    let count = 0;\n    for (const s of sets) {\n        const v = [];\n        for (const x of s) { if (x === 0) break; v.push(x); }\n        const inc = v.every((x, i) => i === 0 || x > v[i - 1]);\n        const dec = v.every((x, i) => i === 0 || x < v[i - 1]);\n        if (inc || dec) count++;\n    }\n    return count;\n};",
@@ -374,7 +374,7 @@
     },
     {
       "id": "Series38",
-      "question": "K наборов (0 — конец). Для каждого: 1 — возр., -1 — убыв., 0 — ни то ни другое.",
+      "question": "Дано целое число K, а также K наборов ненулевых целых чисел. Каждый набор содержит не менее двух элементов, признаком его завершения является число 0. Для каждого набора выполнить следующее действие: если элементы набора возрастают, то вывести 1; если элементы набора убывают, то вывести –1; если элементы набора не возрастают и не убывают, то вывести 0.",
       "solutions": {
         "python": "def series38(sets: list) -> list:\n    result = []\n    for s in sets:\n        vals = []\n        for x in s:\n            if x == 0: break\n            vals.append(x)\n        inc = all(vals[i] > vals[i - 1] for i in range(1, len(vals)))\n        dec = all(vals[i] < vals[i - 1] for i in range(1, len(vals)))\n        result.append(1 if inc else (-1 if dec else 0))\n    return result",
         "javascript": "const series38 = (sets) => sets.map(s => {\n    const v = [];\n    for (const x of s) { if (x === 0) break; v.push(x); }\n    const inc = v.every((x, i) => i === 0 || x > v[i - 1]);\n    const dec = v.every((x, i) => i === 0 || x < v[i - 1]);\n    return inc ? 1 : (dec ? -1 : 0);\n});",
@@ -384,7 +384,7 @@
     },
     {
       "id": "Series39",
-      "question": "K наборов (0 — конец). Количество пилообразных.",
+      "question": "Дано целое число K, а также K наборов ненулевых целых чисел. Каждый набор содержит не менее трех элементов, признаком его завершения является число 0. Найти количество пилообразных наборов (определение пилообразного набора дано в задании Series23).",
       "solutions": {
         "python": "def series39(sets: list) -> int:\n    count = 0\n    for s in sets:\n        vals = []\n        for x in s:\n            if x == 0: break\n            vals.append(x)\n        ok = True\n        for i in range(1, len(vals) - 1):\n            a, b, c = vals[i - 1], vals[i], vals[i + 1]\n            if not ((b > a and b > c) or (b < a and b < c)):\n                ok = False\n                break\n        if ok and len(vals) >= 3: count += 1\n    return count",
         "javascript": "const series39 = (sets) => {\n    let count = 0;\n    for (const s of sets) {\n        const v = [];\n        for (const x of s) { if (x === 0) break; v.push(x); }\n        let ok = true;\n        for (let i = 1; i < v.length - 1; i++) {\n            const [a, b, c] = [v[i - 1], v[i], v[i + 1]];\n            if (!((b > a && b > c) || (b < a && b < c))) { ok = false; break; }\n        }\n        if (ok && v.length >= 3) count++;\n    }\n    return count;\n};",
@@ -394,7 +394,7 @@
     },
     {
       "id": "Series40",
-      "question": "K наборов (0 — конец). Для каждого: если пилообразный — количество элементов, иначе номер первого не-зубца.",
+      "question": "Дано целое число K, а также K наборов ненулевых целых чисел. Каждый набор содержит не менее трех элементов, признаком его завершения является число 0. Для каждого набора выполнить следующее действие: если набор является пилообразным (см. задание Series23), то вывести количество его элементов; в противном случае вывести номер первого элемента, который не является зубцом.",
       "solutions": {
         "python": "def series40(sets: list) -> list:\n    result = []\n    for s in sets:\n        vals = []\n        for x in s:\n            if x == 0: break\n            vals.append(x)\n        broken = 0\n        for i in range(1, len(vals) - 1):\n            a, b, c = vals[i - 1], vals[i], vals[i + 1]\n            if not ((b > a and b > c) or (b < a and b < c)):\n                broken = i + 1\n                break\n        result.append(len(vals) if broken == 0 else broken)\n    return result",
         "javascript": "const series40 = (sets) => sets.map(s => {\n    const v = [];\n    for (const x of s) { if (x === 0) break; v.push(x); }\n    for (let i = 1; i < v.length - 1; i++) {\n        const [a, b, c] = [v[i - 1], v[i], v[i + 1]];\n        if (!((b > a && b > c) || (b < a && b < c))) return i + 1;\n    }\n    return v.length;\n});",

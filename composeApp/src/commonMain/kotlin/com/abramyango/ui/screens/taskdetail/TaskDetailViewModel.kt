@@ -2,11 +2,11 @@ package com.abramyango.ui.screens.taskdetail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.abramyango.domain.model.CategoryTask
-import com.abramyango.domain.repository.CategoryRepository
-import com.abramyango.ui.base.MviIntent
-import com.abramyango.ui.base.MviSideEffect
-import com.abramyango.ui.base.MviState
+import com.abramyango.data.CategoryRepository
+import com.abramyango.data.CategoryTask
+import com.abramyango.ui.MviIntent
+import com.abramyango.ui.MviSideEffect
+import com.abramyango.ui.MviState
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
 
 data class TaskDetailState(
     val task: CategoryTask? = null,
+    val categoryId: String = "",
     val expandedSolutions: Set<String> = emptySet(),
     val isLoading: Boolean = true,
     val error: String? = null
@@ -53,11 +54,10 @@ class TaskDetailViewModel(
 
     private fun loadTask(categoryId: String, taskIndex: Int) {
         viewModelScope.launch {
-            _state.update { it.copy(isLoading = true) }
+            _state.update { it.copy(isLoading = true, categoryId = categoryId) }
             try {
                 val tasks = categoryRepository.getTasksForCategory(categoryId)
-                val task = tasks.getOrNull(taskIndex)
-                _state.update { it.copy(isLoading = false, task = task) }
+                _state.update { it.copy(isLoading = false, task = tasks.getOrNull(taskIndex)) }
             } catch (e: Exception) {
                 _state.update { it.copy(isLoading = false, error = e.message) }
             }
@@ -67,18 +67,12 @@ class TaskDetailViewModel(
     private fun toggleSolution(language: String) {
         _state.update { state ->
             val expanded = state.expandedSolutions.toMutableSet()
-            if (language in expanded) {
-                expanded.remove(language)
-            } else {
-                expanded.add(language)
-            }
+            if (language in expanded) expanded.remove(language) else expanded.add(language)
             state.copy(expandedSolutions = expanded)
         }
     }
 
     private fun back() {
-        viewModelScope.launch {
-            _sideEffect.emit(TaskDetailSideEffect.NavigateBack)
-        }
+        viewModelScope.launch { _sideEffect.emit(TaskDetailSideEffect.NavigateBack) }
     }
 }

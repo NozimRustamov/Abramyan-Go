@@ -16,12 +16,9 @@ kotlin {
     
     sourceSets {
         androidMain.dependencies {
-            implementation(projects.shared)
             implementation(projects.composeApp)
-            
-            implementation(compose.runtime)
+
             implementation(compose.foundation)
-            implementation(compose.ui)
             implementation(compose.material3)
 
             implementation(libs.androidx.activity.compose)

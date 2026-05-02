@@ -4,7 +4,7 @@
   "tasks": [
     {
       "id": "While1",
-      "question": "Даны положительные A и B (A > B). Без умножения/деления найти длину незанятой части отрезка A.",
+      "question": "Даны положительные числа A и B (A > B). На отрезке длины A размещено максимально возможное количество отрезков длины B (без наложений). Не используя операции умножения и деления, найти длину незанятой части отрезка A.",
       "solutions": {
         "python": "def while1(a: float, b: float) -> float:\n    while a >= b:\n        a -= b\n    return a",
         "javascript": "const while1 = (a, b) => {\n    while (a >= b) a -= b;\n    return a;\n};",
@@ -14,7 +14,7 @@
     },
     {
       "id": "While2",
-      "question": "Даны A > B. Без умножения/деления найти количество отрезков длины B на A.",
+      "question": "Даны положительные числа A и B (A > B). На отрезке длины A размещено максимально возможное количество отрезков длины B (без наложений). Не используя операции умножения и деления, найти количество отрезков B, размещенных на отрезке A.",
       "solutions": {
         "python": "def while2(a: float, b: float) -> int:\n    count = 0\n    while a >= b:\n        a -= b\n        count += 1\n    return count",
         "javascript": "const while2 = (a, b) => {\n    let count = 0;\n    while (a >= b) { a -= b; count++; }\n    return count;\n};",
@@ -24,7 +24,7 @@
     },
     {
       "id": "While3",
-      "question": "Даны N, K > 0. Только сложение/вычитание: частное и остаток N/K.",
+      "question": "Даны целые положительные числа N и K. Используя только операции сложения и вычитания, найти частное от деления нацело N на K, а также остаток от этого деления.",
       "solutions": {
         "python": "def while3(n: int, k: int):\n    q = 0\n    while n >= k:\n        n -= k\n        q += 1\n    return q, n",
         "javascript": "const while3 = (n, k) => {\n    let q = 0;\n    while (n >= k) { n -= k; q++; }\n    return [q, n];\n};",
@@ -34,7 +34,7 @@
     },
     {
       "id": "While4",
-      "question": "Дано N > 0. Является ли N степенью тройки?",
+      "question": "Дано целое число N (> 0). Если оно является степенью числа 3, то вывести True, если не является — вывести False.",
       "solutions": {
         "python": "def while4(n: int) -> bool:\n    while n % 3 == 0:\n        n //= 3\n    return n == 1",
         "javascript": "const while4 = (n) => {\n    while (n % 3 === 0) n /= 3;\n    return n === 1;\n};",
@@ -44,7 +44,7 @@
     },
     {
       "id": "While5",
-      "question": "Дано N = 2^K. Найти K.",
+      "question": "Дано целое число N (> 0), являющееся некоторой степенью числа 2: N = 2K. Найти целое число K — показатель этой степени.",
       "solutions": {
         "python": "def while5(n: int) -> int:\n    k = 0\n    while n > 1:\n        n //= 2\n        k += 1\n    return k",
         "javascript": "const while5 = (n) => {\n    let k = 0;\n    while (n > 1) { n = Math.floor(n / 2); k++; }\n    return k;\n};",
@@ -54,7 +54,7 @@
     },
     {
       "id": "While6",
-      "question": "Дано N > 0. Найти N!! (двойной факториал) как вещественное.",
+      "question": "Дано целое число N (> 0). Найти двойной факториал N: N!! = N·(N–2)·(N–4)·… (последний сомножитель равен 2, если N — четное, и 1, если N — нечетное). Чтобы избежать целочисленного переполнения, вычислять это произведение с помощью вещественной переменной и вывести его как вещественное число.",
       "solutions": {
         "python": "def while6(n: int) -> float:\n    result = 1.0\n    while n > 0:\n        result *= n\n        n -= 2\n    return result",
         "javascript": "const while6 = (n) => {\n    let r = 1;\n    while (n > 0) { r *= n; n -= 2; }\n    return r;\n};",
@@ -64,7 +64,7 @@
     },
     {
       "id": "While7",
-      "question": "Дано N > 0. Наименьшее целое K с K^2 > N (без sqrt).",
+      "question": "Дано целое число N (> 0). Найти наименьшее целое положительное число K, квадрат которого превосходит N: K2 > N. Функцию извлечения квадратного корня не использовать.",
       "solutions": {
         "python": "def while7(n: int) -> int:\n    k = 1\n    while k * k <= n:\n        k += 1\n    return k",
         "javascript": "const while7 = (n) => {\n    let k = 1;\n    while (k * k <= n) k++;\n    return k;\n};",
@@ -74,7 +74,7 @@
     },
     {
       "id": "While8",
-      "question": "Дано N > 0. Наибольшее K с K^2 ≤ N (без sqrt).",
+      "question": "Дано целое число N (> 0). Найти наибольшее целое число K, квадрат которого не превосходит N: K2 ≤ N. Функцию извлечения квадратного корня не использовать.",
       "solutions": {
         "python": "def while8(n: int) -> int:\n    k = 0\n    while (k + 1) * (k + 1) <= n:\n        k += 1\n    return k",
         "javascript": "const while8 = (n) => {\n    let k = 0;\n    while ((k + 1) * (k + 1) <= n) k++;\n    return k;\n};",
@@ -84,7 +84,7 @@
     },
     {
       "id": "While9",
-      "question": "N>1. Наименьшее K с 3^K > N.",
+      "question": "Дано целое число N (> 1). Найти наименьшее целое число K, при котором выполняется неравенство 3K > N.",
       "solutions": {
         "python": "def while9(n: int) -> int:\n    k, p = 0, 1\n    while p <= n:\n        p *= 3\n        k += 1\n    return k",
         "javascript": "const while9 = (n) => {\n    let k = 0, p = 1;\n    while (p <= n) { p *= 3; k++; }\n    return k;\n};",
@@ -94,7 +94,7 @@
     },
     {
       "id": "While10",
-      "question": "N>1. Наибольшее K с 3^K < N.",
+      "question": "Дано целое число N (> 1). Найти наибольшее целое число K, при котором выполняется неравенство 3K < N.",
       "solutions": {
         "python": "def while10(n: int) -> int:\n    k, p = 0, 1\n    while p * 3 < n:\n        p *= 3\n        k += 1\n    return k",
         "javascript": "const while10 = (n) => {\n    let k = 0, p = 1;\n    while (p * 3 < n) { p *= 3; k++; }\n    return k;\n};",
@@ -104,7 +104,7 @@
     },
     {
       "id": "While11",
-      "question": "Дано N > 1. Наименьшее K с суммой 1+2+...+K ≥ N.",
+      "question": "Дано целое число N (> 1). Вывести наименьшее из целых чисел K, для которых сумма 1 + 2 + … + K будет больше или равна N, и саму эту сумму.",
       "solutions": {
         "python": "def while11(n: int):\n    k, s = 0, 0\n    while s < n:\n        k += 1\n        s += k\n    return k, s",
         "javascript": "const while11 = (n) => {\n    let k = 0, s = 0;\n    while (s < n) { k++; s += k; }\n    return [k, s];\n};",
@@ -114,7 +114,7 @@
     },
     {
       "id": "While12",
-      "question": "N>1. Наибольшее K c суммой 1+2+...+K ≤ N.",
+      "question": "Дано целое число N (> 1). Вывести наибольшее из целых чисел K, для которых сумма 1 + 2 + … + K будет меньше или равна N, и саму эту сумму.",
       "solutions": {
         "python": "def while12(n: int):\n    k, s = 0, 0\n    while s + k + 1 <= n:\n        k += 1\n        s += k\n    return k, s",
         "javascript": "const while12 = (n) => {\n    let k = 0, s = 0;\n    while (s + k + 1 <= n) { k++; s += k; }\n    return [k, s];\n};",
@@ -124,7 +124,7 @@
     },
     {
       "id": "While13",
-      "question": "A>1. Наименьшее K с суммой 1+1/2+...+1/K > A.",
+      "question": "Дано число A (> 1). Вывести наименьшее из целых чисел K, для которых сумма 1 + 1/2 + … + 1/K будет больше A, и саму эту сумму.",
       "solutions": {
         "python": "def while13(a: float):\n    k, s = 0, 0.0\n    while s <= a:\n        k += 1\n        s += 1 / k\n    return k, s",
         "javascript": "const while13 = (a) => {\n    let k = 0, s = 0;\n    while (s <= a) { k++; s += 1 / k; }\n    return [k, s];\n};",
@@ -134,7 +134,7 @@
     },
     {
       "id": "While14",
-      "question": "A>1. Наибольшее K с суммой 1+1/2+...+1/K < A.",
+      "question": "Дано число A (> 1). Вывести наибольшее из целых чисел K, для которых сумма 1 + 1/2 + … + 1/K будет меньше A, и саму эту сумму.",
       "solutions": {
         "python": "def while14(a: float):\n    k, s = 0, 0.0\n    while s + 1 / (k + 1) < a:\n        k += 1\n        s += 1 / k\n    return k, s",
         "javascript": "const while14 = (a) => {\n    let k = 0, s = 0;\n    while (s + 1 / (k + 1) < a) { k++; s += 1 / k; }\n    return [k, s];\n};",
@@ -144,7 +144,7 @@
     },
     {
       "id": "While15",
-      "question": "Вклад 1000 руб, +P% в месяц. Через сколько месяцев превысит 1100.",
+      "question": "Начальный вклад в банке равен 1000 руб. Через каждый месяц размер вклада увеличивается на P процентов от имеющейся суммы (P — вещественное число, 0 < P < 25). По данному P определить, через сколько месяцев размер вклада превысит 1100 руб., и вывести найденное количество месяцев K (целое число) и итоговый размер вклада S (вещественное число).",
       "solutions": {
         "python": "def while15(p: float):\n    k, s = 0, 1000.0\n    while s <= 1100:\n        s *= 1 + p / 100\n        k += 1\n    return k, s",
         "javascript": "const while15 = (p) => {\n    let k = 0, s = 1000;\n    while (s <= 1100) { s *= 1 + p / 100; k++; }\n    return [k, s];\n};",
@@ -154,7 +154,7 @@
     },
     {
       "id": "While16",
-      "question": "Лыжник: день 1 — 10 км, каждый следующий +P%. Когда суммарный пробег >200.",
+      "question": "Спортсмен-лыжник начал тренировки, пробежав в первый день 10 км. Каждый следующий день он увеличивал длину пробега на P процентов от пробега предыдущего дня (P — вещественное, 0 < P < 50). По данному P определить, после какого дня суммарный пробег лыжника за все дни превысит 200 км, и вывести найденное количество дней K (целое) и суммарный пробег S (вещественное число).",
       "solutions": {
         "python": "def while16(p: float):\n    day, today, total = 0, 10.0, 0.0\n    while total <= 200:\n        total += today\n        day += 1\n        today *= 1 + p / 100\n    return day, total",
         "javascript": "const while16 = (p) => {\n    let day = 0, today = 10, total = 0;\n    while (total <= 200) {\n        total += today;\n        day++;\n        today *= 1 + p / 100;\n    }\n    return [day, total];\n};",
@@ -164,7 +164,7 @@
     },
     {
       "id": "While17",
-      "question": "Дано N > 0. Вывести все цифры, начиная с правой.",
+      "question": "Дано целое число N (> 0). Используя операции деления нацело и взятия остатка от деления, вывести все его цифры, начиная с самой правой (разряда единиц).",
       "solutions": {
         "python": "def while17(n: int) -> list:\n    digits = []\n    while n > 0:\n        digits.append(n % 10)\n        n //= 10\n    return digits",
         "javascript": "const while17 = (n) => {\n    const d = [];\n    while (n > 0) { d.push(n % 10); n = Math.floor(n / 10); }\n    return d;\n};",
@@ -174,7 +174,7 @@
     },
     {
       "id": "While18",
-      "question": "Дано N > 0. Найти количество и сумму цифр.",
+      "question": "Дано целое число N (> 0). Используя операции деления нацело и взятия остатка от деления, найти количество и сумму его цифр.",
       "solutions": {
         "python": "def while18(n: int):\n    count, total = 0, 0\n    while n > 0:\n        total += n % 10\n        n //= 10\n        count += 1\n    return count, total",
         "javascript": "const while18 = (n) => {\n    let c = 0, s = 0;\n    while (n > 0) { s += n % 10; n = Math.floor(n / 10); c++; }\n    return [c, s];\n};",
@@ -184,7 +184,7 @@
     },
     {
       "id": "While19",
-      "question": "Дано N > 0. Число, полученное прочтением N справа налево.",
+      "question": "Дано целое число N (> 0). Используя операции деления нацело и взятия остатка от деления, найти число, полученное при прочтении числа N справа налево.",
       "solutions": {
         "python": "def while19(n: int) -> int:\n    result = 0\n    while n > 0:\n        result = result * 10 + n % 10\n        n //= 10\n    return result",
         "javascript": "const while19 = (n) => {\n    let r = 0;\n    while (n > 0) { r = r * 10 + n % 10; n = Math.floor(n / 10); }\n    return r;\n};",
@@ -194,7 +194,7 @@
     },
     {
       "id": "While20",
-      "question": "Дано N > 0. Есть ли в записи N цифра 2?",
+      "question": "Дано целое число N (> 0). С помощью операций деления нацело и взятия остатка от деления определить, имеется ли в записи числа N цифра «2». Если имеется, то вывести True, если нет — вывести False.",
       "solutions": {
         "python": "def while20(n: int) -> bool:\n    while n > 0:\n        if n % 10 == 2:\n            return True\n        n //= 10\n    return False",
         "javascript": "const while20 = (n) => {\n    while (n > 0) {\n        if (n % 10 === 2) return true;\n        n = Math.floor(n / 10);\n    }\n    return false;\n};",
@@ -204,7 +204,7 @@
     },
     {
       "id": "While21",
-      "question": "N>0. Есть ли в записи N нечётные цифры.",
+      "question": "Дано целое число N (> 0). С помощью операций деления нацело и взятия остатка от деления определить, имеются ли в записи числа N нечетные цифры. Если имеются, то вывести True, если нет — вывести False.",
       "solutions": {
         "python": "def while21(n: int) -> bool:\n    while n > 0:\n        if (n % 10) % 2 != 0:\n            return True\n        n //= 10\n    return False",
         "javascript": "const while21 = (n) => {\n    while (n > 0) {\n        if ((n % 10) % 2 !== 0) return true;\n        n = Math.floor(n / 10);\n    }\n    return false;\n};",
@@ -214,7 +214,7 @@
     },
     {
       "id": "While22",
-      "question": "Дано N > 1. Является ли простым.",
+      "question": "Дано целое число N (> 1). Если оно является простым, то есть не имеет положительных делителей, кроме 1 и самого себя, то вывести True, иначе вывести False.",
       "solutions": {
         "python": "def while22(n: int) -> bool:\n    if n < 2:\n        return False\n    i = 2\n    while i * i <= n:\n        if n % i == 0:\n            return False\n        i += 1\n    return True",
         "javascript": "const while22 = (n) => {\n    if (n < 2) return false;\n    for (let i = 2; i * i <= n; i++)\n        if (n % i === 0) return false;\n    return true;\n};",
@@ -224,7 +224,7 @@
     },
     {
       "id": "While23",
-      "question": "Даны A, B > 0. НОД по алгоритму Евклида.",
+      "question": "Даны целые положительные числа A и B. Найти их наибольший общий делитель (НОД), используя алгоритм Евклида: НОД(A, B) = НОД(B, A mod B), если B ≠ 0; НОД(A, 0) = A.",
       "solutions": {
         "python": "def while23(a: int, b: int) -> int:\n    while b != 0:\n        a, b = b, a % b\n    return a",
         "javascript": "const while23 = (a, b) => {\n    while (b !== 0) [a, b] = [b, a % b];\n    return a;\n};",
@@ -234,7 +234,7 @@
     },
     {
       "id": "While24",
-      "question": "Дано N > 1. Является ли числом Фибоначчи.",
+      "question": "Дано целое число N (> 1). Последовательность чисел Фибоначчи FK определяется следующим образом: F1 = 1, F2 = 1, FK = FK–2 + FK–1, K = 3, 4, … . Проверить, является ли число N числом Фибоначчи. Если является, то вывести True, если нет — вывести False.",
       "solutions": {
         "python": "def while24(n: int) -> bool:\n    a, b = 1, 1\n    while b < n:\n        a, b = b, a + b\n    return b == n or n == 1",
         "javascript": "const while24 = (n) => {\n    let a = 1, b = 1;\n    while (b < n) [a, b] = [b, a + b];\n    return b === n || n === 1;\n};",
@@ -244,7 +244,7 @@
     },
     {
       "id": "While25",
-      "question": "Дано N > 1. Первое число Фибоначчи, большее N.",
+      "question": "Дано целое число N (> 1). Найти первое число Фибоначчи, большее N. (определение чисел Фибоначчи дано в задании While24).",
       "solutions": {
         "python": "def while25(n: int) -> int:\n    a, b = 1, 1\n    while b <= n:\n        a, b = b, a + b\n    return b",
         "javascript": "const while25 = (n) => {\n    let a = 1, b = 1;\n    while (b <= n) [a, b] = [b, a + b];\n    return b;\n};",
@@ -254,7 +254,7 @@
     },
     {
       "id": "While26",
-      "question": "N — число Фибоначчи. Найти предыдущее и последующее.",
+      "question": "Дано целое число N (> 1), являющееся числом Фибоначчи: N = FK (определение чисел Фибоначчи дано в задании While24). Найти целые числа FK–1 и FK+1 — предыдущее и последующее числа Фибоначчи.",
       "solutions": {
         "python": "def while26(n: int):\n    a, b = 1, 1\n    while b != n:\n        a, b = b, a + b\n    return a, a + b",
         "javascript": "const while26 = (n) => {\n    let a = 1, b = 1;\n    while (b !== n) [a, b] = [b, a + b];\n    return [a, a + b];\n};",
@@ -264,7 +264,7 @@
     },
     {
       "id": "While27",
-      "question": "N — число Фибоначчи. Найти его порядковый номер.",
+      "question": "Дано целое число N (> 1), являющееся числом Фибоначчи: N = FK (определение чисел Фибоначчи дано в задании While24). Найти целое число K — порядковый номер числа Фибоначчи N.",
       "solutions": {
         "python": "def while27(n: int) -> int:\n    a, b, k = 1, 1, 2\n    while b != n:\n        a, b = b, a + b\n        k += 1\n    return k",
         "javascript": "const while27 = (n) => {\n    let a = 1, b = 1, k = 2;\n    while (b !== n) { [a, b] = [b, a + b]; k++; }\n    return k;\n};",
@@ -274,7 +274,7 @@
     },
     {
       "id": "While28",
-      "question": "A1=2, Ak=2+1/Ak-1. Найти первый K с |Ak-Ak-1|<ε.",
+      "question": "Дано вещественное число ε (> 0). Последовательность вещественных чисел AK определяется следующим образом: A1 = 2, AK = 2 + 1/AK–1, K = 2, 3, … . Найти первый из номеров K, для которых выполняется условие |AK – AK–1| < ε, и вывести этот номер, а также числа AK–1 и AK.",
       "solutions": {
         "python": "def while28(eps: float):\n    prev, curr, k = 2.0, 2 + 1 / 2, 2\n    while abs(curr - prev) >= eps:\n        prev = curr\n        curr = 2 + 1 / prev\n        k += 1\n    return k, prev, curr",
         "javascript": "const while28 = (eps) => {\n    let prev = 2, curr = 2 + 1 / 2, k = 2;\n    while (Math.abs(curr - prev) >= eps) {\n        prev = curr;\n        curr = 2 + 1 / prev;\n        k++;\n    }\n    return [k, prev, curr];\n};",
@@ -284,7 +284,7 @@
     },
     {
       "id": "While29",
-      "question": "Дано ε>0. A1=1, A2=2, Ak=(Ak-2+2·Ak-1)/3. Найти K с |Ak-Ak-1|<ε.",
+      "question": "Дано вещественное число ε (> 0). Последовательность вещественных чисел AK определяется следующим образом: A1 = 1, A2 = 2, AK = (AK–2 + 2·AK–1)/3, K = 3, 4, … . Найти первый из номеров K, для которых выполняется условие |AK – AK–1| < ε, и вывести этот номер, а также числа AK–1 и AK.",
       "solutions": {
         "python": "def while29(eps: float):\n    a, b, k = 1.0, 2.0, 2\n    while abs(b - a) >= eps:\n        a, b = b, (a + 2 * b) / 3\n        k += 1\n    return k, a, b",
         "javascript": "const while29 = (eps) => {\n    let a = 1, b = 2, k = 2;\n    while (Math.abs(b - a) >= eps) {\n        [a, b] = [b, (a + 2 * b) / 3];\n        k++;\n    }\n    return [k, a, b];\n};",
@@ -294,7 +294,7 @@
     },
     {
       "id": "While30",
-      "question": "A,B,C>0. Количество квадратов со стороной C на прямоугольнике A×B без умножения/деления.",
+      "question": "Даны положительные числа A, B, C. На прямоугольнике размера A × B размещено максимально возможное количество квадратов со стороной C (без наложений). Найти количество квадратов, размещенных на прямоугольнике. Операции умножения и деления не использовать.",
       "solutions": {
         "python": "def while30(a: float, b: float, c: float) -> int:\n    cols = 0\n    x = c\n    while x <= a:\n        cols += 1\n        x += c\n    rows = 0\n    y = c\n    while y <= b:\n        rows += 1\n        y += c\n    total = 0\n    for _ in range(rows):\n        total += cols\n    return total",
         "javascript": "const while30 = (a, b, c) => {\n    let cols = 0, x = c;\n    while (x <= a) { cols++; x += c; }\n    let rows = 0, y = c;\n    while (y <= b) { rows++; y += c; }\n    let total = 0;\n    for (let i = 0; i < rows; i++) total += cols;\n    return total;\n};",

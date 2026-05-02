@@ -2,11 +2,11 @@ package com.abramyango.ui.screens.categories
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.abramyango.domain.model.Category
-import com.abramyango.domain.repository.CategoryRepository
-import com.abramyango.ui.base.MviIntent
-import com.abramyango.ui.base.MviSideEffect
-import com.abramyango.ui.base.MviState
+import com.abramyango.data.Category
+import com.abramyango.data.CategoryRepository
+import com.abramyango.ui.MviIntent
+import com.abramyango.ui.MviSideEffect
+import com.abramyango.ui.MviState
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow

@@ -4,7 +4,7 @@
   "tasks": [
     {
       "id": "Begin1",
-      "question": "Дана сторона квадрата a. Найти его периметр P = 4 * a.",
+      "question": "Дана сторона квадрата a. Найти его периметр P = 4·a.",
       "solutions": {
         "python": "def begin1(a: float) -> float:\n    return 4.0 * a",
         "javascript": "const begin1 = (a) => 4 * a;",
@@ -14,7 +14,7 @@
     },
     {
       "id": "Begin2",
-      "question": "Дана сторона квадрата a. Найти его площадь S = a^2.",
+      "question": "Дана сторона квадрата a. Найти его площадь S = a2.",
       "solutions": {
         "python": "def begin2(a: float) -> float:\n    return a * a",
         "javascript": "const begin2 = (a) => a ** 2;",
@@ -24,7 +24,7 @@
     },
     {
       "id": "Begin3",
-      "question": "Даны стороны прямоугольника a и b. Найти площадь S = a * b и периметр P = 2 * (a + b).",
+      "question": "Даны стороны прямоугольника a и b. Найти его площадь S = a·b и периметр P = 2·(a + b).",
       "solutions": {
         "python": "def begin3(a, b):\n    return a * b, 2 * (a + b)",
         "javascript": "const begin3 = (a, b) => ( {\n    S: a * b, P: 2 * (a + b)\n});",
@@ -34,7 +34,7 @@
     },
     {
       "id": "Begin4",
-      "question": "Дан диаметр окружности d. Найти ее длину L = pi * d (pi = 3.14).",
+      "question": "Дан диаметр окружности d. Найти ее длину L = π·d. В качестве значения π использовать 3.14.",
       "solutions": {
         "python": "def begin4(d):\n    return 3.14 * d",
         "javascript": "const begin4 = (d) => 3.14 * d;",
@@ -44,7 +44,7 @@
     },
     {
       "id": "Begin5",
-      "question": "Дана длина ребра куба a. Найти объем V = a^3 и площадь поверхности S = 6 * a^2.",
+      "question": "Дана длина ребра куба a. Найти объем куба V = a3 и площадь его поверхности S = 6·a2.",
       "solutions": {
         "python": "def begin5(a):\n    return a**3, 6 * a**2",
         "javascript": "const begin5 = (a) => ( {\n    V: a ** 3, S: 6 * a ** 2\n});",
@@ -54,7 +54,7 @@
     },
     {
       "id": "Begin6",
-      "question": "Даны ребра a, b, c параллелепипеда. Найти его объем V = a*b*c и площадь поверхности S = 2*(a*b + b*c + a*c).",
+      "question": "Даны длины ребер a, b, c прямоугольного параллелепипеда. Найти его объем V = a·b·c и площадь поверхности S = 2·(a·b + b·c + a·c).",
       "solutions": {
         "python": "def begin6(a, b, c):\n    return a*b*c, 2*(a*b + b*c + a*c)",
         "javascript": "const begin6 = (a, b, c) => ( {\n    V: a*b*c, S: 2*(a*b + b*c + a*c)\n});",
@@ -64,7 +64,7 @@
     },
     {
       "id": "Begin7",
-      "question": "Найти длину L и площадь S круга радиуса R. (pi = 3.14)",
+      "question": "Найти длину окружности L и площадь круга S заданного радиуса R: L = 2·π·R, S = π·R2. В качестве значения π использовать 3.14.",
       "solutions": {
         "python": "def begin7(r):\n    return 6.28 * r, 3.14 * r * r",
         "javascript": "const begin7 = (r) => ( {\n    L: 6.28 * r, S: 3.14 * r * r\n});",
@@ -74,7 +74,7 @@
     },
     {
       "id": "Begin8",
-      "question": "Даны два числа a и b. Найти их среднее арифметическое: (a + b) / 2.",
+      "question": "Даны два числа a и b. Найти их среднее арифметическое: (a + b)/2.",
       "solutions": {
         "python": "def begin8(a, b):\n    return (a + b) / 2.0",
         "javascript": "const begin8 = (a, b) => (a + b) / 2;",
@@ -84,7 +84,7 @@
     },
     {
       "id": "Begin9",
-      "question": "Даны два неотрицательных числа a и b. Найти их среднее геометрическое: sqrt(a * b).",
+      "question": "Даны два неотрицательных числа a и b. Найти их среднее геометрическое, то есть квадратный корень из их произведения: a ⋅ b .",
       "solutions": {
         "python": "import math\ndef begin9(a, b): return math.sqrt(a * b)",
         "javascript": "const begin9 = (a, b) => Math.sqrt(a * b);",
@@ -114,7 +114,7 @@
     },
     {
       "id": "Begin12",
-      "question": "Даны катеты a и b. Найти гипотенузу c и периметр P.",
+      "question": "Даны катеты прямоугольного треугольника a и b. Найти его гипотенузу c и периметр P: c = a 2 + b2 , P = a + b + c.",
       "solutions": {
         "python": "import math\ndef begin12(a, b): c = math.sqrt(a*a + b*b); return c, a + b + c",
         "javascript": "const begin12 = (a, b) => {\n    const c = Math.sqrt(a*a+b*b);\n    return { c, P: a+b+c };\n};",
@@ -124,7 +124,7 @@
     },
     {
       "id": "Begin13",
-      "question": "Даны радиусы R1 и R2 (R1 > R2). Найти площади S1, S2 и площадь кольца S3.",
+      "question": "Даны два круга с общим центром и радиусами R1 и R2 (R1 > R2). Найти площади этих кругов S1 и S2, а также площадь S3 кольца, внешний радиус которого равен R1, а внутренний радиус равен R2: S1 = π·(R1)2, S2 = π·(R2)2, S3 = S1 – S2. В качестве значения π использовать 3.14.",
       "solutions": {
         "python": "def begin13(r1, r2):\n    s1, s2 = 3.14*r1**2, 3.14*r2**2\n    return s1, s2, s1-s2",
         "javascript": "const begin13 = (r1, r2) => {\n    const s1=3.14*r1*r1, s2=3.14*r2*r2;\n    return [s1, s2, s1-s2];\n};",
@@ -134,7 +134,7 @@
     },
     {
       "id": "Begin14",
-      "question": "Дана длина окружности L. Найти радиус R и площадь S.",
+      "question": "Дана длина L окружности. Найти ее радиус R и площадь S круга, ограниченного этой окружностью, учитывая, что L = 2·π·R, S = π·R2. В качестве значения π использовать 3.14.",
       "solutions": {
         "python": "def begin14(l):\n    r = l/6.28\n    return r, 3.14*r*r",
         "javascript": "const begin14 = (l) => {\n    const r = l/6.28;\n    return { r, s: 3.14*r*r };\n};",
@@ -144,7 +144,7 @@
     },
     {
       "id": "Begin15",
-      "question": "Дана площадь круга S. Найти диаметр D и длину окружности L.",
+      "question": "Дана площадь S круга. Найти его диаметр D и длину L окружности, ограничивающей этот круг, учитывая, что L = π·D, S = π·D2/4. В качестве значения π использовать 3.14.",
       "solutions": {
         "python": "import math\ndef begin15(s): r = math.sqrt(s/3.14); return 2*r, 6.28*r",
         "javascript": "const begin15 = (s) => {\n    const r = Math.sqrt(s/3.14);\n    return [2*r, 6.28*r];\n};",
@@ -154,7 +154,7 @@
     },
     {
       "id": "Begin16",
-      "question": "Расстояние между точками x1 и x2: |x2 - x1|.",
+      "question": "Найти расстояние между двумя точками с заданными координатами x1 и x2 на числовой оси: |x2 – x1|.",
       "solutions": {
         "python": "def begin16(x1, x2):\n    return abs(x2 - x1)",
         "javascript": "const begin16 = (x1, x2) => Math.abs(x2 - x1);",
@@ -164,7 +164,7 @@
     },
     {
       "id": "Begin17",
-      "question": "Найти длины отрезков AC, BC и их сумму (точки A, B, C на оси).",
+      "question": "Даны три точки A, B, C на числовой оси. Найти длины отрезков AC и BC и их сумму.",
       "solutions": {
         "python": "def begin17(a, b, c):\n    ac, bc = abs(c-a), abs(c-b)\n    return ac, bc, ac+bc",
         "javascript": "const begin17 = (a, b, c) => {\n    const ac=Math.abs(c-a), bc=Math.abs(c-b);\n    return [ac, bc, ac+bc];\n};",
@@ -174,7 +174,7 @@
     },
     {
       "id": "Begin18",
-      "question": "Точка C между A и B. Найти произведение AC * BC.",
+      "question": "Даны три точки A, B, C на числовой оси. Точка C расположена между точками A и B. Найти произведение длин отрезков AC и BC.",
       "solutions": {
         "python": "def begin18(a, b, c):\n    return abs(c-a) * abs(b-c)",
         "javascript": "const begin18 = (a, b, c) => Math.abs(c-a) * Math.abs(b-c);",
@@ -184,7 +184,7 @@
     },
     {
       "id": "Begin19",
-      "question": "Даны (x1,y1) и (x2,y2). Найти P и S прямоугольника.",
+      "question": "Даны координаты двух противоположных вершин прямоугольника: (x1, y1), (x2, y2). Стороны прямоугольника параллельны осям координат. Найти периметр и площадь данного прямоугольника.",
       "solutions": {
         "python": "def begin19(x1,y1,x2,y2):\n    w, h = abs(x2-x1), abs(y2-y1)\n    return 2*(w+h), w*h",
         "javascript": "const begin19 = (x1,y1,x2,y2) => {\n    const w=Math.abs(x2-x1), h=Math.abs(y2-y1);\n    return [2*(w+h), w*h];\n};",
@@ -194,7 +194,7 @@
     },
     {
       "id": "Begin20",
-      "question": "Расстояние между (x1,y1) и (x2,y2).",
+      "question": "Найти расстояние между двумя точками с заданными координатами (x1, y1) и (x2, y2) на плоскости. Расстояние вычисляется по формуле ( x2 − x1 ) 2 + ( y2 − y1 ) 2 .",
       "solutions": {
         "python": "import math\ndef begin20(x1,y1,x2,y2): return math.sqrt((x2-x1)**2 + (y2-y1)**2)",
         "javascript": "const begin20 = (x1,y1,x2,y2) => Math.sqrt((x2-x1)**2 + (y2-y1)**2);",
@@ -204,7 +204,7 @@
     },
     {
       "id": "Begin21",
-      "question": "Найти P и S треугольника по координатам трех вершин (Герон).",
+      "question": "Даны координаты трех вершин треугольника: (x1, y1), (x2, y2), (x3, y3). Найти его периметр и площадь, используя формулу для расстояния между двумя точками на плоскости (см. задание Begin20). Для нахождения площади треугольника со сторонами a, b, c использовать формулу Герона: S = p ⋅ ( p − a ) ⋅ ( p − b) ⋅ ( p − c), где p = (a + b + c)/2 — полупериметр.",
       "solutions": {
         "python": "import math\ndef begin21(x1,y1,x2,y2,x3,y3):\n    a=math.sqrt((x2-x1)**2+(y2-y1)**2); b=math.sqrt((x3-x2)**2+(y3-y2)**2); c=math.sqrt((x1-x3)**2+(y1-y3)**2)\n    p=(a+b+c)/2; s=math.sqrt(p*(p-a)*(p-b)*(p-c))\n    return a+b+c, s",
         "javascript": "const begin21 = (x1,y1,x2,y2,x3,y3) => {\n    const d=(ax,ay,bx,by)=>Math.sqrt((bx-ax)**2+(by-ay)**2);\n    const a=d(x1,y1,x2,y2), b=d(x2,y2,x3,y3), c=d(x3,y3,x1,y1), p=(a+b+c)/2;\n    return [a+b+c, Math.sqrt(p*(p-a)*(p-b)*(p-c))];\n};",
@@ -214,7 +214,7 @@
     },
     {
       "id": "Begin22",
-      "question": "Поменять местами A и B.",
+      "question": "Поменять местами содержимое переменных A и B и вывести новые значения A и B.",
       "solutions": {
         "python": "def begin22(a, b):\n    return b, a",
         "javascript": "const begin22 = (a, b) => [b, a];",
@@ -224,7 +224,7 @@
     },
     {
       "id": "Begin23",
-      "question": "Переместить A -> B -> C -> A.",
+      "question": "Даны переменные A, B, C. Изменить их значения, переместив содержимое A в B, B — в C, C — в A, и вывести новые значения переменных A, B, C.",
       "solutions": {
         "python": "def begin23(a, b, c):\n    return c, a, b",
         "javascript": "const begin23 = (a, b, c) => [c, a, b];",
@@ -234,7 +234,7 @@
     },
     {
       "id": "Begin24",
-      "question": "Переместить A -> C -> B -> A.",
+      "question": "Даны переменные A, B, C. Изменить их значения, переместив содержимое A в C, C — в B, B — в A, и вывести новые значения переменных A, B, C.",
       "solutions": {
         "python": "def begin24(a, b, c):\n    return b, c, a",
         "javascript": "const begin24 = (a, b, c) => [b, c, a];",
@@ -244,7 +244,7 @@
     },
     {
       "id": "Begin25",
-      "question": "Найти y = 3x^6 - 6x^2 - 7.",
+      "question": "Найти значение функции y = 3·x6 – 6·x2 – 7 при данном значении x.",
       "solutions": {
         "python": "def begin25(x):\n    x2=x*x\n    return 3*x2*x2*x2 - 6*x2 - 7",
         "javascript": "const begin25 = (x) => {\n    const x2=x*x;\n    return 3*x2*x2*x2 - 6*x2 - 7;\n};",
@@ -254,7 +254,7 @@
     },
     {
       "id": "Begin26",
-      "question": "Найти y = 4(x-3)^6 - 7(x-3)^3 + 2.",
+      "question": "Найти значение функции y = 4·(x–3)6 – 7·(x–3)3 + 2 при данном значении x.",
       "solutions": {
         "python": "def begin26(x):\n    t=(x-3)**3\n    return 4*t*t - 7*t + 2",
         "javascript": "const begin26 = (x) => {\n    const t=(x-3)**3;\n    return 4*t*t - 7*t + 2;\n};",
@@ -264,7 +264,7 @@
     },
     {
       "id": "Begin27",
-      "question": "Найти A^8 за 3 умножения.",
+      "question": "Дано число A. Вычислить A8, используя вспомогательную переменную и три операции умножения. Для этого последовательно находить A2, A4, A8. Вывести все найденные степени числа A.",
       "solutions": {
         "python": "def begin27(a):\n    a2=a*a\n    a4=a2*a2\n    return a4*a4",
         "javascript": "const begin27 = (a) => {\n    let res=a*a;\n    res*=res;\n    return res*res;\n};",
@@ -274,7 +274,7 @@
     },
     {
       "id": "Begin28",
-      "question": "Найти A^15 за 5 умножений.",
+      "question": "Дано число A. Вычислить A15, используя две вспомогательные переменные и пять операций умножения. Для этого последовательно находить A2, A3, A5, A10, A15. Вывести все найденные степени числа A.",
       "solutions": {
         "python": "def begin28(a):\n    a2=a*a\n    a3=a2*a\n    a5=a3*a2\n    a10=a5*a5\n    return a10*a5",
         "javascript": "const begin28 = (a) => {\n    const a2=a*a, a3=a2*a, a5=a3*a2, a10=a5*a5;\n    return a10*a5;\n};",
@@ -284,7 +284,7 @@
     },
     {
       "id": "Begin29",
-      "question": "Градусы -> Радианы.",
+      "question": "Дано значение угла α в градусах (0 < α < 360). Определить значение этого же угла в радианах, учитывая, что 180° = π радианов. В качестве значения π использовать 3.14.",
       "solutions": {
         "python": "def begin29(a):\n    return a * 3.14 / 180",
         "javascript": "const begin29 = (a) => a * 3.14 / 180;",
@@ -294,7 +294,7 @@
     },
     {
       "id": "Begin30",
-      "question": "Радианы -> Градусы.",
+      "question": "Дано значение угла α в радианах (0 < α < 2·π). Определить значение этого же угла в градусах, учитывая, что 180° = π радианов. В качестве значения π использовать 3.14.",
       "solutions": {
         "python": "def begin30(r):\n    return r * 180 / 3.14",
         "javascript": "const begin30 = (r) => r * 180 / 3.14;",
@@ -304,7 +304,7 @@
     },
     {
       "id": "Begin31",
-      "question": "Фаренгейт -> Цельсий.",
+      "question": "Дано значение температуры T в градусах Фаренгейта. Определить значение этой же температуры в градусах Цельсия. Температура по Цельсию TC и температура по Фаренгейту TF связаны следующим соотношением: TC = (TF – 32)·5/9.",
       "solutions": {
         "python": "def begin31(tf):\n    return (tf-32)*5/9",
         "javascript": "const begin31 = (tf) => (tf-32)*5/9;",
@@ -314,7 +314,7 @@
     },
     {
       "id": "Begin32",
-      "question": "Цельсий -> Фаренгейт.",
+      "question": "Дано значение температуры T в градусах Цельсия. Определить значение этой же температуры в градусах Фаренгейта. Температура по Цельсию TC и температура по Фаренгейту TF связаны следующим соотношением: TC = (TF – 32)·5/9.",
       "solutions": {
         "python": "def begin32(tc):\n    return tc*1.8 + 32",
         "javascript": "const begin32 = (tc) => tc*1.8 + 32;",
@@ -324,7 +324,7 @@
     },
     {
       "id": "Begin33",
-      "question": "X кг стоят A руб. Найти цену за 1 кг и Y кг.",
+      "question": "Известно, что X кг конфет стоит A рублей. Определить, сколько стоит 1 кг и Y кг этих же конфет.",
       "solutions": {
         "python": "def begin33(x, a, y):\n    p=a/x\n    return p, p*y",
         "javascript": "const begin33 = (x, a, y) => {\n    const p=a/x;\n    return [p, p*y];\n};",
@@ -334,7 +334,7 @@
     },
     {
       "id": "Begin34",
-      "question": "Шоколад (X за A) vs Ириски (Y за B). Во сколько раз дороже?",
+      "question": "Известно, что X кг шоколадных конфет стоит A рублей, а Y кг ирисок стоит B рублей. Определить, сколько стоит 1 кг шоколадных конфет, 1 кг ирисок, а также во сколько раз шоколадные конфеты дороже ирисок.",
       "solutions": {
         "python": "def begin34(x, a, y, b):\n    return (a/x) / (b/y)",
         "javascript": "const begin34 = (x, a, y, b) => (a/x) / (b/y);",
@@ -344,7 +344,7 @@
     },
     {
       "id": "Begin35",
-      "question": "Путь лодки (V) по озеру (T1) и против течения (U, T2).",
+      "question": "Скорость лодки в стоячей воде V км/ч, скорость течения реки U км/ч (U < V). Время движения лодки по озеру T1 ч, а по реке (против течения) — T2 ч. Определить путь S, пройденный лодкой (путь = время · скорость). Учесть, что при движении против течения скорость лодки уменьшается на величину скорости течения.",
       "solutions": {
         "python": "def begin35(v, u, t1, t2):\n    return v*t1 + (v-u)*t2",
         "javascript": "const begin35 = (v, u, t1, t2) => v*t1 + (v-u)*t2;",
@@ -354,7 +354,7 @@
     },
     {
       "id": "Begin36",
-      "question": "Расстояние между удаляющимися авто через T.",
+      "question": "Скорость первого автомобиля V1 км/ч, второго — V2 км/ч, расстояние между ними S км. Определить расстояние между ними через T часов, если автомобили удаляются друг от друга. Данное расстояние равно сумме начального расстояния и общего пути, проделанного автомобилями; общий путь = время · суммарная скорость.",
       "solutions": {
         "python": "def begin36(v1, v2, s, t):\n    return s + (v1+v2)*t",
         "javascript": "const begin36 = (v1, v2, s, t) => s + (v1+v2)*t;",
@@ -364,7 +364,7 @@
     },
     {
       "id": "Begin37",
-      "question": "Расстояние между сближающимися авто через T.",
+      "question": "Скорость первого автомобиля V1 км/ч, второго — V2 км/ч, расстояние между ними S км. Определить расстояние между ними через T часов, если автомобили первоначально движутся навстречу друг другу. Данное расстояние равно модулю разности начального расстояния и общего пути, проделанного автомобилями; общий путь = время · суммарная скорость.",
       "solutions": {
         "python": "def begin37(v1, v2, s, t):\n    return abs(s - (v1+v2)*t)",
         "javascript": "const begin37 = (v1, v2, s, t) => Math.abs(s - (v1+v2)*t);",
@@ -374,7 +374,7 @@
     },
     {
       "id": "Begin38",
-      "question": "Решить Ax + B = 0.",
+      "question": "Решить линейное уравнение A·x + B = 0, заданное своими коэффициентами A и B (коэффициент A не равен 0).",
       "solutions": {
         "python": "def begin38(a, b):\n    return -b/a",
         "javascript": "const begin38 = (a, b) => -b/a;",
@@ -384,7 +384,7 @@
     },
     {
       "id": "Begin39",
-      "question": "Дискриминант Ax^2 + Bx + C = 0.",
+      "question": "Найти корни квадратного уравнения A·x2 + B·x + C = 0, заданного своими коэффициентами A, B, C (коэффициент A не равен 0), если известно, что дискриминант уравнения положителен. Вывести вначале меньший, а затем больший из найденных корней. Корни квадратного уравнения находятся по формуле x1,2 = (− B ± D ) / (2·A), где D — дискриминант, равный B2 – 4·A·C.",
       "solutions": {
         "python": "def begin39(a, b, c):\n    return b*b - 4*a*c",
         "javascript": "const begin39 = (a, b, c) => b*b - 4*a*c;",
@@ -394,7 +394,7 @@
     },
     {
       "id": "Begin40",
-      "question": "Метод Крамера. Найти D, x, y.",
+      "question": "Найти решение системы линейных уравнений вида A1·x + B1·y = C1, A2·x + B2·y = C2, заданной своими коэффициентами A1, B1, C1, A2, B2, C2, если известно, что данная система имеет единственное решение. Воспользоваться формулами x = (C1·B2 – C2·B1)/D, y = (A1·C2 – A2·C1)/D, где D = A1·B2 – A2·B1.",
       "solutions": {
         "python": "def begin40(a1,b1,c1,a2,b2,c2):\n    d=a1*b2-a2*b1\n    return d, (c1*b2-c2*b1)/d, (a1*c2-a2*c1)/d",
         "javascript": "const begin40 = (a1,b1,c1,a2,b2,c2) => {\n    const d=a1*b2-a2*b1;\n    return [d, (c1*b2-c2*b1)/d, (a1*c2-a2*c1)/d];\n};",

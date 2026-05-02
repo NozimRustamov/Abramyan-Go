@@ -4,7 +4,7 @@
   "tasks": [
     {
       "id": "For1",
-      "question": "Даны K и N (N > 0). Вывести N раз число K.",
+      "question": "Даны целые числа K и N (N > 0). Вывести N раз число K.",
       "solutions": {
         "python": "def for1(k: int, n: int) -> list:\n    return [k] * n",
         "javascript": "const for1 = (k, n) => Array(n).fill(k);",
@@ -14,7 +14,7 @@
     },
     {
       "id": "For2",
-      "question": "Даны A и B (A < B). Вывести все целые от A до B включительно.",
+      "question": "Даны два целых числа A и B (A < B). Вывести в порядке возрастания все целые числа, расположенные между A и B (включая сами числа A и B), а также количество N этих чисел.",
       "solutions": {
         "python": "def for2(a: int, b: int) -> list:\n    return list(range(a, b + 1))",
         "javascript": "const for2 = (a, b) => Array.from({length: b - a + 1}, (_, i) => a + i);",
@@ -24,7 +24,7 @@
     },
     {
       "id": "For3",
-      "question": "Даны A и B (A < B). Вывести по убыванию целые между A и B (не включая).",
+      "question": "Даны два целых числа A и B (A < B). Вывести в порядке убывания все целые числа, расположенные между A и B (не включая числа A и B), а также количество N этих чисел.",
       "solutions": {
         "python": "def for3(a: int, b: int) -> list:\n    return list(range(b - 1, a, -1))",
         "javascript": "const for3 = (a, b) => Array.from({length: b - a - 1}, (_, i) => b - 1 - i);",
@@ -34,7 +34,7 @@
     },
     {
       "id": "For4",
-      "question": "Цена 1 кг конфет. Вывести стоимость 1..10 кг.",
+      "question": "Дано вещественное число — цена 1 кг конфет. Вывести стоимость 1, 2, …, 10 кг конфет.",
       "solutions": {
         "python": "def for4(price: float) -> list:\n    return [price * i for i in range(1, 11)]",
         "javascript": "const for4 = (price) => Array.from({length: 10}, (_, i) => price * (i + 1));",
@@ -44,7 +44,7 @@
     },
     {
       "id": "For5",
-      "question": "Цена 1 кг конфет. Вывести стоимость 0.1..1.0 кг (шаг 0.1).",
+      "question": "Дано вещественное число — цена 1 кг конфет. Вывести стоимость 0.1, 0.2, …, 1 кг конфет.",
       "solutions": {
         "python": "def for5(price: float) -> list:\n    return [price * i / 10 for i in range(1, 11)]",
         "javascript": "const for5 = (price) => Array.from({length: 10}, (_, i) => price * (i + 1) / 10);",
@@ -54,7 +54,7 @@
     },
     {
       "id": "For6",
-      "question": "Цена 1 кг конфет. Вывести стоимость 1.2, 1.4, ..., 2.0 кг.",
+      "question": "Дано вещественное число — цена 1 кг конфет. Вывести стоимость 1.2, 1.4, …, 2 кг конфет.",
       "solutions": {
         "python": "def for6(price: float) -> list:\n    return [price * (1.0 + i * 0.2) for i in range(1, 6)]",
         "javascript": "const for6 = (price) => Array.from({length: 5}, (_, i) => price * (1 + (i + 1) * 0.2));",
@@ -64,7 +64,7 @@
     },
     {
       "id": "For7",
-      "question": "Даны A и B (A < B). Сумма целых от A до B.",
+      "question": "Даны два целых числа A и B (A < B). Найти сумму всех целых чисел от A до B включительно.",
       "solutions": {
         "python": "def for7(a: int, b: int) -> int:\n    return (a + b) * (b - a + 1) // 2",
         "javascript": "const for7 = (a, b) => (a + b) * (b - a + 1) / 2;",
@@ -74,7 +74,7 @@
     },
     {
       "id": "For8",
-      "question": "Даны A и B (A < B). Произведение целых от A до B.",
+      "question": "Даны два целых числа A и B (A < B). Найти произведение всех целых чисел от A до B включительно.",
       "solutions": {
         "python": "def for8(a: int, b: int) -> int:\n    result = 1\n    for i in range(a, b + 1):\n        result *= i\n    return result",
         "javascript": "const for8 = (a, b) => {\n    let r = 1n;\n    for (let i = BigInt(a); i <= BigInt(b); i++) r *= i;\n    return r;\n};",
@@ -84,7 +84,7 @@
     },
     {
       "id": "For9",
-      "question": "Даны A и B (A < B). Сумма квадратов целых от A до B.",
+      "question": "Даны два целых числа A и B (A < B). Найти сумму квадратов всех целых чисел от A до B включительно.",
       "solutions": {
         "python": "def for9(a: int, b: int) -> int:\n    return sum(i * i for i in range(a, b + 1))",
         "javascript": "const for9 = (a, b) => {\n    let s = 0;\n    for (let i = a; i <= b; i++) s += i * i;\n    return s;\n};",
@@ -94,7 +94,7 @@
     },
     {
       "id": "For10",
-      "question": "Дано N > 0. Найти сумму 1 + 1/2 + ... + 1/N.",
+      "question": "Дано целое число N (> 0). Найти сумму 1 + 1/2 + 1/3 + … + 1/N (вещественное число).",
       "solutions": {
         "python": "def for10(n: int) -> float:\n    return sum(1.0 / i for i in range(1, n + 1))",
         "javascript": "const for10 = (n) => {\n    let s = 0;\n    for (let i = 1; i <= n; i++) s += 1 / i;\n    return s;\n};",
@@ -104,7 +104,7 @@
     },
     {
       "id": "For11",
-      "question": "Дано N > 0. Найти сумму N^2 + (N+1)^2 + ... + (2N)^2.",
+      "question": "Дано целое число N (> 0). Найти сумму N2 + (N + 1)2 + (N + 2)2 + … + (2·N)2 (целое число).",
       "solutions": {
         "python": "def for11(n: int) -> int:\n    return sum(i * i for i in range(n, 2 * n + 1))",
         "javascript": "const for11 = (n) => {\n    let s = 0;\n    for (let i = n; i <= 2 * n; i++) s += i * i;\n    return s;\n};",
@@ -114,7 +114,7 @@
     },
     {
       "id": "For12",
-      "question": "Дано N > 0. Найти произведение 1.1 * 1.2 * ... (N сомножителей).",
+      "question": "Дано целое число N (> 0). Найти произведение 1.1 · 1.2 · 1.3 · … (N сомножителей).",
       "solutions": {
         "python": "def for12(n: int) -> float:\n    p = 1.0\n    for i in range(1, n + 1):\n        p *= 1.0 + i / 10.0\n    return p",
         "javascript": "const for12 = (n) => {\n    let p = 1;\n    for (let i = 1; i <= n; i++) p *= 1 + i / 10;\n    return p;\n};",
@@ -124,7 +124,7 @@
     },
     {
       "id": "For13",
-      "question": "Дано N > 0. Найти 1.1 - 1.2 + 1.3 - ... (N слагаемых).",
+      "question": "Дано целое число N (> 0). Найти значение выражения 1.1 – 1.2 + 1.3 – … (N слагаемых, знаки чередуются). Условный оператор не использовать.",
       "solutions": {
         "python": "def for13(n: int) -> float:\n    s = 0.0\n    sign = 1\n    for i in range(1, n + 1):\n        s += sign * (1.0 + i / 10.0)\n        sign = -sign\n    return s",
         "javascript": "const for13 = (n) => {\n    let s = 0, sign = 1;\n    for (let i = 1; i <= n; i++) {\n        s += sign * (1 + i / 10);\n        sign = -sign;\n    }\n    return s;\n};",
@@ -134,7 +134,7 @@
     },
     {
       "id": "For14",
-      "question": "Дано N > 0. Квадрат N через сумму нечётных: 1+3+5+...+(2N-1). Выводить текущую сумму.",
+      "question": "Дано целое число N (> 0). Найти квадрат данного числа, используя для его вычисления следующую формулу: N2 = 1 + 3 + 5 + … + (2·N – 1). После добавления к сумме каждого слагаемого выводить текущее значение суммы (в результате будут выведены квадраты всех целых чисел от 1 до N).",
       "solutions": {
         "python": "def for14(n: int) -> list:\n    result = []\n    s = 0\n    for i in range(1, n + 1):\n        s += 2 * i - 1\n        result.append(s)\n    return result",
         "javascript": "const for14 = (n) => {\n    const r = [];\n    let s = 0;\n    for (let i = 1; i <= n; i++) { s += 2 * i - 1; r.push(s); }\n    return r;\n};",
@@ -144,7 +144,7 @@
     },
     {
       "id": "For15",
-      "question": "Даны A и N > 0. Найти A^N.",
+      "question": "Дано вещественное число A и целое число N (> 0). Найти A в степени N: AN = A·A· … ·A (числа A перемножаются N раз).",
       "solutions": {
         "python": "def for15(a: float, n: int) -> float:\n    result = 1.0\n    for _ in range(n):\n        result *= a\n    return result",
         "javascript": "const for15 = (a, n) => {\n    let r = 1;\n    for (let i = 0; i < n; i++) r *= a;\n    return r;\n};",
@@ -154,7 +154,7 @@
     },
     {
       "id": "For16",
-      "question": "Даны A и N > 0. Вывести A^1, A^2, ..., A^N одним циклом.",
+      "question": "Дано вещественное число A и целое число N (> 0). Используя один цикл, вывести все целые степени числа A от 1 до N.",
       "solutions": {
         "python": "def for16(a: float, n: int) -> list:\n    result = []\n    power = 1.0\n    for _ in range(n):\n        power *= a\n        result.append(power)\n    return result",
         "javascript": "const for16 = (a, n) => {\n    const r = [];\n    let p = 1;\n    for (let i = 0; i < n; i++) {\n        p *= a;\n        r.push(p);\n    }\n    return r;\n};",
@@ -164,7 +164,7 @@
     },
     {
       "id": "For17",
-      "question": "Даны A и N > 0. Найти 1 + A + A^2 + ... + A^N.",
+      "question": "Дано вещественное число A и целое число N (> 0). Используя один цикл, найти сумму 1 + A + A2 + A3 + … + AN.",
       "solutions": {
         "python": "def for17(a: float, n: int) -> float:\n    s = 1.0\n    power = 1.0\n    for _ in range(n):\n        power *= a\n        s += power\n    return s",
         "javascript": "const for17 = (a, n) => {\n    let s = 1, p = 1;\n    for (let i = 0; i < n; i++) {\n        p *= a;\n        s += p;\n    }\n    return s;\n};",
@@ -174,7 +174,7 @@
     },
     {
       "id": "For18",
-      "question": "Даны A и N > 0. Найти 1 - A + A^2 - ... + (-1)^N * A^N.",
+      "question": "Дано вещественное число A и целое число N (> 0). Используя один цикл, найти значение выражения 1 – A + A2 – A3 + … + (–1)N·AN. Условный оператор не использовать.",
       "solutions": {
         "python": "def for18(a: float, n: int) -> float:\n    s = 1.0\n    power = 1.0\n    for _ in range(n):\n        power *= -a\n        s += power\n    return s",
         "javascript": "const for18 = (a, n) => {\n    let s = 1, p = 1;\n    for (let i = 0; i < n; i++) {\n        p *= -a;\n        s += p;\n    }\n    return s;\n};",
@@ -184,7 +184,7 @@
     },
     {
       "id": "For19",
-      "question": "Дано N > 0. Найти N! (как вещественное).",
+      "question": "Дано целое число N (> 0). Найти произведение N! = 1·2·…·N (N–факториал). Чтобы избежать целочисленного переполнения, вычислять это произведение с помощью вещественной переменной и вывести его как вещественное число.",
       "solutions": {
         "python": "def for19(n: int) -> float:\n    result = 1.0\n    for i in range(2, n + 1):\n        result *= i\n    return result",
         "javascript": "const for19 = (n) => {\n    let r = 1;\n    for (let i = 2; i <= n; i++) r *= i;\n    return r;\n};",
@@ -194,7 +194,7 @@
     },
     {
       "id": "For20",
-      "question": "Дано N > 0. Найти 1! + 2! + ... + N!.",
+      "question": "Дано целое число N (> 0). Используя один цикл, найти сумму 1! + 2! + 3! + … + N! (выражение N! — N–факториал — обозначает произведение всех целых чисел от 1 до N: N! = 1·2·…·N). Чтобы избежать целочисленного переполнения, проводить вычисления с помощью вещественных переменных и вывести результат как вещественное число.",
       "solutions": {
         "python": "def for20(n: int) -> float:\n    s = 0.0\n    fact = 1.0\n    for i in range(1, n + 1):\n        fact *= i\n        s += fact\n    return s",
         "javascript": "const for20 = (n) => {\n    let s = 0, f = 1;\n    for (let i = 1; i <= n; i++) {\n        f *= i;\n        s += f;\n    }\n    return s;\n};",
@@ -204,7 +204,7 @@
     },
     {
       "id": "For21",
-      "question": "Дано N > 0. Найти 1 + 1/1! + 1/2! + ... + 1/N! (приближение e).",
+      "question": "Дано целое число N (> 0). Используя один цикл, найти сумму 1 + 1/(1!) + 1/(2!) + 1/(3!) + … + 1/(N!) (выражение N! — N–факториал — обозначает произведение всех целых чисел от 1 до N: N! = 1·2·…·N). Полученное число является приближенным значением константы e = exp(1).",
       "solutions": {
         "python": "def for21(n: int) -> float:\n    s = 1.0\n    fact = 1.0\n    for i in range(1, n + 1):\n        fact *= i\n        s += 1.0 / fact\n    return s",
         "javascript": "const for21 = (n) => {\n    let s = 1, f = 1;\n    for (let i = 1; i <= n; i++) {\n        f *= i;\n        s += 1 / f;\n    }\n    return s;\n};",
@@ -214,7 +214,7 @@
     },
     {
       "id": "For22",
-      "question": "Даны X и N > 0. Найти 1 + X + X^2/2! + ... + X^N/N! (приближение exp).",
+      "question": "Дано вещественное число X и целое число N (> 0). Найти значение выражения 1 + X + X2/(2!) + … + XN/(N!) (N! = 1·2·…·N). Полученное число является приближенным значением функции exp в точке X.",
       "solutions": {
         "python": "def for22(x: float, n: int) -> float:\n    s = 1.0\n    term = 1.0\n    for i in range(1, n + 1):\n        term *= x / i\n        s += term\n    return s",
         "javascript": "const for22 = (x, n) => {\n    let s = 1, t = 1;\n    for (let i = 1; i <= n; i++) {\n        t *= x / i;\n        s += t;\n    }\n    return s;\n};",
@@ -224,7 +224,7 @@
     },
     {
       "id": "For23",
-      "question": "Приближение sin(x) через ряд Тейлора до N.",
+      "question": "Дано вещественное число X и целое число N (> 0). Найти значение выражения X – X3/(3!) + X5/(5!) – … + (–1)N·X2·N+1/((2·N+1)!) (N! = 1·2·…·N). Полученное число является приближенным значением функции sin в точке X.",
       "solutions": {
         "python": "def for23(x: float, n: int) -> float:\n    s = x\n    term = x\n    for k in range(1, n + 1):\n        term *= -x * x / ((2 * k) * (2 * k + 1))\n        s += term\n    return s",
         "javascript": "const for23 = (x, n) => {\n    let s = x, t = x;\n    for (let k = 1; k <= n; k++) {\n        t *= -x * x / ((2 * k) * (2 * k + 1));\n        s += t;\n    }\n    return s;\n};",
@@ -234,7 +234,7 @@
     },
     {
       "id": "For24",
-      "question": "Приближение cos(x) через ряд Тейлора до N.",
+      "question": "Дано вещественное число X и целое число N (> 0). Найти значение выражения 1 – X2/(2!) + X4/(4!) – … + (–1)N·X2·N/((2·N)!) (N! = 1·2·…·N). Полученное число является приближенным значением функции cos в точке X.",
       "solutions": {
         "python": "def for24(x: float, n: int) -> float:\n    s = 1.0\n    term = 1.0\n    for k in range(1, n + 1):\n        term *= -x * x / ((2 * k - 1) * (2 * k))\n        s += term\n    return s",
         "javascript": "const for24 = (x, n) => {\n    let s = 1, t = 1;\n    for (let k = 1; k <= n; k++) {\n        t *= -x * x / ((2 * k - 1) * (2 * k));\n        s += t;\n    }\n    return s;\n};",
@@ -244,7 +244,7 @@
     },
     {
       "id": "For25",
-      "question": "Приближение ln(1+x) через ряд до N.",
+      "question": "Дано вещественное число X (|X| < 1) и целое число N (> 0). Найти значение выражения X – X2/2 + X3/3 – … + (–1)N–1·XN/N. Полученное число является приближенным значением функции ln в точке 1 + X.",
       "solutions": {
         "python": "def for25(x: float, n: int) -> float:\n    s = 0.0\n    term = 1.0\n    for k in range(1, n + 1):\n        term *= -x if k > 1 else x\n        s += term / k if k == 1 else 0\n    # cleaner:\n    s = 0.0\n    power = 1.0\n    for k in range(1, n + 1):\n        power *= x\n        s += ((-1) ** (k - 1)) * power / k\n    return s",
         "javascript": "const for25 = (x, n) => {\n    let s = 0, p = 1;\n    for (let k = 1; k <= n; k++) {\n        p *= x;\n        s += (k % 2 === 1 ? 1 : -1) * p / k;\n    }\n    return s;\n};",
@@ -254,7 +254,7 @@
     },
     {
       "id": "For26",
-      "question": "Приближение arctg(x) через ряд: x - x³/3 + x⁵/5 - ...",
+      "question": "Дано вещественное число X (|X| < 1) и целое число N (> 0). Найти значение выражения X – X3/3 + X5/5 – … + (–1)N·X2·N+1/(2·N+1). Полученное число является приближенным значением функции arctg в точке X.",
       "solutions": {
         "python": "def for26(x: float, n: int) -> float:\n    s = 0.0\n    power = x\n    x2 = x * x\n    for k in range(n + 1):\n        s += ((-1) ** k) * power / (2 * k + 1)\n        power *= x2\n    return s",
         "javascript": "const for26 = (x, n) => {\n    let s = 0, p = x;\n    const x2 = x * x;\n    for (let k = 0; k <= n; k++) {\n        s += (k % 2 === 0 ? 1 : -1) * p / (2 * k + 1);\n        p *= x2;\n    }\n    return s;\n};",
@@ -264,7 +264,7 @@
     },
     {
       "id": "For27",
-      "question": "|X|<1, N>0. Приближение arcsin(x).",
+      "question": "Дано вещественное число X (|X| < 1) и целое число N (> 0). Найти значение выражения X + 1·X3/(2·3) + 1·3·X5/(2·4·5) + … + + 1·3·…·(2·N–1)·X2·N+1/(2·4·…·(2·N)·(2·N+1)). Полученное число является приближенным значением функции arcsin в точке X.",
       "solutions": {
         "python": "def for27(x: float, n: int) -> float:\n    s, num, den, power = x, 1.0, 1.0, x\n    for k in range(1, n + 1):\n        num *= 2 * k - 1\n        den *= 2 * k\n        power *= x * x\n        s += num * power / (den * (2 * k + 1))\n    return s",
         "javascript": "const for27 = (x, n) => {\n    let s = x, num = 1, den = 1, p = x;\n    for (let k = 1; k <= n; k++) {\n        num *= 2 * k - 1;\n        den *= 2 * k;\n        p *= x * x;\n        s += num * p / (den * (2 * k + 1));\n    }\n    return s;\n};",
@@ -274,7 +274,7 @@
     },
     {
       "id": "For28",
-      "question": "|X|<1, N>0. Приближение √(1+X).",
+      "question": "Дано вещественное число X (|X| < 1) и целое число N (> 0). Найти значение выражения 1 + X/2 – 1·X2/(2·4) + 1·3·X3/(2·4·6) – … + + (–1)N–1·1·3·…·(2·N–3)·XN/(2·4·…·(2·N)). Полученное число является приближенным значением функции 1 + X .",
       "solutions": {
         "python": "def for28(x: float, n: int) -> float:\n    s = 1.0 + x / 2\n    term = x / 2\n    for k in range(2, n + 1):\n        term *= -x * (2 * k - 3) / (2 * k)\n        s += term\n    return s",
         "javascript": "const for28 = (x, n) => {\n    let s = 1 + x / 2, t = x / 2;\n    for (let k = 2; k <= n; k++) {\n        t *= -x * (2 * k - 3) / (2 * k);\n        s += t;\n    }\n    return s;\n};",
@@ -284,7 +284,7 @@
     },
     {
       "id": "For29",
-      "question": "Даны N>1, A, B. Вывести H и точки разбиения [A,B] на N равных отрезков.",
+      "question": "Дано целое число N (> 1) и две вещественные точки на числовой оси: A, B (A < B). Отрезок [A, B] разбит на N равных отрезков. Вывести H — длину каждого отрезка, а также набор точек A, A + H, A + 2·H, A + 3·H, …, B, образующий разбиение отрезка [A, B].",
       "solutions": {
         "python": "def for29(n: int, a: float, b: float):\n    h = (b - a) / n\n    points = [a + i * h for i in range(n + 1)]\n    return h, points",
         "javascript": "const for29 = (n, a, b) => {\n    const h = (b - a) / n;\n    const points = Array.from({length: n + 1}, (_, i) => a + i * h);\n    return [h, points];\n};",
@@ -294,7 +294,7 @@
     },
     {
       "id": "For30",
-      "question": "Даны N>1, A, B. Вывести H и значения F(X)=1-sin(X) в точках разбиения [A,B].",
+      "question": "Дано целое число N (> 1) и две вещественные точки на числовой оси: A, B (A < B). Отрезок [A, B] разбит на N равных отрезков. Вывести H — длину каждого отрезка, а также значения функции F(X) = 1 – sin(X) в точках, разбивающих отрезок [A, B]: F(A), F(A + H), F(A + 2·H), …, F(B).",
       "solutions": {
         "python": "import math\ndef for30(n: int, a: float, b: float):\n    h = (b - a) / n\n    values = [1 - math.sin(a + i * h) for i in range(n + 1)]\n    return h, values",
         "javascript": "const for30 = (n, a, b) => {\n    const h = (b - a) / n;\n    const values = Array.from({length: n + 1}, (_, i) => 1 - Math.sin(a + i * h));\n    return [h, values];\n};",
@@ -304,7 +304,7 @@
     },
     {
       "id": "For31",
-      "question": "Последовательность: A0=2, Ak=2+1/Ak-1. Вывести A1..AN.",
+      "question": "Дано целое число N (> 0). Последовательность вещественных чисел AK определяется следующим образом: A0 = 2, AK = 2 + 1/AK–1, K = 1, 2, … . Вывести элементы A1, A2, …, AN.",
       "solutions": {
         "python": "def for31(n: int) -> list:\n    result = []\n    a = 2.0\n    for _ in range(n):\n        a = 2 + 1 / a\n        result.append(a)\n    return result",
         "javascript": "const for31 = (n) => {\n    const r = [];\n    let a = 2;\n    for (let i = 0; i < n; i++) { a = 2 + 1 / a; r.push(a); }\n    return r;\n};",
@@ -314,7 +314,7 @@
     },
     {
       "id": "For32",
-      "question": "A0=1, Ak=(Ak-1+1)/k. Вывести A1..AN.",
+      "question": "Дано целое число N (> 0). Последовательность вещественных чисел AK определяется следующим образом: A0 = 1, AK = (AK–1 + 1)/K, K = 1, 2, … . Вывести элементы A1, A2, …, AN.",
       "solutions": {
         "python": "def for32(n: int) -> list:\n    result = []\n    a = 1.0\n    for k in range(1, n + 1):\n        a = (a + 1) / k\n        result.append(a)\n    return result",
         "javascript": "const for32 = (n) => {\n    const r = [];\n    let a = 1;\n    for (let k = 1; k <= n; k++) { a = (a + 1) / k; r.push(a); }\n    return r;\n};",
@@ -324,7 +324,7 @@
     },
     {
       "id": "For33",
-      "question": "Дано N>1. Вывести первые N чисел Фибоначчи.",
+      "question": "Дано целое число N (> 1). Последовательность чисел Фибоначчи FK (целого типа) определяется следующим образом: F1 = 1, F2 = 1, FK = FK–2 + FK–1, K = 3, 4, … . Вывести элементы F1, F2, ..., FN.",
       "solutions": {
         "python": "def for33(n: int) -> list:\n    fib = [1, 1]\n    for i in range(2, n):\n        fib.append(fib[-1] + fib[-2])\n    return fib[:n]",
         "javascript": "const for33 = (n) => {\n    const fib = [1, 1];\n    for (let i = 2; i < n; i++) fib.push(fib[i - 1] + fib[i - 2]);\n    return fib.slice(0, n);\n};",
@@ -334,7 +334,7 @@
     },
     {
       "id": "For34",
-      "question": "A1=1, A2=2, Ak=(Ak-2+2·Ak-1)/3. Вывести A1..AN.",
+      "question": "Дано целое число N (> 1). Последовательность вещественных чисел AK определяется следующим образом: A1 = 1, A2 = 2, AK = (AK–2 + 2·AK–1)/3, K = 3, 4, … . Вывести элементы A1, A2, …, AN.",
       "solutions": {
         "python": "def for34(n: int) -> list:\n    if n == 1: return [1.0]\n    if n == 2: return [1.0, 2.0]\n    result = [1.0, 2.0]\n    for _ in range(3, n + 1):\n        result.append((result[-2] + 2 * result[-1]) / 3)\n    return result",
         "javascript": "const for34 = (n) => {\n    const r = [1, 2];\n    for (let k = 3; k <= n; k++) r.push((r[k - 3] + 2 * r[k - 2]) / 3);\n    return r.slice(0, n);\n};",
@@ -344,7 +344,7 @@
     },
     {
       "id": "For35",
-      "question": "A1=1, A2=2, A3=3, Ak=Ak-1+Ak-2-2·Ak-3. Вывести A1..AN.",
+      "question": "Дано целое число N (> 2). Последовательность целых чисел AK определяется следующим образом: A1 = 1, A2 = 2, A3 = 3, AK = AK–1 + AK–2 – 2·AK–3, K = 4, 5, … . Вывести элементы A1, A2, …, AN. Вложенные циклы",
       "solutions": {
         "python": "def for35(n: int) -> list:\n    r = [1, 2, 3]\n    for k in range(4, n + 1):\n        r.append(r[-1] + r[-2] - 2 * r[-3])\n    return r[:n]",
         "javascript": "const for35 = (n) => {\n    const r = [1, 2, 3];\n    for (let k = 4; k <= n; k++) r.push(r[k - 2] + r[k - 3] - 2 * r[k - 4]);\n    return r.slice(0, n);\n};",
@@ -354,7 +354,7 @@
     },
     {
       "id": "For36",
-      "question": "Даны N, K > 0. Найти 1^K + 2^K + ... + N^K.",
+      "question": "Даны целые положительные числа N и K. Найти сумму 1K + 2K + … + NK. Чтобы избежать целочисленного переполнения, вычислять слагаемые этой суммы с помощью вещественной переменной и выводить результат как вещественное число.",
       "solutions": {
         "python": "def for36(n: int, k: int) -> float:\n    return float(sum(i ** k for i in range(1, n + 1)))",
         "javascript": "const for36 = (n, k) => {\n    let s = 0;\n    for (let i = 1; i <= n; i++) s += Math.pow(i, k);\n    return s;\n};",
@@ -364,7 +364,7 @@
     },
     {
       "id": "For37",
-      "question": "Дано N. Найти 1¹ + 2² + ... + NⁿN.",
+      "question": "Дано целое число N (> 0). Найти сумму 11 + 22 + … + NN. Чтобы избежать целочисленного переполнения, вычислять слагаемые этой суммы с помощью вещественной переменной и выводить результат как вещественное число.",
       "solutions": {
         "python": "def for37(n: int) -> float:\n    return float(sum(i ** i for i in range(1, n + 1)))",
         "javascript": "const for37 = (n) => {\n    let s = 0;\n    for (let i = 1; i <= n; i++) s += Math.pow(i, i);\n    return s;\n};",
@@ -374,7 +374,7 @@
     },
     {
       "id": "For38",
-      "question": "Дано N. Найти 1ⁿ + 2ⁿ⁻¹ + ... + Nⁿ¹.",
+      "question": "Дано целое число N (> 0). Найти сумму 1N + 2N–1 + … + N1. Чтобы избежать целочисленного переполнения, вычислять слагаемые этой суммы с помощью вещественной переменной и выводить результат как вещественное число.",
       "solutions": {
         "python": "def for38(n: int) -> float:\n    return float(sum(i ** (n - i + 1) for i in range(1, n + 1)))",
         "javascript": "const for38 = (n) => {\n    let s = 0;\n    for (let i = 1; i <= n; i++) s += Math.pow(i, n - i + 1);\n    return s;\n};",
@@ -384,7 +384,7 @@
     },
     {
       "id": "For39",
-      "question": "Даны A, B (A < B). Вывести все целые от A до B, каждое число по его значению раз.",
+      "question": "Даны целые положительные числа A и B (A < B). Вывести все целые числа от A до B включительно; при этом каждое число должно выводиться столько раз, каково его значение (например, число 3 выводится 3 раза).",
       "solutions": {
         "python": "def for39(a: int, b: int) -> list:\n    return [i for i in range(a, b + 1) for _ in range(i)]",
         "javascript": "const for39 = (a, b) => {\n    const r = [];\n    for (let i = a; i <= b; i++)\n        for (let j = 0; j < i; j++) r.push(i);\n    return r;\n};",
@@ -394,7 +394,7 @@
     },
     {
       "id": "For40",
-      "question": "Даны A, B (A<B). Число A — 1 раз, A+1 — 2 раза и т.д.",
+      "question": "Даны целые числа A и B (A < B). Вывести все целые числа от A до B включительно; при этом число A должно выводиться 1 раз, число A + 1 должно выводиться 2 раза и т. д.",
       "solutions": {
         "python": "def for40(a: int, b: int) -> list:\n    return [a + k for k in range(b - a + 1) for _ in range(k + 1)]",
         "javascript": "const for40 = (a, b) => {\n    const r = [];\n    for (let k = 0; k <= b - a; k++)\n        for (let j = 0; j <= k; j++) r.push(a + k);\n    return r;\n};",

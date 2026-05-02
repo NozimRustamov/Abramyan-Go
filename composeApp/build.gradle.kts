@@ -14,44 +14,28 @@ kotlin {
             }
         }
     }
-    
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            baseName = "ComposeApp"
-            isStatic = true
-        }
-    }
-    
+
+
     sourceSets {
         commonMain.dependencies {
-            implementation(projects.shared)
-            
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(compose.ui)
-            implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
-            
+
             implementation(libs.navigation.compose)
             implementation(libs.lifecycle.viewmodel)
-            implementation(libs.lifecycle.runtime)
-            
+            implementation(compose.components.resources)
+
+
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
-            
-            implementation(libs.coil.compose)
-            implementation(libs.kotlinx.coroutines.core)
+
             implementation(libs.kotlinx.serialization.json)
         }
         
         androidMain.dependencies {
-            implementation(libs.kotlinx.coroutines.android)
             implementation(libs.koin.android)
         }
     }

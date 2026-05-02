@@ -2,11 +2,11 @@ package com.abramyango.ui.screens.categorytasklist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.abramyango.domain.model.CategoryTask
-import com.abramyango.domain.repository.CategoryRepository
-import com.abramyango.ui.base.MviIntent
-import com.abramyango.ui.base.MviSideEffect
-import com.abramyango.ui.base.MviState
+import com.abramyango.data.CategoryRepository
+import com.abramyango.data.CategoryTask
+import com.abramyango.ui.MviIntent
+import com.abramyango.ui.MviSideEffect
+import com.abramyango.ui.MviState
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -68,17 +68,12 @@ class CategoryTaskListViewModel(
     private fun selectTask(taskIndex: Int) {
         viewModelScope.launch {
             _sideEffect.emit(
-                CategoryTaskListSideEffect.NavigateToTaskDetail(
-                    _state.value.categoryId,
-                    taskIndex
-                )
+                CategoryTaskListSideEffect.NavigateToTaskDetail(_state.value.categoryId, taskIndex)
             )
         }
     }
 
     private fun back() {
-        viewModelScope.launch {
-            _sideEffect.emit(CategoryTaskListSideEffect.NavigateBack)
-        }
+        viewModelScope.launch { _sideEffect.emit(CategoryTaskListSideEffect.NavigateBack) }
     }
 }

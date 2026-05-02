@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-**Abramyan-Go** is a Kotlin Multiplatform (KMP) gamified programming education app based on M.E. Abramyan's "1000 Tasks in Programming" textbook. Players solve coding tasks through RPG-themed mechanics.
+**Abramyan-Go** is a Kotlin Multiplatform app for browsing tasks and solutions from M.E. Abramyan's "1000 Tasks in Programming" textbook. Three screens: category list → task list → task detail with collapsible solutions.
 
 ## Tech Stack
 
@@ -10,91 +10,111 @@
 - **Kotlin** 2.0.21, **AGP** 8.13.2
 - **kotlinx.serialization** 1.7.3 for JSON
 - **Koin** 4.0.0 for DI
-- **SQLDelight** 2.0.2 for local DB
 - **Navigation Compose** 2.8.0-alpha10
 - **Coroutines** 1.9.0
 
 ## Module Structure
 
 ```
-shared/          — Domain models, repositories, use cases, DI, DB, JSON data sources
-composeApp/      — Compose Multiplatform UI (screens, mechanics, components, theme)
-androidApp/      — Android app entry point
-iosApp/          — iOS app entry point
+shared/          — Domain models, repository interfaces, CategoryRepositoryImpl
+composeApp/      — Compose Multiplatform UI (screens, components, theme)
+androidApp/      — Android app entry point (MainActivity + AbramyanGoApplication)
+iosApp/          — iOS Xcode project (iosApp.xcodeproj)
 ```
 
 ### Key Packages
 
-- `shared/.../domain/model/` — Task, Player, World, Achievement models
-- `shared/.../domain/repository/` — Repository interfaces
-- `shared/.../data/json/` — TasksDataSource (parses JSON), WorldsDataSource
-- `shared/.../data/repository/` — Repository implementations (SQLDelight + JSON)
-- `shared/.../core/di/` — Koin `sharedModule` (DB, data sources, repos, use cases)
-- `composeApp/.../ui/di/` — Koin `uiModule` (ViewModels, TaskRepository with JSON loader)
-- `composeApp/.../ui/screens/task/` — TaskScreen, TaskViewModel, mechanics/
-- `composeApp/.../ui/screens/task/mechanics/` — DragDropMechanic, BugHuntMechanic, FillBlankMechanic
-- `composeApp/.../ui/components/` — Reusable UI (GlassCard, CodeBlock, PrimaryButton, etc.)
-- `composeApp/.../ui/theme/` — AppTheme, colors, typography, Spacing
+- `shared/.../domain/model/` — `Category`, `CategoryTask`, `CategoryTasksFileJson`
+- `shared/.../domain/repository/` — `CategoryRepository` interface
+- `shared/.../data/repository/` — `CategoryRepositoryImpl` (parses JSON via lambdas)
+- `composeApp/.../ui/di/` — Koin `uiModule` (ViewModels + CategoryRepository with Compose resource loaders)
+- `composeApp/.../ui/screens/categories/` — categories list screen
+- `composeApp/.../ui/screens/categorytasklist/` — task list screen
+- `composeApp/.../ui/screens/taskdetail/` — task detail + solutions screen
+- `composeApp/.../ui/components/` — `GlassCard`, `GlassButton`
+- `composeApp/.../ui/theme/` — `AppTheme`, `AppColors` (Catppuccin Mocha), `AppTypography`, `AppShapes`, `Spacing`
+- `composeApp/.../ui/navigation/` — type-safe `Route` sealed class
+- `composeApp/src/iosMain/` — `MainViewController.kt` (iOS entry point)
 
 ## Architecture
 
-- **MVI pattern**: State, Intent, SideEffect per screen
+- **MVI pattern**: `State`, `Intent`, `SideEffect` per screen
 - **ViewModels** extend `ViewModel` with `StateFlow<State>` + `SharedFlow<SideEffect>`
-- **Repository pattern**: interfaces in `domain/repository/`, implementations in `data/repository/`
-- **JSON as single source of truth** for task data
+- **Repository pattern**: interface in `domain/repository/`, implementation in `data/repository/`
+- **JSON as single source of truth** — no local database
+
+## Data Model
+
+```kotlin
+data class Category(val id: String, val name: String)
+
+data class CategoryTask(
+    val id: String,
+    val question: String,
+    val solutions: Map<String, String> = emptyMap()   // key: language, value: code
+)
+```
+
+Solution languages: `"java"`, `"csharp"`, `"javascript"`, `"python"`.
 
 ## Task Data System
 
-Tasks are loaded from JSON files in `composeApp/src/commonMain/composeResources/files/`.
+JSON files live in `composeApp/src/commonMain/composeResources/files/`.
 
-### JSON file format
+- `categories.json` — list of all categories `[{ "id": "begin_1-40", "name": "Begin" }, ...]`
+- `begin_1-40.json`, `integer_1-30.json`, etc. — tasks per category
+
+### Task file format
 
 ```json
 {
   "tasks": [
     {
       "id": "Begin1",
-      "abramyan_text": "Begin 1. Описание задачи...",
-      "rpg_context": "NPC: «Реплика персонажа»",
-      "mechanic": "DragDrop",       // DragDrop | BugHunt | FillBlank
-      "task_data": { ... }          // depends on mechanic
+      "question": "Условие задачи",
+      "solutions": {
+        "java": "...",
+        "csharp": "...",
+        "javascript": "...",
+        "python": "..."
+      }
     }
-  ],
-  "world_id": 1,
-  "world_name": "Долина Начинаний"
+  ]
 }
 ```
 
-### Mechanic-specific task_data
+### Adding a new category
 
-**DragDrop**: `blocks` (list of `{id, code}`), `correct_order` (list of block IDs)
-**BugHunt**: `code_with_bug`, `bug_line_index`, `bug_options`, `correct_option`
-**FillBlank**: `code_template` (with `___`), `blank_options`, `correct_option`
-
-All task_data objects include `language: "kotlin"`.
-
-### Adding new task files
-
-1. Create JSON file (e.g., `integer 1-40.json`) following the format above
-2. Place in `composeApp/src/commonMain/composeResources/files/`
-3. Add loading line in `composeApp/.../ui/di/UiModule.kt`:
+1. Create `<name>_<range>.json` in `composeApp/src/commonMain/composeResources/files/`
+2. Add entry to `categories.json`
+3. Add loader in `composeApp/.../ui/di/UiModule.kt`:
    ```kotlin
-   Res.readBytes("files/integer 1-40.json").decodeToString()
+   categoryTasksLoader = { id -> Res.readBytes("files/$id.json").decodeToString() }
    ```
-4. `world_id` in JSON maps to world constants in `shared/.../domain/model/World.kt` (`Worlds` object)
+   (the loader already does this dynamically by `id` — no change needed unless you add a new category loader variant)
 
-## Task Mechanic Enum
+## Theme
 
-Only 3 mechanics: `DragDrop`, `BugHunt`, `FillBlank`. SerialName values match JSON exactly.
+Catppuccin Mocha dark palette. Always dark — no light theme.
+
+- `backgroundPrimary` = `#1E1E2E` (base)
+- `glassSurface` = `#181825` (mantle) — card backgrounds
+- `glassBorder` = `#313244` (surface0) — card borders
+- `crust` = `#11111B` — code block background
+- `accentPrimary` = `#A6E3A1` (green)
+- Per-category accent colors defined in `categoryStyleFor()` in `Colors.kt`
+- Per-language colors defined in `languageColor()` in `Colors.kt`
+
+Fonts: Inter (Regular/Medium/SemiBold) for UI text, JetBrains Mono (Regular/Medium/Bold) for code. TTF files in `composeApp/src/commonMain/composeResources/font/`. Extension property imports required in `Typography.kt`.
 
 ## Coding Conventions
 
-- Language: **Kotlin** only (no Python/JS/C# in task code)
-- Serialization: use `@SerialName` for JSON field names (snake_case in JSON, camelCase in Kotlin)
-- UI: Compose Multiplatform with custom `AppTheme`, `GlassCard`, `GlassSurface` components
-- DI: Koin — `sharedModule` in shared, `uiModule` in composeApp, `platformModule` as expect/actual
-- DB: SQLDelight with `.sq` files in `shared/src/commonMain/sqldelight/`
-- No hardcoded task data — all tasks come from JSON files
+- Kotlin only
+- Serialization: `@SerialName` for snake_case JSON fields
+- UI: Compose Multiplatform with `AppTheme.colors`, `AppTheme.typography`, `AppTheme.shapes`
+- DI: Koin — `uiModule` in composeApp; Android uses `AbramyanGoApplication` to start Koin, iOS calls `initKoin()` from Swift `init()`
+- No hardcoded task data — all tasks from JSON files
+- No SQLDelight — data is read-only, loaded into memory from JSON
 
 ## Build & Run
 
@@ -102,19 +122,23 @@ Only 3 mechanics: `DragDrop`, `BugHunt`, `FillBlank`. SerialName values match JS
 # Android
 ./gradlew :androidApp:assembleDebug
 
-# Desktop (if configured)
-./gradlew :composeApp:run
+# iOS — open in Xcode (builds ComposeApp.framework via Gradle automatically)
+open iosApp/iosApp.xcodeproj
 ```
+
+Xcode requires full Xcode install (not just CLI tools). After install: `sudo xcode-select -s /Applications/Xcode.app/Contents/Developer`.
 
 ## Important Files
 
 | File | Purpose |
 |------|---------|
-| `shared/.../domain/model/Task.kt` | Task, TaskData, TaskMechanic, TasksFileJson models |
-| `shared/.../data/json/TasksDataSource.kt` | Parses JSON, stores tasks in memory |
-| `shared/.../data/repository/TaskRepositoryImpl.kt` | Lazy JSON loading via jsonLoader lambda |
-| `composeApp/.../ui/di/UiModule.kt` | Creates TaskRepository with compose resource loader |
-| `composeApp/.../ui/screens/task/TaskViewModel.kt` | MVI ViewModel, checkAnswer logic for all mechanics |
-| `composeApp/.../ui/screens/task/TaskScreen.kt` | Task UI: title, rpg context, mechanic zone |
-| `composeApp/.../ui/screens/task/mechanics/` | DragDrop, BugHunt, FillBlank composables |
-| `composeApp/src/commonMain/composeResources/files/` | JSON task files (begin 1-40.json, etc.) |
+| `shared/.../domain/model/Category.kt` | `Category`, `CategoryTask`, `CategoryTasksFileJson` |
+| `shared/.../data/repository/CategoryRepositoryImpl.kt` | Parses JSON via injected lambdas |
+| `composeApp/.../ui/di/UiModule.kt` | Koin module — wires repository + ViewModels |
+| `composeApp/.../ui/App.kt` | NavHost with 3 routes |
+| `composeApp/.../ui/theme/Colors.kt` | Catppuccin palette, `categoryStyleFor()`, `languageColor()` |
+| `composeApp/.../ui/theme/Typography.kt` | `AppTypography`, `AppShapes`, `Spacing` |
+| `composeApp/src/iosMain/.../MainViewController.kt` | `initKoin()` + `MainViewController()` for iOS |
+| `iosApp/iosApp/iOSApp.swift` | SwiftUI `@main`, calls `doInitKoin()` |
+| `iosApp/iosApp/ContentView.swift` | `UIViewControllerRepresentable` wrapping KMP VC |
+| `composeApp/src/commonMain/composeResources/files/` | JSON data files |

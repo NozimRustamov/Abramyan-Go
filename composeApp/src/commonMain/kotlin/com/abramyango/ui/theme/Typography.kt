@@ -1,6 +1,7 @@
 package com.abramyango.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Shape
@@ -9,6 +10,14 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import abramyango.composeapp.generated.resources.Inter_Medium
+import abramyango.composeapp.generated.resources.Inter_Regular
+import abramyango.composeapp.generated.resources.Inter_SemiBold
+import abramyango.composeapp.generated.resources.JetBrainsMono_Bold
+import abramyango.composeapp.generated.resources.JetBrainsMono_Medium
+import abramyango.composeapp.generated.resources.JetBrainsMono_Regular
+import abramyango.composeapp.generated.resources.Res
+import org.jetbrains.compose.resources.Font
 
 /**
  * Типографика приложения
@@ -21,56 +30,88 @@ data class AppTypography(
     val bodyLarge: TextStyle,         // Основной текст
     val labelLarge: TextStyle,        // Кнопки
     val labelMedium: TextStyle,       // Бейджи
-    val codeBlock: TextStyle          // Monospace для кода
+    val codeBlock: TextStyle          // JetBrains Mono для кода
 )
 
 /**
- * Базовая типографика
+ * Inter + JetBrains Mono — JetBrains style typography
+ */
+@Composable
+fun rememberAppTypography(): AppTypography {
+    val interFamily = FontFamily(
+        Font(Res.font.Inter_Regular, FontWeight.Normal),
+        Font(Res.font.Inter_Medium, FontWeight.Medium),
+        Font(Res.font.Inter_SemiBold, FontWeight.SemiBold),
+    )
+    val monoFamily = FontFamily(
+        Font(Res.font.JetBrainsMono_Regular, FontWeight.Normal),
+        Font(Res.font.JetBrainsMono_Medium, FontWeight.Medium),
+        Font(Res.font.JetBrainsMono_Bold, FontWeight.Bold),
+    )
+    return AppTypography(
+        headlineMedium = TextStyle(
+            fontFamily = interFamily,
+            fontWeight = FontWeight.SemiBold,
+            fontSize = 24.sp,
+            lineHeight = 32.sp,
+            letterSpacing = (-0.3).sp
+        ),
+        titleLarge = TextStyle(
+            fontFamily = interFamily,
+            fontWeight = FontWeight.SemiBold,
+            fontSize = 20.sp,
+            lineHeight = 28.sp,
+            letterSpacing = (-0.2).sp
+        ),
+        titleMedium = TextStyle(
+            fontFamily = interFamily,
+            fontWeight = FontWeight.Medium,
+            fontSize = 17.sp,
+            lineHeight = 24.sp,
+            letterSpacing = (-0.1).sp
+        ),
+        bodyLarge = TextStyle(
+            fontFamily = interFamily,
+            fontWeight = FontWeight.Normal,
+            fontSize = 15.sp,
+            lineHeight = 22.sp,
+            letterSpacing = 0.sp
+        ),
+        labelLarge = TextStyle(
+            fontFamily = interFamily,
+            fontWeight = FontWeight.Medium,
+            fontSize = 14.sp,
+            lineHeight = 20.sp,
+            letterSpacing = 0.sp
+        ),
+        labelMedium = TextStyle(
+            fontFamily = interFamily,
+            fontWeight = FontWeight.Medium,
+            fontSize = 12.sp,
+            lineHeight = 16.sp,
+            letterSpacing = 0.1.sp
+        ),
+        codeBlock = TextStyle(
+            fontFamily = monoFamily,
+            fontWeight = FontWeight.Normal,
+            fontSize = 13.sp,
+            lineHeight = 20.sp,
+            letterSpacing = 0.sp
+        )
+    )
+}
+
+/**
+ * Fallback (только для staticCompositionLocalOf — не используется в UI напрямую)
  */
 val DefaultTypography = AppTypography(
-    headlineMedium = TextStyle(
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 24.sp,
-        lineHeight = 32.sp,
-        letterSpacing = 0.sp
-    ),
-    titleLarge = TextStyle(
-        fontWeight = FontWeight.Medium,
-        fontSize = 20.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.sp
-    ),
-    titleMedium = TextStyle(
-        fontWeight = FontWeight.Medium,
-        fontSize = 18.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.15.sp
-    ),
-    bodyLarge = TextStyle(
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
-    ),
-    labelLarge = TextStyle(
-        fontWeight = FontWeight.Medium,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.1.sp
-    ),
-    labelMedium = TextStyle(
-        fontWeight = FontWeight.Medium,
-        fontSize = 14.sp,
-        lineHeight = 20.sp,
-        letterSpacing = 0.5.sp
-    ),
-    codeBlock = TextStyle(
-        fontFamily = FontFamily.Monospace,
-        fontWeight = FontWeight.Normal,
-        fontSize = 14.sp,
-        lineHeight = 20.sp,
-        letterSpacing = 0.sp
-    )
+    headlineMedium = TextStyle(fontWeight = FontWeight.SemiBold, fontSize = 24.sp, lineHeight = 32.sp, letterSpacing = (-0.3).sp),
+    titleLarge    = TextStyle(fontWeight = FontWeight.SemiBold, fontSize = 20.sp, lineHeight = 28.sp, letterSpacing = (-0.2).sp),
+    titleMedium   = TextStyle(fontWeight = FontWeight.Medium,   fontSize = 17.sp, lineHeight = 24.sp, letterSpacing = (-0.1).sp),
+    bodyLarge     = TextStyle(fontWeight = FontWeight.Normal,   fontSize = 15.sp, lineHeight = 22.sp, letterSpacing = 0.sp),
+    labelLarge    = TextStyle(fontWeight = FontWeight.Medium,   fontSize = 14.sp, lineHeight = 20.sp, letterSpacing = 0.sp),
+    labelMedium   = TextStyle(fontWeight = FontWeight.Medium,   fontSize = 12.sp, lineHeight = 16.sp, letterSpacing = 0.1.sp),
+    codeBlock     = TextStyle(fontFamily = FontFamily.Monospace, fontWeight = FontWeight.Normal, fontSize = 13.sp, lineHeight = 20.sp, letterSpacing = 0.sp)
 )
 
 /**
@@ -92,28 +133,16 @@ data class AppShapes(
 
 val DefaultShapes = AppShapes(
     extraSmall = RoundedCornerShape(4.dp),
-    small = RoundedCornerShape(8.dp),
-    medium = RoundedCornerShape(12.dp),
-    large = RoundedCornerShape(16.dp),
+    small      = RoundedCornerShape(8.dp),
+    medium     = RoundedCornerShape(12.dp),
+    large      = RoundedCornerShape(16.dp),
     extraLarge = RoundedCornerShape(24.dp),
-    glassCard = RoundedCornerShape(20.dp),
-    button = RoundedCornerShape(16.dp),
-    codeBlock = RoundedCornerShape(12.dp),
-    badge = RoundedCornerShape(8.dp),
-    pill = RoundedCornerShape(50)
+    glassCard  = RoundedCornerShape(10.dp),
+    button     = RoundedCornerShape(8.dp),
+    codeBlock  = RoundedCornerShape(6.dp),
+    badge      = RoundedCornerShape(4.dp),
+    pill       = RoundedCornerShape(50)
 )
 
-/**
- * Отступы и размеры
- */
-object Spacing {
-    val extraSmall = 4.dp
-    val small = 8.dp
-    val medium = 12.dp
-    val default = 16.dp
-    val massive = 48.dp
-}
-
-
 val LocalAppTypography = staticCompositionLocalOf { DefaultTypography }
-val LocalAppShapes = staticCompositionLocalOf { DefaultShapes }
+val LocalAppShapes     = staticCompositionLocalOf { DefaultShapes }

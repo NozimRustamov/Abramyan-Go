@@ -1,8 +1,8 @@
-package com.abramyango.ui.di
+package com.abramyango.ui
 
 import abramyango.composeapp.generated.resources.Res
-import com.abramyango.data.repository.CategoryRepositoryImpl
-import com.abramyango.domain.repository.CategoryRepository
+import com.abramyango.data.CategoryRepository
+import com.abramyango.data.CategoryRepositoryImpl
 import com.abramyango.ui.screens.categories.CategoriesViewModel
 import com.abramyango.ui.screens.categorytasklist.CategoryTaskListViewModel
 import com.abramyango.ui.screens.taskdetail.TaskDetailViewModel
@@ -11,7 +11,7 @@ import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
 @OptIn(ExperimentalResourceApi::class)
-val uiModule = module {
+val appModule = module {
     single<CategoryRepository> {
         CategoryRepositoryImpl(
             categoriesLoader = {
