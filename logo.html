@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 100%; min-height: 100vh;
+    background: #0D0E14;
+    display: flex; align-items: center; justify-content: center;
+    padding: 60px 40px;
+  }
+  .stage { display: flex; flex-direction: column; align-items: center; gap: 56px; }
+  .row { display: flex; align-items: flex-end; gap: 56px; flex-wrap: wrap; justify-content: center; }
+  .card { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .tag {
+    font-family: Menlo, Monaco, monospace;
+    font-size: 10px; color: #45475A; letter-spacing: 0.8px; text-transform: uppercase;
+  }
+  .divider {
+    width: 480px; max-width: 90vw; height: 1px; background: #1E1E2E;
+  }
+  .size-row { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; justify-content: center; }
+  .size-card { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <!-- Title -->
+  <div style="font-family:Menlo,monospace;font-size:11px;color:#45475A;letter-spacing:1.5px;text-transform:uppercase;">
+    Abramyan Go — Logo Explorations
+  </div>
+
+  <!-- Row 1: two main variants -->
+  <div class="row">
+
+    <!-- A: App Icon — terminal bracket -->
+    <div class="card">
+      <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="160" height="160" rx="36" fill="#1E1E2E"/>
+        <!-- subtle inner border -->
+        <rect x="1" y="1" width="158" height="158" rx="35" stroke="#313244" stroke-width="1"/>
+        <!-- green left accent bar -->
+        <rect x="28" y="32" width="5" height="96" rx="2.5" fill="#A6E3A1"/>
+        <!-- big A -->
+        <text x="44" y="104" font-family="Menlo,Monaco,'Courier New',monospace" font-size="72" font-weight="700" fill="#CDD6F4">A</text>
+        <!-- Go pill bottom-right -->
+        <rect x="100" y="108" width="42" height="24" rx="7" fill="#A6E3A1"/>
+        <text x="111" y="125" font-family="Menlo,Monaco,'Courier New',monospace" font-size="15" font-weight="700" fill="#1E1E2E">Go</text>
+      </svg>
+      <span class="tag">A — App icon</span>
+    </div>
+
+    <!-- B: Wordmark horizontal -->
+    <div class="card">
+      <svg width="320" height="90" viewBox="0 0 320 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="320" height="90" rx="20" fill="#1E1E2E"/>
+        <rect x="1" y="1" width="318" height="88" rx="19" stroke="#313244" stroke-width="1"/>
+        <!-- left green bar -->
+        <rect x="24" y="22" width="4" height="46" rx="2" fill="#A6E3A1"/>
+        <!-- A letter -->
+        <text x="36" y="66" font-family="Menlo,Monaco,'Courier New',monospace" font-size="52" font-weight="700" fill="#CDD6F4">A</text>
+        <!-- dot separator -->
+        <circle cx="88" cy="59" r="4" fill="#A6E3A1"/>
+        <!-- "bramyan" -->
+        <text x="100" y="65" font-family="Menlo,Monaco,'Courier New',monospace" font-size="28" font-weight="400" fill="#A6ADC8">bramyan</text>
+        <!-- Go pill -->
+        <rect x="258" y="28" width="42" height="32" rx="9" fill="#A6E3A1"/>
+        <text x="268" y="50" font-family="Menlo,Monaco,'Courier New',monospace" font-size="18" font-weight="700" fill="#1E1E2E">Go</text>
+      </svg>
+      <span class="tag">B — Wordmark</span>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Row 2: two more -->
+  <div class="row">
+
+    <!-- C: Minimal terminal prompt -->
+    <div class="card">
+      <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="160" height="160" rx="36" fill="#11111B"/>
+        <rect x="1" y="1" width="158" height="158" rx="35" stroke="#313244" stroke-width="1"/>
+        <!-- prompt char -->
+        <text x="22" y="82" font-family="Menlo,Monaco,'Courier New',monospace" font-size="34" font-weight="700" fill="#A6E3A1">&gt;</text>
+        <!-- A -->
+        <text x="58" y="82" font-family="Menlo,Monaco,'Courier New',monospace" font-size="34" font-weight="700" fill="#CDD6F4">A</text>
+        <!-- blinking cursor block -->
+        <rect x="91" y="52" width="20" height="34" rx="3" fill="#A6E3A1" opacity="0.9"/>
+        <!-- bottom line -->
+        <text x="22" y="112" font-family="Menlo,Monaco,'Courier New',monospace" font-size="13" fill="#45475A">abramyan.go</text>
+      </svg>
+      <span class="tag">C — Terminal</span>
+    </div>
+
+    <!-- D: Circle / badge -->
+    <div class="card">
+      <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- bg circle -->
+        <circle cx="80" cy="80" r="79" fill="#1E1E2E" stroke="#313244" stroke-width="1"/>
+        <!-- green arc ~1/4 -->
+        <circle cx="80" cy="80" r="68" stroke="#313244" stroke-width="3" fill="none"/>
+        <path d="M80 12 A68 68 0 0 1 148 80" stroke="#A6E3A1" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <!-- A large centered -->
+        <text x="80" y="96" font-family="Menlo,Monaco,'Courier New',monospace" font-size="60" font-weight="700" fill="#CDD6F4" text-anchor="middle">A</text>
+        <!-- Go small below -->
+        <text x="80" y="118" font-family="Menlo,Monaco,'Courier New',monospace" font-size="14" font-weight="700" fill="#A6E3A1" text-anchor="middle">Go</text>
+      </svg>
+      <span class="tag">D — Badge</span>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Small size preview (Option A — recommended) -->
+  <div style="font-family:Menlo,monospace;font-size:10px;color:#45475A;letter-spacing:1px;text-transform:uppercase;align-self:flex-start;margin-left:auto;margin-right:auto;">
+    Option A at small sizes
+  </div>
+  <div class="size-row">
+    <div class="size-card">
+      <svg width="80" height="80" viewBox="0 0 160 160" fill="none">
+        <rect width="160" height="160" rx="36" fill="#1E1E2E"/>
+        <rect x="1" y="1" width="158" height="158" rx="35" stroke="#313244" stroke-width="1"/>
+        <rect x="28" y="32" width="5" height="96" rx="2.5" fill="#A6E3A1"/>
+        <text x="44" y="104" font-family="Menlo,Monaco,monospace" font-size="72" font-weight="700" fill="#CDD6F4">A</text>
+        <rect x="100" y="108" width="42" height="24" rx="7" fill="#A6E3A1"/>
+        <text x="111" y="125" font-family="Menlo,Monaco,monospace" font-size="15" font-weight="700" fill="#1E1E2E">Go</text>
+      </svg>
+      <span class="tag">80px</span>
+    </div>
+    <div class="size-card">
+      <svg width="48" height="48" viewBox="0 0 160 160" fill="none">
+        <rect width="160" height="160" rx="36" fill="#1E1E2E"/>
+        <rect x="28" y="32" width="5" height="96" rx="2.5" fill="#A6E3A1"/>
+        <text x="44" y="104" font-family="Menlo,Monaco,monospace" font-size="72" font-weight="700" fill="#CDD6F4">A</text>
+        <rect x="100" y="108" width="42" height="24" rx="7" fill="#A6E3A1"/>
+        <text x="111" y="125" font-family="Menlo,Monaco,monospace" font-size="15" font-weight="700" fill="#1E1E2E">Go</text>
+      </svg>
+      <span class="tag">48px</span>
+    </div>
+    <div class="size-card">
+      <svg width="32" height="32" viewBox="0 0 160 160" fill="none">
+        <rect width="160" height="160" rx="36" fill="#1E1E2E"/>
+        <rect x="28" y="32" width="5" height="96" rx="2.5" fill="#A6E3A1"/>
+        <text x="44" y="104" font-family="Menlo,Monaco,monospace" font-size="72" font-weight="700" fill="#CDD6F4">A</text>
+        <rect x="100" y="108" width="42" height="24" rx="7" fill="#A6E3A1"/>
+        <text x="111" y="125" font-family="Menlo,Monaco,monospace" font-size="15" font-weight="700" fill="#1E1E2E">Go</text>
+      </svg>
+      <span class="tag">32px</span>
+    </div>
+    <!-- on light bg -->
+    <div class="size-card">
+      <div style="background:#F5F5F5;border-radius:12px;padding:12px;">
+        <svg width="80" height="80" viewBox="0 0 160 160" fill="none">
+          <rect width="160" height="160" rx="36" fill="#1E1E2E"/>
+          <rect x="28" y="32" width="5" height="96" rx="2.5" fill="#A6E3A1"/>
+          <text x="44" y="104" font-family="Menlo,Monaco,monospace" font-size="72" font-weight="700" fill="#CDD6F4">A</text>
+          <rect x="100" y="108" width="42" height="24" rx="7" fill="#A6E3A1"/>
+          <text x="111" y="125" font-family="Menlo,Monaco,monospace" font-size="15" font-weight="700" fill="#1E1E2E">Go</text>
+        </svg>
+      </div>
+      <span class="tag">on light</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

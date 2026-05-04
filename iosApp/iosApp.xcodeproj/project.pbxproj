@@ -11,6 +11,7 @@
 		A1B2C3D4E5F60002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60012 /* ContentView.swift */; };
 		A1B2C3D4E5F60003 /* ComposeApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60013 /* ComposeApp.framework */; };
 		A1B2C3D4E5F60004 /* ComposeApp.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60013 /* ComposeApp.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A1B2C3D4E5F60005 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60015 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +34,7 @@
 		A1B2C3D4E5F60012 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F60013 /* ComposeApp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ComposeApp.framework; path = "$(BUILT_PRODUCTS_DIR)/ComposeApp.framework"; sourceTree = "<group>"; };
 		A1B2C3D4E5F60014 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1B2C3D4E5F60015 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				A1B2C3D4E5F60011 /* iOSApp.swift */,
 				A1B2C3D4E5F60012 /* ContentView.swift */,
 				A1B2C3D4E5F60014 /* Info.plist */,
+				A1B2C3D4E5F60015 /* Assets.xcassets */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -90,6 +93,7 @@
 			buildConfigurationList = A1B2C3D4E5F60060 /* Build configuration list for PBXNativeTarget "iosApp" */;
 			buildPhases = (
 				A1B2C3D4E5F60070 /* Run Gradle Build */,
+				A1B2C3D4E5F60033 /* Resources */,
 				A1B2C3D4E5F60031 /* Sources */,
 				A1B2C3D4E5F60030 /* Frameworks */,
 				A1B2C3D4E5F60020 /* Embed Frameworks */,
@@ -157,6 +161,17 @@
 			shellScript = "cd \"$SRCROOT/..\"\n./gradlew :composeApp:embedAndSignAppleFrameworkForXcode\n";
 		};
 /* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A1B2C3D4E5F60033 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1B2C3D4E5F60005 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A1B2C3D4E5F60031 /* Sources */ = {
