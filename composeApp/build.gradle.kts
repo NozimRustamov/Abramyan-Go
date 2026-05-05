@@ -42,15 +42,21 @@ kotlin {
 }
 
 android {
-    namespace = "com.abramyango.composeapp"
+    namespace = "tj.abramyan.go.shared"
     compileSdk = 35
-    
+
     defaultConfig {
         minSdk = 24
     }
-    
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+}
+
+compose.resources {
+    publicResClass = false
+    packageOfResClass = "tj.abramyan.go.shared.resources"
+    generateResClass = auto
 }

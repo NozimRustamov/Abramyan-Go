@@ -29,11 +29,11 @@ kotlin {
 }
 
 android {
-    namespace = "com.abramyango"
+    namespace = "tj.abramyan.go"
     compileSdk = 35
     
     defaultConfig {
-        applicationId = "com.abramyango"
+        applicationId = "tj.abramyan.go"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
@@ -44,10 +44,6 @@ android {
         }
     }
     
-    sourceSets["main"].manifest.srcFile("src/main/AndroidManifest.xml")
-    sourceSets["main"].res.srcDirs("src/main/res")
-    sourceSets["main"].resources.srcDirs("src/main/resources")
-
     buildTypes {
         release {
             isMinifyEnabled = true

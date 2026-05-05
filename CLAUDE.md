@@ -11,36 +11,41 @@
 - **kotlinx.serialization** 1.7.3 for JSON
 - **Koin** 4.0.0 for DI
 - **Navigation Compose** 2.8.0-alpha10
-- **Coroutines** 1.9.0
 
 ## Module Structure
 
 ```
-shared/          — Domain models, repository interfaces, CategoryRepositoryImpl
-composeApp/      — Compose Multiplatform UI (screens, components, theme)
-androidApp/      — Android app entry point (MainActivity + AbramyanGoApplication)
+composeApp/      — Compose Multiplatform UI + domain/data (commonMain, iosMain)
+androidApp/      — Android entry (MainActivity + AbramyanGoApplication)
 iosApp/          — iOS Xcode project (iosApp.xcodeproj)
 ```
 
-### Key Packages
+There is **no separate `shared/` module** — all common code lives in `composeApp/src/commonMain/`.
 
-- `shared/.../domain/model/` — `Category`, `CategoryTask`, `CategoryTasksFileJson`
-- `shared/.../domain/repository/` — `CategoryRepository` interface
-- `shared/.../data/repository/` — `CategoryRepositoryImpl` (parses JSON via lambdas)
-- `composeApp/.../ui/di/` — Koin `uiModule` (ViewModels + CategoryRepository with Compose resource loaders)
-- `composeApp/.../ui/screens/categories/` — categories list screen
-- `composeApp/.../ui/screens/categorytasklist/` — task list screen
-- `composeApp/.../ui/screens/taskdetail/` — task detail + solutions screen
-- `composeApp/.../ui/components/` — `GlassCard`, `GlassButton`
-- `composeApp/.../ui/theme/` — `AppTheme`, `AppColors` (Catppuccin Mocha), `AppTypography`, `AppShapes`, `Spacing`
-- `composeApp/.../ui/navigation/` — type-safe `Route` sealed class
-- `composeApp/src/iosMain/` — `MainViewController.kt` (iOS entry point)
+### Package layout
+
+All Kotlin packages live under `tj.abramyan.go`:
+
+- `composeApp/src/commonMain/kotlin/tj/abramyan/go/data/` — `Category`, `CategoryTask`, `CategoryTasksFileJson`, `CategoryRepository`, `CategoryRepositoryImpl`
+- `composeApp/src/commonMain/kotlin/tj/abramyan/go/ui/` — `App.kt` (NavHost + `Route` sealed class), `AppModule.kt` (Koin module)
+- `composeApp/src/commonMain/kotlin/tj/abramyan/go/ui/screens/categories/` — categories list
+- `composeApp/src/commonMain/kotlin/tj/abramyan/go/ui/screens/categorytasklist/` — task list
+- `composeApp/src/commonMain/kotlin/tj/abramyan/go/ui/screens/taskdetail/` — task detail + solutions
+- `composeApp/src/commonMain/kotlin/tj/abramyan/go/ui/theme/` — `Colors`, `Theme`, `Typography`
+- `composeApp/src/iosMain/kotlin/tj/abramyan/go/MainViewController.kt` — iOS entry
+- `androidApp/src/main/kotlin/tj/abramyan/go/` — `MainActivity`, `AbramyanGoApplication`
+
+### Identifiers
+
+- Android `applicationId` and `androidApp` `namespace`: `tj.abramyan.go`
+- `composeApp` Android library `namespace`: `tj.abramyan.go.shared`
+- Compose Resources generated `Res` package (overridden in `composeApp/build.gradle.kts`): `tj.abramyan.go.shared.resources`
 
 ## Architecture
 
 - **MVI pattern**: `State`, `Intent`, `SideEffect` per screen
-- **ViewModels** extend `ViewModel` with `StateFlow<State>` + `SharedFlow<SideEffect>`
-- **Repository pattern**: interface in `domain/repository/`, implementation in `data/repository/`
+- **ViewModels** extend `androidx.lifecycle.ViewModel`, expose `StateFlow<State>` + `SharedFlow<SideEffect>`
+- **Repository pattern**: interface + impl colocated in `data/Category.kt`
 - **JSON as single source of truth** — no local database
 
 ## Data Model
@@ -85,13 +90,10 @@ JSON files live in `composeApp/src/commonMain/composeResources/files/`.
 
 ### Adding a new category
 
-1. Create `<name>_<range>.json` in `composeApp/src/commonMain/composeResources/files/`
-2. Add entry to `categories.json`
-3. Add loader in `composeApp/.../ui/di/UiModule.kt`:
-   ```kotlin
-   categoryTasksLoader = { id -> Res.readBytes("files/$id.json").decodeToString() }
-   ```
-   (the loader already does this dynamically by `id` — no change needed unless you add a new category loader variant)
+1. Create `<name>_<range>.json` in `composeApp/src/commonMain/composeResources/files/`.
+2. Add an entry to `categories.json`.
+
+The Koin module's `categoryTasksLoader` resolves the file dynamically via `Res.readBytes("files/$id.json")` — no Koin or build-time changes are needed.
 
 ## Theme
 
@@ -102,19 +104,27 @@ Catppuccin Mocha dark palette. Always dark — no light theme.
 - `glassBorder` = `#313244` (surface0) — card borders
 - `crust` = `#11111B` — code block background
 - `accentPrimary` = `#A6E3A1` (green)
-- Per-category accent colors defined in `categoryStyleFor()` in `Colors.kt`
-- Per-language colors defined in `languageColor()` in `Colors.kt`
+- Per-category accent colors: `categoryStyleFor()` in `Colors.kt`
+- Per-language colors: `languageColor()` in `Colors.kt`
 
-Fonts: Inter (Regular/Medium/SemiBold) for UI text, JetBrains Mono (Regular/Medium/Bold) for code. TTF files in `composeApp/src/commonMain/composeResources/font/`. Extension property imports required in `Typography.kt`.
+The theme is exposed through `AppTheme`:
+
+```kotlin
+AppTheme.colors      // AppColors  (Catppuccin palette)
+AppTheme.fonts       // AppFonts   (sans = Inter, mono = JetBrains Mono)
+AppTheme.typography  // AppTypography (Inter/JetBrainsMono presets)
+AppTheme.shapes      // AppShapes  (rounded-corner shape tokens)
+```
+
+Fonts: Inter (Regular/Medium/SemiBold) and JetBrains Mono (Regular/Medium/Bold). TTF files in `composeApp/src/commonMain/composeResources/font/`. Loaded via `rememberAppFonts()` in `Typography.kt`.
 
 ## Coding Conventions
 
 - Kotlin only
-- Serialization: `@SerialName` for snake_case JSON fields
-- UI: Compose Multiplatform with `AppTheme.colors`, `AppTheme.typography`, `AppTheme.shapes`
-- DI: Koin — `uiModule` in composeApp; Android uses `AbramyanGoApplication` to start Koin, iOS calls `initKoin()` from Swift `init()`
+- Serialization: `kotlinx.serialization` with `@SerialName` for snake_case JSON fields
+- UI: Compose Multiplatform; access theme via `AppTheme.colors`, `AppTheme.fonts`, `AppTheme.typography`, `AppTheme.shapes`
+- DI: Koin — `appModule` in `composeApp`; Android starts Koin in `AbramyanGoApplication`, iOS calls `initKoin()` from Swift `init()`
 - No hardcoded task data — all tasks from JSON files
-- No SQLDelight — data is read-only, loaded into memory from JSON
 
 ## Build & Run
 
@@ -126,19 +136,20 @@ Fonts: Inter (Regular/Medium/SemiBold) for UI text, JetBrains Mono (Regular/Medi
 open iosApp/iosApp.xcodeproj
 ```
 
-Xcode requires full Xcode install (not just CLI tools). After install: `sudo xcode-select -s /Applications/Xcode.app/Contents/Developer`.
+Xcode requires a full Xcode install (not just CLI tools). After install: `sudo xcode-select -s /Applications/Xcode.app/Contents/Developer`.
 
 ## Important Files
 
 | File | Purpose |
 |------|---------|
-| `shared/.../domain/model/Category.kt` | `Category`, `CategoryTask`, `CategoryTasksFileJson` |
-| `shared/.../data/repository/CategoryRepositoryImpl.kt` | Parses JSON via injected lambdas |
-| `composeApp/.../ui/di/UiModule.kt` | Koin module — wires repository + ViewModels |
-| `composeApp/.../ui/App.kt` | NavHost with 3 routes |
+| `composeApp/.../data/Category.kt` | Models + `CategoryRepository`/`CategoryRepositoryImpl` |
+| `composeApp/.../ui/App.kt` | NavHost + type-safe `Route` sealed class |
+| `composeApp/.../ui/AppModule.kt` | Koin `appModule` — wires repository + ViewModels |
 | `composeApp/.../ui/theme/Colors.kt` | Catppuccin palette, `categoryStyleFor()`, `languageColor()` |
-| `composeApp/.../ui/theme/Typography.kt` | `AppTypography`, `AppShapes`, `Spacing` |
+| `composeApp/.../ui/theme/Typography.kt` | `AppFonts`, `AppTypography`, `AppShapes` + remember helpers |
+| `composeApp/.../ui/theme/Theme.kt` | `AbramyanGoTheme` + `AppTheme` accessor |
 | `composeApp/src/iosMain/.../MainViewController.kt` | `initKoin()` + `MainViewController()` for iOS |
 | `iosApp/iosApp/iOSApp.swift` | SwiftUI `@main`, calls `doInitKoin()` |
-| `iosApp/iosApp/ContentView.swift` | `UIViewControllerRepresentable` wrapping KMP VC |
+| `iosApp/iosApp/ContentView.swift` | `UIViewControllerRepresentable` wrapping the KMP VC |
 | `composeApp/src/commonMain/composeResources/files/` | JSON data files |
+| `androidApp/proguard-rules.pro` | R8 keep rules for serialization + nav routes |

@@ -1,44 +1,36 @@
-# Add project specific ProGuard rules here.
-# You can control the set of applied configuration files using the
-# proguardFiles setting in build.gradle.kts.
+# ProGuard / R8 rules for Abramyan Go (Android release).
+# Library-specific consumer rules ship with their AARs — keep this file focused
+# on what the application itself needs.
 
-# Keep Kotlin metadata for reflection
+# ===== Kotlin metadata + serialization annotations =====
+-keepattributes *Annotation*, InnerClasses, Signature, Exceptions, EnclosingMethod
 -keep class kotlin.Metadata { *; }
 
-# SQLDelight
--keep class app.cash.sqldelight.** { *; }
--keep interface app.cash.sqldelight.** { *; }
-
-# Koin
--keepnames class * implements org.koin.core.KoinComponent
-
-# Kotlin Serialization
--keepattributes *Annotation*, InnerClasses
--dontnote kotlinx.serialization.AnnotationsKt
-
+# ===== kotlinx.serialization =====
+# Companion + serializer factories for every @Serializable class.
 -keepclassmembers @kotlinx.serialization.Serializable class ** {
     *** Companion;
     <fields>;
     <methods>;
 }
+-keepclasseswithmembers class **$$serializer { static ** INSTANCE; }
+-dontnote kotlinx.serialization.AnnotationsKt
 
-# Keep data classes
--keep class com.abramyango.domain.model.** { *; }
--keep class com.abramyango.data.db.** { *; }
+# ===== Domain models + Navigation routes =====
+# Models are deserialized from JSON via reflection-free serializer factories,
+# but we keep them anyway to make the surface immune to obfuscation surprises.
+-keep class tj.abramyan.go.data.Category { *; }
+-keep class tj.abramyan.go.data.CategoryTask { *; }
+-keep class tj.abramyan.go.data.CategoryTasksFileJson { *; }
+-keep class tj.abramyan.go.ui.Route { *; }
+-keep class tj.abramyan.go.ui.Route$* { *; }
 
-# Compose
--keep class androidx.compose.** { *; }
--dontwarn androidx.compose.**
+# ===== Compose Multiplatform Resources =====
+# Keep the generated Res class and its internal objects (font, files, etc.)
+-keep class tj.abramyan.go.shared.resources.Res { *; }
+-keep class tj.abramyan.go.shared.resources.Res$* { *; }
 
-# Ktor (if used in future)
--dontwarn io.ktor.**
--keep class io.ktor.** { *; }
-
-# Coroutines
--keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
--keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}
-
-# Enum
+# ===== Enum support (none today, but cheap to keep) =====
 -keepclassmembers enum * {
     public static **[] values();
     public static ** valueOf(java.lang.String);
