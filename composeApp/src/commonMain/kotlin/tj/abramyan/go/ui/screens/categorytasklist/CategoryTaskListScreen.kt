@@ -1,5 +1,6 @@
 package tj.abramyan.go.ui.screens.categorytasklist
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -24,6 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -41,11 +43,26 @@ fun CategoryTaskListScreen(
     val catStyle = categoryStyleFor(state.categoryId)
     val categoryKey = state.categoryId.substringBefore('_')
 
-    Column(
+    Box(
         modifier = modifier
             .fillMaxSize()
             .background(colors.backgroundPrimary)
     ) {
+        Canvas(modifier = Modifier.fillMaxSize()) {
+            val gridSize = 48.dp.toPx()
+            val gridColor = colors.glassBorder
+            var x = 0f
+            while (x < size.width) {
+                drawLine(gridColor, Offset(x, 0f), Offset(x, size.height), 1f)
+                x += gridSize
+            }
+            var y = 0f
+            while (y < size.height) {
+                drawLine(gridColor, Offset(0f, y), Offset(size.width, y), 1f)
+                y += gridSize
+            }
+        }
+        Column(modifier = Modifier.fillMaxSize()) {
         // Topbar
         Row(
             modifier = Modifier
@@ -146,6 +163,7 @@ fun CategoryTaskListScreen(
                     )
                 }
             }
+        }
         }
     }
 }
