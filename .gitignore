@@ -36,3 +36,9 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# Kotlin compiler cache
+.kotlin/
+
+# Xcode user-specific data
+xcuserdata/
