@@ -30,14 +30,14 @@ kotlin {
 
 android {
     namespace = "tj.abramyan.go"
-    compileSdk = 35
+    compileSdk = 37
     
     defaultConfig {
         applicationId = "tj.abramyan.go"
         minSdk = 24
-        targetSdk = 35
-        versionCode = 1
-        versionName = "1.0.0"
+        targetSdk = 37
+        versionCode = 7
+        versionName = "1.1.1"
         
         vectorDrawables {
             useSupportLibrary = true
